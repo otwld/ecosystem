@@ -2,10 +2,10 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "apps-otwld-fr": "projects/apps/otwld-fr",
     "apps-api-otwld-fr": "projects/apps/api-otwld-fr",
-    "charts-otwld-fr": "projects/charts/otwld-fr",
+    "apps-otwld-fr": "projects/apps/otwld-fr",
     "charts-api-otwld-fr": "projects/charts/api-otwld-fr",
+    "charts-otwld-fr": "projects/charts/otwld-fr",
     "e2e-otwld-fr": "projects/e2e/otwld-fr"
   }
 }
