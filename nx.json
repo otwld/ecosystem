@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "otwld",
+  "npmScope": "ecosystem",
   "affected": {
     "defaultBase": "last-release"
   },
@@ -95,5 +95,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "otwld-fr"
+  "defaultProject": "apps-otwld-fr"
 }

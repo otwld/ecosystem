@@ -10,10 +10,10 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/api-otwld-fr",
-        "main": "apps/api-otwld-fr/src/main.ts",
-        "tsConfig": "apps/api-otwld-fr/tsconfig.app.json",
-        "assets": ["apps/api-otwld-fr/src/assets"]
+        "outputPath": "dist/projects/apps/api-otwld-fr",
+        "main": "projects/apps/api-otwld-fr/src/main.ts",
+        "tsConfig": "projects/apps/api-otwld-fr/tsconfig.app.json",
+        "assets": ["projects/apps/api-otwld-fr/src/assets"]
       },
       "configurations": {
         "production": {
@@ -22,8 +22,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/api-otwld-fr/src/environments/environment.ts",
-              "with": "apps/api-otwld-fr/src/environments/environment.prod.ts"
+              "replace": "projects/apps/api-otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/api-otwld-fr/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -32,11 +32,11 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "api-otwld-fr:build"
+        "buildTarget": "apps-api-otwld-fr:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "api-otwld-fr:build:production"
+          "buildTarget": "apps-api-otwld-fr:build:production"
         }
       }
     },
@@ -44,14 +44,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api-otwld-fr/**/*.ts"]
+        "lintFilePatterns": ["projects/apps/api-otwld-fr/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/api-otwld-fr/jest.config.ts",
+        "jestConfig": "projects/apps/api-otwld-fr/jest.config.ts",
         "passWithNoTests": true
       }
     },

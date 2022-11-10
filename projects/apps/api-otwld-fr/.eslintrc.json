@@ -1,9 +1,12 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["projects/apps/api-otwld-fr/tsconfig.*?.json"]
+      },
       "rules": {}
     },
     {

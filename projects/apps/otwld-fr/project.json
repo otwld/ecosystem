@@ -1,22 +1,22 @@
 {
-  "name": "otwld-fr",
+  "name": "apps-otwld-fr",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/otwld-fr/src",
+  "sourceRoot": "projects/apps/otwld-fr/src",
   "prefix": "otwld",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/otwld-fr",
-        "index": "apps/otwld-fr/src/index.html",
-        "main": "apps/otwld-fr/src/main.ts",
-        "polyfills": "apps/otwld-fr/src/polyfills.ts",
-        "tsConfig": "apps/otwld-fr/tsconfig.app.json",
+        "outputPath": "dist/projects/apps/otwld-fr",
+        "index": "projects/apps/otwld-fr/src/index.html",
+        "main": "projects/apps/otwld-fr/src/main.ts",
+        "polyfills": "projects/apps/otwld-fr/src/polyfills.ts",
+        "tsConfig": "projects/apps/otwld-fr/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/otwld-fr/src/favicon.ico", "apps/otwld-fr/src/assets"],
-        "styles": ["apps/otwld-fr/src/styles.scss"],
+        "assets": ["projects/apps/otwld-fr/src/favicon.ico", "projects/apps/otwld-fr/src/assets"],
+        "styles": ["projects/apps/otwld-fr/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -35,8 +35,8 @@
           ],
           "fileReplacements": [
             {
-              "replace": "apps/otwld-fr/src/environments/environment.ts",
-              "with": "apps/otwld-fr/src/environments/environment.prod.ts"
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
@@ -56,34 +56,34 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "otwld-fr:build:production"
+          "browserTarget": "apps-otwld-fr:build:production"
         },
         "development": {
-          "browserTarget": "otwld-fr:build:development"
+          "browserTarget": "apps-otwld-fr:build:development"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "apps/otwld-fr/proxy.conf.json"
+        "proxyConfig": "projects/apps/otwld-fr/proxy.conf.json"
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "otwld-fr:build"
+        "browserTarget": "apps-otwld-fr:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/otwld-fr/**/*.ts", "apps/otwld-fr/**/*.html"]
+        "lintFilePatterns": ["projects/apps/otwld-fr/**/*.ts", "projects/apps/otwld-fr/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/otwld-fr"],
       "options": {
-        "jestConfig": "apps/otwld-fr/jest.config.ts",
+        "jestConfig": "projects/apps/otwld-fr/jest.config.ts",
         "passWithNoTests": true
       }
     },
