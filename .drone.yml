@@ -3,7 +3,7 @@ load: nx-devops-latest.yaml
 
 data:
   workspace:
-    appsPath: apps
+    appsPath: projects
   image:
     tag: latest
   setup:
