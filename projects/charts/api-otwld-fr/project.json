@@ -29,7 +29,7 @@
             "forwardAllArgs": false
           },
           {
-            "command": "curl -u ${REGISTRY_USERNAME}:${REGISTRY_PASSWORD} https://nexus.outworld.fr/service/rest/v1/components?repository=helm-hosted -J -L -s -F file=@dist/projects/charts/api-otwld-fr/ow-ecosystem-api-otwld-fr-${PROJECT_VERSION}.tgz",
+            "command": "curl -u ${REGISTRY_USERNAME}:${REGISTRY_PASSWORD} https://nexus.outworld.fr/service/rest/v1/components?repository=helm-hosted -J -L -s -F file=@dist/projects/charts/api-otwld-fr/ecosystem-api-otwld-fr-${PROJECT_VERSION}.tgz",
             "forwardAllArgs": false
           }
         ]

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: ow-ecosystem-api-otwld-fr
+name: ecosystem-api-otwld-fr
 description: API for the Outworld
 version: 0.0.1
 kubeVersion: ">=1.16.0-0"
