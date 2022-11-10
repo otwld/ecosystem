@@ -1,0 +1,96 @@
+{
+  "name": "apps-api-otwld-fr",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "projects/apps/api-otwld-fr/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/api-otwld-fr",
+        "main": "apps/api-otwld-fr/src/main.ts",
+        "tsConfig": "apps/api-otwld-fr/tsconfig.app.json",
+        "assets": ["apps/api-otwld-fr/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/api-otwld-fr/src/environments/environment.ts",
+              "with": "apps/api-otwld-fr/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "api-otwld-fr:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "api-otwld-fr:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/api-otwld-fr/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/api-otwld-fr/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "docker-publish": {
+      "executor": "@nx-tools/nx-docker:build",
+      "configurations": {
+        "production": {
+          "tags": [
+            "docker.outworld.fr/ecosystem/api-otwld-fr:${TAG_LATEST_FORMAT}",
+            "docker.outworld.fr/ecosystem/api-otwld-fr:${PROJECT_VERSION}"
+          ]
+        },
+        "staging": {
+          "tags": [
+            "docker.outworld.fr/ecosystem/api-otwld-fr:${TAG_LATEST_FORMAT}",
+            "docker.outworld.fr/ecosystem/api-otwld-fr:${PROJECT_VERSION}"
+          ]
+        }
+      },
+      "options": {
+        "push": true,
+        "file": "projects/apps/api-otwld-fr/Dockerfile",
+        "tags": ["docker.outworld.fr/ecosystem/api-otwld-fr:${TAG_LATEST_FORMAT}"]
+      }
+    },
+    "write-version": {
+      "executor": "@otwld/nx-devops:write-file",
+      "options": {
+        "filePath": "projects/apps/api-otwld-fr/.env",
+        "content": "PROJECT_VERSION=${version}"
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "postTargets": ["apps-api-otwld-fr:write-version"]
+      }
+    }
+  },
+  "tags": []
+}

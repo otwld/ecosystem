@@ -1,0 +1,35 @@
+kind: template
+load: nx-devops-latest.yaml
+
+data:
+  workspace:
+    appsPath: apps
+  image:
+    tag: latest
+  setup:
+    enabled: true
+  build:
+    enabled: true
+  lint:
+    enabled: true
+  test:
+    enabled: true
+  version:
+    enabled: true
+  e2e:
+    enabled: true
+  docker:
+    enabled: true
+  npm:
+    publish:
+      enabled: false
+  helm:
+    lint:
+      enabled: true
+    publish:
+      enabled: true
+  kubeval:
+    enabled: false
+  drone:
+    enabled: false
+

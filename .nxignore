@@ -1,0 +1,3 @@
+# Helm Charts files to ignore
+**/values.yaml
+

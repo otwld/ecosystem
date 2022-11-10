@@ -1,0 +1,54 @@
+{
+  "name": "charts-otwld-fr",
+  "projectType": "applications",
+  "targets": {
+    "helm-lint": {
+      "executor": "@otwld/nx-devops:run-commands",
+      "options": {
+        "parallel": false,
+        "cwd": "projects/charts/otwld-fr",
+        "commands": [
+          {
+            "command": "helm dependency update",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "helm lint .",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "helm-publish": {
+      "executor": "@otwld/nx-devops:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          {
+            "command": "helm package projects/charts/otwld-fr --version ${PROJECT_VERSION} -u -d dist/projects/charts/otwld-fr",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "curl -u ${REGISTRY_USERNAME}:${REGISTRY_PASSWORD} https://nexus.outworld.fr/service/rest/v1/components?repository=helm-hosted -J -L -s -F file=@dist/projects/charts/otwld-fr/ow-ecosystem-otwld-fr-${PROJECT_VERSION}.tgz",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "write-version": {
+      "executor": "@otwld/nx-devops:write-file",
+      "options": {
+        "filePath": "projects/charts/otwld-fr/.env",
+        "content": "PROJECT_VERSION=${version}"
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "postTargets": ["charts-otwld-fr:write-version"]
+      }
+    }
+  },
+  "tags": []
+}
