@@ -40,7 +40,6 @@
         "rxjs/no-cyclic-action": "error",
         "rxjs/no-explicit-generics": "error",
         "rxjs/no-exposed-subjects": "error",
-        "rxjs/no-finnish": "error",
         "rxjs/no-ignored-error": "error",
         "rxjs/no-ignored-notifier": "error",
         "rxjs/no-ignored-replay-buffer": "error",
@@ -64,7 +63,6 @@
         "rxjs/no-unsafe-subject-next": "error",
         "rxjs/no-unsafe-switchmap": "error",
         "rxjs/no-unsafe-takeuntil": "error",
-        "rxjs/suffix-subjects": "error",
         "rxjs/prefer-observer": "error",
         "rxjs/throw-error": "error"
       }
