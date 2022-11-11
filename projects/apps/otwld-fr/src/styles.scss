@@ -2,4 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  //font-size: 14px;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(./assets/fonts/NunitoLight.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(./assets/fonts/NunitoBold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(./assets/fonts/NunitoExtraBold.ttf);
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AquaticoRegular';
+  src: url(./assets/fonts/AquaticoRegular.otf) format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aquire';
+  src: url(./assets/fonts/AquireLight.otf) format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aquire';
+  src: url(./assets/fonts/Aquire.otf) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aquire';
+  src: url(./assets/fonts/AquireBold.otf) format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 /* You can add global styles to this file, and also import other style files */
