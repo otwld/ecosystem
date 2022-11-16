@@ -15,7 +15,10 @@
         "polyfills": "projects/apps/otwld-fr/src/polyfills.ts",
         "tsConfig": "projects/apps/otwld-fr/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["projects/apps/otwld-fr/src/favicon.ico", "projects/apps/otwld-fr/src/assets"],
+        "assets": [
+          "projects/apps/otwld-fr/src/favicon.ico",
+          "projects/apps/otwld-fr/src/assets"
+        ],
         "styles": ["projects/apps/otwld-fr/src/styles.scss"],
         "scripts": []
       },
@@ -76,7 +79,10 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["projects/apps/otwld-fr/**/*.ts", "projects/apps/otwld-fr/**/*.html"]
+        "lintFilePatterns": [
+          "projects/apps/otwld-fr/**/*.ts",
+          "projects/apps/otwld-fr/**/*.html"
+        ]
       }
     },
     "test": {

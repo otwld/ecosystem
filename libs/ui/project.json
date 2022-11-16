@@ -5,8 +5,20 @@
   "sourceRoot": "libs/ui/src",
   "prefix": "ui",
   "targets": {
+    "generate-tailwind-types": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "libs/ui",
+        "commands": [
+          "echo Generating Tailwind Types with default preset.",
+          "tailwindcss-classnames -i src/presets/default.preset.js -o src/types/tailwind.types.ts"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/angular:package",
+      "dependsOn": ["generate-tailwind-types"],
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/ui/ng-package.json",

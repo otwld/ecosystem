@@ -7,7 +7,6 @@
     "charts-api-otwld-fr": "projects/charts/api-otwld-fr",
     "charts-otwld-fr": "projects/charts/otwld-fr",
     "e2e-otwld-fr": "projects/e2e/otwld-fr",
-    "tailwind-presets": "libs/tailwind-presets",
     "ui": "libs/ui"
   }
 }

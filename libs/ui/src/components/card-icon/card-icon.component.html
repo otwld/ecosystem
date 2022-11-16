@@ -1,0 +1,11 @@
+<ui-card status="control">
+  <fa-icon
+    *ngIf="icon"
+    size="4x"
+    class="{{ classes[status] }}"
+    [icon]="icon"
+  ></fa-icon>
+  <span class="m-4">
+    <ng-content></ng-content>
+  </span>
+</ui-card>

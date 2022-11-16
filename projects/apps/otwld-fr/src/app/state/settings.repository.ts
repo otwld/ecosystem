@@ -22,9 +22,12 @@ export class SettingsRepository {
   }
 
   private createStore$(): typeof store$ {
-    const store$ = createStore({ name: 'settings' }, withProps<SettingsProps>({
-      darkMode: false,
-    }));
+    const store$ = createStore(
+      { name: 'settings' },
+      withProps<SettingsProps>({
+        darkMode: false,
+      })
+    );
 
     return store$;
   }
@@ -34,7 +37,7 @@ export class SettingsRepository {
       // key: 'settings',
       // preStoreInit: (value) => value,
       source: (store$) => store$,
-      storage: localStorageStrategy
-    })
+      storage: localStorageStrategy,
+    });
   }
 }

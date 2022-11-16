@@ -74,7 +74,9 @@
       "options": {
         "push": true,
         "file": "projects/apps/api-otwld-fr/Dockerfile",
-        "tags": ["docker.outworld.fr/ecosystem/api-otwld-fr:${TAG_LATEST_FORMAT}"]
+        "tags": [
+          "docker.outworld.fr/ecosystem/api-otwld-fr:${TAG_LATEST_FORMAT}"
+        ]
       }
     },
     "write-version": {

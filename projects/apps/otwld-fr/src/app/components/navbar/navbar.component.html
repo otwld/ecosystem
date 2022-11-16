@@ -1,18 +1,29 @@
-<div class="h-full w-full flex bg-secondary-500 text-white-500 border-b-secondary-200 border-b">
-  <div class="px-24 flex font-bold items-center justify-center text-2xl">
-    <img src="./assets/images/logo.png" class="w-16 h-16 mr-2">
-    Outworld
+<div
+  class="flex h-full w-full border-b border-b-neutral bg-neutral text-neutral-content"
+>
+  <ui-logo class="pl-16 pr-24" display="flex"></ui-logo>
+  <div class="flex items-center space-x-14 font-bold">
+    <a href="#">Home</a>
+    <a href="#" class="animation-delay-1000 animate-slide-in-blurred-right"
+      >About Us</a
+    >
+    <a href="#" class="animate-slide-in-blurred-right animation-delay-0.4"
+      >Service</a
+    >
+    <a href="#" class="animate-slide-in-blurred-right animation-delay-0.6"
+      >Pages</a
+    >
+    <a href="#" class="animate-slide-in-blurred-right animation-delay-0.8"
+      >Elements</a
+    >
+    <a href="#" class="animate-slide-in-blurred-right animation-delay-1"
+      >Blog</a
+    >
+    <a href="#" class="animate-slide-in-blurred-right animation-delay-1.2"
+      >Contact</a
+    >
   </div>
-  <div class="flex items-center space-x-14">
-    <a href="#" class="">Home</a>
-    <a href="#" class="">About Us</a>
-    <a href="#" class="">Service</a>
-    <a href="#" class="">Pages</a>
-    <a href="#" class="">Elements</a>
-    <a href="#" class="">Blog</a>
-    <a href="#" class="">Contact</a>
-  </div>
-  <div class="ml-auto items-center flex px-8">
-    <ui-button class="mx-8">Meet with us</ui-button>
+  <div class="ml-auto flex items-center px-8">
+    <ui-button-fill class="mx-8" (click)="changeTheme()">Switch Theme</ui-button-fill>
   </div>
 </div>

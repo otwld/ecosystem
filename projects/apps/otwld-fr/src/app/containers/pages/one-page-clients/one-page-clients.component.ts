@@ -7,14 +7,26 @@ import { AboutComponent } from '../../sections/about/about.component';
 import { BrandsComponent } from '../../sections/brands/brands.component';
 import { TeamsComponent } from '../../sections/teams/teams.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
+import { PortfolioComponent } from '../../sections/portfolio/portfolio.component';
+import { SimulatorComponent } from '../../sections/simulator/simulator.component';
 
 @Component({
   selector: 'otwld-one-page-clients',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, HeroComponent, ServicesComponent, AboutComponent, BrandsComponent, TeamsComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    HeroComponent,
+    ServicesComponent,
+    AboutComponent,
+    BrandsComponent,
+    TeamsComponent,
+    FooterComponent,
+    PortfolioComponent,
+    SimulatorComponent,
+  ],
   templateUrl: './one-page-clients.component.html',
   styleUrls: ['./one-page-clients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OnePageClientsComponent {
-}
+export class OnePageClientsComponent {}

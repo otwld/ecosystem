@@ -1,6 +1,6 @@
 const {createGlobPatternsForDependencies} = require('@nrwl/angular/tailwind');
 const {join} = require('path');
-const sharedTailwindConfig = require('../../../libs/tailwind-presets/tailwind.config');
+const sharedTailwindConfig = require('../../../libs/ui/tailwind.config');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,6 +10,9 @@ module.exports = {
   ],
   presets: [sharedTailwindConfig],
   theme: {
+    extend: {
+
+    },
     fontFamily: {
       sans: ['Nunito', 'sans-serif'],
     },
@@ -22,10 +25,6 @@ module.exports = {
         "2xl": "1200px",
       }
     },
-    fontWeight: {
-      normal: 400,
-      bold: 800,
-    },
-    plugins: [],
-  }
+  },
+  plugins: [],
 }

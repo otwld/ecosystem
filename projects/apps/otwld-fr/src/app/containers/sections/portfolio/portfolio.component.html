@@ -1,1 +1,22 @@
-<p>portfolio works!</p>
+<section class="flex h-full bg-base-200">
+  <div class="mx-auto flex flex-col justify-center px-20 text-center">
+    <div class="mx-auto mb-8 max-w-screen-sm focus:outline-none lg:mb-16">
+      <h2
+        class="dark:text-white visible mb-4 font-extrabold tracking-tight text-primary"
+      >
+        Our Gallery
+      </h2>
+      <p class="text-4xl font-extrabold">
+        Offer The Latest Software And Solutions To Our customers!
+      </p>
+    </div>
+    <div class="flex space-x-8">
+      <ui-img
+        *ngFor="let item of [0, 1, 2]; let index = index"
+        class="animation-delay-0.{{ 2 + index }}"
+        uiIsInViewport
+        [classesToApply]="['animate-slide-in-blurred-top']"
+      ></ui-img>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BaseComponent } from '@otwld/ui';
 
 @Component({
   selector: 'otwld-brands',
@@ -9,5 +10,4 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./brands.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BrandsComponent {
-}
+export class BrandsComponent extends BaseComponent {}
