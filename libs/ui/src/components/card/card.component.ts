@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
 import { Status } from '../../utils/tailwind.utils';
-import { TBackgroundColor, TTextColor } from '../../types/tailwind.types';
 
 @Component({
   selector: 'ui-card',
@@ -13,7 +12,7 @@ import { TBackgroundColor, TTextColor } from '../../types/tailwind.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent extends BaseComponent<
-  TBackgroundColor | TTextColor
+  string // TODO Refacto
 > {
   @Input() status: Status = 'primary';
 

@@ -1,12 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Status, TWVmMap } from '../../utils/tailwind.utils';
+import { Status } from '../../utils/tailwind.utils';
 import { BaseComponent } from '../base.component';
-import classnames, {
-  backgroundColor,
-  TBackgroundColor,
-  textColor,
-} from '../../types/tailwind.types';
 
 @Component({
   selector: 'ui-button-fill',
@@ -16,7 +11,7 @@ import classnames, {
   styleUrls: ['./button-fill.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonFillComponent extends BaseComponent<TBackgroundColor> {
+export class ButtonFillComponent extends BaseComponent<string> {
   @Input() status: Status = 'primary';
 
   classes = {

@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import { TFontSize } from '../../types/tailwind.types';
 
 @Component({
   selector: 'ui-logo',
@@ -17,5 +16,5 @@ import { TFontSize } from '../../types/tailwind.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogoComponent extends BaseComponent {
-  @Input() textSize: TFontSize = 'text-2xl';
+  @Input() textSize = 'text-2xl';
 }

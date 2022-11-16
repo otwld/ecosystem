@@ -1,10 +1,5 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
-import { Status, TWVmMap } from '../../utils/tailwind.utils';
-import classnames, {
-  backgroundColor,
-  borderColor,
-  textColor,
-} from '../../types/tailwind.types';
+import { Status } from '../../utils/tailwind.utils';
 
 @Directive({
   selector: '[uiButtonOutline]',
