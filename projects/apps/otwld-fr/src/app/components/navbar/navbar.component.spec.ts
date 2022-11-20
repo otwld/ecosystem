@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 // TODO: Doit être appliqué globalement et non localement comme ici.
-
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {

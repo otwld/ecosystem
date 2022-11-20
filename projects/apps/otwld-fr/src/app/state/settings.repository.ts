@@ -9,16 +9,17 @@ export interface SettingsProps {
 
 @Injectable({ providedIn: 'root' })
 export class SettingsRepository {
-  // eslint-disable-next-line rxjs/no-exposed-subjects
-  get store$() {
-    return this._store$;
-  }
   private readonly _store$;
   private readonly persist;
 
   constructor() {
     this._store$ = this.createStore$();
     this.persist = this.persistState();
+  }
+
+  // eslint-disable-next-line rxjs/no-exposed-subjects
+  get store$() {
+    return this._store$;
   }
 
   private createStore$(): typeof store$ {

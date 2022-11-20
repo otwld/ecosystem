@@ -1,26 +1,26 @@
 <section
-  class="relative flex h-full bg-black text-white text-neutral-content after:absolute after:right-0 after:bottom-0 after:z-0 after:h-[90%] after:w-2/5 after:bg-[url('./assets/images/bg-shape.png')]"
+  class="relative flex bg-black pt-28 pb-44 text-white text-neutral-content after:absolute after:right-0 after:bottom-0 after:z-0 after:h-[90%] after:w-2/5 after:bg-[url('./assets/images/bg-shape.png')]"
 >
-  <div class="container z-10 mx-auto flex flex-col justify-center px-4">
-    <div class="flex items-center justify-between">
+  <div class="container z-10 mx-auto flex flex-col justify-center">
+    <div class="flex flex-wrap items-center justify-between">
       <div>
-        <span class="font-bold">It Support For Business</span>
-        <h2 class="text-4xl font-extrabold">It Support For Business</h2>
+        <span class="mb-4 font-bold">It Support For Business</span>
+        <h2 class="mb-4 text-3xl font-extrabold md:text-4xl">
+          It Support For Business
+        </h2>
       </div>
-      <ui-button-fill
-        status="primary"
-        >View All Services</ui-button-fill
-      >
+      <ui-button color="btn-error">View All Services</ui-button>
     </div>
     <div class="mt-16 h-3/5 w-full">
       <ui-card
+        [classesToApply]="['animate-slide-in-fade-top']"
+        class="w-full animation-delay-0.2"
         uiIsInViewport
-        [classesToApply]="['animate-slide-in-blurred-top']"
-        class="h-full animation-delay-0.4"
-        status="control"
       >
-        TODO. Créer un composant "effet waouh" pour simuler / récolter les infos
-        d'un projet ?
+        <ui-card-body class="items-center justify-center">
+          TODO. Créer un composant "effet waouh" pour simuler / récolter les
+          infos d'un projet ?
+        </ui-card-body>
       </ui-card>
     </div>
   </div>

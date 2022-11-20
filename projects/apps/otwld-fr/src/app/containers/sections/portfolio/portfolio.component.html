@@ -1,22 +1,37 @@
-<section class="flex h-full bg-base-200">
-  <div class="mx-auto flex flex-col justify-center px-20 text-center">
-    <div class="mx-auto mb-8 max-w-screen-sm focus:outline-none lg:mb-16">
-      <h2
-        class="visible mb-4 font-extrabold tracking-tight text-primary"
-      >
+<section class="flex bg-base-200 pt-28 pb-20">
+  <div class="mx-auto flex flex-col justify-center px-4 text-center md:px-20">
+    <div class="mx-auto mb-16 max-w-screen-sm focus:outline-none">
+      <h2 class="visible mb-4 font-extrabold tracking-tight text-primary">
         Our Gallery
       </h2>
-      <p class="text-4xl font-extrabold">
+      <p class="text-3xl font-extrabold md:text-4xl">
         Offer The Latest Software And Solutions To Our customers!
       </p>
     </div>
-    <div class="flex space-x-8">
-      <ui-img
+    <div class="flex flex-wrap justify-center gap-8">
+      <ui-card
         *ngFor="let item of [0, 1, 2]; let index = index"
-        class="animation-delay-0.{{ 2 + index }}"
+        [classesToApply]="['animate-slide-in-fade-top']"
+        class="w-full sm:w-[47%] lg:w-[31%] before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary hover:before:bg-opacity-10 animation-delay-0.{{
+          2 + index
+        }}"
+        image="image-full"
         uiIsInViewport
-        [classesToApply]="['animate-slide-in-blurred-top']"
-      ></ui-img>
+      >
+        <ui-card-image
+          src="https://tfhtml.themepul.com/restly/assets/images/gallery/gallery-two-2.jpg"
+        ></ui-card-image>
+        <ui-card-body class="justify-end">
+          <h5 class="text-lg font-extrabold" uiCardTitle>
+            Cyber Security Services
+          </h5>
+          <hr class="border-secondary-50 w-full" />
+          <a class="flex items-center space-x-4" href="#">
+            <span class="font-semibold">Read More</span>
+            <fa-icon [icon]="faArrowRight"></fa-icon>
+          </a>
+        </ui-card-body>
+      </ui-card>
     </div>
   </div>
 </section>

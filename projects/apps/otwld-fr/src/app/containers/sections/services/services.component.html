@@ -1,23 +1,37 @@
-<div class="relative z-20 h-full bg-primary text-primary-content">
-  <div class="container mx-auto flex h-full flex-col">
-    <div class="-mt-20 flex w-full items-start justify-between">
-      <ui-card-icon
-        class="animate-slide-in-blurred-top animation-delay-{{
-          7 + index <= 1 ? '0.' + (7 + index) : (7 + index) / 10
-        }}"
-        *ngFor="let item of [0, 1, 2, 3, 4, 5]; let index = index"
-        [icon]="faCoffee"
+<div class="relative z-20 bg-primary pb-20 text-primary-content">
+  <div class="container mx-auto flex flex-col">
+    <div class="-mt-20 flex w-full flex-wrap items-start justify-center gap-4">
+      <a
+        *ngFor="let item of services; let index = index"
+        [routerLink]="[item.route]"
+        class="w-[47%] sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
       >
-        IT Managements
-      </ui-card-icon>
+        <ui-card-icon
+          [icon]="item.icon"
+          class="animate-slide-in-fade-top animation-delay-{{
+            7 + index <= 1 ? '0.' + (7 + index) : (7 + index) / 10
+          }}"
+          iconColor="text-primary"
+        >
+          {{ item.title }}
+        </ui-card-icon>
+      </a>
     </div>
-    <div class="mt-16 flex items-center justify-between">
-      <h2 class="text-4xl font-extrabold leading-[1.33]">
+    <div class="mt-16 flex flex-wrap items-center justify-between">
+      <h2
+        class="mb-8 text-3xl font-extrabold leading-[1.33] md:mb-0 md:text-3xl lg:text-4xl"
+      >
         Preparing for your success<br />
         trusted source in IT services.
       </h2>
       <div>
-        <button uiButtonOutline class="hover:bg-base-content border-base-100 text-base-100">View All Service</button>
+        <ui-button
+          [additionalClasses]="['border-white', 'text-white']"
+          btnStyle="btn-outline"
+          color="btn-neutral"
+          size="btn-lg"
+          >View All Service
+        </ui-button>
       </div>
     </div>
   </div>

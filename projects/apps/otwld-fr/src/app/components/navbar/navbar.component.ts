@@ -1,34 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent, ButtonFillComponent, LogoComponent } from '@otwld/ui';
+import { BaseComponent, ButtonComponent, LogoComponent } from '@otwld/ui';
 import { ThemeService } from '../../services/theme/theme.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'otwld-navbar',
   standalone: true,
-  imports: [
-    CommonModule,
-    ButtonFillComponent,
-    ButtonFillComponent,
-    ButtonFillComponent,
-    LogoComponent,
-  ],
+  imports: [CommonModule, LogoComponent, ButtonComponent, FontAwesomeModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent extends BaseComponent {
+  faBars = faBars;
 
-  constructor(
-    private readonly themeService: ThemeService,
-  ) {
+  constructor(private readonly themeService: ThemeService) {
     super();
   }
-  changeTheme() {
-    const allowedThemes = ['default', 'dark', 'aqua', 'light', 'corporate', 'valentine', 'cyberpunk', 'synthwave', 'retro', 'forest', 'luxury'];
-    const themeName = prompt(`Type of of the following themes: ${allowedThemes.join(', ')}`);
-    if (themeName && allowedThemes.includes(themeName)) {
-      this.themeService.changeTheme(themeName);
-    }
-  }
+
+  promptThemeSwitcher = () => this.themeService.promptThemeSwitcher();
 }

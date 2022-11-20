@@ -1,18 +1,20 @@
-<section class="bg-base-100 text-base-content flex h-full justify-between">
+<section
+  class="flex justify-between bg-base-100 pb-20 pt-12 text-base-content sm:pb-36 sm:pt-20"
+>
   <div
-    class="container mx-auto items-center gap-16 py-8 px-4 lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+    class="container mx-auto items-center gap-16 py-8 lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
   >
     <div
+      [classesToApply]="['animate-slide-in-fade-left']"
+      class="pb-8 animation-delay-0.4"
       uiIsInViewport
-      [classesToApply]="['animate-slide-in-blurred-left']"
-      class="animation-delay-0.4"
     >
       <h2
         class="mb-4 font-extrabold font-extrabold tracking-tight text-primary"
       >
         It Support For Business
       </h2>
-      <p class="mb-8 text-4xl font-extrabold leading-[1.33]">
+      <p class="mb-8 text-3xl font-extrabold leading-[1.33] md:text-4xl">
         Preparing for your success trusted source in IT services.
       </p>
       <p class="mb-4">
@@ -37,26 +39,26 @@
           <span>High-Speed USB 4.0.</span>
         </li>
       </ul>
-      <ui-button-fill status="info" class="mt-8">View Details</ui-button-fill>
+      <ui-button class="mt-8" color="btn-info">View Details</ui-button>
     </div>
     <div
-      uiIsInViewport
-      [classesToApply]="['animate-slide-in-blurred-right']"
+      [classesToApply]="['animate-slide-in-fade-right']"
       class="relative mt-8 grid grid-cols-2 gap-4 animation-delay-0.4"
+      uiIsInViewport
     >
       <img
         class="absolute -top-8 -right-12 z-0"
         src="./assets/images/bg-dots-grid.png"
       />
       <img
+        alt="office content 1"
         class="z-10 w-full rounded-lg"
         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
-        alt="office content 1"
       />
       <img
+        alt="office content 2"
         class="z-10 mt-4 w-full rounded-lg lg:mt-10"
         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png"
-        alt="office content 2"
       />
     </div>
   </div>

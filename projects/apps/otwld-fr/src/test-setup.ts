@@ -8,12 +8,13 @@ const unobserve = jest.fn();
 (window as any).IntersectionObserver = jest.fn(() => ({
   observe,
   unobserve,
-}))
+}));
 
 jest.mock('../../../libs/ui/src/types/tailwind.types', () => {
-  const original = jest.requireActual('../../../libs/ui/src/types/tailwind.types')
-  Object.keys(original).forEach(key => original[key] = () => '')
+  const original = jest.requireActual(
+    '../../../libs/ui/src/types/tailwind.types'
+  );
+  Object.keys(original).forEach((key) => (original[key] = () => ''));
 
   return { ...original };
 });
-

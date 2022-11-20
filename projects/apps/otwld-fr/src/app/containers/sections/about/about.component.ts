@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import {
   BaseComponent,
-  ButtonFillComponent,
+  ButtonComponent,
   IsInViewportDirective,
 } from '@otwld/ui';
 
@@ -14,8 +14,8 @@ import {
   imports: [
     CommonModule,
     FontAwesomeModule,
-    ButtonFillComponent,
     IsInViewportDirective,
+    ButtonComponent,
   ],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],

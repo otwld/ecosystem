@@ -1,0 +1,48 @@
+:host {
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    right: -30px;
+    position: absolute;
+    border-radius: 200px 200px 0 0;
+  }
+
+  &::after {
+    content: '';
+    right: 0;
+    top: 50%;
+    opacity: 0.05;
+    position: absolute;
+    -webkit-transform: translate(50%);
+    -ms-transform: translate(50%);
+    transform: translate(50%);
+    width: 175px;
+    height: 175px;
+    line-height: 175px;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .circle-one {
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    left: 30px;
+    top: 15px;
+  }
+
+  .circle-two {
+    top: 35%;
+    right: -45px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+  }
+}

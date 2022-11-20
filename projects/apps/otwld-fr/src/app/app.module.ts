@@ -6,7 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { OnePageClientsComponent } from './containers/pages/one-page-clients/one-page-clients.component';
-import { ButtonFillComponent } from '@otwld/ui';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +16,7 @@ import { ButtonFillComponent } from '@otwld/ui';
     FontAwesomeModule,
     FooterComponent,
     OnePageClientsComponent,
-    ButtonFillComponent,
+    RouterModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

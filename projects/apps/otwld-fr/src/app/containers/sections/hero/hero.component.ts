@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonFillComponent } from '@otwld/ui';
-import { BaseComponent } from '@otwld/ui';
+import { BaseComponent, ButtonComponent } from '@otwld/ui';
+import { HeroImageComponent } from './hero-image/hero-image.component';
 
 @Component({
   selector: 'otwld-hero',
   standalone: true,
-  imports: [CommonModule, ButtonFillComponent],
+  imports: [CommonModule, ButtonComponent, HeroImageComponent],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

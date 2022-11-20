@@ -1,3 +1,6 @@
-<div class="fit-screen relative h-[100vh] overflow-y-scroll" [attr.data-theme]="currentTheme$ | async">
+<div
+  [attr.data-theme]="currentTheme$ | async"
+  class="fit-screen relative h-[100vh] overflow-x-hidden overflow-y-scroll"
+>
   <otwld-one-page-clients class="h-full"></otwld-one-page-clients>
 </div>
