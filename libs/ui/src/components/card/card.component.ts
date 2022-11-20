@@ -1,7 +1,76 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Directive,
+  HostBinding,
+  Input,
+  OnChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import { Status } from '../../utils/tailwind.utils';
+import {
+  BackgroundColorClass,
+  BorderColorClass,
+  CardDisplay,
+  CardImage,
+  CardPadding,
+  CardStyle,
+  TextColorClass,
+} from '../../types/tailwind.types';
+
+@Directive({
+  selector: '[uiCardImage]',
+  standalone: true,
+})
+export class CardImageDirective {}
+
+@Directive({
+  selector: '[uiCardTitle]',
+  standalone: true,
+})
+export class CardTitleDirective {
+  @HostBinding('class') hostClasses = 'card-title';
+}
+
+@Component({
+  selector: 'ui-card-body',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <ng-content select="ui-card-title"></ng-content>
+    <ng-content></ng-content>
+    <ng-content select="ui-card-actions"></ng-content>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CardBodyComponent {
+  @HostBinding('class') hostClasses = 'card-body';
+}
+
+@Component({
+  selector: 'ui-card-actions',
+  standalone: true,
+  imports: [CommonModule],
+  template: ` <ng-content></ng-content>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CardActionsComponent {
+  @HostBinding('class') hostClasses = 'card-actions';
+}
+
+@Component({
+  selector: 'ui-card-image',
+  standalone: true,
+  imports: [CommonModule],
+  template: ` <figure>
+    <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" />
+  </figure>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CardImageComponent {
+  @Input() src: string | undefined;
+  @Input() alt = '';
+}
 
 @Component({
   selector: 'ui-card',
@@ -11,19 +80,27 @@ import { Status } from '../../utils/tailwind.utils';
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent extends BaseComponent<
-  string // TODO Refacto
-> {
-  @Input() status: Status = 'primary';
-
-  classes = {
-    basic: 'bg-base-100 text-base-content',
-    control: 'bg-base-100 text-base-content',
-    danger: 'bg-danger text-danger-content',
-    info: 'bg-info text-info-content',
-    primary: 'bg-primary text-primary-content',
-    secondary: 'bg-secondary text-secondary-content',
-    success: 'bg-success text-success-content',
-    warning: 'bg-warning text-warning-content',
-  };
+export class CardComponent
+  extends BaseComponent<
+    BackgroundColorClass | BorderColorClass | TextColorClass
+  >
+  implements OnChanges
+{
+  @Input() backgroundColor: BackgroundColorClass = 'bg-base-100';
+  @Input() textColor: TextColorClass = 'text-base-content';
+  @Input() padding: CardPadding = 'card-normal';
+  @Input() image: CardImage | undefined = undefined;
+  @Input() display: CardDisplay | undefined = undefined;
+  @Input() cardStyle: CardStyle | undefined = undefined;
+  @HostBinding('class') override class = this.construct(
+    () => ['card', 'transition-colors', 'duration-300', 'overflow-hidden'],
+    () => [
+      this.backgroundColor,
+      this.textColor,
+      this.padding,
+      this.image,
+      this.display,
+      this.cardStyle,
+    ]
+  );
 }

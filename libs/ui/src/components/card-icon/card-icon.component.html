@@ -1,11 +1,18 @@
-<ui-card status="control">
-  <fa-icon
-    *ngIf="icon"
-    size="4x"
-    class="{{ classes[status] }}"
-    [icon]="icon"
-  ></fa-icon>
-  <span class="m-4">
-    <ng-content></ng-content>
-  </span>
+<ui-card
+  cardStyle="card-bordered"
+  class="h-full w-full"
+  padding="card-compact"
+  textColor="text-base-content"
+>
+  <ui-card-body class="flex h-full items-center justify-center space-y-4">
+    <fa-icon
+      *ngIf="icon"
+      [icon]="icon"
+      class="{{ iconColor }}"
+      size="4x"
+    ></fa-icon>
+    <h6 class="font-bold text-center {{ titleColor }}">
+      <ng-content></ng-content>
+    </h6>
+  </ui-card-body>
 </ui-card>

@@ -1,7 +1,2 @@
-<div
-  class="{{ classes[status] }} {{
-    inlineAdditionalClasses
-  }} rounded-lg flex flex-col justify-center items-center p-4 pt-6 h-full w-full transition-colors duration-300 ease-in-out"
->
-  <ng-content></ng-content>
-</div>
+<ng-content select="ui-card-image,figure"></ng-content>
+<ng-content select="ui-card-body,.card-body"></ng-content>

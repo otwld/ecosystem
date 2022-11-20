@@ -1,18 +1,21 @@
-export type Status =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'danger'
-  | 'warning'
-  | 'info'
-  | 'basic'
-  | 'control';
+import {
+  ThemeClass,
+  ThemeClassOrArray,
+  TwVariants,
+} from '../types/tailwind.types';
 
 export type AdditionalClasses<T extends string> = TwVariants<T>;
 
-export type TwVariants<T extends string> =
-  | T
-  | `!${T}`
-  // | `${TPseudoClassVariants}${T}`
-  // | `${TPseudoClassVariants}!${T}`
-  // | TTailwindString;
+export const tw = (...args: ThemeClass[]) => {
+  return args;
+};
+export const twInline = (...args: (ThemeClassOrArray | '' | undefined)[]) => {
+  return args
+    .map((arg) => (Array.isArray(arg) ? arg.join(' ') : arg))
+    .join(' ');
+};
+
+export const constructComponentClasses = (
+  componentClasses: ThemeClassOrArray,
+  modifiers: ThemeClassOrArray[]
+) => `${twInline(componentClasses)} ${twInline(...modifiers)}`;
