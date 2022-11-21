@@ -16,6 +16,7 @@ import {
   CardPadding,
   CardStyle,
   TextColorClass,
+  WidthClass,
 } from '../../types/tailwind.types';
 
 @Directive({
@@ -63,13 +64,14 @@ export class CardActionsComponent {
   standalone: true,
   imports: [CommonModule],
   template: ` <figure>
-    <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" />
+    <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
   </figure>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardImageComponent {
   @Input() src: string | undefined;
   @Input() alt = '';
+  @Input() width: WidthClass | undefined = undefined;
 }
 
 @Component({
