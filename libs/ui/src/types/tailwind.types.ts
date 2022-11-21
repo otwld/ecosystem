@@ -29,7 +29,7 @@ export type TextColorClass = TwVariants<`text-${AllColor}`>;
 export type BorderColorClass = TwVariants<`border-${AllColor}`>;
 export type BorderWidthClass = TwVariants<`border-${BorderWidth}`>;
 
-export type Border = BorderColorClass | BorderWidthClass;
+export type BorderClass = BorderColorClass | BorderWidthClass;
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg';
 export type Shape = 'circle' | 'square';
@@ -37,7 +37,6 @@ export type Shape = 'circle' | 'square';
 export type EffectClass = 'glass' | 'loading' | 'no-animation';
 
 // Button
-export type ButtonClass = 'btn';
 export type ButtonColorClass = `btn-${ColorBrand | ColorState}`;
 type ButtonStyle = 'ghost' | 'link' | 'outline';
 export type ButtonStyleClass = `btn-${ButtonStyle}`;
@@ -53,44 +52,48 @@ export type CardImage = 'image-full';
 export type CardPadding = 'card-normal' | 'card-compact';
 export type CardDisplay = 'card-side';
 export type CardStyle = 'card-bordered';
-export type Card = 'card' | CardStyle | CardImage | CardPadding | CardDisplay;
+export type CardClass = 'card' | CardStyle | CardImage | CardPadding | CardDisplay;
 
-export type Button =
+export type ButtonClass =
   | ButtonDisplayClass
   | ButtonShapeClass
   | ButtonSizeClass
   | ButtonStateClass
   | ButtonStyleClass
   | ButtonColorClass
-  | ButtonClass;
+  | 'btn';
 
 type DurationUnit = 100 | 200 | 300;
-export type Duration = `duration-${DurationUnit}`;
-export type Transition = 'transition-opacity' | 'transition-colors';
-export type Overflow = 'overflow-hidden';
+export type DurationClass = `duration-${DurationUnit}`;
+export type TransitionClass = 'transition-opacity' | 'transition-colors';
+export type OverflowClass = 'overflow-hidden';
 
 type Unit = 0 | 1 | 2 | 4 | 8;
 export type BottomClass = TwVariants<`bottom-${Unit}`>;
 export type RightClass = TwVariants<`right-${Unit}`>;
-export type Position = TwVariants<'relative' | 'absolute' | 'fixed' | 'sticky'>;
+export type PositionClass = TwVariants<'relative' | 'absolute' | 'fixed' | 'sticky'>;
 
-export type Height = 'h-full';
-export type MaxHeight = 'max-h-full';
+export type HeightClass = 'h-full' | `h-${Unit}`;
+export type WidthClass = 'w-full' | `w-${Unit}`;
+export type MaxHeightClass = 'max-h-full';
+export type MaxWidthClass = 'max-w-full';
 export type ThemeClass =
   | BackgroundColorClass
   | TextColorClass
-  | Border
-  | Button
+  | BorderClass
+  | ButtonClass
   | EffectClass
-  | Card
-  | Transition
-  | Position
-  | Duration
-  | Overflow
+  | CardClass
+  | TransitionClass
+  | PositionClass
+  | DurationClass
+  | OverflowClass
   | BottomClass
   | RightClass
-  | Height
-  | MaxHeight
+  | HeightClass
+  | WidthClass
+  | MaxHeightClass
+  | MaxWidthClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;
