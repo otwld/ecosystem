@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent } from '@otwld/ui';
+import { BaseComponent } from '../base.component';
 import { Icon } from '@fortawesome/fontawesome-svg-core';
 import { RouterLinkWithHref } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
