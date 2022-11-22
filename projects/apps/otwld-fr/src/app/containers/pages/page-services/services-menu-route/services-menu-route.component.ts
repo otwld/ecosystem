@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  Service,
-  ServicesService,
-} from '../../../../services/services/services.service';
+  ServiceService,
+} from '../../../../services/services/service.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuDirective, MenuItemDirective } from '@otwld/ui';
 import { ActivatedRoute, RouterLinkWithHref } from '@angular/router';
 import { map, Observable, of, switchMap } from 'rxjs';
+import { Service } from '../../../../types/service.types';
 
 @Component({
   selector: 'otwld-services-menu-route',
@@ -45,7 +45,7 @@ export class ServicesMenuRouteComponent {
   );
 
   constructor(
-    private readonly servicesService: ServicesService,
+    private readonly servicesService: ServiceService,
     private readonly activatedRoute: ActivatedRoute
   ) {}
 }

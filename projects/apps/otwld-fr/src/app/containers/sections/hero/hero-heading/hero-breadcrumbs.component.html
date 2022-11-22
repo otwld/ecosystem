@@ -5,8 +5,8 @@
   overlayOpacity="bg-opacity-40"
 >
   <ui-hero-content class="mx-auto w-full">
-    <div class="container">
-      <h1 class="mb-3 text-7xl font-extrabold">Service Details</h1>
+    <div class="container capitalize">
+      <h1 class="mb-3 text-7xl font-extrabold">{{title$ | async}}</h1>
       <ui-breadcrumbs
         *ngIf="items$ | async as items"
         [items]="items"

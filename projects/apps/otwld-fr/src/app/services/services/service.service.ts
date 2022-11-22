@@ -6,20 +6,13 @@ import {
   faDatabase,
   faHands,
   faLayerGroup,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-
-export type Service = {
-  icon: IconDefinition;
-  titleTranslationKey: string;
-  route: string;
-  templateURL: string;
-};
+import { Service } from '../../types/service.types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ServicesService {
+export class ServiceService {
   services: Service[] = [
     {
       icon: faHands,
@@ -59,3 +52,4 @@ export class ServicesService {
     },
   ];
 }
+

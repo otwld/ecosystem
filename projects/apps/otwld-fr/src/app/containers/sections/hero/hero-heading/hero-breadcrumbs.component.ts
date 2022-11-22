@@ -46,7 +46,7 @@ export class HeroBreadcrumbsComponent {
           : of(breadcrumbs)
       )
     );
-  title$ = this.activatedRoute.data.pipe(map((data) => data['title']));
+  title$ = this.activatedRoute.data.pipe(map((data) => data['titleTranslationKey']));
 
   constructor(private readonly activatedRoute: ActivatedRoute) {}
 

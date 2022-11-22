@@ -1,0 +1,26 @@
+<div
+  class="carousel-center carousel rounded-box space-x-4"
+>
+  <div class="carousel-item w-[80vw] sm:w-[47%] lg:w-[32%]" *ngFor="let item of items; let index = index">
+    <ui-card
+      [classesToApply]="['animate-slide-in-fade-top']"
+      class="w-full before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary hover:before:bg-opacity-10 animation-delay-0.{{
+        2 + index
+      }}"
+      image="image-full"
+      uiIsInViewport
+    >
+      <ui-card-image src="{{ item.image }}"></ui-card-image>
+      <ui-card-body class="justify-end">
+        <h5 class="text-lg font-extrabold" uiCardTitle>
+          {{ item.services | joinObject: 'titleTranslationKey' }}
+        </h5>
+        <hr class="border-secondary-50 w-full" />
+        <a class="flex items-center space-x-4" routerLink="{{ item.route }}">
+          <span class="font-semibold">Read More</span>
+          <fa-icon [icon]="faArrowRight"></fa-icon>
+        </a>
+      </ui-card-body>
+    </ui-card>
+  </div>
+</div>

@@ -10,7 +10,7 @@ import {
   CardTitleDirective,
   IsInViewportDirective,
 } from '@otwld/ui';
-import { TeamsService } from '../../../services/teams/teams.service';
+import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -34,7 +34,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 export class TeamsComponent extends BaseComponent {
   teams = this.teamsService.teams;
 
-  constructor(private readonly teamsService: TeamsService) {
+  constructor(private readonly teamsService: TeamMemberService) {
     super();
   }
 }

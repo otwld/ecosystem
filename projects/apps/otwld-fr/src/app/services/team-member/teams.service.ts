@@ -5,24 +5,13 @@ import {
   faLinkedin,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-
-export interface Team {
-  firstName: string;
-  lastName: string;
-  role: string;
-  image: string;
-  socials?: {
-    icon: IconDefinition;
-    url: string;
-  }[];
-}
+import { TeamMember } from '../../types/team-member.types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TeamsService {
-  teams: Team[] = [
+export class TeamMemberService {
+  teams: TeamMember[] = [
     {
       firstName: 'Nathan',
       lastName: 'Tréhout',

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  Service,
-  ServicesService,
-} from '../../../services/services/services.service';
+  ServiceService,
+} from '../../../services/services/service.service';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, filter, map, of, switchMap } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Service } from '../../../types/service.types';
 
 @Component({
   selector: 'otwld-page-service-id',
@@ -45,7 +45,7 @@ export class PageServiceIdComponent {
   );
 
   constructor(
-    private readonly servicesService: ServicesService,
+    private readonly servicesService: ServiceService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly httpClient: HttpClient,
     private readonly domSanitizer: DomSanitizer

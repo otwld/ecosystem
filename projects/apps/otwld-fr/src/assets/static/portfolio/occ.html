@@ -1,0 +1,47 @@
+<div class="image mb-10 not-prose">
+  <img src="assets/images/portfolio/occ.png" alt="Service Details">
+</div>
+
+<h2>OfflineFirst CRM System</h2>
+
+<p>Innoval est issue de la fusion de la coop&eacute;rative &Eacute;volution, du GDS Bretagne et des entreprises de conseil en &eacute;levage BCEL Ouest et Copavenir. Elle regroupe plus de 30 000 &eacute;leveurs et&nbsp;<strong>1 700 salari&eacute;s</strong>. Cet outil devait regrouper les anciennes donn&eacute;es des trois outils utilis&eacute;s respectivement par les anciennes structures et r&eacute;impl&eacute;ment&eacute; le meilleur de chaque outils tout en conservant un maximum les habitudes des op&eacute;rateurs.</p>
+
+<p>Au sein d&rsquo;Adventiel j&rsquo;ai renforc&eacute; l&rsquo;&eacute;quipe en charge du projet client &ldquo;Innoval360&rdquo; en rempla&ccedil;ant le Tech Lead fraichement parti. L&rsquo;&eacute;quipe &eacute;tait compos&eacute; de de 4 d&eacute;veloppeurs frontend dont j&rsquo;&eacute;tais le Lead, ainsi que 2 d&eacute;veloppeurs backend men&eacute; par un autre Lead. Nous travaillions en &eacute;troite collaboration entre Lead et le chef de projet, ainsi qu&rsquo;avec les divers interlocuteurs de chez Innoval.</p>
+
+<p>► Le challenge &eacute;tait de cr&eacute;er une application &agrave; la fois statique et nomade, connect&eacute; et offline, performante et intuitive pour les op&eacute;rateurs et administrateurs de l&rsquo;outils tout en agr&eacute;gant les anciennes donn&eacute;es et cas d&rsquo;usages des outils que l&rsquo;application remplace.</p>
+
+<p>Description du projet/sujet</p>
+
+<ul>
+  <li>D&eacute;veloppement de fonctionnalit&eacute;s m&eacute;tier bas&eacute;es sur une maquette et des sp&eacute;cifications fonctionnelles.</li>
+  <li>R&eacute;alisation d&rsquo;une audit/analyse sur l&rsquo;ensemble de l&rsquo;application pour mettre en lumi&egrave;re certaines n&eacute;cessit&eacute;s techniques qui a amen&eacute; un gain de performance significatif ainsi qu&rsquo;une modification de la vision erron&eacute; de l&rsquo;offline (i.e. il faut penser <a href="https://rxdb.info/offline-first.html">Offline First</a>).</li>
+  <li>D&eacute;cision &amp; supervision d&rsquo;une refactorisation n&eacute;cessaires &agrave; la viabilit&eacute; du projet
+    <ul>
+      <li>D&eacute;veloppement en solo de la brique de synchronisation de la donn&eacute;e en temps r&eacute;el.
+        <ul>
+          <li>Mise en place de la synchronisation de la donn&eacute;e locale d&rsquo;un client (IndexedDB) vers une base de donn&eacute;e PostgreSQL via un backend Spring.</li>
+          <li>Abstraction des tables SQL synchronis&eacute;s via une impl&eacute;mentation sp&eacute;cifique du Redux Pattern en RxJS afin d&rsquo;obtenir les alt&eacute;rations de mani&egrave;res continues.</li>
+          <li>R&eacute;alisation d&rsquo;une documentation technique</li>
+          <li>R&eacute;alisation d&rsquo;une documentation d&rsquo;accompagnement de refactorisation GraphQL vers IndexedDB sp&eacute;cifique au projet &agrave; destination de l&rsquo;&eacute;quipe.</li>
+          <li>R&eacute;alisation d&rsquo;un ensemble de scripts &amp; schematics afin &ldquo;de rendre iso&rdquo; la refactorisation effectu&eacute; par les devs.</li>
+        </ul>
+      </li>
+      <li>Prise en responsabilit&eacute; d&rsquo;une majorit&eacute; des fonctionnalit&eacute;s du backend d&eacute;j&agrave; d&eacute;velopp&eacute; &agrave; ce jour dut &agrave; la prise de conscience sur les n&eacute;cessit&eacute;s de l&rsquo;offline first: le frontend doit pouvoir fonctionner int&eacute;gralement lorsqu&rsquo;il est totalement d&eacute;connect&eacute; (le CRUD est r&eacute;pliqu&eacute; sur le frontend).
+        <ul>
+          <li>D&eacute;finition des nouveaux standards sur la donn&eacute;e, les nouvelles responsabilit&eacute; du frontend ainsi que les nouveaux outils techniques.</li>
+        </ul>
+      </li>
+      <li>Mise en place de <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">types restrictifs</a> afin de cantonner / inciter l&rsquo;&eacute;quipe &agrave; suivre les guidelines.</li>
+      <li>Cr&eacute;ation de r&egrave;gles ESLint afin d&rsquo;indiquer les bonnes pratiques &agrave; l&rsquo;&eacute;quipe</li>
+      <li>Mise en &oelig;uvre d&#39;un ensemble de tests d&#39;int&eacute;gration dans le cadre de cela pour fournir plus de valeur pour le temps pass&eacute; sur la suite de tests automatis&eacute;s</li>
+    </ul>
+  </li>
+  <li>Int&eacute;gration et accompagnement d&rsquo;une alternante dans l&rsquo;&eacute;quipe frontend</li>
+  <li>Encadrement, accompagnement quotidien d&rsquo;une &eacute;quipe de 4 d&eacute;veloppeurs juniors .</li>
+  <li>Suivi de la mont&eacute;e en comp&eacute;tence de l&rsquo;&eacute;quipe autour des <a href="http://rxjs.dev/">concepts de r&eacute;activit&eacute;s</a>.</li>
+  <li>Relation &eacute;troite avec le d&eacute;partement technique et produit du client</li>
+  <li>R&eacute;union hebdomadaire avec le chef de projet pour banaliser les nouvelles sp&eacute;cifications fonctionnelles afin de pouvoir ensuite les d&eacute;couper en t&acirc;che et les r&eacute;partir sur l&rsquo;&eacute;quipe frontend.</li>
+  <li>Participation hebdomadaire/quotidienne au r&eacute;union produit / ciblage du besoin</li>
+  <li>Participation ponctuelle au r&eacute;union de COPIL / COMEX</li>
+  <li>Mise en place et gestion des &eacute;volutions de la CI/CD (Gitlab) du client afin que nos produits soient int&eacute;gr&eacute;s et livr&eacute;s en continu dans leur environnement Kubernetes.</li>
+</ul>

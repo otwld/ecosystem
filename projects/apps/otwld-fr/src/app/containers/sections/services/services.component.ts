@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent, ButtonComponent, CardIconComponent } from '@otwld/ui';
 import { RouterLinkWithHref } from '@angular/router';
-import { ServicesService } from '../../../services/services/services.service';
+import { ServiceService } from '../../../services/services/service.service';
 
 @Component({
   selector: 'otwld-services',
@@ -22,7 +22,7 @@ import { ServicesService } from '../../../services/services/services.service';
 export class ServicesComponent extends BaseComponent {
   services = this.servicesServices.services;
 
-  constructor(private readonly servicesServices: ServicesService) {
+  constructor(private readonly servicesServices: ServiceService) {
     super();
   }
 }

@@ -12,7 +12,7 @@ import {
   EffectClass,
   TextColorClass,
 } from '../../types/tailwind.types';
-import { Icon } from '@fortawesome/fontawesome-svg-core';
+import { Icon, IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent } from '../base.component';
 
@@ -34,7 +34,8 @@ export class ButtonComponent extends BaseComponent<
   @Input() shape: ButtonShapeClass | undefined = undefined;
   @Input() display: ButtonDisplayClass | undefined = undefined;
   @Input() state: ButtonStateClass | undefined = undefined;
-  @Input() icon: Icon | undefined;
+  @Input() icon: IconDefinition | undefined;
+  @Input() iconPosition: 'start' | 'end' = 'start';
 
   override class = this.construct(
     () => 'btn',

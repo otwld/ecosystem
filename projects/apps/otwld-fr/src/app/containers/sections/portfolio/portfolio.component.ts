@@ -9,6 +9,10 @@ import {
 } from '@otwld/ui';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { PortfolioService } from '../../../services/portfolio/portfolio.service';
+import { RouterLinkWithHref } from '@angular/router';
+import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
+import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 
 @Component({
   selector: 'otwld-portfolio',
@@ -21,6 +25,9 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
     CardTitleDirective,
     CardBodyComponent,
     FontAwesomeModule,
+    RouterLinkWithHref,
+    JoinObjectPipe,
+    PortfolioCarouselComponent,
   ],
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss'],
@@ -28,4 +35,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 })
 export class PortfolioComponent {
   faArrowRight = faArrowRight;
+  portfolio = this.portfolioService.portfolio;
+
+  constructor(private readonly portfolioService: PortfolioService) {}
 }
