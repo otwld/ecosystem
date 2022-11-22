@@ -6,11 +6,11 @@ import { BaseComponent } from '@otwld/ui';
   selector: 'otwld-hero-image',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './hero-image.component.html',
-  styleUrls: ['./hero-image.component.scss'],
+  templateUrl: './hero-client-image.component.html',
+  styleUrls: ['./hero-client-image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroImageComponent extends BaseComponent {
+export class HeroClientImageComponent extends BaseComponent {
   @HostBinding('class') override class = this.construct(
     () => [
       'max-h-full',

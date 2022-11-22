@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
-import { OnePageClientsComponent } from './containers/pages/one-page-clients/one-page-clients.component';
-import { RouterModule } from '@angular/router';
+import { PageClientsComponent } from './containers/pages/page-clients/page-clients.component';
+import { AppRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +15,8 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     FontAwesomeModule,
     FooterComponent,
-    OnePageClientsComponent,
-    RouterModule.forRoot([]),
+    PageClientsComponent,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OnePageClientsComponent } from './one-page-clients.component';
+import { PageClientsComponent } from './page-clients.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('OnePageClientsComponent', () => {
-  let component: OnePageClientsComponent;
-  let fixture: ComponentFixture<OnePageClientsComponent>;
+  let component: PageClientsComponent;
+  let fixture: ComponentFixture<PageClientsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OnePageClientsComponent, RouterTestingModule],
+      imports: [PageClientsComponent, RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OnePageClientsComponent);
+    fixture = TestBed.createComponent(PageClientsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

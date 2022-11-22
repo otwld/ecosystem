@@ -1,0 +1,20 @@
+<ul class="space-y-4" uiMenu>
+  <li
+    *ngFor="let item of services$ | async"
+    class="rounded border-2 border-base-200 text-lg transition-colors duration-300 hover:border-primary hover:text-primary {{
+      item.active ? 'border-primary text-primary' : ''
+    }}"
+    uiMenuItem
+  >
+    <a
+      [class.active]="item.active"
+      [routerLink]="item.route"
+      class="p-6 !bg-transparent font-bold {{
+        item.active ? 'text-base-content' : ''
+      }}"
+    >
+      {{ item.titleTranslationKey }}
+      <fa-icon [icon]="faArrowRight" class="ml-auto text-neutral"></fa-icon>
+    </a>
+  </li>
+</ul>

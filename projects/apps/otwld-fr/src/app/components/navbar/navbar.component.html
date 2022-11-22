@@ -1,23 +1,37 @@
 <div
-  class="flex w-full border-b border-b-neutral bg-neutral pr-8 pl-4 text-neutral-content"
+  class="{{
+    container ? 'container mx-auto display-inherit' : 'contents'
+  }} transition-all"
 >
-  <ui-logo class="p-4" hostDisplay="flex"></ui-logo>
+  <ui-logo class="py-4" hostDisplay="flex"></ui-logo>
   <div class="ml-8 hidden items-center space-x-14 font-bold xl:flex">
-    <a href="#">Home</a>
-    <a class="animation-delay-1000 animate-slide-in-fade-right" href="#"
+    <a [routerLink]="'/'">Home</a>
+    <a
+      [routerLink]="'/'"
+      class="animation-delay-1000 animate-slide-in-fade-right"
       >About Us</a
     >
-    <a class="animate-slide-in-fade-right animation-delay-0.4" href="#"
+    <a
+      [routerLink]="'/'"
+      class="animate-slide-in-fade-right animation-delay-0.4"
       >Service</a
     >
-    <a class="animate-slide-in-fade-right animation-delay-0.6" href="#"
+    <a
+      [routerLink]="'/'"
+      class="animate-slide-in-fade-right animation-delay-0.6"
       >Pages</a
     >
-    <a class="animate-slide-in-fade-right animation-delay-0.8" href="#"
+    <a
+      [routerLink]="'/'"
+      class="animate-slide-in-fade-right animation-delay-0.8"
       >Elements</a
     >
-    <a class="animate-slide-in-fade-right animation-delay-1" href="#">Blog</a>
-    <a class="animate-slide-in-fade-right animation-delay-1.2" href="#"
+    <a [routerLink]="'/'" class="animate-slide-in-fade-right animation-delay-1"
+      >Blog</a
+    >
+    <a
+      [routerLink]="'/'"
+      class="animate-slide-in-fade-right animation-delay-1.2"
       >Contact</a
     >
   </div>

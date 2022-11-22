@@ -4,7 +4,7 @@
       <a
         *ngFor="let item of services; let index = index"
         [routerLink]="[item.route]"
-        class="w-[47%] sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
+        class="w-[47%] transition-transform hover:scale-105 sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
       >
         <ui-card-icon
           [icon]="item.icon"
@@ -13,7 +13,7 @@
           }}"
           iconColor="text-primary"
         >
-          {{ item.title }}
+          {{ item.titleTranslationKey }}
         </ui-card-icon>
       </a>
     </div>
@@ -25,13 +25,15 @@
         trusted source in IT services.
       </h2>
       <div>
-        <ui-button
-          [additionalClasses]="['border-white', 'text-white']"
-          btnStyle="btn-outline"
-          color="btn-neutral"
-          size="btn-lg"
-          >View All Service
-        </ui-button>
+        <a routerLink="services">
+          <ui-button
+            [additionalClasses]="['border-white', 'text-white']"
+            btnStyle="btn-outline"
+            color="btn-neutral"
+            size="btn-lg"
+            >View All Service
+          </ui-button>
+        </a>
       </div>
     </div>
   </div>

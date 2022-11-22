@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// TODO: Doit être appliqué globalement et non localement comme ici.
-import { NavbarComponent } from './navbar.component';
+import { PageServicesComponent } from './page-services.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('PageServicesComponent', () => {
+  let component: PageServicesComponent;
+  let fixture: ComponentFixture<PageServicesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent, RouterTestingModule],
+      imports: [PageServicesComponent, RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(PageServicesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

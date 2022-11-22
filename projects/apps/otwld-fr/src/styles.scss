@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.display-inherit {
+  display: inherit;
+}
+
 html {
   //@screen sm {
   //  font-size: 14px;

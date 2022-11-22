@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let item of items">
+    <a [routerLink]="item.url">
+      <fa-icon
+        *ngIf="item.icon"
+        [icon]="item.icon"
+        class="mr-2 h-4 w-4 stroke-current"
+      ></fa-icon>
+      {{ item.labelTranslationKey }}
+    </a>
+  </li>
+</ul>

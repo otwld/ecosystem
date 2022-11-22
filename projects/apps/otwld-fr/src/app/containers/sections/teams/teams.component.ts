@@ -10,6 +10,8 @@ import {
   CardTitleDirective,
   IsInViewportDirective,
 } from '@otwld/ui';
+import { TeamsService } from '../../../services/teams/teams.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'otwld-teams',
@@ -23,9 +25,16 @@ import {
     CardImageComponent,
     CardActionsComponent,
     CardBodyComponent,
+    FontAwesomeModule,
   ],
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamsComponent extends BaseComponent {}
+export class TeamsComponent extends BaseComponent {
+  teams = this.teamsService.teams;
+
+  constructor(private readonly teamsService: TeamsService) {
+    super();
+  }
+}

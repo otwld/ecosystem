@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnChanges } from '@angular/core';
-import { ThemeClassOrArray, TwVariants } from '../types/tailwind.types';
+import { ThemeClassOrArray } from '../types/tailwind.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
 
 @Component({
@@ -44,7 +44,7 @@ export class BaseComponent<T extends string = ''> implements OnChanges {
   }
 
   @Input()
-  set additionalClasses(value: TwVariants<T>[]) {
+  set additionalClasses(value: T[]) {
     this.inlineAdditionalClasses = value.join(' ');
   }
 

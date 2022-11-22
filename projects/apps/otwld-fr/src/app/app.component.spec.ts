@@ -3,7 +3,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
-import { OnePageClientsComponent } from './containers/pages/one-page-clients/one-page-clients.component';
+import { PageClientsComponent } from './containers/pages/page-clients/page-clients.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
         NavbarComponent,
         FontAwesomeModule,
         FooterComponent,
-        OnePageClientsComponent,
+        PageClientsComponent,
+        RouterTestingModule,
       ],
     }).compileComponents();
   });
