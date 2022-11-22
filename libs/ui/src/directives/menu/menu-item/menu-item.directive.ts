@@ -4,6 +4,4 @@ import { Directive } from '@angular/core';
   selector: '[uiMenuItem]',
   standalone: true,
 })
-export class MenuItemDirective {
-  constructor() {}
-}
+export class MenuItemDirective {}
