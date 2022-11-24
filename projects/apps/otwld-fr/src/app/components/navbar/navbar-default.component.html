@@ -4,23 +4,25 @@
   textColor="text-neutral-content"
 >
   <ui-navbar-item sizeOrSlot="flex-1">
-    <ui-logo class="py-0.5 md:py-2" hostDisplay="flex"></ui-logo>
+    <a routerLink="/">
+      <ui-logo class="py-0.5 md:py-2" hostDisplay="flex"></ui-logo>
+    </a>
     <div class="ml-32 hidden items-center space-x-14 font-bold xl:flex">
       <a [routerLink]="'/'">Home</a>
       <a
         [routerLink]="'/services'"
         class="animation-delay-1000 animate-slide-in-fade-right"
-        >Our Services</a
+      >Our Services</a
       >
       <a
         [routerLink]="'/portfolio'"
         class="animate-slide-in-fade-right animation-delay-0.4"
-        >Our Realisations</a
+      >Our Realisations</a
       >
       <a
         [routerLink]="'/members'"
         class="animate-slide-in-fade-right animation-delay-0.8"
-        >Our Members</a
+      >Our Members</a
       >
     </div>
   </ui-navbar-item>
@@ -29,7 +31,7 @@
       class="hidden xl:block"
       (click)="promptThemeSwitcher()"
       color="btn-primary"
-      >Switch Theme
+    >Switch Theme
     </ui-button>
     <ui-button class="block xl:hidden" btnStyle="btn-ghost">
       <fa-icon [icon]="faBars" size="2x"></fa-icon>
