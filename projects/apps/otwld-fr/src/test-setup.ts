@@ -5,7 +5,8 @@ const unobserve = jest.fn();
 
 // you can also pass the mock implementation
 // to jest.fn as an argument
-(window as any).IntersectionObserver = jest.fn(() => ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as Window as any).IntersectionObserver = jest.fn(() => ({
   observe,
   unobserve,
 }));

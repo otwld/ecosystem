@@ -12,7 +12,7 @@ import {
   EffectClass,
   TextColorClass,
 } from '../../types/tailwind.types';
-import { Icon, IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent } from '../base.component';
 

@@ -1,5 +1,5 @@
-import { ElementRef, Injectable } from '@angular/core';
-import { filter, map, switchMap, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { filter, map, switchMap } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class LayoutService {
   private onRouteData$ = this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd),
     map((event) => event as NavigationEnd),
-    map((_) => {
+    map(() => {
       let currentRoute = this.router.routerState.root;
       while (currentRoute.firstChild) {
         currentRoute = currentRoute.firstChild;
@@ -21,7 +21,6 @@ export class LayoutService {
 
   shouldScrollTop$ = this.onRouteData$
     .pipe(
-      tap(data => console.info(data)),
       filter((data) => data['scrollPositionRestoration'] !== 'disabled'),
       map(data => data['scrollOffset'])
     )

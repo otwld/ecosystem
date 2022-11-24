@@ -7,8 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, map, switchMap, tap } from 'rxjs';
+import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OpacityClass } from '../../types/tailwind.types';
 import { LayoutService } from './layout.service';
