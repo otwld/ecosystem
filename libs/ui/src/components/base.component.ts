@@ -1,12 +1,16 @@
-import { Component, HostBinding, Input, OnChanges } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ThemeClassOrArray } from '../types/tailwind.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   standalone: true,
   template: '',
 })
-export class BaseComponent<T extends string = ''> implements OnChanges {
+export class BaseComponent<T extends string = ''>
+  implements OnChanges, OnDestroy
+{
   class = '';
   inlineAdditionalClasses = '';
   @HostBinding('class.block')
@@ -67,4 +71,7 @@ export class BaseComponent<T extends string = ''> implements OnChanges {
   private componentBase: () => ThemeClassOrArray = () => [];
 
   private componentModifiers: () => ThemeClassOrArray[] = () => [];
+
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method,@typescript-eslint/no-empty-function
+  ngOnDestroy(): void {}
 }

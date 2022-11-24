@@ -67,7 +67,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "projects/apps/otwld-fr/proxy.conf.json"
+        "proxyConfig": "projects/apps/otwld-fr/proxy.conf.json",
+        "host": "0.0.0.0"
       }
     },
     "extract-i18n": {

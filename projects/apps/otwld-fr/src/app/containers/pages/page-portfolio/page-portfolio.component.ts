@@ -1,10 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { HeroBreadcrumbsComponent } from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
 import { catchError, filter, map, of, switchMap } from 'rxjs';
-import { Service } from '../../../types/service.types';
-import { ServiceService } from '../../../services/services/service.service';
 import { ActivatedRoute, RouterLinkWithHref } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -15,13 +12,14 @@ import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioComponent } from '../../sections/portfolio/portfolio.component';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
+import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 
 @Component({
   selector: 'otwld-page-portfolio',
   standalone: true,
   imports: [
     CommonModule,
-    NavbarComponent,
+    NavbarDefaultComponent,
     HeroBreadcrumbsComponent,
     HttpClientModule,
     CardComponent,

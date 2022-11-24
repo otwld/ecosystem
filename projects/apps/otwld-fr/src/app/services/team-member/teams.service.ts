@@ -11,12 +11,14 @@ import { TeamMember } from '../../types/team-member.types';
   providedIn: 'root',
 })
 export class TeamMemberService {
-  teams: TeamMember[] = [
+  members: TeamMember[] = [
     {
       firstName: 'Nathan',
       lastName: 'Tréhout',
-      image: 'assets/images/ntrehout.jpg',
+      image: 'assets/images/team/ntrehout.jpg',
+      imageTransparent: 'assets/images/team/ntrehout-transparent-2.png',
       role: 'Développeur Fullstack',
+      route: '/members/ntrehout',
       socials: [
         {
           icon: faGithub,
@@ -39,8 +41,10 @@ export class TeamMemberService {
     {
       firstName: 'Arthur',
       lastName: 'Pain',
-      image: 'assets/images/apain.jpg',
+      image: 'assets/images/team/apain.jpg',
+      imageTransparent: 'assets/images/team/apain-transparent-2.png',
       role: 'Développeur Fullstack',
+      route: '/members/apain',
       socials: [
         {
           icon: faLinkedin,
@@ -51,8 +55,10 @@ export class TeamMemberService {
     {
       firstName: 'Jean Baptiste',
       lastName: 'Detroyes',
-      image: 'assets/images/jdetroyes.jpg',
+      image: 'assets/images/team/jdetroyes.jpg',
+      imageTransparent: 'assets/images/team/jdetroyes-transparent.png',
       role: 'Développeur Fullstack',
+      route: '/members/jdetroyes',
       socials: [
         {
           icon: faLinkedin,

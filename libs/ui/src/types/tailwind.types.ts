@@ -99,6 +99,7 @@ export type DisplayClass = 'flex' | 'inline-flex' | 'block' | 'inline-block';
 export type PaddinClass = `p${BorderDirection}-${Unit}`;
 export type Size = 'xs' | 'sm' | 'md' | 'lg';
 export type Shape = 'circle' | 'square';
+export type FlexSizeClass = 'flex-0' | 'flex-1' | 'flex-none';
 
 // Button
 export type ButtonColorClass = `btn-${ColorBrand | ColorState}`;
@@ -144,6 +145,13 @@ export type MenuClass =
   | MenuDisplayClass
   | 'menu-title';
 
+// Navbar
+export type NavbarBaseClass = 'navbar';
+export type NavbarStartClass = 'navbar-start';
+export type NavbarEndClass = 'navbar-end';
+export type NavbarCenterClass = 'navbar-center';
+export type NavbarClass = NavbarBaseClass | NavbarStartClass | NavbarEndClass | NavbarCenterClass;
+
 export type ThemeClass =
   | TextColorClass
   | BorderClass
@@ -171,6 +179,8 @@ export type ThemeClass =
   | MenuClass
   | ContainerClass
   | RoundedClass
+  | NavbarClass
+  | FlexSizeClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '@otwld/ui';
 
@@ -11,16 +11,19 @@ import { BaseComponent } from '@otwld/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroClientImageComponent extends BaseComponent {
+  @Input() image: string | undefined;
+  @Input() decorated = true;
+
   @HostBinding('class') override class = this.construct(
     () => [
       'max-h-full',
       'absolute',
-      'before:border-4',
-      'before:border-primary',
       'after:bg-accent',
       'bottom-0',
-      'right-0',
     ],
-    () => []
+    () => [
+      this.decorated ? 'before:border-4' : undefined,
+      this.decorated ? 'before:border-primary' : undefined,
+    ]
   );
 }

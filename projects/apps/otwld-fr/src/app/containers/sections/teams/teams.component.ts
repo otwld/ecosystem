@@ -12,6 +12,7 @@ import {
 } from '@otwld/ui';
 import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'otwld-teams',
@@ -26,13 +27,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CardActionsComponent,
     CardBodyComponent,
     FontAwesomeModule,
+    RouterLinkWithHref,
   ],
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamsComponent extends BaseComponent {
-  teams = this.teamsService.teams;
+  teams = this.teamsService.members;
 
   constructor(private readonly teamsService: TeamMemberService) {
     super();

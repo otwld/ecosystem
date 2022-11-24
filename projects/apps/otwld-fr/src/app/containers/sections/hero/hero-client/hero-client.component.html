@@ -7,23 +7,24 @@
     >
       <span
         class="animate-slide-in-fade-top text-[18px] font-extrabold uppercase animation-delay-0.2"
-        >Empower your business
+        >{{subtitle}}
       </span>
       <h1
         class="2 mt-6 animate-slide-in-fade-top text-3xl font-extrabold leading-[1.2] animation-delay-0.4 lg:text-7xl"
       >
-        Excellent IT services for your success
+        {{title}}
       </h1>
       <ui-button
         class="mt-8 animate-slide-in-fade-top animation-delay-0.6"
-        color="btn-primary"
+        color="btn-info"
         hostDisplay="block"
+        (click)="ctaClicked.emit()"
       >
-        Meet with us
+        {{ctaText}}
       </ui-button>
     </div>
     <div class="relative md:w-2/5">
-      <otwld-hero-image></otwld-hero-image>
+      <otwld-hero-image [decorated]="decorated" image="{{image}}"></otwld-hero-image>
     </div>
   </div>
   <div class="left-circle z-10 border-2 border-[#39446b]"></div>

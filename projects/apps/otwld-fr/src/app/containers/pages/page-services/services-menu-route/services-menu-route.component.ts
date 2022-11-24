@@ -5,7 +5,7 @@ import {
 } from '../../../../services/services/service.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MenuDirective, MenuItemDirective } from '@otwld/ui';
+import { BaseComponent, MenuDirective, MenuItemDirective } from '@otwld/ui';
 import { ActivatedRoute, RouterLinkWithHref } from '@angular/router';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { Service } from '../../../../types/service.types';
@@ -24,7 +24,7 @@ import { Service } from '../../../../types/service.types';
   styleUrls: ['./services-menu-route.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServicesMenuRouteComponent {
+export class ServicesMenuRouteComponent extends BaseComponent {
   faArrowRight = faArrowRight;
 
   services$: Observable<(Service & { active?: boolean })[]> = of(
@@ -47,5 +47,7 @@ export class ServicesMenuRouteComponent {
   constructor(
     private readonly servicesService: ServiceService,
     private readonly activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    super();
+  }
 }

@@ -35,6 +35,7 @@
     "@ngneat/elf-persist-state": "^1.1.6",
     "@ngneat/elf-requests": "^1.3.0",
     "@ngneat/elf-state-history": "^1.3.0",
+    "@ngneat/until-destroy": "^9.2.2",
     "@nrwl/angular": "^15.1.1",
     "ng-mocks": "^14.3.3",
     "reflect-metadata": "^0.1.13",

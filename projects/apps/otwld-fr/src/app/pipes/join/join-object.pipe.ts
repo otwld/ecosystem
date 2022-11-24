@@ -16,7 +16,8 @@ export class JoinObjectPipe implements PipeTransform {
         } else {
           return JSON.stringify(v[key]);
         }
-      })
+      }),
+      separator
     );
   }
 }

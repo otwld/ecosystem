@@ -22,13 +22,14 @@
           padding="card-compact"
         >
           <ui-card-image
+            routerLink="{{item.route}}"
             alt="Bonnie Avatar"
             src="{{ item.image }}"
             width="w-full"
           ></ui-card-image>
           <ui-card-body class="items-center text-center">
             <h3 uiCardTitle>
-              <a href="#">{{ item.firstName }} {{ item.lastName }}</a>
+              <a routerLink="{{item.route}}">{{ item.firstName }} {{ item.lastName }}</a>
             </h3>
             <p>{{ item.role }}</p>
             <ui-card-actions>

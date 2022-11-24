@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// TODO: Doit être appliqué globalement et non localement comme ici.
-import { NavbarComponent } from './navbar.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { NavbarComponent } from './default-navbar.component';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -10,7 +8,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent, RouterTestingModule],
+      imports: [NavbarComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarComponent);

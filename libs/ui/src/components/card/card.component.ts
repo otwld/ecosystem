@@ -18,6 +18,7 @@ import {
   TextColorClass,
   WidthClass,
 } from '../../types/tailwind.types';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Directive({
   selector: '[uiCardImage]',
@@ -62,9 +63,12 @@ export class CardActionsComponent {
 @Component({
   selector: 'ui-card-image',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLinkWithHref],
   template: ` <figure>
-    <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
+    <a routerLink="{{ routerLink }}" *ngIf="routerLink">
+      <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
+    </a>
+    <img *ngIf="src && !routerLink" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
   </figure>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -72,6 +76,7 @@ export class CardImageComponent {
   @Input() src: string | undefined;
   @Input() alt = '';
   @Input() width: WidthClass | undefined = undefined;
+  @Input() routerLink: string | undefined = undefined;
 }
 
 @Component({

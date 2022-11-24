@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageClientsComponent } from './containers/pages/page-clients/page-clients.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NavbarDefaultComponent } from './components/navbar/navbar-default.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
-        NavbarComponent,
+        NavbarDefaultComponent,
         FontAwesomeModule,
         FooterComponent,
         PageClientsComponent,

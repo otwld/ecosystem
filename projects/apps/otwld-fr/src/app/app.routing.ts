@@ -27,7 +27,11 @@ const routes: CustomRoute[] = [
         loadComponent: () =>
           import(
             './containers/pages/page-service-id/page-service-id.component'
-            ).then((m) => m.PageServiceIdComponent),
+          ).then((m) => m.PageServiceIdComponent),
+        data: {
+          titleTranslationKey: 'service-details',
+          scrollOffset: 300,
+        },
       },
     ],
     data: {
@@ -47,22 +51,45 @@ const routes: CustomRoute[] = [
         loadComponent: () =>
           import(
             './containers/pages/page-portfolio/page-portfolio.component'
-            ).then((m) => m.PagePortfolioComponent),
+          ).then((m) => m.PagePortfolioComponent),
+        data: {
+          titleTranslationKey: 'portfolio',
+        },
       },
     ],
     data: {
       titleTranslationKey: 'portfolio',
     },
   },
+  {
+    path: 'members',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/members/ntrehout',
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import(
+            './containers/pages/page-team-member-id/page-team-member-id.component'
+          ).then((m) => m.PageTeamMemberIdComponent),
+        data: {
+          titleTranslationKey: 'Team member',
+        },
+      },
+    ],
+  },
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'top',
-    scrollOffset: [0, 0]
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

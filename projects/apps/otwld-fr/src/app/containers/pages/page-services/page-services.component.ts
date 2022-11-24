@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { HeroBreadcrumbsComponent } from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
 import {
   HeroComponent,
@@ -11,13 +10,14 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServicesMenuRouteComponent } from './services-menu-route/services-menu-route.component';
 import { RouterOutlet } from '@angular/router';
+import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 
 @Component({
   selector: 'otwld-page-services',
   standalone: true,
   imports: [
     CommonModule,
-    NavbarComponent,
+    NavbarDefaultComponent,
     HeroBreadcrumbsComponent,
     HeroComponent,
     HeroContentComponent,
