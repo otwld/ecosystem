@@ -44,7 +44,7 @@ import { ModalConfig } from '../../modals/modal-config';
 })
 export class ModalRootComponent<T extends ComponentType<T>>
   extends BaseComponent
-  implements AfterViewInit, OnChanges
+  implements AfterViewInit
 {
   @Input() modalPosition: ModalPositionClass[] | undefined = undefined;
   @Input() portalContent: Type<T> | undefined = undefined;
@@ -103,11 +103,6 @@ export class ModalRootComponent<T extends ComponentType<T>>
       this.cdr.markForCheck();
       this.cdr.detectChanges();
     }
-  }
-
-  override ngOnChanges(changes:SimpleChanges) {
-    super.ngOnChanges(changes);
-    console.info(changes);
   }
 
   close() {
