@@ -1,6 +1,8 @@
 export type Skill =
   | 'Angular'
   | 'RxJS'
+  | 'NestJS'
+  | 'NodeJS'
   | 'Typescript'
   | 'IndexedDB'
   | 'Material'
@@ -22,5 +24,4 @@ export type Skill =
   | 'Animation et conduite de réunion'
   | 'Automatisation de processus métier et monitoring de workflow'
   | 'Méthodologie Agile'
-  | 'Architecture de fonctionnalités complexes'
-  | string;
+  | 'Architecture de fonctionnalités complexes';

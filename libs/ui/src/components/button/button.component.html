@@ -1,5 +1,5 @@
 <button class="{{ inlineAdditionalClasses }} {{ class }}">
-  <fa-icon *ngIf="icon && iconPosition === 'start'" [icon]="icon" class="mr-4"></fa-icon>
+  <fa-icon *ngIf="icon && iconPosition === 'start'" [icon]="icon"></fa-icon>
   <ng-content></ng-content>
-  <fa-icon *ngIf="icon && iconPosition === 'end'" [icon]="icon" class="ml-4"></fa-icon>
+  <fa-icon *ngIf="icon && iconPosition === 'end'" [icon]="icon"></fa-icon>
 </button>

@@ -1,4 +1,11 @@
-import { Component, HostBinding, Input, OnChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+} from '@angular/core';
 import { ThemeClassOrArray } from '../types/tailwind.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -52,7 +59,7 @@ export class BaseComponent<T extends string = ''>
     this.inlineAdditionalClasses = value.join(' ');
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.class = this.construct(this.componentBase, this.componentModifiers);
   }
 

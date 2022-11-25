@@ -80,8 +80,9 @@ export type TransitionClass = 'transition-opacity' | 'transition-colors';
 export type OverflowClass = 'overflow-hidden';
 export type ContainerClass = 'container';
 export type RoundedClass = 'rounded' | 'rounded-box';
-
 type Unit = 0 | 1 | 2 | 4 | 8;
+
+export type SpaceClass = TwVariants<`space-${'x' | 'y'}-${Unit}`>;
 export type BottomClass = TwVariants<`bottom-${Unit}`>;
 export type RightClass = TwVariants<`right-${Unit}`>;
 export type PositionClass = TwVariants<
@@ -139,18 +140,49 @@ export type HeroClass = 'hero' | 'hero-overlay' | 'hero-content';
 export type MenuBaseClass = 'menu';
 export type MenuPaddingClass = `menu-${'normal' | 'compact'}`;
 export type MenuDisplayClass = 'menu-vertical' | 'menu-horizontal';
+export type MenuTitleBaseClass = 'menu-title';
 export type MenuClass =
   | MenuBaseClass
   | MenuPaddingClass
   | MenuDisplayClass
-  | 'menu-title';
+  | MenuTitleBaseClass;
 
 // Navbar
 export type NavbarBaseClass = 'navbar';
 export type NavbarStartClass = 'navbar-start';
 export type NavbarEndClass = 'navbar-end';
 export type NavbarCenterClass = 'navbar-center';
-export type NavbarClass = NavbarBaseClass | NavbarStartClass | NavbarEndClass | NavbarCenterClass;
+export type NavbarClass =
+  | NavbarBaseClass
+  | NavbarStartClass
+  | NavbarEndClass
+  | NavbarCenterClass;
+
+// Badge
+export type BadgeBaseClass = 'badge';
+export type BadgeColorClass = `badge-${ColorBrand | ColorState}`;
+export type BadgeSizeClass = `badge-${Size}`;
+export type BadgeStyleClass = 'badge-outline' | 'badge-ghost';
+export type BadgeClass =
+  | BadgeBaseClass
+  | BadgeColorClass
+  | BadgeSizeClass
+  | BadgeStyleClass;
+
+// Modal
+export type ModalBaseClass = 'modal';
+export type ModalBoxClass = 'modal-box';
+export type ModalActionClass = 'modal-action';
+// export type ModalToggleClass = 'modal-toggle';
+export type ModalStateClass = 'modal-open';
+export type ModalPositionClass = TwVariants<'modal-bottom' | 'modal-middle'>;
+export type ModalClass =
+  | ModalBaseClass
+  | ModalBoxClass
+  | ModalActionClass
+  // | ModalToggleClass
+  | ModalStateClass
+  | ModalPositionClass;
 
 export type ThemeClass =
   | TextColorClass
@@ -181,6 +213,9 @@ export type ThemeClass =
   | RoundedClass
   | NavbarClass
   | FlexSizeClass
+  | BadgeClass
+  | ModalClass
+  | SpaceClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;

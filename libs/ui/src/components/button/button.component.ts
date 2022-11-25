@@ -29,7 +29,7 @@ export class ButtonComponent extends BaseComponent<
 > {
   @Input() color: ButtonColorClass | undefined = undefined;
   @Input() btnStyle: ButtonStyleClass | undefined = undefined;
-  @Input() size: ButtonSizeClass | undefined = undefined;
+  @Input() btnSize: ButtonSizeClass | undefined = undefined;
   @Input() effect: EffectClass | undefined = undefined;
   @Input() shape: ButtonShapeClass | undefined = undefined;
   @Input() display: ButtonDisplayClass | undefined = undefined;
@@ -38,11 +38,11 @@ export class ButtonComponent extends BaseComponent<
   @Input() iconPosition: 'start' | 'end' = 'start';
 
   override class = this.construct(
-    () => 'btn',
+    () => ['btn', 'space-x-4'],
     () => [
       this.color,
       this.btnStyle,
-      this.size,
+      this.btnSize,
       this.effect,
       this.shape,
       this.display,
