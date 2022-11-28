@@ -77,7 +77,6 @@ export class ModalRootComponent<T extends ComponentType<T>>
     public readonly data: ModalConfig<T>,
     private readonly dialogRef: DialogRef,
     private readonly vcr: ViewContainerRef,
-    private readonly cdr: ChangeDetectorRef
   ) {
     super();
     this.disableClose = data.disableClose;

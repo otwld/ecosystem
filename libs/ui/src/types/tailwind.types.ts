@@ -80,7 +80,7 @@ export type TransitionClass = 'transition-opacity' | 'transition-colors';
 export type OverflowClass = 'overflow-hidden';
 export type ContainerClass = 'container';
 export type RoundedClass = 'rounded' | 'rounded-box';
-type Unit = 0 | 1 | 2 | 4 | 8;
+type Unit = 0 | 1 | 2 | 4 | 8 | 12 | 16 | 24 | 32 | 48 | 64 | 96 | 128 | 256;
 
 export type SpaceClass = TwVariants<`space-${'x' | 'y'}-${Unit}`>;
 export type BottomClass = TwVariants<`bottom-${Unit}`>;
@@ -201,6 +201,15 @@ export type DropdownHoverClass = 'dropdown-hover';
 export type DropdownStateClass = 'dropdown-open';
 export type DropdownClass = DropdownBaseClass | DropdownContentClass | DropdownPositionClass | DropdownHoverClass | DropdownStateClass;
 
+export type DrawerBaseClass = 'drawer';
+export type DrawerContentClass = 'drawer-content';
+export type DrawerSideClass = 'drawer-side';
+export type DrawerOverlayClass = 'drawer-overlay';
+export type DrawerToggleClass = 'drawer-toggle';
+export type DrawerPositionClass = 'drawer-end';
+export type DrawerModeClass = 'drawer-mobile';
+export type DrawerClass = DrawerBaseClass | DrawerContentClass | DrawerSideClass | DrawerOverlayClass | DrawerToggleClass | DrawerPositionClass | DrawerModeClass;
+
 export type ThemeClass =
   | TextColorClass
   | BorderClass
@@ -234,6 +243,7 @@ export type ThemeClass =
   | ModalClass
   | SpaceClass
   | SwapClass
+  | DrawerClass
   | DropdownClass
   | undefined;
 

@@ -5,11 +5,11 @@
 >
   <ui-navbar-item sizeOrSlot="flex-1">
     <a routerLink="/">
-      <ui-logo class="lg:mr-32 py-0.5 md:py-2" hostDisplay="flex"></ui-logo>
+      <ui-logo class="mr-8 xl:mr-20 py-0.5 md:py-2" hostDisplay="flex"></ui-logo>
     </a>
     <div class="hidden lg:flex">
       <ng-container
-        [ngTemplateOutlet]="navItems"
+        [ngTemplateOutlet]="navItemsRef"
         [ngTemplateOutletContext]="{
         horizontal: 'true',
         backgroundInvisible: 'true'
@@ -18,56 +18,32 @@
     </div>
   </ui-navbar-item>
   <ui-navbar-item sizeOrSlot="flex-none" class="space-x-4 lg:space-x-8">
-    <otwld-lang-switcher hostDisplay="flex"></otwld-lang-switcher>
-    <otwld-theme-switcher></otwld-theme-switcher>
-    <ui-dropdown position="dropdown-end" class="block lg:hidden">
-      <ui-dropdown-trigger hostDisplay="block">
-        <ui-button shape="btn-circle" btnStyle="btn-ghost">
-          <svg
-            class="fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-            />
-          </svg>
-        </ui-button>
-      </ui-dropdown-trigger>
-      <ui-dropdown-content class="w-40">
-        <ng-container
-          [ngTemplateOutlet]="navItems"
-          [ngTemplateOutletContext]="{
-            horizontal: 'false',
-            backgroundInvisible: 'false'
-          }"
-        ></ng-container>
-      </ui-dropdown-content>
-    </ui-dropdown>
-    <!--    <ui-swap>-->
-    <!--      <ui-swap-on>-->
-
-    <!--      </ui-swap-on>-->
-    <!--      <ui-swap-off>-->
-    <!--        <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32"-->
-    <!--             viewBox="0 0 512 512">-->
-    <!--          <polygon-->
-    <!--            points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />-->
-    <!--        </svg>-->
-    <!--      </ui-swap-off>-->
-    <!--    </ui-swap>-->
+    <otwld-lang-switcher class="hidden lg:flex" hostDisplay="flex"></otwld-lang-switcher>
+    <otwld-theme-switcher class="hidden lg:block"></otwld-theme-switcher>
+    <ui-button class="block lg:hidden" shape="btn-circle" btnStyle="btn-ghost" (click)="openDrawer()">
+      <svg
+        class="fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512"
+      >
+        <path
+          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+        />
+      </svg>
+    </ui-button>
   </ui-navbar-item>
 </ui-navbar>
 
 <ng-template
-  #navItems
+  #navItemsRef
   let-horizontal="horizontal"
   let-backgroundInvisible="backgroundInvisible"
+  let-width="width"
 >
   <ul
-    class="{{ horizontal === 'true' ? 'space-x-8' : '' }}"
+    class="{{width}} {{ horizontal === 'true' ? 'space-x-8' : '' }}"
     [textColor]="
       backgroundInvisible === 'true' ? undefined : 'text-base-content'
     "
@@ -102,4 +78,17 @@
       >
     </li>
   </ul>
+</ng-template>
+
+<ng-template let-width="width" #drawerContentRef>
+  <div class="bg-base-100 p-8 {{width}}">
+    <a routerLink="/">
+      <ui-logo class="py-2" hostDisplay="flex"></ui-logo>
+    </a>
+    <div class="flex py-4 justify-between lg:hidden">
+      <otwld-lang-switcher hostDisplay="flex"></otwld-lang-switcher>
+      <otwld-theme-switcher></otwld-theme-switcher>
+    </div>
+    <ng-container [ngTemplateOutlet]="navItemsRef" [ngTemplateOutletContext]="{horizontal: 'false'}"></ng-container>
+  </div>
 </ng-template>

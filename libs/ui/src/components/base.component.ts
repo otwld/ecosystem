@@ -1,10 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
-  HostBinding,
+  HostBinding, inject,
   Input,
   OnChanges,
   OnDestroy,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { ThemeClassOrArray } from '../types/tailwind.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
@@ -30,6 +31,8 @@ export class BaseComponent<T extends string = ''>
   private isInlineBlock = this.hostDisplay === 'inline-block';
   @HostBinding('class.flex')
   private isFlex = this.hostDisplay === 'flex';
+
+  cdr = inject(ChangeDetectorRef);
 
   private _hostDisplay:
     | 'block'

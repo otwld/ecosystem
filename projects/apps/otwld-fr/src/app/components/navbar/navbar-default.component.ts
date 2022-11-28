@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ButtonComponent,
@@ -12,12 +18,13 @@ import {
   NavbarItemComponent,
   SwapComponent,
   SwapOffComponent,
-  SwapOnComponent,
+  SwapOnComponent, tw
 } from '@otwld/ui';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLinkWithHref } from '@angular/router';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component';
+import { DrawerService } from '../../services/drawer.service';
 
 @Component({
   selector: 'otwld-navbar-default',
@@ -45,4 +52,26 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
   styleUrls: ['./navbar-default.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class NavbarDefaultComponent {}
+export class NavbarDefaultComponent implements OnInit {
+  @ViewChild('drawerContentRef', { static: true }) drawerContentRef:
+    | TemplateRef<HTMLElement>
+    | undefined;
+
+  constructor(private readonly drawerService: DrawerService) {}
+
+  ngOnInit(): void {
+    if (this.drawerContentRef) {
+      this.drawerService.setTemplate({
+        template: this.drawerContentRef,
+        context: {
+          width: tw('w-64')
+        },
+      });
+      // this.drawerService.open();
+    }
+  }
+
+  openDrawer() {
+    this.drawerService.open();
+  }
+}
