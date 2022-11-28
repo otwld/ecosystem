@@ -22,7 +22,16 @@ import { LayoutService } from './layout.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent extends BaseComponent {
-  @Input() attrDataTheme: string | undefined;
+  get attrDataTheme(): string | undefined {
+    return this._attrDataTheme;
+  }
+
+  @Input()
+  set attrDataTheme(value: string | undefined) {
+    this._attrDataTheme = value;
+    document.body.setAttribute('data-theme', value || '');
+  }
+  private _attrDataTheme: string | undefined;
   @Input() opacity: OpacityClass | undefined = 'opacity-100';
   @ViewChild('containerRef') containerRef: ElementRef<HTMLElement> | undefined;
 
