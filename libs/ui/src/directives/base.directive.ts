@@ -1,17 +1,11 @@
-import {
-  Directive,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnDestroy,
-} from '@angular/core';
+import { Directive, OnChanges, OnDestroy } from '@angular/core';
 import { ThemeClassOrArray } from '../types/tailwind.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Directive()
-export class BaseDirective<T extends string = ''>
+export class BaseDirective
   implements OnChanges, OnDestroy
 {
   class = '';

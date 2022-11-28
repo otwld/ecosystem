@@ -1,5 +1,8 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { MenuTitleBaseClass } from '../../../types/tailwind.types';
+import {
+  MenuItemStateClass,
+  MenuTitleBaseClass,
+} from '../../../types/tailwind.types';
 import { BaseDirective } from '../../base.directive';
 
 @Directive({
@@ -8,8 +11,9 @@ import { BaseDirective } from '../../base.directive';
 })
 export class MenuItemDirective extends BaseDirective {
   @Input() menuTitle: MenuTitleBaseClass | undefined = undefined;
+  @Input() active: MenuItemStateClass | undefined = undefined;
   @HostBinding('class') override class = this.construct(
     () => [],
-    () => [this.menuTitle]
+    () => [this.menuTitle, this.active]
   );
 }

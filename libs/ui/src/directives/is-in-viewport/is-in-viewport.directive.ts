@@ -13,7 +13,7 @@ import {
 })
 export class IsInViewportDirective implements AfterViewInit {
   @Input()
-  classesToApply: string[] = [];
+  whenVisible: string[] = [];
 
   @Input() shouldRemoveClassesWhenNotIntersecting = false;
 
@@ -35,7 +35,7 @@ export class IsInViewportDirective implements AfterViewInit {
 
   applyOrRemoveClasses(isIntersecting: boolean) {
     if (isIntersecting) {
-      this.class = this.classesToApply;
+      this.class = this.whenVisible;
     } else if (this.shouldRemoveClassesWhenNotIntersecting) {
       this.class = [];
     }

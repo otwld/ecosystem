@@ -1,0 +1,11 @@
+<ui-button shape="btn-circle">
+  <ui-swap [active]="currentLang === 'en' ? 'swap-active' : undefined" (activeChange)="switchLang()"
+           class="">
+    <ui-swap-on>
+      <img class="w-3/4 mx-auto" src="assets/images/icons/flags/united-kingdom.png" />
+    </ui-swap-on>
+    <ui-swap-off>
+      <img class="w-3/4 mx-auto" src="assets/images/icons/flags/france.png" />
+    </ui-swap-off>
+  </ui-swap>
+</ui-button>

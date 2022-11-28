@@ -10,6 +10,19 @@ export class ThemeService {
   );
 
   currentTheme$ = this._currentTheme$.asObservable();
+  allowedThemes = [
+    'default',
+    'dark',
+    'aqua',
+    'light',
+    'corporate',
+    'valentine',
+    'cyberpunk',
+    'synthwave',
+    'retro',
+    'forest',
+    'luxury',
+  ]
 
   setTheme(themeName: string) {
     this._currentTheme$.next(themeName);
@@ -17,23 +30,10 @@ export class ThemeService {
   }
 
   promptThemeSwitcher() {
-    const allowedThemes = [
-      'default',
-      'dark',
-      'aqua',
-      'light',
-      'corporate',
-      'valentine',
-      'cyberpunk',
-      'synthwave',
-      'retro',
-      'forest',
-      'luxury',
-    ];
     const themeName = prompt(
-      `Type of of the following themes: ${allowedThemes.join(', ')}`
+      `Type of of the following themes: ${this.allowedThemes.join(', ')}`
     );
-    if (themeName && allowedThemes.includes(themeName)) {
+    if (themeName && this.allowedThemes.includes(themeName)) {
       this.setTheme(themeName);
     }
   }

@@ -9,9 +9,10 @@ import { AppRoutingModule } from './app.routing';
 import { NavbarDefaultComponent } from './components/navbar/navbar-default.component';
 import { LayoutComponent } from '@otwld/ui';
 import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
-import { fr, enUS } from "date-fns/locale";
-import { OverlayModule } from '@angular/cdk/overlay';
+import { enUS } from 'date-fns/locale';
 import { DialogModule } from '@angular/cdk/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 
 const dateFnsConfig = new DateFnsConfigurationService();
 dateFnsConfig.setLocale(enUS);
@@ -28,6 +29,8 @@ dateFnsConfig.setLocale(enUS);
     LayoutComponent,
     DateFnsModule.forRoot(),
     DialogModule,
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   providers: [
     { provide: DateFnsConfigurationService, useValue: dateFnsConfig } // <-- All pipes in French by default

@@ -8,10 +8,10 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input, OnChanges, SimpleChanges,
+  Input,
   Type,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { ButtonComponent } from '../button/button.component';

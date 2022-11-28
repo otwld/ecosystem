@@ -9,6 +9,7 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { PortfolioComponent } from '../../sections/portfolio/portfolio.component';
 import { SimulatorComponent } from '../../sections/simulator/simulator.component';
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-page-clients',
@@ -24,6 +25,7 @@ import { NavbarDefaultComponent } from '../../../components/navbar/navbar-defaul
     FooterComponent,
     PortfolioComponent,
     SimulatorComponent,
+    TranslocoModule,
   ],
   templateUrl: './page-clients.component.html',
   styleUrls: ['./page-clients.component.scss'],

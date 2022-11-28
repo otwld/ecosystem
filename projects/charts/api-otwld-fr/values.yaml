@@ -144,7 +144,7 @@ persistence:
     type: pvc
     accessMode: ReadWriteOnce
     storageClass: longhorn
-    size: 20Gi
+    size: 1Gi
 
 # -- Configure the Security Context for the Pod
 podSecurityContext: {}

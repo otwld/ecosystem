@@ -141,7 +141,9 @@ export type MenuBaseClass = 'menu';
 export type MenuPaddingClass = `menu-${'normal' | 'compact'}`;
 export type MenuDisplayClass = 'menu-vertical' | 'menu-horizontal';
 export type MenuTitleBaseClass = 'menu-title';
+export type MenuItemStateClass = 'active';
 export type MenuClass =
+  | MenuItemStateClass
   | MenuBaseClass
   | MenuPaddingClass
   | MenuDisplayClass
@@ -184,6 +186,21 @@ export type ModalClass =
   | ModalStateClass
   | ModalPositionClass;
 
+// Swap
+export type SwapBaseClass = 'swap';
+export type SwapActiveClass = 'swap-active';
+export type SwapStateClass = 'swap-on' | 'swap-off';
+export type SwapAnimationClass = 'swap-flip' | 'swap-rotate';
+export type SwapClass = SwapBaseClass | SwapActiveClass | SwapStateClass | SwapAnimationClass;
+
+// Dropdown
+export type DropdownBaseClass = 'dropdown';
+export type DropdownContentClass = 'dropdown-content';
+export type DropdownPositionClass = 'dropdown-end' | 'dropdown-top' | 'dropdown-bottom' | 'dropdown-left' | 'dropdown-right';
+export type DropdownHoverClass = 'dropdown-hover';
+export type DropdownStateClass = 'dropdown-open';
+export type DropdownClass = DropdownBaseClass | DropdownContentClass | DropdownPositionClass | DropdownHoverClass | DropdownStateClass;
+
 export type ThemeClass =
   | TextColorClass
   | BorderClass
@@ -216,6 +233,8 @@ export type ThemeClass =
   | BadgeClass
   | ModalClass
   | SpaceClass
+  | SwapClass
+  | DropdownClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;

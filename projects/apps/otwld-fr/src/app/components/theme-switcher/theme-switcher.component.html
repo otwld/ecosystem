@@ -1,0 +1,29 @@
+<!--    Theme Switcher-->
+<ui-dropdown position="dropdown-end">
+  <ui-dropdown-trigger>
+    <ui-button hostDisplay="block" btnStyle="btn-ghost" shape="btn-circle">
+      <img class="object-contain w-3/4 mx-auto" src="assets/images/icons/paint.png" />
+    </ui-button>
+  </ui-dropdown-trigger>
+  <ui-dropdown-content>
+    <ul
+      uiMenu
+      rounded="rounded-box"
+      backgroundColor="bg-base-100"
+      textColor="text-base-content"
+      *ngIf="currentTheme$ | async as currentTheme"
+    >
+      <li
+        *ngFor="let item of allowedThemes"
+        (click)="selectTheme(item)"
+        uiMenuItem
+      >
+        <a
+          class="capitalize"
+          [class.active]="currentTheme === item ? 'active' : undefined"
+        >{{ item }}</a
+        >
+      </li>
+    </ul>
+  </ui-dropdown-content>
+</ui-dropdown>

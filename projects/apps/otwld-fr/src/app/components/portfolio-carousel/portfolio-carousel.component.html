@@ -3,7 +3,7 @@
 >
   <div class="carousel-item w-[80vw] sm:w-[47%] lg:w-[32%]" *ngFor="let item of items; let index = index">
     <ui-card
-      [classesToApply]="['animate-slide-in-fade-top']"
+      [whenVisible]="['md:animate-slide-in-fade-top']"
       class="w-full before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary hover:before:bg-opacity-10 animation-delay-0.{{
         2 + index
       }}"

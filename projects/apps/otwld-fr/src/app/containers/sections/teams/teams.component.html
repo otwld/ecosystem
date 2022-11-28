@@ -13,7 +13,7 @@
     <div class="grid grid-cols-1 gap-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
       <div
         *ngFor="let item of teams; let index = index"
-        [classesToApply]="['animate-slide-in-fade-top']"
+        [whenVisible]="['animate-slide-in-fade-top']"
         class="text-gray-500 text-center animation-delay-0.{{ 2 + index }}"
         uiIsInViewport
       >

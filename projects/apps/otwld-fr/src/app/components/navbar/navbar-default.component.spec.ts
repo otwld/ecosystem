@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 // TODO: Doit être appliqué globalement et non localement comme ici.
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavbarDefaultComponent } from './navbar-default.component';
+import { getTranslocoModule } from '../../testing/transloco-testing.module';
 
 describe('NavbarComponent', () => {
   let component: NavbarDefaultComponent;
@@ -10,7 +11,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarDefaultComponent, RouterTestingModule],
+      imports: [NavbarDefaultComponent, RouterTestingModule, getTranslocoModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarDefaultComponent);

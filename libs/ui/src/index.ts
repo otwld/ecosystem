@@ -12,6 +12,8 @@ export * from './components/badge/badge.component';
 export * from './components/modal/modal.component';
 export * from './components/modal/modal-root.component';
 export * from './components/radial-progress/radial-progress.component';
+export * from './components/swap/swap.component';
+export * from './components/dropdown/dropdown.component';
 
 export * from './directives/base.directive';
 export * from './directives/modal-content/modal-content.directive';
