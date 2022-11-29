@@ -1,0 +1,17 @@
+<div>
+  <fa-icon class="{{!!color ? 'text-current' : 'text-info'}} flex-shrink-0 w-6 h-6 grid place-content-center" [icon]="icon ?? config[color ?? 'default'].icon"></fa-icon>
+  <ng-content></ng-content>
+  <ng-container *ngIf="title && message then twoLineTpl else oneLineTpl"></ng-container>
+</div>
+<ng-content select="ui-alert-actions"></ng-content>
+
+<ng-template #oneLineTpl>
+  <span *ngIf="message">{{message}}</span>
+  <h3 class="font-bold" *ngIf="title">{{title}}</h3>
+</ng-template>
+<ng-template #twoLineTpl>
+  <div>
+    <h3 class="font-bold" *ngIf="title">{{title}}</h3>
+    <div class="text-xs" *ngIf="message">{{message}}</div>
+  </div>
+</ng-template>
