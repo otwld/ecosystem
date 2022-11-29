@@ -1,20 +1,18 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  BackgroundColorClass,
-  BorderColorClass,
-  ButtonColorClass,
-  ButtonDisplayClass,
-  ButtonShapeClass,
-  ButtonSizeClass,
-  ButtonStateClass,
-  ButtonStyleClass,
-  EffectClass,
-  TextColorClass,
-} from '../../types/tailwind.types';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent } from '../base.component';
+import {
+  ButtonColorClass,
+  ButtonDisplayClass, ButtonShapeClass,
+  ButtonSizeClass,
+  ButtonStateClass,
+  ButtonStyleClass
+} from '../../types/tailwind/components/button.types';
+import { BorderColorClass } from '../../types/tailwind/utils/border.types';
+import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
+import { EffectClass, TextColorClass } from '../../types/tailwind/utils/general.types';
 
 @Component({
   selector: 'ui-button',

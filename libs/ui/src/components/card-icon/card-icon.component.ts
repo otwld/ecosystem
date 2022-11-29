@@ -8,7 +8,7 @@ import {
 } from '../card/card.component';
 import { BaseComponent } from '../base.component';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { TextColorClass } from '../../types/tailwind.types';
+import { TextColorClass } from '../../types/tailwind/utils/general.types';
 
 @Component({
   selector: 'ui-card-icon',

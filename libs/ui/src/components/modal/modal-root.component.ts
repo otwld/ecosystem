@@ -17,11 +17,11 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { ButtonComponent } from '../button/button.component';
 import { ModalContentDirective } from '../../directives/modal-content/modal-content.directive';
 import { BaseComponent } from '../base.component';
-import { ModalPositionClass } from '../../types/tailwind.types';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/overlay';
 import { NgIf } from '@angular/common';
 import { ModalConfig } from '../../modals/modal-config';
+import { ModalPositionClass } from '../../types/tailwind/components/modal.types';
 
 @Component({
   standalone: true,

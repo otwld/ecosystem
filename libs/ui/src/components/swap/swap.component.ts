@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import { SwapActiveClass } from '../../types/tailwind.types';
+import { SwapActiveClass } from '../../types/tailwind/components/swap.types';
 
 @Component({
   selector: 'ui-swap',

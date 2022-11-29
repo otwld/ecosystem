@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import { BadgeColorClass, BadgeSizeClass, BadgeStyleClass } from '../../types/tailwind.types';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BadgeColorClass, BadgeSizeClass, BadgeStyleClass } from '../../types/tailwind/components/badge.types';
 
 @Component({
   selector: 'ui-badge',

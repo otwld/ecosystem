@@ -6,13 +6,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import {
-  BackgroundColorClass, ContainerClass,
-  FlexSizeClass,
-  NavbarCenterClass,
-  NavbarEndClass,
-  NavbarStartClass, TextColorClass
-} from '../../types/tailwind.types';
+import { ContainerClass, FlexSizeClass, TextColorClass } from '../../types/tailwind/utils/general.types';
+import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
+import { NavbarCenterClass, NavbarEndClass, NavbarStartClass } from '../../types/tailwind/components/navbar.types';
 
 @Component({
   selector: 'ui-navbar-item',

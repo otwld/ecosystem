@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { OpacityClass } from '../../types/tailwind.types';
 import { LayoutService } from './layout.service';
+import { OpacityClass } from '../../types/tailwind/utils/general.types';
 
 @UntilDestroy({ checkProperties: true })
 @Component({

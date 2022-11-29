@@ -1,12 +1,8 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import {
-  BackgroundColorClass,
-  MenuDisplayClass,
-  MenuPaddingClass,
-  RoundedClass,
-  TextColorClass,
-} from '../../types/tailwind.types';
 import { BaseDirective } from '../base.directive';
+import { RoundedClass, TextColorClass } from '../../types/tailwind/utils/general.types';
+import { MenuDisplayClass, MenuPaddingClass } from '../../types/tailwind/components/menu.types';
+import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
 
 @Directive({
   selector: '[uiMenu]',

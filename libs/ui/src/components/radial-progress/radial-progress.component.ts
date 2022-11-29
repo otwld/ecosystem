@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import {
-  BackgroundColorClass,
-  BorderColorClass,
-  TextColorClass,
-} from '../../types/tailwind.types';
+import { BorderColorClass } from '../../types/tailwind/utils/border.types';
+import { TextColorClass } from '../../types/tailwind/utils/general.types';
+import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
+
 
 @Component({
   selector: 'ui-radial-progress',

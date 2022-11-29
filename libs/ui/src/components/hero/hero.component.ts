@@ -9,8 +9,8 @@ import { BaseComponent } from '../base.component';
 import {
   BackgroundColorClass,
   BackgroundOpacityClass,
-  BackgroundURLClass,
-} from '../../types/tailwind.types';
+  BackgroundURLClass
+} from '../../types/tailwind/utils/background.types';
 
 @Component({
   selector: 'ui-hero-content',

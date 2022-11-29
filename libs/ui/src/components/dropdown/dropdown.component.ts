@@ -8,10 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import {
-  DropdownPositionClass,
-  DropdownStateClass,
-} from '../../types/tailwind.types';
+import { DropdownPositionClass, DropdownStateClass } from '../../types/tailwind/components/dropdown.types';
 
 @Component({
   selector: 'ui-dropdown-content',

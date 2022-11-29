@@ -1,9 +1,6 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import {
-  MenuItemStateClass,
-  MenuTitleBaseClass,
-} from '../../../types/tailwind.types';
 import { BaseDirective } from '../../base.directive';
+import { MenuItemStateClass, MenuTitleBaseClass } from '../../../types/tailwind/components/menu.types';
 
 @Directive({
   selector: '[uiMenuItem]',

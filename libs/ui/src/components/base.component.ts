@@ -68,7 +68,7 @@ export class BaseComponent<T extends string = ''>
 
   protected construct(
     componentBase: () => ThemeClassOrArray,
-    componentModifiers: () => ThemeClassOrArray[]
+    componentModifiers: () => ThemeClassOrArray[] = () => [],
   ) {
     this.componentBase = componentBase;
     this.componentModifiers = componentModifiers;

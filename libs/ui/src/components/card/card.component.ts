@@ -8,17 +8,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base.component';
-import {
-  BackgroundColorClass,
-  BorderColorClass,
-  CardDisplay,
-  CardImage,
-  CardPadding,
-  CardStyle,
-  TextColorClass,
-  WidthClass,
-} from '../../types/tailwind.types';
 import { RouterLinkWithHref } from '@angular/router';
+import { BorderColorClass } from '../../types/tailwind/utils/border.types';
+import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
+import { TextColorClass, WidthClass } from '../../types/tailwind/utils/general.types';
+import { CardDisplay, CardImage, CardPadding, CardStyle } from '../../types/tailwind/components/card.types';
 
 @Directive({
   selector: '[uiCardImage]',

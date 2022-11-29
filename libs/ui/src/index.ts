@@ -26,4 +26,23 @@ export * from './modals/modal-title-description/modal-title-description.componen
 export * from './modals/modal-test/modal-test.component';
 export * from './modals/modal-config';
 
-export * from './types/tailwind.types';
+export * from './types/tailwind/unit.types';
+
+export * from './types/tailwind/utils/background.types';
+export * from './types/tailwind/utils/border.types';
+export * from './types/tailwind/utils/color.types';
+export * from './types/tailwind/utils/general.types';
+
+export * from './types/tailwind/components/alert.types';
+export * from './types/tailwind/components/badge.types';
+export * from './types/tailwind/components/button.types';
+export * from './types/tailwind/components/breadcrumbs.types';
+export * from './types/tailwind/components/card.types';
+export * from './types/tailwind/components/badge.types';
+export * from './types/tailwind/components/drawer.types';
+export * from './types/tailwind/components/dropdown.types';
+export * from './types/tailwind/components/hero.types';
+export * from './types/tailwind/components/menu.types';
+export * from './types/tailwind/components/modal.types';
+export * from './types/tailwind/components/navbar.types';
+export * from './types/tailwind/components/swap.types';
