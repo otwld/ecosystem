@@ -7,13 +7,13 @@
         class="w-[47%] transition-transform hover:scale-105 sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
       >
         <ui-card-icon
+          title="{{item.titleTranslationKey}}"
           [icon]="item.icon"
           class="animate-slide-in-fade-top animation-delay-{{
             7 + index <= 1 ? '0.' + (7 + index) : (7 + index) / 10
           }}"
           iconColor="text-primary"
         >
-          {{ item.titleTranslationKey }}
         </ui-card-icon>
       </a>
     </div>

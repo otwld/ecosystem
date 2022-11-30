@@ -11,8 +11,16 @@ import { BaseComponent } from '../base.component';
 import { RouterLinkWithHref } from '@angular/router';
 import { BorderColorClass } from '../../types/tailwind/utils/border.types';
 import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
-import { TextColorClass, WidthClass } from '../../types/tailwind/utils/general.types';
-import { CardDisplay, CardImage, CardPadding, CardStyle } from '../../types/tailwind/components/card.types';
+import {
+  TextColorClass,
+  WidthClass,
+} from '../../types/tailwind/utils/general.types';
+import {
+  CardDisplay,
+  CardImage,
+  CardPadding,
+  CardStyle,
+} from '../../types/tailwind/components/card.types';
 
 @Directive({
   selector: '[uiCardImage]',
@@ -79,7 +87,7 @@ export class CardImageComponent {
   imports: [CommonModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Onush,
 })
 export class CardComponent
   extends BaseComponent<
@@ -87,9 +95,9 @@ export class CardComponent
   >
   implements OnChanges
 {
-  @Input() backgroundColor: BackgroundColorClass = 'bg-base-100';
-  @Input() textColor: TextColorClass = 'text-base-content';
-  @Input() padding: CardPadding = 'card-normal';
+  @Input() backgroundColor: BackgroundColorClass | undefined = 'bg-base-100';
+  @Input() textColor: TextColorClass | undefined = 'text-base-content';
+  @Input() padding: CardPadding | undefined = undefined;
   @Input() image: CardImage | undefined = undefined;
   @Input() display: CardDisplay | undefined = undefined;
   @Input() cardStyle: CardStyle | undefined = undefined;

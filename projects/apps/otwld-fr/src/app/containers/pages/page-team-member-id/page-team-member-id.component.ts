@@ -8,24 +8,26 @@ import { ServicesMenuRouteComponent } from '../page-services/services-menu-route
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import { HeroClientComponent } from '../../sections/hero/hero-client/hero-client.component';
 import {
+  AvatarModule,
   BadgeComponent,
   ButtonComponent,
+  CardIconComponent,
+  CarouselModule,
   HeroComponent,
   HeroContentComponent,
   MenuDirective,
   MenuItemDirective,
-  ModalComponent, ModalConfig,
+  ModalConfig,
   ModalRootComponent,
   ModalTestComponent,
   ModalTitleDescriptionComponent,
-  RadialProgressComponent, twInline
+  RadialProgressComponent,
 } from '@otwld/ui';
-import {
-  HeroClientImageComponent
-} from '../../sections/hero/hero-client/hero-client-image/hero-client-image.component';
+import { HeroClientImageComponent } from '../../sections/hero/hero-client/hero-client-image/hero-client-image.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateFnsModule } from 'ngx-date-fns';
 import { Dialog } from '@angular/cdk/dialog';
+import { faBoxes, faClock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'otwld-page-team-member-id',
@@ -46,10 +48,13 @@ import { Dialog } from '@angular/cdk/dialog';
     FontAwesomeModule,
     DateFnsModule,
     BadgeComponent,
+    CarouselModule,
+    CardIconComponent,
+    AvatarModule,
   ],
   templateUrl: './page-team-member-id.component.html',
   styleUrls: ['./page-team-member-id.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPus,
 })
 export class PageTeamMemberIdComponent {
   currentMember$ = this.activatedRoute.params.pipe(
@@ -59,11 +64,13 @@ export class PageTeamMemberIdComponent {
       )
     )
   );
+  faClock = faClock;
+  faProject = faBoxes;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly teamMemberService: TeamMemberService,
-    private readonly dialogService: Dialog,
+    private readonly dialogService: Dialog
   ) {}
 
   openDialog() {
@@ -72,9 +79,9 @@ export class PageTeamMemberIdComponent {
         portalContent: ModalTitleDescriptionComponent,
         portalData: {
           title: 'Congratulations random Internet user!',
-          description: 'World',
-        }
-      }
+          description: 'World,
+        ,
+      ,
     });
   }
 
@@ -83,7 +90,7 @@ export class PageTeamMemberIdComponent {
       data: {
         portalContent: ModalTestComponent,
         portalData: {},
-        modalPosition: ['modal-bottom', 'sm:modal-middle'],
+        modalPosition: ['modal-bottom', 'sm:modal-middle']
       } as ModalConfig<ModalTestComponent>
     });
   }

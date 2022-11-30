@@ -41,7 +41,7 @@ export type PositionClass = TwVariants<
 
 export type StateClass = 'active' | 'disabled';
 export type HeightClass = 'h-full' | `h-${Unit}`;
-export type WidthClass = 'w-full' | `w-${Unit}`;
+export type WidthClass = 'w-full' | `w-${Unit}` | `w-${number}/${number}`;
 export type MaxHeightClass = 'max-h-full';
 export type MaxWidthClass = 'max-w-full';
 export type MinHeightClass = 'min-h-screen';

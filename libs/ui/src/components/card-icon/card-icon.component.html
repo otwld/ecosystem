@@ -1,7 +1,7 @@
 <ui-card
   cardStyle="card-bordered"
   class="h-full w-full"
-  padding="card-compact"
+  [padding]="padding"
   textColor="text-base-content"
 >
   <ui-card-body class="flex h-full items-center justify-center space-y-4">
@@ -11,8 +11,9 @@
       class="{{ iconColor }}"
       size="4x"
     ></fa-icon>
-    <h6 class="font-bold text-center {{ titleColor }}">
-      <ng-content></ng-content>
+    <h6 *ngIf="title" class="font-bold text-center {{ titleColor }}">
+      {{title}}
     </h6>
+    <p *ngIf="description" class="text-center">{{description}}</p>
   </ui-card-body>
 </ui-card>

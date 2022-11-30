@@ -16,3 +16,4 @@ export * from './dropdown/dropdown.component';
 export * from './drawer/drawer.component';
 export * from './avatar/avatar.component';
 export * from './carousel/carousel.component';
+export * from './carousel/carousel-item/carousel-item.component';

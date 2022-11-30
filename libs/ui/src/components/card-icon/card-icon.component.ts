@@ -9,6 +9,7 @@ import {
 import { BaseComponent } from '../base.component';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { TextColorClass } from '../../types/tailwind/utils/general.types';
+import { CardPadding } from '../../types';
 
 @Component({
   selector: 'ui-card-icon',
@@ -27,7 +28,10 @@ import { TextColorClass } from '../../types/tailwind/utils/general.types';
 export class CardIconComponent extends BaseComponent {
   @Input() icon: IconDefinition | undefined = undefined;
   @Input() iconColor: TextColorClass | undefined = undefined;
+  @Input() title: string | undefined = undefined;
   @Input() titleColor: TextColorClass | undefined = undefined;
+  @Input() description: string | undefined = undefined;
+  @Input() padding: CardPadding | undefined = 'card-compact';
 
   // TODO: Implement opinionated Colors implementation.
 }
