@@ -1,8 +1,5 @@
-import {
-  ThemeClass,
-  ThemeClassOrArray,
-  TwVariants,
-} from '../types/tailwind.types';
+import { ThemeClass, ThemeClassOrArray, TwVariants } from '../types/tailwind/theme.types';
+
 
 export type AdditionalClasses<T extends string> = TwVariants<T>;
 

@@ -1,5 +1,5 @@
 import { Directive, OnChanges, OnDestroy } from '@angular/core';
-import { ThemeClassOrArray } from '../types/tailwind.types';
+import { ThemeClassOrArray } from '../types/tailwind/theme.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
 import { UntilDestroy } from '@ngneat/until-destroy';
 

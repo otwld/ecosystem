@@ -11,9 +11,9 @@ const unobserve = jest.fn();
   unobserve,
 }));
 
-jest.mock('../../../libs/ui/src/types/tailwind.types', () => {
+jest.mock('../../../libs/ui/src/types/theme.types', () => {
   const original = jest.requireActual(
-    '../../../libs/ui/src/types/tailwind.types'
+    '../../../libs/ui/src/types/theme.types'
   );
   Object.keys(original).forEach((key) => (original[key] = () => ''));
 

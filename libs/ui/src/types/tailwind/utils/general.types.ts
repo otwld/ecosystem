@@ -1,8 +1,8 @@
 // Text
-import { TwVariants } from '../../tailwind.types';
+import { NegativeVariant, TwVariants } from '../theme.types';
 import { AllColor } from './color.types';
 import { BorderDirection } from './border.types';
-import { DurationUnit } from '../unit.types';
+import { DurationUnit, Unit } from '../unit.types';
 
 export type TextColorClass = TwVariants<`text-${AllColor}`>;
 
@@ -30,10 +30,9 @@ export type DurationClass = `duration-${DurationUnit}`;
 export type TransitionClass = 'transition-opacity' | 'transition-colors';
 export type OverflowClass = 'overflow-hidden';
 export type ContainerClass = 'container';
-export type RoundedClass = 'rounded' | 'rounded-box';
-type Unit = 0 | 1 | 2 | 4 | 8 | 12 | 16 | 24 | 32 | 48 | 64 | 96 | 128 | 256;
+export type RoundedClass = 'rounded' | 'rounded-box' | 'rounded-full' | `rounded-${Size}`;
 
-export type SpaceClass = TwVariants<`space-${'x' | 'y'}-${Unit}`>;
+export type SpaceClass = TwVariants<NegativeVariant<`space-${'x' | 'y'}-${Unit}`>>;
 export type BottomClass = TwVariants<`bottom-${Unit}`>;
 export type RightClass = TwVariants<`right-${Unit}`>;
 export type PositionClass = TwVariants<
@@ -49,6 +48,9 @@ export type MinHeightClass = 'min-h-screen';
 export type EffectClass = 'glass' | 'loading' | 'no-animation';
 export type DisplayClass = 'flex' | 'inline-flex' | 'block' | 'inline-block';
 export type PaddinClass = `p${BorderDirection}-${Unit}`;
-export type Size = 'xs' | 'sm' | 'md' | 'lg';
+export type DaisyComponentSize = 'xs' | 'sm' | 'md' | 'lg';
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl';
 export type Shape = 'circle' | 'square';
 export type FlexSizeClass = 'flex-0' | 'flex-1' | 'flex-none';
+export type FlexContentClass = 'justify-center' | 'justify-start' | 'justify-end' | 'justify-between' | 'justify-around';
+export type GapClass = NegativeVariant<`gap${'-x' | '-y' | ''}-${Unit}`>

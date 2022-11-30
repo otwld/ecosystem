@@ -1,4 +1,4 @@
-import { TwVariants } from '../../tailwind.types';
+import { TwVariants } from '../theme.types';
 import { AllColor } from './color.types';
 
 type BorderWidth = 0 | 1 | 2 | 4 | 8;

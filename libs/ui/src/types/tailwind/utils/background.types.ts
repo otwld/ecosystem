@@ -1,4 +1,4 @@
-import { TwVariants } from '../../tailwind.types';
+import { TwVariants } from '../theme.types';
 import { OpacityUnit } from './general.types';
 import { AllColor } from './color.types';
 

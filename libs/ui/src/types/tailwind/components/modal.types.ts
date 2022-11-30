@@ -1,4 +1,4 @@
-import { TwVariants } from '../../tailwind.types';
+import { TwVariants } from '../theme.types';
 
 export type ModalBaseClass = 'modal';
 export type ModalBoxClass = 'modal-box';

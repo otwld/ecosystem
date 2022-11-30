@@ -1,24 +1,26 @@
-import { BadgeClass } from './tailwind/components/badge.types';
-import { BreadcrumbsClass } from './tailwind/components/breadcrumbs.types';
-import { ButtonClass } from './tailwind/components/button.types';
-import { CardClass } from './tailwind/components/card.types';
-import { DrawerClass } from './tailwind/components/drawer.types';
-import { DropdownClass } from './tailwind/components/dropdown.types';
-import { HeroClass } from './tailwind/components/hero.types';
-import { MenuClass } from './tailwind/components/menu.types';
-import { ModalClass } from './tailwind/components/modal.types';
-import { NavbarClass } from './tailwind/components/navbar.types';
-import { SwapClass } from './tailwind/components/swap.types';
-import { BackgroundClass } from './tailwind/utils/background.types';
-import { BorderClass } from './tailwind/utils/border.types';
-import { AlertClass } from './tailwind/components/alert.types';
+import { BadgeClass } from './components/badge.types';
+import { BreadcrumbsClass } from './components/breadcrumbs.types';
+import { ButtonClass } from './components/button.types';
+import { CardClass } from './components/card.types';
+import { DrawerClass } from './components/drawer.types';
+import { DropdownClass } from './components/dropdown.types';
+import { HeroClass } from './components/hero.types';
+import { MenuClass } from './components/menu.types';
+import { ModalClass } from './components/modal.types';
+import { NavbarClass } from './components/navbar.types';
+import { SwapClass } from './components/swap.types';
+import { BackgroundClass } from './utils/background.types';
+import { BorderClass } from './utils/border.types';
+import { RingClass } from './utils/ring.types';
+import { AlertClass } from './components/alert.types';
+import { AvatarClass } from './components/avatar.types';
 import {
   BottomClass,
   ContainerClass,
   DisplayClass,
   DurationClass,
-  EffectClass,
-  FlexSizeClass,
+  EffectClass, FlexContentClass,
+  FlexSizeClass, GapClass,
   HeightClass,
   MaxHeightClass,
   MaxWidthClass,
@@ -33,8 +35,10 @@ import {
   StateClass,
   TextColorClass,
   TransitionClass,
-  WidthClass,
-} from './tailwind/utils/general.types';
+  WidthClass
+} from './utils/general.types';
+import { MaskClass } from './components/mask.types';
+import { CarouselClass } from './components/carousel.types';
 
 export type ThemeClass =
   | TextColorClass
@@ -72,11 +76,19 @@ export type ThemeClass =
   | DrawerClass
   | DropdownClass
   | AlertClass
+  | AvatarClass
+  | RingClass
+  | MaskClass
+  | CarouselClass
+  | FlexContentClass
+  | GapClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;
 
 type Variant = 'hover' | 'focus' | 'active' | 'disabled' | 'before' | 'after';
+
+export type NegativeVariant<T extends string> = T | `-${T}`;
 
 export type TwVariants<T extends string> =
   | T
