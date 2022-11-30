@@ -27,7 +27,7 @@ export class ServiceService {
       titleTranslationKey: 'Cloud Service',
       route: '/services/cloud-service',
       templateURL: 'assets/static/cloud-service.html',
-      description: randText({ charCount: 100 },
+      description: randText({ charCount: 100 }),
     },
     {
       icon: faDatabase,

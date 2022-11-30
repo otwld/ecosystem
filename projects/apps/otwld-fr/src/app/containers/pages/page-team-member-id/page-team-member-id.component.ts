@@ -54,7 +54,7 @@ import { faBoxes, faClock } from '@fortawesome/free-solid-svg-icons';
   ],
   templateUrl: './page-team-member-id.component.html',
   styleUrls: ['./page-team-member-id.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPus,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTeamMemberIdComponent {
   currentMember$ = this.activatedRoute.params.pipe(
@@ -75,14 +75,15 @@ export class PageTeamMemberIdComponent {
 
   openDialog() {
     const dialogRef = this.dialogService.open(ModalRootComponent, {
-      data: {
-        portalContent: ModalTitleDescriptionComponent,
-        portalData: {
-          title: 'Congratulations random Internet user!',
-          description: 'World,
-        ,
-      ,
-    });
+        data: {
+          portalContent: ModalTitleDescriptionComponent,
+          portalData: {
+            title: 'Congratulations random Internet user!',
+            description: 'World'
+          }
+        }
+      }
+    );
   }
 
   openTest() {

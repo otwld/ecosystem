@@ -120,7 +120,7 @@ export class TeamMemberService {
       portfolio: [
         this.portfolioService.portfolio[0],
         this.portfolioService.portfolio[1],
-        this.portfolioServce.portflio[2],
+        this.portfolioService.portfolio[2],
       ],
     },
     {
@@ -227,7 +227,7 @@ export class TeamMemberService {
             firstName: randFirstName(),
             lastName: randLastName(),
             avatar: randImg({ category: 'animals' }),
-            jobTitl: randJobTitle(),
+            jobTitle: randJobTitle(),
           },
           link: 'htts://example.com',
         },
@@ -237,7 +237,7 @@ export class TeamMemberService {
             firstName: randFirstName(),
             lastName: randLastName(),
             avatar: randImg(),
-            jobTitl: randJobTitle(),
+            jobTitle: randJobTitle(),
           },
           link: 'htts://example.com',
         },
@@ -247,7 +247,7 @@ export class TeamMemberService {
             firstName: randFirstName(),
             lastName: randLastName(),
             avatar: randImg({ category: 'people' }),
-            jobTitl: randJobTitle(),
+            jobTitle: randJobTitle(),
           },
           link: 'htts://exampl.com',
         },
@@ -255,24 +255,24 @@ export class TeamMemberService {
       portfolio: [
         this.portfolioService.portfolio[0],
         this.portfolioService.portfolio[1],
-        this.portfolioSerice.portfolio[2],
+        this.portfolioService.portfolio[2],
       ],
       services: [
         this.servicesService.services[0],
         this.servicesService.services[1],
         this.servicesService.services[2],
-        this.servicesSevice.services[3],
+        this.servicesService.services[3],
       ],
       mainSkills: [
         {
           name: 'NodeJS',
           percentage: 75,
-          startDate: new Dte('2017-01-01'),
+          startDate: new Date('2017-01-01'),
         },
         {
           name: 'Architecture de fonctionnalités complexes',
           percentage: 50,
-          startDate: new Dte('2019-0-01'),
+          startDate: new Date('2019-0-01'),
         },
       ],
       socials: [
