@@ -1,13 +1,15 @@
 import {
   ChangeDetectorRef,
   Component,
-  HostBinding, inject,
+  ElementRef,
+  HostBinding,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
-import { ThemeClassOrArray } from '../types/tailwind.types';
+import { ThemeClassOrArray } from '../types/tailwind/theme.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
@@ -32,6 +34,7 @@ export class BaseComponent<T extends string = ''>
   @HostBinding('class.flex')
   private isFlex = this.hostDisplay === 'flex';
 
+  elementRef: ElementRef<HTMLElement> = inject(ElementRef);
   cdr = inject(ChangeDetectorRef);
 
   private _hostDisplay:
@@ -68,7 +71,7 @@ export class BaseComponent<T extends string = ''>
 
   protected construct(
     componentBase: () => ThemeClassOrArray,
-    componentModifiers: () => ThemeClassOrArray[] = () => [],
+    componentModifiers: () => ThemeClassOrArray[] = () => []
   ) {
     this.componentBase = componentBase;
     this.componentModifiers = componentModifiers;
