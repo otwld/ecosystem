@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.9](https://github.com/otwld/ecosystem/compare/charts-otwld-fr-0.0.8...charts-otwld-fr-0.0.9) (2022-11-30)
+
+
+
 ## [0.0.8](https://github.com/otwld/ecosystem/compare/charts-otwld-fr-0.0.7...charts-otwld-fr-0.0.8) (2022-11-28)
 
 
