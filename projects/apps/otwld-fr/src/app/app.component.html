@@ -1,14 +1,27 @@
-<ui-drawer (closed)="drawerHasBeenClosed()" *ngIf="{drawerOpen: drawerOpen$ | async} as context" [open]="context.drawerOpen ?? false">
+<ui-drawer
+  (closed)="drawerHasBeenClosed()"
+  *ngIf="{ drawerOpen: drawerOpen$ | async } as context"
+  [open]="context.drawerOpen ?? false"
+>
   <ui-drawer-content>
-    <ui-layout *ngIf="currentTheme$ | async as currentTheme" attrDataTheme="{{currentTheme}}">
-      <otwld-navbar-default class="sticky top-0 z-40 w-full"></otwld-navbar-default>
+    <ui-layout
+      *ngIf="currentTheme$ | async as currentTheme"
+      attrDataTheme="{{ currentTheme }}"
+    >
+      <otwld-navbar-default
+        class="sticky top-0 z-40 w-full"
+      ></otwld-navbar-default>
       <router-outlet></router-outlet>
       <otwld-footer></otwld-footer>
     </ui-layout>
   </ui-drawer-content>
   <ui-drawer-side>
     <ng-container *ngIf="drawerTemplate$ | async as drawerTemplate">
-      <ng-container *ngIf="drawerTemplate" [ngTemplateOutlet]="drawerTemplate.template" [ngTemplateOutletContext]="drawerTemplate.context"></ng-container>
+      <ng-container
+        *ngIf="drawerTemplate"
+        [ngTemplateOutletContext]="drawerTemplate.context"
+        [ngTemplateOutlet]="drawerTemplate.template"
+      ></ng-container>
     </ng-container>
   </ui-drawer-side>
 </ui-drawer>
