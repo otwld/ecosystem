@@ -87,7 +87,7 @@ export class CardImageComponent {
   imports: [CommonModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Onush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent
   extends BaseComponent<
