@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-  faBrain,
-  faCloud,
-  faCode,
-  faDatabase,
+  faDesktop, faGlobe,
   faHands,
-  faLayerGroup,
+  faMobileScreen,
+  faUsers
 } from '@fortawesome/free-solid-svg-icons';
 import { Service } from '../../types/service.types';
-import { randText } from '@ngneat/falso';
 
 @Injectable({
   providedIn: 'root',
@@ -16,47 +13,33 @@ import { randText } from '@ngneat/falso';
 export class ServiceService {
   services: Service[] = [
     {
-      icon: faHands,
-      titleTranslationKey: 'IT Management',
-      route: '/services/it-management',
-      templateURL: 'assets/static/it-management.html',
-      description: randText({ charCount: 100 }),
+      icon: faGlobe,
+      title: 'services.web-development.title',
+      route: '/services/web-development',
+      templateURL: 'assets/static/services/web-development.html',
+      description: 'services.web-development.description',
     },
     {
-      icon: faCloud,
-      titleTranslationKey: 'Cloud Service',
-      route: '/services/cloud-service',
-      templateURL: 'assets/static/cloud-service.html',
-      description: randText({ charCount: 100 }),
+      icon: faMobileScreen,
+      title: 'services.mobile-development.title',
+      route: '/services/mobile-development',
+      templateURL: 'assets/static/services/mobile-development.html',
+      description: 'services.mobile-development.description',
     },
     {
-      icon: faDatabase,
-      titleTranslationKey: 'Data Service',
-      route: '/services/data-service',
-      templateURL: 'assets/static/data-service.html',
-      description: randText({ charCount: 100 })
+      icon: faDesktop,
+      title: 'services.desktop-development.title',
+      route: '/services/desktop-development',
+      templateURL: 'assets/static/services/desktop-development.html',
+      description: 'services.desktop-development.description',
     },
     {
-      icon: faLayerGroup,
-      titleTranslationKey: 'Cloud Security',
-      route: '/services/cloud-security',
-      templateURL: 'assets/static/cloud-security.html',
-      description: randText({ charCount: 100 })
+      icon: faUsers,
+      title: 'services.team-extension.title',
+      route: '/services/team-extension',
+      templateURL: 'assets/static/services/team-extension.html',
+      description: 'services.team-extension.description',
     },
-    {
-      icon: faCode,
-      titleTranslationKey: 'Web Service',
-      route: '/services/web-service',
-      templateURL: 'assets/static/web-service.html',
-      description: randText({ charCount: 100 })
-    },
-    {
-      icon: faBrain,
-      titleTranslationKey: 'Machine Learning',
-      route: '/services/machine-learning',
-      templateURL: 'assets/static/machine-learning.html',
-      description: randText({ charCount: 100 })
-    }
   ];
 }
 

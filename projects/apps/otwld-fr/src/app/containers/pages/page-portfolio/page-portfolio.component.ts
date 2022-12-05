@@ -13,6 +13,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioComponent } from '../../sections/portfolio/portfolio.component';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-page-portfolio',
@@ -29,6 +30,7 @@ import { NavbarDefaultComponent } from '../../../components/navbar/navbar-defaul
     PortfolioComponent,
     PortfolioCarouselComponent,
     RouterLinkWithHref,
+    TranslocoModule,
   ],
   templateUrl: './page-portfolio.component.html',
   styleUrls: ['./page-portfolio.component.scss'],

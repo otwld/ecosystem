@@ -15,7 +15,7 @@ export interface TeamMember {
   role: string;
   image: string;
   location: string;
-  workMode: WorkMode;
+  workMode: string;
   imageTransparent: string;
   socials?: Social[];
   portfolio: Portfolio;
@@ -24,7 +24,7 @@ export interface TeamMember {
 }
 
 export interface TeamMemberSkill {
-  name: Skill;
+  name: string;
   percentage: number;
   startDate: Date;
 }

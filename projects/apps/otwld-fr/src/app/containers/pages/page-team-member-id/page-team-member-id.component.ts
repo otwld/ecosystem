@@ -27,7 +27,8 @@ import { HeroClientImageComponent } from '../../sections/hero/hero-client/hero-c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateFnsModule } from 'ngx-date-fns';
 import { Dialog } from '@angular/cdk/dialog';
-import { faBoxes, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faBoxes, faClock, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-page-team-member-id',
@@ -51,6 +52,7 @@ import { faBoxes, faClock } from '@fortawesome/free-solid-svg-icons';
     CarouselModule,
     CardIconComponent,
     AvatarModule,
+    TranslocoModule,
   ],
   templateUrl: './page-team-member-id.component.html',
   styleUrls: ['./page-team-member-id.component.scss'],
@@ -66,6 +68,7 @@ export class PageTeamMemberIdComponent {
   );
   faClock = faClock;
   faProject = faBoxes;
+  faTasks = faTasks;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -75,15 +78,14 @@ export class PageTeamMemberIdComponent {
 
   openDialog() {
     const dialogRef = this.dialogService.open(ModalRootComponent, {
-        data: {
-          portalContent: ModalTitleDescriptionComponent,
-          portalData: {
-            title: 'Congratulations random Internet user!',
-            description: 'World'
-          }
-        }
-      }
-    );
+      data: {
+        portalContent: ModalTitleDescriptionComponent,
+        portalData: {
+          title: 'Congratulations random Internet user!',
+          description: 'World',
+        },
+      },
+    });
   }
 
   openTest() {
@@ -91,8 +93,8 @@ export class PageTeamMemberIdComponent {
       data: {
         portalContent: ModalTestComponent,
         portalData: {},
-        modalPosition: ['modal-bottom', 'sm:modal-middle']
-      } as ModalConfig<ModalTestComponent>
+        modalPosition: ['modal-bottom', 'sm:modal-middle'],
+      } as ModalConfig<ModalTestComponent>,
     });
   }
 }

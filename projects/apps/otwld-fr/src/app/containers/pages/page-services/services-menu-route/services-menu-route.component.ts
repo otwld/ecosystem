@@ -9,6 +9,7 @@ import { BaseComponent, MenuDirective, MenuItemDirective } from '@otwld/ui';
 import { ActivatedRoute, RouterLinkWithHref } from '@angular/router';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { Service } from '../../../../types/service.types';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-services-menu-route',
@@ -19,6 +20,7 @@ import { Service } from '../../../../types/service.types';
     MenuItemDirective,
     MenuDirective,
     RouterLinkWithHref,
+    TranslocoModule,
   ],
   templateUrl: './services-menu-route.component.html',
   styleUrls: ['./services-menu-route.component.scss'],

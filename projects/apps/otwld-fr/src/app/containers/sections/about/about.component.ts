@@ -7,6 +7,7 @@ import {
   ButtonComponent,
   IsInViewportDirective,
 } from '@otwld/ui';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-about',
@@ -16,6 +17,7 @@ import {
     FontAwesomeModule,
     IsInViewportDirective,
     ButtonComponent,
+    TranslocoModule,
   ],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],

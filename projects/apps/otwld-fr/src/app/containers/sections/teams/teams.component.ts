@@ -13,6 +13,7 @@ import {
 import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLinkWithHref } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-teams',
@@ -28,6 +29,7 @@ import { RouterLinkWithHref } from '@angular/router';
     CardBodyComponent,
     FontAwesomeModule,
     RouterLinkWithHref,
+    TranslocoModule,
   ],
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],

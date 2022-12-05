@@ -5,6 +5,7 @@
     class="container mx-auto items-center gap-16 py-8 lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
   >
     <div
+      *transloco="let t"
       [whenVisible]="['animate-slide-in-fade-left']"
       class="pb-8 animation-delay-0.4"
       uiIsInViewport
@@ -12,35 +13,34 @@
       <h2
         class="mb-4 font-extrabold font-extrabold tracking-tight text-primary"
       >
-        It Support For Business
+        {{t('about.title')}}
       </h2>
       <p class="mb-8 text-3xl font-extrabold leading-[1.33] md:text-4xl">
-        Preparing for your success trusted source in IT services.
+        {{t('about.subtitle')}}
       </p>
       <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore.
+        {{t('about.description')}}
       </p>
       <ul class="space-y-2">
         <li>
           <fa-icon [icon]="faCheck" class="mr-4 text-primary"></fa-icon>
-          <span>Which means as the company ramps</span>
+          <span>{{t('about.checkOne')}}</span>
         </li>
         <li>
           <fa-icon [icon]="faCheck" class="mr-4 text-primary"></fa-icon>
-          <span>Available In 14.1-In. And 16-In. Versions.</span>
+          <span>{{t('about.checkTwo')}}</span>
         </li>
         <li>
           <fa-icon [icon]="faCheck" class="mr-4 text-primary"></fa-icon>
-          <span>The Potential Loss Of The Touch Bar.</span>
+          <span>{{t('about.checkThree')}}</span>
         </li>
         <li>
           <fa-icon [icon]="faCheck" class="mr-4 text-primary"></fa-icon>
-          <span>High-Speed USB 4.0.</span>
+          <span>{{t('about.checkFour')}}</span>
         </li>
       </ul>
       <ui-button class="mt-8" color="btn-info" hostDisplay="block"
-        >View Details</ui-button
+        >{{t('about.cta')}}</ui-button
       >
     </div>
     <div

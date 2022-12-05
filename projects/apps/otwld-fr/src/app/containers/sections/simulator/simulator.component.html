@@ -1,15 +1,16 @@
 <section
+  *transloco="let t"
   class="relative flex bg-black pt-28 pb-44 text-white text-neutral-content after:absolute after:right-0 after:bottom-0 after:z-0 after:h-[90%] after:w-2/5 after:bg-[url('./assets/images/bg-shape.png')]"
 >
   <div class="container z-10 mx-auto flex flex-col justify-center">
     <div class="flex flex-wrap items-center justify-between">
       <div>
-        <span class="mb-4 font-bold">It Support For Business</span>
+        <span class="mb-4 font-bold">{{t('simulator.title')}}</span>
         <h2 class="mb-4 text-3xl font-extrabold md:text-4xl">
-          It Support For Business
+          {{t('simulator.subtitle')}}
         </h2>
       </div>
-      <ui-button color="btn-error">View All Services</ui-button>
+      <ui-button color="btn-error">{{t('simulator.cta')}}</ui-button>
     </div>
     <div class="mt-16 h-3/5 w-full">
       <ui-card
@@ -18,8 +19,7 @@
         uiIsInViewport
       >
         <ui-card-body class="items-center justify-center">
-          TODO. Créer un composant "effet waouh" pour simuler / récolter les
-          infos d'un projet ?
+          {{t('simulator.description')}}
         </ui-card-body>
       </ui-card>
     </div>

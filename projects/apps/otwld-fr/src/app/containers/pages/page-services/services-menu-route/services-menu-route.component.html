@@ -1,4 +1,6 @@
-<ul class="space-y-4" uiMenu>
+<ul
+  *transloco="let t"
+  class="space-y-4" uiMenu>
   <li
     *ngFor="let item of services$ | async"
     class="rounded border-2 border-base-200 text-lg transition-colors duration-300 hover:border-primary hover:text-primary {{
@@ -13,7 +15,7 @@
         item.active ? 'text-base-content' : ''
       }}"
     >
-      {{ item.titleTranslationKey }}
+      {{ t(item.title) }}
       <fa-icon [icon]="faArrowRight" class="ml-auto text-neutral"></fa-icon>
     </a>
   </li>

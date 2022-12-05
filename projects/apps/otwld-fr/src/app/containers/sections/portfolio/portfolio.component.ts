@@ -13,6 +13,7 @@ import { PortfolioService } from '../../../services/portfolio/portfolio.service'
 import { RouterLinkWithHref } from '@angular/router';
 import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-portfolio',
@@ -28,6 +29,7 @@ import { PortfolioCarouselComponent } from '../../../components/portfolio-carous
     RouterLinkWithHref,
     JoinObjectPipe,
     PortfolioCarouselComponent,
+    TranslocoModule,
   ],
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss'],

@@ -20,7 +20,7 @@ const routes: CustomRoute[] = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/services/it-management',
+        redirectTo: '/services/web-development',
       },
       {
         path: ':id',

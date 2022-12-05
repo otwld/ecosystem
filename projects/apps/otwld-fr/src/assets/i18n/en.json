@@ -1,7 +1,183 @@
 {
   "hero": {
     "subtitle": "Empower your business",
-    "title": "Excellent IT services for your success",
-    "cta": "Meet with us"
+    "title": "Excellent TS experts for your success",
+    "cta": "Let's talk"
+  },
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Our realisations",
+    "members": "Our members"
+  },
+  "roles": {
+    "fullstack-developer": "Fullstack Developer",
+    "backend-developer": "Backend Developer"
+  },
+  "outworld": {
+    "description": "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore\net dolore"
+  },
+  "skills": {
+    "complex-feature": "Complex feature architecture"
+  },
+  "work-modes": {
+    "full-remote": "\uD83D\uDC68\u200D\uD83D\uDCBB Full Remote",
+    "remote": "\uD83D\uDC68\u200D\uD83D\uDCBB Remote",
+    "onsite": "Onsite"
+  },
+  "footer": {
+    "call-us": {
+      "title": "Call us",
+      "phone": "+1 234 567 890"
+    },
+    "write-us": {
+      "title": "Write to us",
+      "email": "contact@outworld.fr"
+    },
+    "explore": {
+      "title": "Explore",
+      "linkOne": "Home",
+      "linkTwo": "Our Services",
+      "linkThree": "Our Realisations"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Lorem ipsum dolor sit amet,\nconsectetur adipisicing.",
+      "input": {
+        "placeholder": "Your email address"
+      }
+    },
+    "rights": "All rights reserved"
+  },
+  "ctas": {
+    "team-augmentation": {
+      "title": "Ready for a painless team augmentation ?",
+      "cta": "View all services"
+    }
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "We are a team of Typescript experts",
+    "description": "Our mission is to build digital products that last. By being reasonable product craftsmen, we're able to avoid surprises and focus on the quality of the software we deliver.",
+    "checkOne": "High quality maintainable code.",
+    "checkTwo": "We work only on a Time & Material basis.",
+    "checkThree": "Lean & Business focus mindset.",
+    "checkFour": "Open Communication & Transparency.",
+    "cta": "View details"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Build your app from scratch or extend your capabilities.",
+    "web-development": {
+      "title": "Web development",
+      "description": "Highly scalable platforms and well-tested products that are ready to handle millions of users daily."
+    },
+    "mobile-development": {
+      "title": "Mobile development",
+      "description": "iOS and Android apps built with React Native and Node.js will satisfy every end-user."
+    },
+    "desktop-development": {
+      "title": "Desktop development",
+      "description": "Amazing lightning-fast desktop applications made with Electron JS."
+    },
+    "product-development": {
+      "title": "Product development",
+      "description": "Full support at each stage of product development: prototyping, MVP and product scaling."
+    },
+    "team-extension": {
+      "title": "Team extension",
+      "description": "We provide a dedicated team of developers to help you with your project."
+    }
+  },
+  "details": {
+    "maintainable-code": {
+      "title": "High quality maintainable code",
+      "description": "Clean, refactored code that meets global standards. Easy to work on for each experienced developer!"
+    },
+    "quality-reliability": {
+      "title": "Quality = Reliability",
+      "description": "Automated tests / code review help us (and you) sleep at night. CI/CD..."
+    },
+    "time-material": {
+      "title": "Time & material",
+      "description": "We work only on a Time & Material basis because we feel it's fair (read more about why). Get a demo of your product each week and an invoice every two weeks - A transparent process!"
+    },
+    "lean-business": {
+      "title": "Lean & Business focus mindset",
+      "description": "Our goal is to make your business succeed in the long run, so we use new features, focus on the most critical business features and our co-founders hold monthly meetings to help you grow your business."
+    },
+    "source-code": {
+      "title": "Source code ownership",
+      "description": "Source code should be yours, so we transfer copyright to you. We also care about IP Protection to make your data and ideas safe."
+    },
+    "communication": {
+      "title": "Open Communication & Transparency",
+      "description": "Daily Standups, Weekly Demos, Team available online on Slack/Mattermost daily, Process Retrospective, Scrum Master - All that to create a perfect environment."
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Tech leaders from leading companies trusted us to build software with them."
+  },
+  "locations": {
+    "bali": "Bali, Indonesia",
+    "dublin": "Dublin, Ireland"
+  },
+  "team": {
+    "title": "Team members",
+    "subtitle": "Our awesome team of Typescript experts",
+    "hero": {
+      "title": "Hi ! I'm\n{{person}}",
+      "cta": "Hire me"
+    },
+    "main-skills": {
+      "title": "Main skills",
+      "subtitle": "My top skills"
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "My services"
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "subtitle": "What my clients say about me"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "subtitle": "My latest work"
+    },
+    "stats": {
+      "data-one": {
+        "title": "Total hours in enterprise",
+        "subtitle": "{{value}}% more than last month"
+      },
+      "data-two": {
+        "title": "Different projects",
+        "subtitle": "{{value}}% more than last month"
+      },
+      "data-three": {
+        "title": "Tasks done",
+        "subtitle": "{{value}} tasks remaining"
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "We’re proud to have worked on amazing apps",
+    "item-cta": "Read more",
+    "project-details": "Project details",
+    "project-name": "Project name",
+    "project-client": "Client",
+    "project-services": "Services",
+    "project-date": "Project date",
+    "previous": "Previous post",
+    "next": "Next post",
+    "related-projects": "Related projects"
+  },
+  "simulator": {
+    "title": "Simulator",
+    "subtitle": "Try our simulator to see how we work",
+    "description": "TODO. Créer un composant \"effet waouh\" pour simuler / récolter les infos d'un projet ?",
+    "cta": "Try it now"
   }
 }

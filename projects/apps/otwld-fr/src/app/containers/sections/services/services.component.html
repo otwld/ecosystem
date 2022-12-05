@@ -1,5 +1,5 @@
 <div class="relative z-20 bg-primary pb-20 text-primary-content">
-  <div class="container mx-auto flex flex-col">
+  <div class="container mx-auto flex flex-col" *transloco="let t">
     <div class="-mt-20 flex w-full flex-wrap items-start justify-center gap-4">
       <a
         *ngFor="let item of services; let index = index"
@@ -7,7 +7,7 @@
         class="w-[47%] transition-transform hover:scale-105 sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
       >
         <ui-card-icon
-          title="{{item.titleTranslationKey}}"
+          title="{{ t(item.title) }}"
           [icon]="item.icon"
           class="animate-slide-in-fade-top animation-delay-{{
             7 + index <= 1 ? '0.' + (7 + index) : (7 + index) / 10
@@ -21,8 +21,7 @@
       <h2
         class="mb-8 text-3xl font-extrabold leading-[1.33] md:mb-0 md:text-3xl lg:text-4xl"
       >
-        Preparing for your success<br />
-        trusted source in IT services.
+        {{t('ctas.team-augmentation.title')}}
       </h2>
       <div>
         <a routerLink="services">
@@ -31,7 +30,7 @@
             btnStyle="btn-outline"
             color="btn-neutral"
             size="btn-lg"
-            >View All Service
+            >{{t('ctas.team-augmentation.cta')}}
           </ui-button>
         </a>
       </div>

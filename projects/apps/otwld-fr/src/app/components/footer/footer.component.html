@@ -1,22 +1,23 @@
 <footer
+  *transloco="let t"
   [style.background-image]="'url(./assets/images/footer-bg-map.png)'"
   class="relative flex flex-col justify-between bg-neutral bg-cover bg-center text-neutral-content"
 >
   <div class="container mx-auto flex flex-col justify-around p-4">
-    <div class="flex flex-wrap pt-16">
-      <div class="elemen1 mx-auto flex w-full items-center py-4 sm:w-1/3">
+    <div class="flex flex-wrap pt-16 justify-between">
+      <div class="elemen1 mx-auto sm:mx-0 flex w-full items-center py-4 sm:w-auto">
         <span
           class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-content"
         >
           <fa-icon [icon]="faPhone"></fa-icon>
         </span>
         <div class="ml-4">
-          <h3>Call Us</h3>
-          <p class="text-lg font-extrabold">+1 234 567 890</p>
+          <h3>{{t('footer.call-us.title')}}</h3>
+          <p class="text-lg font-extrabold">{{t('footer.call-us.phone')}}</p>
         </div>
       </div>
       <div
-        class="elemen1 border-secondary-200 mx-auto flex w-full items-center py-4 sm:w-1/3 sm:justify-center sm:border-l"
+        class="elemen1 sm:ml-32 mx-auto sm:mx-0 flex w-full items-center py-4 sm:w-auto sm:justify-center"
       >
         <span
           class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-content"
@@ -24,63 +25,46 @@
           <fa-icon [icon]="faPhone"></fa-icon>
         </span>
         <div class="ml-4">
-          <h3>Write to Us</h3>
-          <p class="text-lg font-extrabold">info@example.com</p>
-        </div>
-      </div>
-      <div
-        class="elemen1 border-secondary-200 mx-auto flex w-full items-center py-4 sm:w-1/3 sm:justify-center sm:border-l"
-      >
-        <span
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-content"
-        >
-          <fa-icon [icon]="faPhone"></fa-icon>
-        </span>
-        <div class="ml-4">
-          <h3>Office hours</h3>
-          <p class="text-lg font-extrabold">Mon-Sat 9:00 - 7:00</p>
+          <h3>{{t('footer.write-us.title')}}</h3>
+          <p class="text-lg font-extrabold">{{t('footer.write-us.email')}}</p>
         </div>
       </div>
     </div>
     <div class="flex flex-wrap pt-20 pb-6">
-      <div class="mb-6 w-full lg:w-auto">
+      <div class="lg:w-1/2 mb-6 w-full">
         <div class="mb-4 flex items-center text-3xl font-extrabold">
           <img class="mr-2 h-16 w-16" src="./assets/images/logo.png" />
           Outworld
         </div>
-        <p>
-          Lorem ipsum dolor sit amet,<br />
-          consectetur adipisicing elit, sed do<br />
-          eiusmod tempor incididunt ut labore<br />
-          et dolore
-        </p>
+        <p>{{t('outworld.description')}}</p>
       </div>
-      <div class="flex flex-grow-[1] flex-wrap">
-        <div class="mb-6 mr-8 lg:ml-12 lg:px-4">
-          <h2 class="mb-6 pt-5 text-lg font-extrabold">Explore</h2>
+      <div class="flex flex-grow-[1] justify-end flex-wrap">
+        <div class="mb-6 mr-8 lg:px-4">
+          <h2 class="mb-6 pt-5 text-lg font-extrabold">{{t('footer.explore.title')}}</h2>
           <ul class="space-y-4">
             <li>
-              <a class="hover:underline" href="https://tailwindcss.com/"
-                >Our Scientists</a
+              <a class="hover:underline" [routerLink]="['/']"
+                >{{t('footer.explore.linkOne')}}</a
               >
             </li>
             <li>
-              <a class="hover:underline" href="https://tailwindcss.com/"
-                >Our Services</a
+              <a class="hover:underline" [routerLink]="['/services']"
+                >{{t('footer.explore.linkTwo')}}</a
               >
             </li>
             <li>
-              <a class="hover:underline" href="https://tailwindcss.com/"
-                >Case Studies</a
+              <a class="hover:underline" [routerLink]="['/portfolio']"
+                >{{t('footer.explore.linkThree')}}</a
               >
             </li>
           </ul>
         </div>
-        <div class="flex-grow md:ml-16 md:flex-grow-0 lg:ml-36 lg:px-4">
-          <h2 class="mb-6 pt-5 text-lg font-extrabold">Newsletter</h2>
+        <div class="flex-grow md:flex-grow-0">
+          <h2 class="mb-6 pt-5 text-lg font-extrabold">
+            {{t('footer.newsletter.title')}}
+          </h2>
           <p>
-            Lorem ipsum dolor sit amet,<br />
-            consectetur adipisicing
+            {{t('footer.newsletter.description')}}
           </p>
           <form class="mt-8 w-full max-w-sm">
             <div
@@ -89,7 +73,7 @@
               <input
                 aria-label="Full name"
                 class="placeholder mr-3 w-full appearance-none border-none bg-transparent py-1 px-2 leading-tight focus:outline-none"
-                placeholder="Your Email Address"
+                placeholder="{{t('footer.newsletter.input.placeholder')}}"
                 type="text"
               />
               <button
@@ -109,9 +93,9 @@
       class="container mx-auto flex w-full flex-wrap justify-center sm:justify-between"
     >
       <span class="text-sm sm:text-center"
-        >© 2022
+        >© {{actualYear}}
         <a class="hover:underline" href="https://outworld.fr/">Outworld™</a>.
-        All Rights Reserved.
+        {{t('footer.rights')}}
       </span>
       <div class="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
         <a href="#">

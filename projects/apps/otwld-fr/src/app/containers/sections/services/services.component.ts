@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent, ButtonComponent, CardIconComponent } from '@otwld/ui';
 import { RouterLinkWithHref } from '@angular/router';
 import { ServiceService } from '../../../services/services/service.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-services',
@@ -14,6 +15,7 @@ import { ServiceService } from '../../../services/services/service.service';
     CardIconComponent,
     ButtonComponent,
     RouterLinkWithHref,
+    TranslocoModule,
   ],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],

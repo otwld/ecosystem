@@ -11,6 +11,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioItem } from '../../types/portfolio.types';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-portfolio-carousel',
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     JoinObjectPipe,
     FontAwesomeModule,
+    TranslocoModule,
   ],
   templateUrl: './portfolio-carousel.component.html',
   styleUrls: ['./portfolio-carousel.component.scss'],

@@ -25,6 +25,7 @@ import { RouterLinkWithHref } from '@angular/router';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component';
 import { DrawerService } from '../../services/drawer.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-navbar-default',
@@ -47,6 +48,7 @@ import { DrawerService } from '../../services/drawer.service';
     MenuItemDirective,
     ThemeSwitcherComponent,
     LangSwitcherComponent,
+    TranslocoModule,
   ],
   templateUrl: './navbar-default.component.html',
   styleUrls: ['./navbar-default.component.scss'],
@@ -64,7 +66,7 @@ export class NavbarDefaultComponent implements OnInit {
       this.drawerService.setTemplate({
         template: this.drawerContentRef,
         context: {
-          width: tw('w-64')
+          width: tw('w-64'),
         },
       });
       // this.drawerService.open();

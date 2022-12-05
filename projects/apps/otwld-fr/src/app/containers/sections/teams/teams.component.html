@@ -1,14 +1,14 @@
 <section
   class="text-base-centent flex bg-base-100 bg-[url(./assets/images/bg-city.jpg)] bg-[0_100%] bg-no-repeat pt-28 pb-28"
 >
-  <div class="container mx-auto flex flex-col justify-center text-center">
+  <div *transloco="let t" class="container mx-auto flex flex-col justify-center text-center">
     <div class="mx-auto mb-16 max-w-screen-sm focus:outline-none">
       <h2
         class="visible mb-4 font-extrabold font-extrabold tracking-tight text-primary"
       >
-        Team members
+        {{t('team.title')}}
       </h2>
-      <p class="text-3xl font-extrabold md:text-4xl">Our Awesome Team</p>
+      <p class="text-3xl font-extrabold md:text-4xl">{{t('team.subtitle')}}</p>
     </div>
     <div class="grid grid-cols-1 gap-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
       <div
@@ -31,7 +31,7 @@
             <h3 uiCardTitle>
               <a routerLink="{{item.route}}">{{ item.firstName }} {{ item.lastName }}</a>
             </h3>
-            <p>{{ item.role }}</p>
+            <p>{{ t(item.role) }}</p>
             <ui-card-actions>
               <ul
                 *ngIf="item.socials"

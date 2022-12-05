@@ -7,6 +7,7 @@ import {
   CardComponent,
   IsInViewportDirective,
 } from '@otwld/ui';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-simulator',
@@ -17,6 +18,7 @@ import {
     IsInViewportDirective,
     ButtonComponent,
     CardBodyComponent,
+    TranslocoModule,
   ],
   templateUrl: './simulator.component.html',
   styleUrls: ['./simulator.component.scss'],
