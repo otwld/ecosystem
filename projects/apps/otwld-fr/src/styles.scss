@@ -6,6 +6,11 @@
   display: inherit;
 }
 
+// TODO: Il y a un délai bizzare où on voit apparaitre le drawer-side un court instant.
+.drawer-toggle ~ .drawer-side {
+  display: none;
+}
+
 html {
   //@screen sm {
   //  font-size: 14px;
