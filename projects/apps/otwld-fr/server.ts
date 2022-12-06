@@ -8,10 +8,21 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 
+function findDistPath() {
+  return [
+    join(process.cwd(), 'dist/projects/apps/otwld-fr/browser'),
+    join(process.cwd(), '../browser'),
+    join(process.cwd(), './browser')
+  ].find(distPath => existsSync(distPath));
+}
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/projects/apps/otwld-fr/browser');
+  const distFolder = findDistPath(); //
+  if (!distFolder) {
+    throw new Error('Could not find dist folder');
+  }
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? 'index.original.html'
     : 'index';
