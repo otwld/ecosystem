@@ -6,6 +6,7 @@ const sharedTailwindConfig = require('../../../libs/ui/tailwind.config');
 module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    join(__dirname, '../../../libs/ui/src/**/!(*.stories|*.spec).{ts,html}'), // TODO: Why do we need to do this ?
     join(__dirname, 'src/assets/static/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
