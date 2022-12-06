@@ -5,6 +5,8 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { Crawler } = require('es6-crawler-detect')
 
 import { AppServerModule } from './src/main.server';
 
@@ -38,9 +40,6 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
   server.get(
     '*.*',
     express.static(distFolder, {
@@ -48,12 +47,20 @@ export function app(): express.Express {
     })
   );
 
-  // All regular routes use the Universal engine
+  // // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, {
-      req,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
-    });
+    const CrawlerDetector = new Crawler(req)
+
+    // TODO: If user-agent is a bot, render the page with the bot renderer.
+    if (!CrawlerDetector.isCrawler()) {
+      res.sendFile(join(distFolder, indexHtml + '.html'));
+      return
+    } else {
+      return res.render(indexHtml, {
+        req,
+        providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+      });
+    }
   });
 
   return server;
