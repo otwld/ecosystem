@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LayoutService } from './layout.service';
 import { OpacityClass } from '../../types/tailwind/utils/general.types';
+import { isBrowser } from '../../utils/platform.utils';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -22,6 +23,8 @@ import { OpacityClass } from '../../types/tailwind/utils/general.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent extends BaseComponent {
+  private isBrowser = isBrowser();
+
   get attrDataTheme(): string | undefined {
     return this._attrDataTheme;
   }
@@ -29,20 +32,29 @@ export class LayoutComponent extends BaseComponent {
   @Input()
   set attrDataTheme(value: string | undefined) {
     this._attrDataTheme = value;
-    document.body.setAttribute('data-theme', value || '');
+    if (this.isBrowser) {
+      // TODO: Create a DocumentService
+      document.body.setAttribute('data-theme', value || '');
+    }
   }
+
   private _attrDataTheme: string | undefined;
   @Input() opacity: OpacityClass | undefined = 'opacity-100';
   @ViewChild('containerRef') containerRef: ElementRef<HTMLElement> | undefined;
 
-
-  constructor(private readonly router: Router,
-              private readonly layoutService: LayoutService) {
+  constructor(
+    private readonly router: Router,
+    private readonly layoutService: LayoutService
+  ) {
     super();
-    this.layoutService.shouldScrollTop$.pipe(untilDestroyed(this)).subscribe((scrollOffset) => {
-      if (this.containerRef) {
-        this.containerRef.nativeElement.scrollTo({ top:  scrollOffset || 0 });
-      }
-    })
+    this.layoutService.shouldScrollTop$
+      .pipe(untilDestroyed(this))
+      .subscribe((scrollOffset) => {
+        if (this.containerRef) {
+          if (this.isBrowser) {
+            this.containerRef.nativeElement.scrollTo({ top: scrollOffset || 0 });
+          }
+        }
+      });
   }
 }

@@ -7,7 +7,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageClientsComponent } from './containers/pages/page-clients/page-clients.component';
 import { AppRoutingModule } from './app.routing';
 import { NavbarDefaultComponent } from './components/navbar/navbar-default.component';
-import { DrawerComponent, DrawerContentComponent, DrawerSideComponent, LayoutComponent } from '@otwld/ui';
+import {
+  DrawerComponent,
+  DrawerContentComponent,
+  DrawerSideComponent,
+  LayoutComponent,
+} from '@otwld/ui';
 import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
 import { enUS } from 'date-fns/locale';
 import { DialogModule } from '@angular/cdk/dialog';
@@ -20,7 +25,7 @@ dateFnsConfig.setLocale(enUS);
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'otwld-fr' }),
     NavbarDefaultComponent,
     FontAwesomeModule,
     FooterComponent,

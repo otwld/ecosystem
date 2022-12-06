@@ -1,6 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent, ButtonComponent, SwapComponent, SwapOffComponent, SwapOnComponent } from '@otwld/ui';
+import {
+  BaseComponent,
+  ButtonComponent,
+  LocalStorageService,
+  SwapComponent,
+  SwapOffComponent,
+  SwapOnComponent
+} from '@otwld/ui';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -23,6 +30,7 @@ export class LangSwitcherComponent extends BaseComponent {
     | undefined;
 
   private readonly translocoService = inject(TranslocoService);
+  private readonly localStorageService = inject(LocalStorageService);
   currentLang = this.translocoService.getActiveLang();
 
   switchLang() {
@@ -32,6 +40,6 @@ export class LangSwitcherComponent extends BaseComponent {
       this.translocoService.setActiveLang('fr');
     }
     this.currentLang = this.translocoService.getActiveLang();
-    localStorage.setItem('lang', this.translocoService.getActiveLang());
+    this.localStorageService.setItem('lang', this.translocoService.getActiveLang());
   }
 }

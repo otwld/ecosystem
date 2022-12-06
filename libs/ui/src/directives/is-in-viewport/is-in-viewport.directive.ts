@@ -6,12 +6,14 @@ import {
   Input,
   ViewContainerRef,
 } from '@angular/core';
+import { isBrowser } from '../../utils/platform.utils';
 
 @Directive({
   selector: '[uiIsInViewport]',
   standalone: true,
 })
 export class IsInViewportDirective implements AfterViewInit {
+  private isBrowser = isBrowser();
   @Input()
   whenVisible: string[] = [];
 
@@ -25,12 +27,15 @@ export class IsInViewportDirective implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    const observedElement = this.vcRef.element.nativeElement.parentElement;
+    if (this.isBrowser) {
+      // TODO: Create a IntersectionObserverService.
+      const observedElement = this.vcRef.element.nativeElement.parentElement;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      this.applyOrRemoveClasses(entry.isIntersecting);
-    });
-    observer.observe(observedElement);
+      const observer = new IntersectionObserver(([entry]) => {
+        this.applyOrRemoveClasses(entry.isIntersecting);
+      });
+      observer.observe(observedElement);
+    }
   }
 
   applyOrRemoveClasses(isIntersecting: boolean) {

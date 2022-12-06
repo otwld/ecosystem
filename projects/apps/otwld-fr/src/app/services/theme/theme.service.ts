@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { LocalStorageService } from '@otwld/ui';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
+  private localStorageService = inject(LocalStorageService);
   private _currentTheme$ = new BehaviorSubject(
-    localStorage.getItem('SELECTED_THEME') || 'default'
+    this.localStorageService.getItem('SELECTED_THEME') || 'default'
   );
 
   currentTheme$ = this._currentTheme$.asObservable();
@@ -26,7 +28,7 @@ export class ThemeService {
 
   setTheme(themeName: string) {
     this._currentTheme$.next(themeName);
-    localStorage.setItem('SELECTED_THEME', themeName);
+    this.localStorageService.setItem('SELECTED_THEME', themeName);
   }
 
   promptThemeSwitcher() {
