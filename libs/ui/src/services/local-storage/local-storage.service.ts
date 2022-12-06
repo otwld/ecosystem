@@ -26,7 +26,6 @@ export class LocalStorageService {
   }
 
   getItem(key: string): string | null {
-    console.info(key);
     return this.storage.getItem(key);
   }
 
