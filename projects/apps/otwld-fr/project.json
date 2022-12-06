@@ -6,6 +6,31 @@
   "prefix": "otwld",
   "targets": {
     "build": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/projects/apps/otwld-fr/server",
+        "main": "projects/apps/otwld-fr/server.ts",
+        "tsConfig": "projects/apps/otwld-fr/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "browser": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -129,31 +154,6 @@
         "preset": "angular",
         "postTargets": ["apps-otwld-fr:write-version"]
       }
-    },
-    "server": {
-      "executor": "@angular-devkit/build-angular:server",
-      "options": {
-        "outputPath": "dist/projects/apps/otwld-fr/server",
-        "main": "projects/apps/otwld-fr/server.ts",
-        "tsConfig": "projects/apps/otwld-fr/tsconfig.server.json"
-      },
-      "configurations": {
-        "production": {
-          "outputHashing": "media",
-          "fileReplacements": [
-            {
-              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
-              "with": "projects/apps/otwld-fr/src/environments/environment.prod.ts"
-            }
-          ]
-        },
-        "development": {
-          "optimization": false,
-          "sourceMap": true,
-          "extractLicenses": false
-        }
-      },
-      "defaultConfiguration": "production"
     },
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
