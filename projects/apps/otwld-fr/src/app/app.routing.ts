@@ -88,6 +88,7 @@ const routes: CustomRoute[] = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
+      initialNavigation: 'enabledBlocking'
     }),
   ],
   exports: [RouterModule],

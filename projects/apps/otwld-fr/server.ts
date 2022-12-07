@@ -51,7 +51,7 @@ export function app(): express.Express {
   server.get('*', (req, res) => {
     const CrawlerDetector = new Crawler(req)
 
-    // TODO: If user-agent is a bot, render the page with the bot renderer.
+    // TODO: If specific query param is present, render the page with Universal.
     if (!CrawlerDetector.isCrawler()) {
       res.sendFile(join(distFolder, indexHtml + '.html'));
       return

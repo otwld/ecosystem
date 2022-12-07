@@ -29,7 +29,6 @@ dateFnsConfig.setLocale(enUS);
     NavbarDefaultComponent,
     FontAwesomeModule,
     FooterComponent,
-    PageClientsComponent,
     AppRoutingModule,
     LayoutComponent,
     DateFnsModule.forRoot(),

@@ -35,6 +35,8 @@ export class IsInViewportDirective implements AfterViewInit {
         this.applyOrRemoveClasses(entry.isIntersecting);
       });
       observer.observe(observedElement);
+    } else {
+      this.applyOrRemoveClasses(true)
     }
   }
 

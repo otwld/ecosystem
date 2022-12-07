@@ -7,9 +7,10 @@
   "targets": {
     "build": {
       "dependsOn": ["server"],
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "statsJson": true,
         "outputPath": "dist/projects/apps/otwld-fr/browser",
         "index": "projects/apps/otwld-fr/src/index.html",
         "main": "projects/apps/otwld-fr/src/main.ts",
@@ -55,7 +56,6 @@
         }
       },
       "defaultConfiguration": "production"
-
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -125,6 +125,18 @@
         "content": "PROJECT_VERSION=${version}"
       }
     },
+    "analyze": {
+      "executor": "@otwld/nx-devops:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          {
+            "command": "webpack-bundle-analyzer dist/projects/apps/otwld-fr/browser/stats.json",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
@@ -189,5 +201,6 @@
       "defaultConfiguration": "production"
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["libs-ui"]
 }
