@@ -50,16 +50,16 @@ export function app(): express.Express {
   // // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     const CrawlerDetector = new Crawler(req)
+    const isCrawler = CrawlerDetector.isCrawler()
+    const hasBypassQuery = req.query['forceSSR'] === 'true';
 
-    // TODO: If specific query param is present, render the page with Universal.
-    if (!CrawlerDetector.isCrawler()) {
-      res.sendFile(join(distFolder, indexHtml + '.html'));
-      return
-    } else {
+    if (isCrawler || hasBypassQuery) {
       return res.render(indexHtml, {
         req,
         providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
       });
+    } else {
+      res.sendFile(join(distFolder, indexHtml + '.html'));
     }
   });
 
