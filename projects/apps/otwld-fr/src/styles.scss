@@ -6,6 +6,10 @@
   display: inherit;
 }
 
+.drawer-toggle:checked ~ .drawer-side {
+  display: grid;
+}
+
 // TODO: Il y a un délai bizzare où on voit apparaitre le drawer-side un court instant.
 .drawer-toggle ~ .drawer-side {
   display: none;
