@@ -5,13 +5,13 @@
     <ui-card
       *transloco="let t"
       [whenVisible]="['md:animate-slide-in-fade-top']"
-      class="w-full before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary hover:before:bg-opacity-10 animation-delay-0.{{
+      class="w-full group before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary before:!bg-opacity-0 animation-delay-0.{{
         2 + index
       }}"
       image="image-full"
       uiIsInViewport
     >
-      <ui-card-image src="{{ item.image }}"></ui-card-image>
+      <ui-card-image class="group-hover:scale-105 ease-in-out transition-transform" src="{{ item.image }}"></ui-card-image>
       <ui-card-body class="justify-end">
         <h5 class="text-lg font-extrabold" uiCardTitle>
           {{ item.services | joinObject: 'title' }}
