@@ -24,6 +24,7 @@ import { PortfolioCarouselComponent } from '../../../components/portfolio-carous
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
+import { FormatPipeModule } from 'ngx-date-fns';
 
 @Component({
   selector: 'otwld-page-portfolio',
@@ -43,6 +44,7 @@ import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.se
     TranslocoModule,
     AvatarModule,
     RouterLink,
+    FormatPipeModule,
   ],
   templateUrl: './page-portfolio.component.html',
   styleUrls: ['./page-portfolio.component.scss'],
@@ -53,12 +55,12 @@ export class PagePortfolioComponent {
   currentPortfolioItem$ = this.activatedRoute.params.pipe(
     map((params) => this.portfolioService.getOneByRoute(params['id'])),
     shareReplay({ bufferSize: 1, refCount: true }),
-    tap(portfolioItem => {
+    tap((portfolioItem) => {
       if (portfolioItem) {
         this.breadcrumbsService.addBreadcrumb({
           labelTranslationKey: portfolioItem.title,
           url: portfolioItem.route,
-        })
+        });
       }
     })
   );

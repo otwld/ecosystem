@@ -18,8 +18,8 @@ export interface PortfolioItem {
   route: string;
   services: Service[];
   skills: Skill[];
-  startDate: string;
-  endDate: string;
+  startDate: number;
+  endDate: number;
   hoursSpent: number;
   image: string;
 }

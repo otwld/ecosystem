@@ -19,8 +19,8 @@ export const OCC: PortfolioItem = {
   members: [
     NTREHOUT
   ],
-  startDate: new Date('2021-06-01').toString(),
-  endDate: new Date('2022-09-31').toString(),
+  startDate: new Date('2021-06-01').getTime(),
+  endDate: new Date('2022-09-31').getTime(),
   hoursSpent: 1200,
   title: 'dynamic.portfolio.occ.title',
 };
@@ -37,8 +37,8 @@ export const ONSTAGE: PortfolioItem = {
   members: [NTREHOUT, APAIN],
   client: 'OnStage',
   skills: [],
-  startDate: new Date('2022-03-25').toString(),
-  endDate: new Date('2022-07-08').toString(),
+  startDate: new Date('2022-03-25').getTime(),
+  endDate: new Date('2022-07-08').getTime(),
   hoursSpent: 1200,
   title: 'dynamic.portfolio.onstage.title',
 };
@@ -55,8 +55,8 @@ export const JEPRECOMMANDE: PortfolioItem = {
   skills: [],
   client: 'Outworld',
   relatedProjects: [],
-  startDate: new Date('2022-03-25').toString(),
-  endDate: new Date('2022-07-08').toString(),
+  startDate: new Date('2022-03-25').getTime(),
+  endDate: new Date('2022-07-08').getTime(),
   hoursSpent: 1200,
   title: 'dynamic.portfolio.jeprecommande.title',
 };

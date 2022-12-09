@@ -1,10 +1,10 @@
 <div class="relative z-20 bg-primary pb-20 text-primary-content">
   <div class="container mx-auto flex flex-col" *transloco="let t">
-    <div class="-mt-20 flex w-full flex-wrap items-start justify-center gap-4">
+    <div class="-mt-20 flex w-full flex-wrap items-start justify-center gap-x-8 gap-y-4">
       <a
         *ngFor="let item of services$ | async; let index = index"
         [routerLink]="[item.route]"
-        class="w-[47%] transition-transform hover:scale-105 sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
+        class="w-full xs:w-[45%] sm:aspect-square transition-transform hover:scale-105 sm:w-[35%] lg:w-[15%]"
       >
         <ui-card-icon
           title="{{ t(item.title) }}"
@@ -19,7 +19,7 @@
     </div>
     <div class="mt-16 flex flex-wrap items-center justify-between">
       <h2
-        class="mb-8 text-3xl font-extrabold leading-[1.33] md:mb-0 md:text-3xl lg:text-4xl"
+        class="mb-8 text-3xl font-extrabold leading-[1.33] lg:mb-0 md:text-3xl lg:text-4xl"
       >
         {{t('ctas.team-augmentation.title')}}
       </h2>

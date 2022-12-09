@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,13 +14,11 @@ import {
   MatomoModule,
 } from '@otwld/ui';
 import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
-import { enUS } from 'date-fns/locale';
+import { enUS, fr } from 'date-fns/locale';
 import { DialogModule } from '@angular/cdk/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
-
-const dateFnsConfig = new DateFnsConfigurationService();
-dateFnsConfig.setLocale(enUS);
+import { TranslocoService } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,22 +35,32 @@ dateFnsConfig.setLocale(enUS);
       trackers: [
         {
           trackerUrl: 'https://matomo.outworld.fr/matomo.php',
-          siteId: 1
-        }
+          siteId: 1,
+        },
       ],
       routeTracking: {
-        enable: true
-      }
+        enable: true,
+      },
     }),
     DialogModule,
     HttpClientModule,
     TranslocoRootModule,
     DrawerComponent,
     DrawerSideComponent,
-    DrawerContentComponent
+    DrawerContentComponent,
   ],
   providers: [
-    { provide: DateFnsConfigurationService, useValue: dateFnsConfig }, // <-- All pipes in French by default
+    {
+      provide: DateFnsConfigurationService,
+      useFactory: () => {
+        const translocoService = inject(TranslocoService);
+        const dateFnsConfig = new DateFnsConfigurationService();
+        translocoService.langChanges$.subscribe((lang) => {
+          dateFnsConfig.setLocale(lang === 'fr' ? fr : enUS);
+        });
+        return dateFnsConfig;
+      },
+    }, // <-- All pipes in French by default
   ],
   bootstrap: [AppComponent],
 })

@@ -41,8 +41,8 @@
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">{{t('portfolio.project-date')}}</h4>
-                <p class="text-lg">
-                  {{ item.startDate | date }} -> {{ item.endDate | date }}
+                <p class="text-lg capitalize">
+                  {{ item.startDate | dfnsFormat : 'MMM dd, yyyy' }} → {{ item.endDate | dfnsFormat : 'MMM dd, yyyy' }}
                 </p>
               </li>
             </ul>
