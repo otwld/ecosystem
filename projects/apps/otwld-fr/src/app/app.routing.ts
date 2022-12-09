@@ -35,7 +35,7 @@ const routes: CustomRoute[] = [
       },
     ],
     data: {
-      titleTranslationKey: 'services',
+      titleTranslationKey: 'services.title',
     },
   },
   {

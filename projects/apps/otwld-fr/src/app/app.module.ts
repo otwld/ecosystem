@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
-import { PageClientsComponent } from './containers/pages/page-clients/page-clients.component';
 import { AppRoutingModule } from './app.routing';
 import { NavbarDefaultComponent } from './components/navbar/navbar-default.component';
 import {
@@ -12,6 +11,7 @@ import {
   DrawerContentComponent,
   DrawerSideComponent,
   LayoutComponent,
+  MatomoModule,
 } from '@otwld/ui';
 import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
 import { enUS } from 'date-fns/locale';
@@ -32,6 +32,18 @@ dateFnsConfig.setLocale(enUS);
     AppRoutingModule,
     LayoutComponent,
     DateFnsModule.forRoot(),
+    MatomoModule.forRoot({
+      scriptUrl: '//matomo.outworld.fr/matomo.js',
+      trackers: [
+        {
+          trackerUrl: 'https://matomo.outworld.fr/matomo.php',
+          siteId: 1
+        }
+      ],
+      routeTracking: {
+        enable: true
+      }
+    }),
     DialogModule,
     HttpClientModule,
     TranslocoRootModule,

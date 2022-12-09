@@ -154,7 +154,8 @@
         </div>
         <div class="">
           <otwld-portfolio-carousel
-            [items]="currentMember.portfolio"
+            *ngIf="portfolio$ | async as portfolio"
+            [items]="portfolio"
           ></otwld-portfolio-carousel>
         </div>
       </div>

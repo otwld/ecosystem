@@ -2,7 +2,7 @@
   <div class="container mx-auto flex flex-col" *transloco="let t">
     <div class="-mt-20 flex w-full flex-wrap items-start justify-center gap-4">
       <a
-        *ngFor="let item of services; let index = index"
+        *ngFor="let item of services$ | async; let index = index"
         [routerLink]="[item.route]"
         class="w-[47%] transition-transform hover:scale-105 sm:w-[30%] lg:w-[15%] lg:flex-grow lg:basis-0"
       >

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeroBreadcrumbsComponent } from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
 import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { map, shareReplay, switchMap, tap } from 'rxjs';
 import { ServicesMenuRouteComponent } from '../page-services/services-menu-route/services-menu-route.component';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import { HeroClientComponent } from '../../sections/hero/hero-client/hero-client.component';
@@ -29,6 +29,8 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { Dialog } from '@angular/cdk/dialog';
 import { faBoxes, faClock, faTasks } from '@fortawesome/free-solid-svg-icons';
 import { TranslocoModule } from '@ngneat/transloco';
+import { PortfolioService } from '../../../services/portfolio/portfolio.service';
+import { TeamMember } from '../../../types/team-member.types';
 
 @Component({
   selector: 'otwld-page-team-member-id',
@@ -60,12 +62,22 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class PageTeamMemberIdComponent {
   currentMember$ = this.activatedRoute.params.pipe(
-    map((params) =>
-      this.teamMemberService.members.find((member) =>
-        member.route.includes(params['id'])
+    switchMap((params) =>
+      this.teamMemberService.getOneByRoute(params['id']).pipe(
+        tap(member => {
+          if (!member) {
+            throw new Error('Member not found');
+          }
+        })
       )
-    )
+    ),
+    map(member => member as TeamMember),
+    shareReplay({bufferSize: 1, refCount: true})
   );
+
+  portfolio$ = this.currentMember$.pipe(
+    switchMap((member) => this.portfolioService.findByMemberFirstName(member.firstName))
+  )
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;
@@ -73,6 +85,7 @@ export class PageTeamMemberIdComponent {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly teamMemberService: TeamMemberService,
+    private readonly portfolioService: PortfolioService,
     private readonly dialogService: Dialog
   ) {}
 

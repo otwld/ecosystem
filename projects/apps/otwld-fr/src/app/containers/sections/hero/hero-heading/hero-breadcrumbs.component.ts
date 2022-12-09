@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  Breadcrumb,
   BreadcrumbsComponent,
   HeroComponent,
-  HeroContentComponent,
+  HeroContentComponent
 } from '@otwld/ui';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { RouteData } from '../../../../utils/router.utils';
+import { BreadcrumbsService } from '../../../../services/breadcrumbs/breadcrumbs.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'otwld-hero-breadcrumbs',
@@ -17,38 +20,28 @@ import { RouteData } from '../../../../utils/router.utils';
     HeroComponent,
     BreadcrumbsComponent,
     HeroContentComponent,
+    TranslocoModule,
   ],
   templateUrl: './hero-breadcrumbs.component.html',
   styleUrls: ['./hero-breadcrumbs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroBreadcrumbsComponent {
-  items$: Observable<BreadcrumbsComponent['items']> =
-    this.activatedRoute.data.pipe(
-      switchMap((data) =>
-        this.addBreadcrumb$(
-          data['titleTranslationKey'],
-          [],
-          this.activatedRoute.url
-        )
-      ),
-      switchMap((breadcrumbs) =>
-        this.activatedRoute.parent
-          ? this.activatedRoute.parent.data.pipe(
-              switchMap((data) =>
-                this.addBreadcrumb$(
-                  data['heroHeading'],
-                  breadcrumbs,
-                  this.activatedRoute.parent?.url
-                )
-              )
-            )
-          : of(breadcrumbs)
-      )
-    );
-  title$ = this.activatedRoute.data.pipe(map((data) => data['titleTranslationKey']));
+  items$: Observable<Breadcrumb[]> = this.activatedRoute.data.pipe(
+    switchMap((breadcrumbs) =>
+      this.breadcrumbsService
+        .onBreadcrumbAdd$()
+        .pipe(map((newBreadcrumb) => [newBreadcrumb]))
+    )
+  );
+  title$ = this.activatedRoute.data.pipe(
+    map((data) => data['titleTranslationKey'])
+  );
 
-  constructor(private readonly activatedRoute: ActivatedRoute) {}
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly breadcrumbsService: BreadcrumbsService
+  ) {}
 
   private addBreadcrumb$(
     item: RouteData['titleTranslationKey'],

@@ -18,7 +18,6 @@ export interface TeamMember {
   workMode: string;
   imageTransparent: string;
   socials?: Social[];
-  portfolio: Portfolio;
   mainSkills: TeamMemberSkill[];
   skills?: Skill[];
 }

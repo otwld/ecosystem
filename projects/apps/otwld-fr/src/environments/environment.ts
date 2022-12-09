@@ -5,6 +5,44 @@
 export const environment = {
   baseUrl: 'http://localhost:4200',
   production: false,
+  templates: {
+    services: {
+      'desktop-development': {
+        enURL: './assets/static/services/en/desktop-development.html',
+        frURL: './assets/static/services/fr/desktop-development.html',
+      },
+      'mobile-development': {
+        enURL: './assets/static/services/en/mobile-development.html',
+        frURL: './assets/static/services/fr/mobile-development.html'
+      },
+      'product-development': {
+        enURL: './assets/static/services/en/product-development.html',
+        frURL: './assets/static/services/fr/product-development.html'
+      },
+      'team-extension': {
+        enURL: './assets/static/services/en/team-extension.html',
+        frURL: './assets/static/services/fr/team-extension.html',
+      },
+      'web-development': {
+        enURL: './assets/static/services/en/web-development.html',
+        frURL: './assets/static/services/fr/web-development.html',
+      }
+    },
+    portfolio: {
+      occ: {
+        enURL: './assets/static/portfolio/en/occ.html',
+        frURL: './assets/static/portfolio/fr/occ.html',
+      },
+      jeprecommande: {
+        enURL: './assets/static/portfolio/en/jeprecommande.html',
+        frURL: './assets/static/portfolio/fr/jeprecommande.html',
+      },
+      onstage: {
+        enURL: './assets/static/portfolio/en/onstage.html',
+        frURL: './assets/static/portfolio/en/onstage.html',
+      }
+    }
+  }
 };
 
 /*

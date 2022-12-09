@@ -5,6 +5,7 @@ import { TranslocoService } from '@ngneat/transloco';
 @Pipe({
   name: 'joinObject',
   standalone: true,
+  pure: false
 })
 export class JoinObjectPipe implements PipeTransform {
   private join = new JoinPipe().transform;

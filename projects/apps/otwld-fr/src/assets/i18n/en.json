@@ -170,6 +170,7 @@
     "project-client": "Client",
     "project-services": "Services",
     "project-date": "Project date",
+    "project-members": "Project members",
     "previous": "Previous post",
     "next": "Next post",
     "related-projects": "Related projects"
@@ -179,5 +180,21 @@
     "subtitle": "Try our simulator to see how we work",
     "description": "TODO. Créer un composant \"effet waouh\" pour simuler / récolter les infos d'un projet ?",
     "cta": "Try it now"
+  },
+  "dynamic": {
+    "portfolio": {
+      "occ": {
+        "title": "Enterprise Resource Planning"
+      },
+      "onstage": {
+        "title": "AudioVisual Freelancing Platform"
+      },
+      "jeprecommande": {
+        "title": "Click & Collect Solution"
+      }
+    },
+    "services": {
+
+    }
   }
 }

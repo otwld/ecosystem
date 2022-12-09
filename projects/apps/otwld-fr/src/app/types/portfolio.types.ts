@@ -1,10 +1,18 @@
 import { Service } from './service.types';
 import { Skill } from './skill.types';
+import { TeamMember } from './team-member.types';
 
 export type Portfolio = PortfolioItem[];
 
 export interface PortfolioItem {
-  templateURL: string;
+  members: TeamMember[];
+  nextProject?: PortfolioItem;
+  previousProject?: PortfolioItem;
+  relatedProjects: Portfolio;
+  templates: {
+    en: string;
+    fr: string;
+  };
   title: string;
   client: string;
   route: string;

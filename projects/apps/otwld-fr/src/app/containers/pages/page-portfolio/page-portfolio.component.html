@@ -19,15 +19,25 @@
             <ul class="space-y-5">
               <li>
                 <h4 class="text-xl font-extrabold">{{t('portfolio.project-name')}}</h4>
-                <p class="text-lg">{{ item.title }}</p>
+                <p class="text-lg">{{ t(item.title) }}</p>
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">{{t('portfolio.project-client')}}</h4>
-                <p class="text-lg">{{ item.client }}</p>
+                <p class="text-lg">{{ t(item.client) }}</p>
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">{{t('portfolio.project-services')}}</h4>
                 <p class="text-lg">{{ item.services | joinObject: 'title' }}</p>
+              </li>
+              <li>
+                <h4 class="text-xl font-extrabold">{{t('portfolio.project-members')}}</h4>
+                <p class="text-lg">
+                  <ui-avatar-group space="-space-x-4">
+                    <a routerLink="{{item.route}}" *ngFor="let item of item.members">
+                      <ui-avatar width="w-8" imgSrc="{{item.image}}"></ui-avatar>
+                    </a>
+                  </ui-avatar-group>
+                </p>
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">{{t('portfolio.project-date')}}</h4>
@@ -41,23 +51,24 @@
       </div>
     </div>
     <div
+      *ngIf="currentPortfolioItem$ | async as item"
       class="flex justify-between border-y border-neutral border-opacity-25 py-4"
     >
-      <a routerLink="{{ fakeRelatedProjects[0].route }}">
+      <a *ngIf="item.previousProject" routerLink="{{ item.previousProject.route }}">
         <ui-button btnStyle="btn-ghost" [icon]="faArrowLeft"
           >{{t('portfolio.previous')}}</ui-button
         >
       </a>
-      <a routerLink="{{ fakeRelatedProjects[2].route }}">
+      <a *ngIf="item.nextProject" routerLink="{{ item.nextProject.route }}">
         <ui-button btnStyle="btn-ghost" iconPosition="end" [icon]="faArrowRight"
           >{{t('portfolio.next')}}</ui-button
         >
       </a>
     </div>
-    <div class="pt-28">
+    <div class="pt-28" *ngIf="relatedProjects$ | async as relatedProjects">
       <h2 class="mb-8 text-4xl font-extrabold">{{t('portfolio.related-projects')}}</h2>
       <otwld-portfolio-carousel
-        [items]="fakeRelatedProjects"
+        [items]="relatedProjects"
       ></otwld-portfolio-carousel>
     </div>
   </div>

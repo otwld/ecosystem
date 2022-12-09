@@ -5,5 +5,8 @@ export interface Service {
   icon: IconDefinition;
   title: string;
   route: string;
-  templateURL: string;
+  templates: {
+    en: string;
+    fr: string;
+  };
 }

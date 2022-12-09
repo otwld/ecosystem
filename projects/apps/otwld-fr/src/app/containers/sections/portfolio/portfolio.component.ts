@@ -37,7 +37,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class PortfolioComponent {
   faArrowRight = faArrowRight;
-  portfolio = this.portfolioService.portfolio;
+  portfolio$ = this.portfolioService.getAll();
 
   constructor(private readonly portfolioService: PortfolioService) {}
 }

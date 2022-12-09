@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ServiceService,
-} from '../../../../services/services/service.service';
+import { ServiceService } from '../../../../services/services/service.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent, MenuDirective, MenuItemDirective } from '@otwld/ui';
@@ -29,22 +27,21 @@ import { TranslocoModule } from '@ngneat/transloco';
 export class ServicesMenuRouteComponent extends BaseComponent {
   faArrowRight = faArrowRight;
 
-  services$: Observable<(Service & { active?: boolean })[]> = of(
-    this.servicesService.services
-  ).pipe(
-    switchMap(
-      (services) =>
-        this.activatedRoute.firstChild?.url.pipe(
-          map((url) => url[0].path),
-          map((id) =>
-            services.map((service) => ({
-              ...service,
-              active: service.route.includes(id),
-            }))
-          )
-        ) || of(services)
-    )
-  );
+  services$: Observable<(Service & { active?: boolean })[]> =
+    this.servicesService.getAll().pipe(
+      switchMap(
+        (services) =>
+          this.activatedRoute.firstChild?.url.pipe(
+            map((url) => url[0].path),
+            map((id) =>
+              services.map((service) => ({
+                ...service,
+                active: service.route.includes(id),
+              }))
+            )
+          ) || of(services)
+      )
+    );
 
   constructor(
     private readonly servicesService: ServiceService,

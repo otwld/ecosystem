@@ -36,7 +36,7 @@ import { TranslocoModule } from '@ngneat/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamsComponent extends BaseComponent {
-  teams = this.teamsService.members;
+  members$ = this.teamsService.getAll();
 
   constructor(private readonly teamsService: TeamMemberService) {
     super();

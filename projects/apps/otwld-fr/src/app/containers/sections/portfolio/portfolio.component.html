@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="">
-      <otwld-portfolio-carousel [items]="portfolio"></otwld-portfolio-carousel>
+      <otwld-portfolio-carousel *ngIf="portfolio$ | async as portfolio" [items]="portfolio"></otwld-portfolio-carousel>
     </div>
   </div>
 </section>
