@@ -38,7 +38,7 @@ export const environment = {
       },
       onstage: {
         enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/onstage.html',
-        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/onstage.html',
+        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/onstage.html',
       }
     }
   }
