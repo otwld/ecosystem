@@ -39,9 +39,11 @@
           <span>{{t('about.checkFour')}}</span>
         </li>
       </ul>
-      <ui-button class="mt-8" color="btn-info" hostDisplay="block"
+      <a routerLink="/services/team-extension">
+        <ui-button class="mt-8" color="btn-info" hostDisplay="block"
         >{{t('about.cta')}}</ui-button
-      >
+        >
+      </a>
     </div>
     <div
       [whenVisible]="['animate-slide-in-fade-right']"
