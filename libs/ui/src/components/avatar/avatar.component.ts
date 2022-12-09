@@ -73,6 +73,10 @@ export class AvatarComponent extends BaseComponent {
     () => ['avatar'],
     () => [this.placeholder, this.indicator]
   );
+  constructor() {
+    super();
+    this.hostDisplay = 'block';
+  }
 }
 
 @NgModule({
