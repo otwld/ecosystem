@@ -31,4 +31,8 @@ import { TranslocoModule } from '@ngneat/transloco';
   styleUrls: ['./page-clients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageClientsComponent {}
+export class PageClientsComponent {
+  openTawkTo() {
+    (window as any).Tawk_API.maximize();
+  }
+}
