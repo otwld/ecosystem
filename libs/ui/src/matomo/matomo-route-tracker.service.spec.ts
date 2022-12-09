@@ -15,6 +15,7 @@ describe('MatomoRouteTrackerService', () => {
         {
           provide: ActivatedRoute,
           useValue: {
+            // eslint-disable-next-line rxjs/finnish
             params: of({}),
           },
         },

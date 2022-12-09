@@ -24,7 +24,7 @@ export class MatomoInjector {
    */
   constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
     try {
-      window['_paq'] = window['_paq'] || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
+      window['_paq'] = window['_paq'] || (this.configuration.scriptUrl ? [] : undefined );
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
@@ -64,7 +64,7 @@ export class MatomoInjector {
           window['_paq'].push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
         );
       }
-      if (!!this.configuration.scriptUrl) {
+      if (this.configuration.scriptUrl) {
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;

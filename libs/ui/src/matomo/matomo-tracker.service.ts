@@ -5,7 +5,7 @@ import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuratio
 /**
  * Access to the global window variable.
  */
-declare var window: {
+declare const window: {
   [key: string]: any;
   prototype: Window;
   new (): Window;
@@ -51,7 +51,7 @@ export class MatomoTracker {
   trackPageView(customTitle?: string): void {
     try {
       const args: any[] = [];
-      if (!!customTitle) {
+      if (customTitle) {
         args.push(customTitle);
       }
       window['_paq'].push(['trackPageView', ...args]);
@@ -74,7 +74,7 @@ export class MatomoTracker {
   trackEvent(category: string, action: string, name?: string, value?: number): void {
     try {
       const args: any[] = [category, action];
-      if (!!name) {
+      if (name) {
         args.push(name);
         if (typeof value === 'number') {
           args.push(value);
@@ -99,7 +99,7 @@ export class MatomoTracker {
   trackSiteSearch(keyword: string, category?: string, resultsCount?: number): void {
     try {
       const args: any[] = [keyword];
-      if (!!category) {
+      if (category) {
         args.push(category);
         if (typeof resultsCount === 'number') {
           args.push(resultsCount);
@@ -1229,9 +1229,9 @@ export class MatomoTracker {
   ): void {
     try {
       const args: any[] = [productSKU];
-      if (!!productName) {
+      if (productName) {
         args.push(productName);
-        if (!!productCategory) {
+        if (productCategory) {
           args.push(productCategory);
           if (typeof price === 'number') {
             args.push(price);
