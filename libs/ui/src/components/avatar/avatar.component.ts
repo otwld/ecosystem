@@ -24,7 +24,7 @@ import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'ui-avatar-group',
-  template: ` <ng-content select="ui-avatar"></ng-content> `,
+  template: ` <ng-content select="ui-avatar,a"></ng-content> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
