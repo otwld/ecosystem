@@ -8,6 +8,7 @@ import {
   MenuItemDirective
 } from '@otwld/ui';
 import { ThemeService } from '../../services/theme/theme.service';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-theme-switcher',
@@ -28,10 +29,12 @@ import { ThemeService } from '../../services/theme/theme.service';
 export class ThemeSwitcherComponent  {
   allowedThemes = this.themeService.allowedThemes;
   currentTheme$ = this.themeService.currentTheme$;
+  trackEvent = injectTrackEvent();
 
   constructor(private readonly themeService: ThemeService) {}
 
   selectTheme(item: string) {
+    this.trackEvent('ThemeSwitcher', 'Click', item);
     this.themeService.setTheme(item);
   }
 }

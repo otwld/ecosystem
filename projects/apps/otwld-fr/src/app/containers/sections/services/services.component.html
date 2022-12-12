@@ -4,6 +4,7 @@
       <a
         *ngFor="let item of services$ | async; let index = index"
         [routerLink]="[item.route]"
+        (click)="trackEvent('CTA', 'Click', item.title)"
         class="w-full xs:w-[45%] aspect-square transition-transform hover:scale-105 sm:w-[35%] lg:w-[15%]"
       >
         <ui-card-icon
@@ -24,7 +25,7 @@
         {{t('ctas.team-augmentation.title')}}
       </h2>
       <div>
-        <a routerLink="services">
+        <a routerLink="services" (click)="trackEvent('CTA', 'Click', 'team-augmentation')">
           <ui-button
             [additionalClasses]="['border-white', 'text-white']"
             btnStyle="btn-outline"

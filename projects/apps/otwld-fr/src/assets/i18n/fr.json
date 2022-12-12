@@ -1,13 +1,13 @@
 {
   "hero": {
-    "subtitle": "Dynamiser votre entreprise",
-    "title": "D'excellents experts en TS pour votre réussite",
-    "cta": "Discutons ensemble"
+    "subtitle": "Solidifier votre produit avec",
+    "title": "Des profils seniors typescript 🚀",
+    "cta": "Ouvrons un échange 🗣"
   },
   "navbar": {
-    "home": "Accueil",
-    "services": "Services",
-    "portfolio": "Nos réalisations",
+    "home": "Présentation",
+    "services": "Ce que nous faisons",
+    "portfolio": "Nos expériences",
     "members": "Nos membres"
   },
   "roles": {
@@ -28,7 +28,7 @@
   "footer": {
     "call-us": {
       "title": "Appelez nous",
-      "phone": "+1 234 567 890"
+      "phone": "+33 6 07 74 95 94"
     },
     "write-us": {
       "title": "Écrivez nous",
@@ -51,16 +51,21 @@
   },
   "ctas": {
     "team-augmentation": {
-      "title": "Prêt pour une augmentation d'équipe sans douleur ?",
+      "title": "Prêt pour un renforcement d'équipe sans douleur ?",
       "cta": "Voir les services"
+    },
+    "lets-work-together": {
+      "title": "Travaillons ensemble",
+      "content": "Lorem ipsum",
+      "cta": "Contact now"
     }
   },
   "about": {
-    "title": "À propos",
-    "subtitle": "Une équipe de développeurs experts en TS",
+    "title": "À propos de nous",
+    "subtitle": "Des profils seniors, passionnés & expérimentés en Typescript",
     "description": "Notre mission est de créer des produits numériques qui durent. En étant raisonnables & conscient du produit, nous sommes en mesure d'éviter les surprises et de nous concentrer sur la qualité du logiciel que nous livrons.",
     "checkOne": "Code maintenable de haute qualité.",
-    "checkTwo": "Nous travaillons sur une base de temps.",
+    "checkTwo": "Puissant esprit du \"Code once & reuse\"",
     "checkThree": "Esprit Lean & Conscience business.",
     "checkFour": "Communication directe et transparente.",
     "cta": "Voir les détails"
@@ -120,8 +125,8 @@
     "dublin": "Dublin, Irelande"
   },
   "team": {
-    "title": "Membre de l'équipe",
-    "subtitle": "Notre impressionnante équipe d'experts en Typescript",
+    "title": "Nos membres",
+    "subtitle": "Passionés, investis et dévoués au succès votre produit !",
     "hero": {
       "title": "Salut ! Je me présente\n{{person}}",
       "cta": "Engagez moi"
@@ -159,8 +164,8 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitle": "Nous sommes fières de nos réalisations",
-    "item-cta": "Lire davantage",
+    "subtitle": "Fort de nos expériences passées",
+    "item-cta": "Lire plus",
     "project-details": "Détails du projet",
     "project-name": "Nom du projet",
     "project-client": "Client",

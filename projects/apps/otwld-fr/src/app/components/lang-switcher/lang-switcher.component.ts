@@ -9,6 +9,7 @@ import {
   SwapOnComponent
 } from '@otwld/ui';
 import { TranslocoService } from '@ngneat/transloco';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-lang-switcher',
@@ -32,6 +33,7 @@ export class LangSwitcherComponent extends BaseComponent {
   private readonly translocoService = inject(TranslocoService);
   private readonly localStorageService = inject(LocalStorageService);
   currentLang = this.translocoService.getActiveLang();
+  trackEvent = injectTrackEvent();
 
   switchLang() {
     if (this.currentLang === 'fr') {
@@ -40,6 +42,7 @@ export class LangSwitcherComponent extends BaseComponent {
       this.translocoService.setActiveLang('fr');
     }
     this.currentLang = this.translocoService.getActiveLang();
+    this.trackEvent('LangSwitcher', 'Click', this.currentLang);
     this.localStorageService.setItem('lang', this.translocoService.getActiveLang());
   }
 }

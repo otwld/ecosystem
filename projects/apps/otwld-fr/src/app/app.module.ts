@@ -11,7 +11,6 @@ import {
   DrawerContentComponent,
   DrawerSideComponent,
   LayoutComponent,
-  MatomoModule,
 } from '@otwld/ui';
 import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
 import { enUS, fr } from 'date-fns/locale';
@@ -19,6 +18,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { TranslocoService } from '@ngneat/transloco';
+import { MatomoModule, MatomoTracker } from '@otwld/features';
 
 @NgModule({
   declarations: [AppComponent],
@@ -64,4 +64,10 @@ import { TranslocoService } from '@ngneat/transloco';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  private matomoTracker = inject(MatomoTracker)
+
+  constructor() {
+    this.matomoTracker.trackVisibleContentImpressions(true, 500);
+  }
+}

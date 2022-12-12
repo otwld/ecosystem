@@ -5,9 +5,10 @@ import {
   ButtonComponent,
   CardBodyComponent,
   CardComponent,
-  IsInViewportDirective,
+  IsInViewportDirective
 } from '@otwld/ui';
 import { TranslocoModule } from '@ngneat/transloco';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-simulator',
@@ -24,4 +25,6 @@ import { TranslocoModule } from '@ngneat/transloco';
   styleUrls: ['./simulator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimulatorComponent extends BaseComponent {}
+export class SimulatorComponent extends BaseComponent {
+  trackEvent = injectTrackEvent();
+}

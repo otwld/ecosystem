@@ -8,12 +8,13 @@ import {
   CardImageComponent,
   CardImageDirective,
   CardTitleDirective,
-  IsInViewportDirective,
+  IsInViewportDirective
 } from '@otwld/ui';
 import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-teams',
@@ -37,6 +38,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class TeamsComponent extends BaseComponent {
   members$ = this.teamsService.getAll();
+  trackEvent = injectTrackEvent();
 
   constructor(private readonly teamsService: TeamMemberService) {
     super();

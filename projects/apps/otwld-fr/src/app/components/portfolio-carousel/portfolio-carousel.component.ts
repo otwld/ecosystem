@@ -12,6 +12,7 @@ import { PortfolioItem } from '../../types/portfolio.types';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-portfolio-carousel',
@@ -36,4 +37,5 @@ export class PortfolioCarouselComponent {
   @Input() items: PortfolioItem[] = [];
 
   faArrowRight = faArrowRight;
+  trackEvent = injectTrackEvent();
 }

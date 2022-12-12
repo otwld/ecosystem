@@ -6,5 +6,3 @@ export * from './directives';
 export * from './modals';
 export * from './types';
 export * from './services';
-
-export * from './matomo';

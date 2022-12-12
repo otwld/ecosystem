@@ -39,7 +39,8 @@
           <span>{{t('about.checkFour')}}</span>
         </li>
       </ul>
-      <a routerLink="/services/team-extension">
+      <a routerLink="/services/team-extension"
+      (click)="trackEvent('CTA', 'Click', 'about.cta')">
         <ui-button class="mt-8" color="btn-info" hostDisplay="block"
         >{{t('about.cta')}}</ui-button
         >

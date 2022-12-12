@@ -5,10 +5,11 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import {
   BaseComponent,
   ButtonComponent,
-  IsInViewportDirective,
+  IsInViewportDirective
 } from '@otwld/ui';
 import { TranslocoModule } from '@ngneat/transloco';
 import { RouterLink } from '@angular/router';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-about',
@@ -27,4 +28,5 @@ import { RouterLink } from '@angular/router';
 })
 export class AboutComponent extends BaseComponent {
   faCheck = faCheck;
+  trackEvent = injectTrackEvent();
 }

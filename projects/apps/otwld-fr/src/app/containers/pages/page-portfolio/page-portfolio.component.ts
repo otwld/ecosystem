@@ -11,20 +11,35 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { ActivatedRoute, RouterLink, RouterLinkWithHref } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterLink,
+  RouterLinkWithHref,
+} from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PortfolioService } from '../../../services/portfolio/portfolio.service';
 import { PortfolioItem } from '../../../types/portfolio.types';
-import { AvatarModule, ButtonComponent, CardBodyComponent, CardComponent } from '@otwld/ui';
+import {
+  AvatarModule,
+  ButtonComponent,
+  CardBodyComponent,
+  CardComponent,
+  CardImageComponent,
+} from '@otwld/ui';
 import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleDoubleRight,
+  faArrowLeft,
+  faArrowRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { PortfolioComponent } from '../../sections/portfolio/portfolio.component';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
 import { FormatPipeModule } from 'ngx-date-fns';
+import { maximize } from '../../../../../../../../libs/features/src/tawk-to';
 
 @Component({
   selector: 'otwld-page-portfolio',
@@ -45,6 +60,7 @@ import { FormatPipeModule } from 'ngx-date-fns';
     AvatarModule,
     RouterLink,
     FormatPipeModule,
+    CardImageComponent,
   ],
   templateUrl: './page-portfolio.component.html',
   styleUrls: ['./page-portfolio.component.scss'],
@@ -97,6 +113,8 @@ export class PagePortfolioComponent {
     filter((service) => !!service),
     map((item) => item?.relatedProjects || [])
   );
+  faAngleDoubleRight = faAngleDoubleRight;
+  openTawkTo = maximize;
 
   constructor(
     private readonly portfolioService: PortfolioService,
@@ -105,4 +123,5 @@ export class PagePortfolioComponent {
     private readonly domSanitizer: DomSanitizer,
     private readonly breadcrumbsService: BreadcrumbsService
   ) {}
+
 }

@@ -10,7 +10,7 @@
           {{t('simulator.subtitle')}}
         </h2>
       </div>
-      <ui-button color="btn-error">{{t('simulator.cta')}}</ui-button>
+      <ui-button (click)="trackEvent('CTA', 'Click', 'simulator.cta')" color="btn-error">{{t('simulator.cta')}}</ui-button>
     </div>
     <div class="mt-16 h-3/5 w-full">
       <ui-card

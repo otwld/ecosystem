@@ -41,7 +41,8 @@
                   *ngFor="let social of item.socials"
                   class="transition-transform hover:scale-125"
                 >
-                  <a href="{{ social.url }}" target="_blank">
+                  <a href="{{ social.url }}" target="_blank"
+                  (click)="trackEvent('Socials', 'Click', social.icon.iconName + item.firstName + item.lastName)">
                     <fa-icon [icon]="social.icon" size="2x"></fa-icon>
                   </a>
                 </li>

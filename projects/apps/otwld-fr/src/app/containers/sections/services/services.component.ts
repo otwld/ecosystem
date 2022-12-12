@@ -5,6 +5,7 @@ import { BaseComponent, ButtonComponent, CardIconComponent } from '@otwld/ui';
 import { RouterLink, RouterLinkWithHref } from '@angular/router';
 import { ServiceService } from '../../../services/services/service.service';
 import { TranslocoModule } from '@ngneat/transloco';
+import { injectTrackEvent } from '@otwld/features';
 
 @Component({
   selector: 'otwld-services',
@@ -24,6 +25,8 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class ServicesComponent extends BaseComponent {
   services$ = this.servicesServices.getAll();
+
+  trackEvent = injectTrackEvent();
 
   constructor(private readonly servicesServices: ServiceService) {
     super();

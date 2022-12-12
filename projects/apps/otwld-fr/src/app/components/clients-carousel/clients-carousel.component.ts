@@ -11,6 +11,7 @@ import { Client } from '../../types/client.type';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { interval } from 'rxjs';
 import { isBrowser } from '@otwld/ui';
+import { injectTrackEvent } from '@otwld/features';
 
 @UntilDestroy()
 @Component({
@@ -27,6 +28,7 @@ export class ClientsCarouselComponent implements OnInit {
   @ViewChild('carouselRef', { static: true }) carouselRef:
     | ElementRef<HTMLElement>
     | undefined = undefined;
+  trackEvent = injectTrackEvent();
 
   ngOnInit(): void {
     if (this.isBrowser) {
