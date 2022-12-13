@@ -1,22 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AboutComponent } from './about.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { MatomoModule } from '@otwld/features';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AboutComponent', () => {
-  let component: AboutComponent;
-  let fixture: ComponentFixture<AboutComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AboutComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(AboutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(AboutComponent)
+      .mock(MatomoModule)
+      .keep(RouterTestingModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(AboutComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

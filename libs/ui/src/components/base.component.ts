@@ -61,8 +61,12 @@ export class BaseComponent<T extends string = ''>
   }
 
   @Input()
-  set additionalClasses(value: T[]) {
-    this.inlineAdditionalClasses = value.join(' ');
+  set additionalClasses(value: T[] | null) {
+    if (value) {
+      this.inlineAdditionalClasses = value.join(' ');
+    } else {
+      this.inlineAdditionalClasses = '';
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

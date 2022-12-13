@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroClientComponent } from '../../sections/hero/hero-client/hero-client.component';
 import { ServicesComponent } from '../../sections/services/services.component';

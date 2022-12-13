@@ -1,23 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PortfolioComponent } from './portfolio.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { MatomoModule } from '@otwld/features';
 
 describe('PortfolioComponent', () => {
-  let component: PortfolioComponent;
-  let fixture: ComponentFixture<PortfolioComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PortfolioComponent, RouterTestingModule],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(PortfolioComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(PortfolioComponent)
+      .mock(MatomoModule)
+      .keep(RouterTestingModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(PortfolioComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

@@ -1,22 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PortfolioCarouselComponent } from './portfolio-carousel.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { MatomoModule } from '@otwld/features';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PortfolioCarouselComponent', () => {
-  let component: PortfolioCarouselComponent;
-  let fixture: ComponentFixture<PortfolioCarouselComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PortfolioCarouselComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(PortfolioCarouselComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(PortfolioCarouselComponent)
+      .mock(MatomoModule)
+      .keep(RouterTestingModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(PortfolioCarouselComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

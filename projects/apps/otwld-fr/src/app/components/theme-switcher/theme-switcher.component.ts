@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ButtonComponent,
-  DropdownComponent, DropdownContentComponent,
+  DropdownComponent,
+  DropdownContentComponent,
   DropdownTriggerComponent,
   MenuDirective,
-  MenuItemDirective
+  MenuItemDirective,
 } from '@otwld/ui';
 import { ThemeService } from '../../services/theme/theme.service';
 import { injectTrackEvent } from '@otwld/features';

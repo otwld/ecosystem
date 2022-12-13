@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@otwld/ui": ["libs/ui/src/index.ts"],
-      "@otwld/features": ["libs/features/src/index.ts"],
+      "@otwld/features": ["libs/features/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

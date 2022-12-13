@@ -90,7 +90,7 @@ export class PageTeamMemberIdComponent {
   ) {}
 
   openDialog() {
-    const dialogRef = this.dialogService.open(ModalRootComponent, {
+    this.dialogService.open(ModalRootComponent, {
       data: {
         portalContent: ModalTitleDescriptionComponent,
         portalData: {

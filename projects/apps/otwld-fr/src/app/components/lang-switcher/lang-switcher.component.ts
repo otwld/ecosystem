@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BaseComponent,
@@ -6,7 +11,7 @@ import {
   LocalStorageService,
   SwapComponent,
   SwapOffComponent,
-  SwapOnComponent
+  SwapOnComponent,
 } from '@otwld/ui';
 import { TranslocoService } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';

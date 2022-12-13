@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ThemeSwitcherComponent } from './theme-switcher.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { MatomoModule } from '@otwld/features';
 
 describe('ThemeSwitcherComponent', () => {
-  let component: ThemeSwitcherComponent;
-  let fixture: ComponentFixture<ThemeSwitcherComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ThemeSwitcherComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ThemeSwitcherComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(ThemeSwitcherComponent).mock(MatomoModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(ThemeSwitcherComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

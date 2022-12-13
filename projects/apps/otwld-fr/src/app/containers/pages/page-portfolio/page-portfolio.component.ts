@@ -39,7 +39,7 @@ import { NavbarDefaultComponent } from '../../../components/navbar/navbar-defaul
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
 import { FormatPipeModule } from 'ngx-date-fns';
-import { maximize } from '../../../../../../../../libs/features/src/tawk-to';
+import { maximize } from '@otwld/features';
 
 @Component({
   selector: 'otwld-page-portfolio',

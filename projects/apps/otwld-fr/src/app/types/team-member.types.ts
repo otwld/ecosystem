@@ -1,8 +1,6 @@
 import { Social } from './social.types';
 import { Skill } from './skill.types';
-import { WorkMode } from './work.types';
 import { Service } from './service.types';
-import { Portfolio } from './portfolio.types';
 import { Testimonial } from './testimonial.types';
 
 export interface TeamMember {

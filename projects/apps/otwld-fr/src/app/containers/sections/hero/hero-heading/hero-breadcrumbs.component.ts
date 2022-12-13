@@ -4,10 +4,10 @@ import {
   Breadcrumb,
   BreadcrumbsComponent,
   HeroComponent,
-  HeroContentComponent
+  HeroContentComponent,
 } from '@otwld/ui';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { RouteData } from '../../../../utils/router.utils';
 import { BreadcrumbsService } from '../../../../services/breadcrumbs/breadcrumbs.service';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -28,7 +28,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class HeroBreadcrumbsComponent {
   items$: Observable<Breadcrumb[]> = this.activatedRoute.data.pipe(
-    switchMap((breadcrumbs) =>
+    switchMap(() =>
       this.breadcrumbsService
         .onBreadcrumbAdd$()
         .pipe(map((newBreadcrumb) => [newBreadcrumb]))
