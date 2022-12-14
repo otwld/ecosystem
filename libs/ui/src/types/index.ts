@@ -1,4 +1,5 @@
 export * from './tailwind/unit.types';
+export * from './tailwind/animation.types';
 
 export * from './tailwind/utils/background.types';
 export * from './tailwind/utils/border.types';
