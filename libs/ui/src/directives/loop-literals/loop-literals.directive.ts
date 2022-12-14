@@ -12,6 +12,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslocoService } from '@ngneat/transloco';
 import { interval, map, startWith, switchMap } from 'rxjs';
 import { AnimationClass } from '../../types/tailwind/animation.types';
+import { isBrowser } from '../../utils/platform.utils';
 
 @UntilDestroy()
 @Directive({
@@ -23,6 +24,7 @@ export class LoopLiteralsDirective implements OnChanges {
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
   private index = 0;
+  private isBrowser = isBrowser();
 
   @Input() i18ArrayKey: string | undefined;
   @Input() interval = 3000;
@@ -30,7 +32,7 @@ export class LoopLiteralsDirective implements OnChanges {
   @HostBinding('class') class = '';
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.i18ArrayKey) {
+    if (this.i18ArrayKey && this.isBrowser) {
       this.translocoService
         .selectTranslate(this.i18ArrayKey)
         .pipe(

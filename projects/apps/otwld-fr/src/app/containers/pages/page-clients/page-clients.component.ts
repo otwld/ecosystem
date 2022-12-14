@@ -10,7 +10,7 @@ import { PortfolioComponent } from '../../sections/portfolio/portfolio.component
 import { SimulatorComponent } from '../../sections/simulator/simulator.component';
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 import { TranslocoModule } from '@ngneat/transloco';
-import { injectTrackEvent } from '@otwld/features';
+import { injectTrackEvent, toggle } from '@otwld/features';
 
 @Component({
   selector: 'otwld-page-clients',
@@ -38,6 +38,6 @@ export class PageClientsComponent {
 
   openTawkTo() {
     this.trackEvent('CTA', 'CLICK', 'hero.cta', 0);
-    (window as any).Tawk_API.toggle();
+    toggle();
   }
 }
