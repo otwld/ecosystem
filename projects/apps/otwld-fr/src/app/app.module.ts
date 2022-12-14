@@ -18,12 +18,9 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { TranslocoService } from '@ngneat/transloco';
-import {
-  MatomoModule,
-  MatomoTracker,
-  whenLangLoadedOrChanged$,
-} from '@otwld/features';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { MatomoModule, MatomoTracker } from '@otwld/features';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { combineLatest } from 'rxjs';
 
 @UntilDestroy()
 @NgModule({
@@ -75,28 +72,43 @@ export class AppModule {
   private title = inject(Title);
   private meta = inject(Meta);
   private translocoService = inject(TranslocoService);
-  private whenLangLoadedOrChanged$ = whenLangLoadedOrChanged$();
 
   constructor() {
     this.matomoTracker.trackVisibleContentImpressions(true, 500);
-    this.whenLangLoadedOrChanged$.subscribe(() => {
-      this.title.setTitle(this.translocoService.translate('meta.title'));
-      this.meta.addTag({
-        name: 'description',
-        content: this.translocoService.translate('meta.description') || '',
-      });
-      this.meta.addTag({
-        name: 'og:title',
-        content: this.translocoService.translate('meta.og.title') || '',
-      });
-      this.meta.addTag({
-        name: 'og:description',
-        content: this.translocoService.translate('meta.og.description') || '',
-      });
-      this.meta.addTag({
-        name: 'twitter:title',
-        content: this.translocoService.translate('meta.twitter.title') || '',
-      });
-    });
+    combineLatest([
+      this.translocoService.selectTranslate('meta.title'),
+      this.translocoService.selectTranslate('meta.description'),
+      this.translocoService.selectTranslate('meta.og.title'),
+      this.translocoService.selectTranslate('meta.og.description'),
+      this.translocoService.selectTranslate('meta.twitter.title'),
+      this.translocoService.selectTranslate('meta.twitter.description'),
+    ])
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        ([
+          title,
+          description,
+          ogTitle,
+          ogDescription,
+          twitterTitle,
+          twitterDescription,
+        ]) => {
+          this.title.setTitle(title);
+          this.meta.updateTag({ name: 'description', content: description });
+          this.meta.updateTag({ property: 'og:title', content: ogTitle });
+          this.meta.updateTag({
+            property: 'og:description',
+            content: ogDescription,
+          });
+          this.meta.updateTag({
+            property: 'twitter:title',
+            content: twitterTitle,
+          });
+          this.meta.updateTag({
+            property: 'twitter:description',
+            content: twitterDescription,
+          });
+        }
+      );
   }
 }
