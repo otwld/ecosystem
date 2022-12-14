@@ -7,6 +7,13 @@ import {
   randText,
 } from '@ngneat/falso';
 
+// TODO
+export const MY_TESTIMONIAL: Testimonial = {
+  author: { avatar: '', firstName: '', jobTitle: '', lastName: '' },
+  link: '',
+  message: '',
+};
+
 export const FAKE_TESTIMONIAL_001: Testimonial = {
   message: randText({ charCount: 100 }),
   author: {
@@ -32,4 +39,5 @@ export const FAKE_TESTIMONIAL_002: Testimonial = {
 export const TESTIMONIALS_DATA: Testimonial[] = [
   FAKE_TESTIMONIAL_001,
   FAKE_TESTIMONIAL_002,
+  MY_TESTIMONIAL,
 ];

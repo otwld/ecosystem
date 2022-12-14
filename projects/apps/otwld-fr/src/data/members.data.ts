@@ -126,25 +126,31 @@ export const APAIN: TeamMember = {
   location: 'locations.dublin',
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
+  // TODO
   totalHours: randNumber({ min: 100, max: 1000 }),
   medias: [],
+  // TODO
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
     TEAM_EXTENSION,
   ],
-  testimonials: [FAKE_TESTIMONIAL_001],
+  // TODO
+  testimonials: [
+    FAKE_TESTIMONIAL_001,
+  ],
+  // TODO
   mainSkills: [
     {
       name: 'NestJS',
       percentage: 95,
-      startDate: new Date('207-01-01'),
+      startDate: new Date('2017-01-01'),
     },
     {
       name: 'NodeJS',
       percentage: 75,
-      startDate: new Date('207-01-01'),
+      startDate: new Date('2017-01-01'),
     },
     {
       name: 'GraphQL',
@@ -157,6 +163,7 @@ export const APAIN: TeamMember = {
       startDate: new Date('2019-01-01'),
     },
   ],
+  // TODO
   socials: [
     {
       icon: faLinkedin,
