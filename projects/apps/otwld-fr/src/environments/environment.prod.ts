@@ -1,5 +1,5 @@
 export const environment = {
-  baseUrl: 'https://new.outworld.fr/',
+  baseUrl: 'https://outworld.fr',
   production: true,
   modules: [
 
