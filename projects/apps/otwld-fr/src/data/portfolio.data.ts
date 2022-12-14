@@ -3,6 +3,29 @@ import { TEAM_EXTENSION, WEB_DEVELOPMENT } from './service.data';
 import { environment } from '../environments/environment';
 import { APAIN, NTREHOUT } from './members.data';
 
+// TODO
+export const RENAME_ME: PortfolioItem = {
+  client: '',
+  hoursSpent: 0,
+  image: '',
+  members: [
+    APAIN,
+  ],
+  relatedProjects: [],
+  route: '/portfolio/rename_me',
+  services: [
+    // WEB_DEVELOPMENT
+    // TEAM_EXTENSION
+  ],
+  skills: [
+    // 'Angular'
+  ],
+  startDate: new Date('2021-06-01').getTime(),
+  endDate: new Date('2022-09-31').getTime(),
+  templates: { en: environment.templates.portfolio.rename_me.enURL, fr: environment.templates.portfolio.rename_me.frURL },
+  title: 'dynamic.portfolio.rename_me.title',
+}
+
 export const OCC: PortfolioItem = {
   templates: {
     en: environment.templates.portfolio.occ.enURL,
@@ -61,8 +84,10 @@ export const JEPRECOMMANDE: PortfolioItem = {
   title: 'dynamic.portfolio.jeprecommande.title',
 };
 
+// TODO
 export const PORTFOLIO_DATA: Portfolio = [
-  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [ONSTAGE] },
-  { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [OCC] },
-  { ...JEPRECOMMANDE, nextProject: OCC, previousProject: ONSTAGE },
+  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [RENAME_ME] },
+  { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [JEPRECOMMANDE] },
+  { ...JEPRECOMMANDE, nextProject: RENAME_ME, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
+  { ...RENAME_ME, nextProject: OCC, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] }
 ];

@@ -82,16 +82,20 @@ export const APAIN: TeamMember = {
   location: 'locations.dublin',
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
+  // TODO
   totalHours: randNumber({ min: 100, max: 1000 }),
+  // TODO
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
     TEAM_EXTENSION
   ],
+  // TODO
   testimonials: [
     FAKE_TESTIMONIAL_001,
   ],
+  // TODO
   mainSkills: [
     {
       name: 'NestJS',
@@ -114,6 +118,7 @@ export const APAIN: TeamMember = {
       startDate: new Date('2019-01-01'),
     },
   ],
+  // TODO
   socials: [
     {
       icon: faLinkedin,
