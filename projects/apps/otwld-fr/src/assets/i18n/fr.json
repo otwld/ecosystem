@@ -1,4 +1,16 @@
 {
+  "meta": {
+    "title": "Outworld: Développement de logiciel & Renforcement d'équipe",
+    "description": "Une communauté d'expert Typescript. Nous planifions, architecturons et développons des applications web et mobiles avec une conscience business.",
+    "og": {
+      "title": "Outworld: Développement de logiciel & Renforcement d'équipe",
+      "description": "Une communauté d'expert Typescript. Nous planifions, architecturons et développons des applications web et mobiles avec une conscience business."
+    },
+    "twitter": {
+      "title": "Outworld: Développement de logiciel & Renforcement d'équipe",
+      "description": "Une communauté d'expert Typescript. Nous planifions, architecturons et développons des applications web et mobiles avec une conscience business."
+    }
+  },
   "hero": {
     "subtitle": "Solidifier votre produit avec",
     "title": "Des profils seniors typescript 🚀",
@@ -15,7 +27,7 @@
     "backend-developer": "Développeur Backend"
   },
   "outworld": {
-    "description": "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore\net dolore"
+    "description": "Une communauté d'expert Typescript. Nous planifions, architecturons et développons des applications web et mobiles avec une conscience business."
   },
   "skills": {
     "complex-feature": "Architecture de fonctionnalités complexes"
@@ -50,13 +62,9 @@
     "rights": "Tous droits réservés"
   },
   "ctas": {
-    "team-augmentation": {
-      "title": "Prêt pour un renforcement d'équipe sans douleur ?",
-      "cta": "Voir les services"
-    },
     "lets-work-together": {
       "title": "Travaillons ensemble",
-      "content": "Lorem ipsum",
+      "content": "Que ce soit pour un renseignement, une demande de devis ou une simple discussion, nous sommes là pour vous répondre.",
       "cta": "Contact now"
     }
   },
@@ -71,6 +79,8 @@
     "cta": "Voir les détails"
   },
   "services": {
+    "ctas": ["Prêt pour un renforcement d'équipe sans douleur ?", "Besoin d'un logiciel maison ?"],
+    "view-more": "Voir les services",
     "title": "Services",
     "subtitle": "Créez votre application à partir de zéro ou étendez vos capacités.",
     "web-development": {
@@ -179,7 +189,7 @@
   "simulator": {
     "title": "Simulator",
     "subtitle": "Essayez notre simulateur pour voir comment nous fonctionnons",
-    "description": "TODO. Créer un composant \"effet waouh\" pour simuler / récolter les infos d'un projet ?",
+    "description": "En construction, repassez plus tard 😃",
     "cta": "Essayer maintenant"
   },
   "dynamic": {

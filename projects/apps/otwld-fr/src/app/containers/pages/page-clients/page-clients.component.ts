@@ -38,6 +38,6 @@ export class PageClientsComponent {
 
   openTawkTo() {
     this.trackEvent('CTA', 'CLICK', 'hero.cta', 0);
-    (window as any).Tawk_API.maximize();
+    (window as any).Tawk_API.toggle();
   }
 }

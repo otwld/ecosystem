@@ -1,7 +1,19 @@
 {
+  "meta": {
+    "title": "Outworld: Custom Software Development & Team Extension",
+    "description": "A team of Typescript experts. We design, build and scale mobile, web & desktop apps, keeping in mind business value and your success.",
+    "og": {
+      "title": "Outworld: Custom Software Development & Team Extension",
+      "description": "A team of Typescript experts. We design, build and scale mobile, web & desktop apps, keeping in mind business value and your success."
+    },
+    "twitter": {
+      "title": "Outworld: Custom Software Development & Team Extension",
+      "description": "A team of Typescript experts. We design, build and scale mobile, web & desktop apps, keeping in mind business value and your success."
+    }
+  },
   "hero": {
-    "subtitle": "Empower your business",
-    "title": "Excellent TS experts for your success",
+    "subtitle": "Empower your business with",
+    "title": "Senior Typescript Engineers \uD83D\uDE80",
     "cta": "Let's talk"
   },
   "navbar": {
@@ -15,7 +27,7 @@
     "backend-developer": "Backend Developer"
   },
   "outworld": {
-    "description": "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit, sed do\neiusmod tempor incididunt ut labore\net dolore"
+    "description": "A team of Typescript experts. We design, build and scale mobile, web & desktop apps, keeping in mind business value and your success."
   },
   "skills": {
     "complex-feature": "Complex feature architecture"
@@ -25,7 +37,7 @@
     "remote": "\uD83D\uDC68\u200D\uD83D\uDCBB Remote",
     "onsite": "Onsite"
   },
-  "footer": {
+  "footer":  {
     "call-us": {
       "title": "Call us",
       "phone": "+33 6 07 74 95 94"
@@ -50,9 +62,10 @@
     "rights": "All rights reserved"
   },
   "ctas": {
-    "team-augmentation": {
-      "title": "Ready for a painless team augmentation ?",
-      "cta": "View all services"
+    "lets-work-together": {
+      "title": "Let's work together",
+      "content": "Whether it is for an information, a request for estimate or a simple discussion, we are there to answer you.",
+      "cta": "Open chat"
     }
   },
   "about": {
@@ -66,6 +79,8 @@
     "cta": "View details"
   },
   "services": {
+    "ctas": ["Ready for a painless team augmentation ?", "Need a custom software ?"],
+    "view-more": "View all services",
     "title": "Services",
     "subtitle": "Build your app from scratch or extend your capabilities.",
     "web-development": {
@@ -178,7 +193,7 @@
   "simulator": {
     "title": "Simulator",
     "subtitle": "Try our simulator to see how we work",
-    "description": "TODO. Créer un composant \"effet waouh\" pour simuler / récolter les infos d'un projet ?",
+    "description": "Work in progress, stay tuned ! \uD83D\uDE03",
     "cta": "Try it now"
   },
   "dynamic": {
@@ -193,8 +208,6 @@
         "title": "Click & Collect Solution"
       }
     },
-    "services": {
-
-    }
+    "services": {}
   }
 }

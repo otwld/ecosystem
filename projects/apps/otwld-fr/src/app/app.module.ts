@@ -1,5 +1,5 @@
 import { inject, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -18,8 +18,14 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { TranslocoService } from '@ngneat/transloco';
-import { MatomoModule, MatomoTracker } from '@otwld/features';
+import {
+  MatomoModule,
+  MatomoTracker,
+  whenLangLoadedOrChanged$,
+} from '@otwld/features';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -65,9 +71,32 @@ import { MatomoModule, MatomoTracker } from '@otwld/features';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  private matomoTracker = inject(MatomoTracker)
+  private matomoTracker = inject(MatomoTracker);
+  private title = inject(Title);
+  private meta = inject(Meta);
+  private translocoService = inject(TranslocoService);
+  private whenLangLoadedOrChanged$ = whenLangLoadedOrChanged$();
 
   constructor() {
     this.matomoTracker.trackVisibleContentImpressions(true, 500);
+    this.whenLangLoadedOrChanged$.subscribe(() => {
+      this.title.setTitle(this.translocoService.translate('meta.title'));
+      this.meta.addTag({
+        name: 'description',
+        content: this.translocoService.translate('meta.description') || '',
+      });
+      this.meta.addTag({
+        name: 'og:title',
+        content: this.translocoService.translate('meta.og.title') || '',
+      });
+      this.meta.addTag({
+        name: 'og:description',
+        content: this.translocoService.translate('meta.og.description') || '',
+      });
+      this.meta.addTag({
+        name: 'twitter:title',
+        content: this.translocoService.translate('meta.twitter.title') || '',
+      });
+    });
   }
 }
