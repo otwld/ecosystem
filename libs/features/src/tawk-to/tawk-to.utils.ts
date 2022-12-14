@@ -1,1 +1,1 @@
-export const maximize = () => (window as any).Tawk_API.maximize();
+export const toggle = () => (window as any).Tawk_API.toggle();
