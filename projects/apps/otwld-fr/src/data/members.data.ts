@@ -12,7 +12,7 @@ import {
   TEAM_EXTENSION,
   WEB_DEVELOPMENT,
 } from './service.data';
-import { FAKE_TESTIMONIAL_001 } from './testimonials.data';
+import {APAIN_TESTIMONIALS, FAKE_TESTIMONIAL_001} from './testimonials.data';
 
 export const NTREHOUT = {
   firstName: 'Nathan',
@@ -92,9 +92,7 @@ export const APAIN: TeamMember = {
     TEAM_EXTENSION
   ],
   // TODO
-  testimonials: [
-    FAKE_TESTIMONIAL_001,
-  ],
+  testimonials: APAIN_TESTIMONIALS,
   // TODO
   mainSkills: [
     {
