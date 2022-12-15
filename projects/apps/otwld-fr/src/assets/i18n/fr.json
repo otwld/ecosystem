@@ -211,6 +211,9 @@
       }
     },
     "portfolio": {
+      "mesdocteurs": {
+        "title": "Plateforme de téléconsultation médicale"
+      },
       "occ": {
         "title": "Progiciel de gestion intégré"
       },
@@ -219,9 +222,6 @@
       },
       "jeprecommande": {
         "title": "Solution SAAS Click & Collect"
-      },
-      "rename_me": {
-        "title": "Renomme moi"
       }
     }
   }

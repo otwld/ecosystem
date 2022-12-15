@@ -4,26 +4,29 @@ import { environment } from '../environments/environment';
 import { APAIN, NTREHOUT } from './members.data';
 
 // TODO
-export const RENAME_ME: PortfolioItem = {
-  client: '',
+export const MESDOCTEURS: PortfolioItem = {
+  client: 'MesDocteurs',
   hoursSpent: 0,
   image: '',
   members: [
     APAIN,
   ],
   relatedProjects: [],
-  route: '/portfolio/rename_me',
+  route: '/portfolio/mesdocteurs',
   services: [
-    // WEB_DEVELOPMENT
-    // TEAM_EXTENSION
+    TEAM_EXTENSION
   ],
   skills: [
-    // 'Angular'
+     'Angular',
+    'NestJS',
+    'GraphQL',
+    'RxJS'
   ],
-  startDate: new Date('2021-06-01').getTime(),
-  endDate: new Date('2022-09-31').getTime(),
-  templates: { en: environment.templates.portfolio.rename_me.enURL, fr: environment.templates.portfolio.rename_me.frURL },
-  title: 'dynamic.portfolio.rename_me.title',
+  startDate: new Date('2021-11-01').getTime(),
+  endDate: new Date('2023-02-3').getTime(),
+  // TODO(apain): create english version
+  templates: { en: environment.templates.portfolio.mesdocteurs.frURL, fr: environment.templates.portfolio.mesdocteurs.frURL },
+  title: 'dynamic.portfolio.mesdocteurs.title',
 }
 
 export const OCC: PortfolioItem = {
@@ -86,8 +89,8 @@ export const JEPRECOMMANDE: PortfolioItem = {
 
 // TODO
 export const PORTFOLIO_DATA: Portfolio = [
-  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [RENAME_ME] },
+  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [MESDOCTEURS] },
   { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [JEPRECOMMANDE] },
-  { ...JEPRECOMMANDE, nextProject: RENAME_ME, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
-  { ...RENAME_ME, nextProject: OCC, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] }
+  { ...JEPRECOMMANDE, nextProject: MESDOCTEURS, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
+  { ...MESDOCTEURS, nextProject: OCC, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] }
 ];

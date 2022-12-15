@@ -30,9 +30,9 @@ export const environment = {
     },
     portfolio: {
       // TODO
-      rename_me: {
-        enURL: './assets/static/portfolio/en/rename_me.html',
-        frURL: './assets/static/portfolio/fr/rename_me.html',
+      mesdocteurs: {
+        enURL: './assets/static/portfolio/en/mesdocteurs.html',
+        frURL: './assets/static/portfolio/fr/mesdocteurs.html',
       },
       occ: {
         enURL: './assets/static/portfolio/en/occ.html',
