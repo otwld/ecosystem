@@ -102,7 +102,7 @@ export const APAIN: TeamMember = {
     },
     {
       name: 'NodeJS',
-      percentage: 75,
+      percentage: 90,
       startDate: new Date('2017-01-01'),
     },
     {
@@ -111,12 +111,11 @@ export const APAIN: TeamMember = {
       startDate: new Date('2020-01-01'),
     },
     {
-      name: 'skills.complex-feature',
+      name: 'Angular',
       percentage: 80,
-      startDate: new Date('2019-01-01'),
+      startDate: new Date('2017-01-01'),
     },
   ],
-  // TODO
   socials: [
     {
       icon: faLinkedin,
