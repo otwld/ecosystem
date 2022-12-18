@@ -28,10 +28,9 @@ export const environment = {
       }
     },
     portfolio: {
-      // TODO
-      rename_me: {
-        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/rename_me.html',
-        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/rename_me.html',
+      mesdocteurs: {
+        enURL: './assets/static/portfolio/en/mesdocteurs.html',
+        frURL: './assets/static/portfolio/fr/mesdocteurs.html',
       },
       occ: {
         enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/occ.html',
