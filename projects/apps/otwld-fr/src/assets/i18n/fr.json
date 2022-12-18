@@ -194,6 +194,9 @@
   },
   "dynamic": {
     "portfolio": {
+      "mesdocteurs": {
+        "title": "Plateforme de téléconsultation médicale"
+      },
       "occ": {
         "title": "Progiciel de gestion intégré"
       },

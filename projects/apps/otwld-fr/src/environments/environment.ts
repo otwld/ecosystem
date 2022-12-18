@@ -29,6 +29,11 @@ export const environment = {
       }
     },
     portfolio: {
+      // TODO
+      mesdocteurs: {
+        enURL: './assets/static/portfolio/en/mesdocteurs.html',
+        frURL: './assets/static/portfolio/fr/mesdocteurs.html',
+      },
       occ: {
         enURL: './assets/static/portfolio/en/occ.html',
         frURL: './assets/static/portfolio/fr/occ.html',

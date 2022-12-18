@@ -3,6 +3,32 @@ import { TEAM_EXTENSION, WEB_DEVELOPMENT } from './service.data';
 import { environment } from '../environments/environment';
 import { APAIN, NTREHOUT } from './members.data';
 
+// TODO
+export const MESDOCTEURS: PortfolioItem = {
+  client: 'MesDocteurs',
+  hoursSpent: 0,
+  image: '',
+  members: [
+    APAIN,
+  ],
+  relatedProjects: [],
+  route: '/portfolio/mesdocteurs',
+  services: [
+    TEAM_EXTENSION
+  ],
+  skills: [
+     'Angular',
+    'NestJS',
+    'GraphQL',
+    'RxJS'
+  ],
+  startDate: new Date('2021-11-01').getTime(),
+  endDate: new Date('2023-02-3').getTime(),
+  // TODO(apain): create english version
+  templates: { en: environment.templates.portfolio.mesdocteurs.frURL, fr: environment.templates.portfolio.mesdocteurs.frURL },
+  title: 'dynamic.portfolio.mesdocteurs.title',
+}
+
 export const OCC: PortfolioItem = {
   templates: {
     en: environment.templates.portfolio.occ.enURL,
@@ -61,8 +87,10 @@ export const JEPRECOMMANDE: PortfolioItem = {
   title: 'dynamic.portfolio.jeprecommande.title',
 };
 
+// TODO
 export const PORTFOLIO_DATA: Portfolio = [
-  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [ONSTAGE] },
-  { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [OCC] },
-  { ...JEPRECOMMANDE, nextProject: OCC, previousProject: ONSTAGE },
+  { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [MESDOCTEURS] },
+  { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [JEPRECOMMANDE] },
+  { ...JEPRECOMMANDE, nextProject: MESDOCTEURS, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
+  { ...MESDOCTEURS, nextProject: OCC, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] }
 ];

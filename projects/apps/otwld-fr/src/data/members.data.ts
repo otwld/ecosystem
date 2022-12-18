@@ -12,7 +12,7 @@ import {
   TEAM_EXTENSION,
   WEB_DEVELOPMENT,
 } from './service.data';
-import { FAKE_TESTIMONIAL_001 } from './testimonials.data';
+import {APAIN_TESTIMONIALS, FAKE_TESTIMONIAL_001} from './testimonials.data';
 
 export const NTREHOUT = {
   firstName: 'Nathan',
@@ -82,16 +82,18 @@ export const APAIN: TeamMember = {
   location: 'locations.dublin',
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
+  // TODO
   totalHours: randNumber({ min: 100, max: 1000 }),
+  // TODO
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
     TEAM_EXTENSION
   ],
-  testimonials: [
-    FAKE_TESTIMONIAL_001,
-  ],
+  // TODO
+  testimonials: APAIN_TESTIMONIALS,
+  // TODO
   mainSkills: [
     {
       name: 'NestJS',
@@ -100,7 +102,7 @@ export const APAIN: TeamMember = {
     },
     {
       name: 'NodeJS',
-      percentage: 75,
+      percentage: 90,
       startDate: new Date('2017-01-01'),
     },
     {
@@ -109,9 +111,9 @@ export const APAIN: TeamMember = {
       startDate: new Date('2020-01-01'),
     },
     {
-      name: 'skills.complex-feature',
+      name: 'Angular',
       percentage: 80,
-      startDate: new Date('2019-01-01'),
+      startDate: new Date('2017-01-01'),
     },
   ],
   socials: [

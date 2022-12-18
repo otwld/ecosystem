@@ -206,6 +206,9 @@
       },
       "jeprecommande": {
         "title": "Click & Collect Solution"
+      },
+      "rename_me": {
+        "title": "Rename me"
       }
     },
     "services": {}
