@@ -96,6 +96,37 @@
         "passWithNoTests": true
       }
     },
+    "helm-deploy": {
+      "executor": "@otwld/nx-devops:run-commands",
+      "configurations": {
+        "production": {
+          "commands": [
+            {
+              "command": "helm upgrade otwld-fr . --install --dependency-update -f values.yaml -f values-production.yaml -n ecosystem",
+              "forwardAllArgs": false
+            }
+          ]
+        },
+        "staging": {
+          "commands": [
+            {
+              "command": "helm upgrade otwld-fr . --install --dependency-update -f values.yaml -f values-staging.yaml -n staging",
+              "forwardAllArgs": false
+            }
+          ]
+        }
+      },
+      "options": {
+        "parallel": false,
+        "cwd": "projects/charts/otwld-fr",
+        "commands": [
+          {
+            "command": "helm upgrade otwld-fr . --install --dependency-update -f values.yaml -f values-development.yaml -n development",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
     "docker-publish": {
       "executor": "@nx-tools/nx-docker:build",
       "configurations": {
