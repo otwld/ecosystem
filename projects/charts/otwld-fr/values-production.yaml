@@ -1,0 +1,41 @@
+image:
+  # -- image tag
+  tag: 'latest'
+  # -- image pull policy
+  pullPolicy: Always
+
+ingressroute:
+  routes:
+    - host: outworld.fr
+      priority: 10
+      services:
+        - passHostHeader: true
+          name: otwld-fr-ecosystem-otwld-fr
+          port: 80
+
+backup:
+  enabled: true
+  schedule:
+    enabled: true
+    annotations: {}
+    labelSelector:
+      matchLabels:
+        instance: otwld-fr
+    # Cron expression defining when to run the Backup
+    cron: '0 04 * * *'
+    # Array of namespaces to include in the scheduled backup. If unspecified, all namespaces are included.
+    # Optional.
+    includedNamespaces:
+      - ecosystem
+    # Array of resources to include in the scheduled backup. Resources may be shortcuts (for example 'po' for 'pods')
+    # or fully-qualified. If unspecified, all resources are included. Optional.
+    includedResources:
+      - '*'
+    ttl: 72h0m0s
+
+env:
+  NODE_ENV: production
+
+persistence:
+  media:
+    size: 1Gi

@@ -24,6 +24,8 @@ data:
     publish:
       enabled: false
   helm:
+    deploy:
+      enabled: true
     lint:
       enabled: true
     publish:
@@ -32,4 +34,3 @@ data:
     enabled: false
   drone:
     enabled: false
-

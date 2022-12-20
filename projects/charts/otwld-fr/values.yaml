@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: docker.outworld.fr/ecosystem/otwld-fr
   # -- image tag
-  tag: "latest-dev"
+  tag: 'latest'
   # -- image pull policy
   pullPolicy: Always
 
@@ -18,19 +18,19 @@ imagePullSecrets:
 
 ingressroute:
   enabled: true
-  annotations: { }
+  annotations: {}
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   tls: true
   routes:
-    - host: new.outworld.fr
-      priority: 10
-      services:
-        - passHostHeader: true
-          name: ecosystem-otwld-fr
-          port: 80
+
 backup:
   enabled: false
+  includeClusterResources: true
+  snapshotVolumes: true
+  storageLocation: backups-short-ttl
+  volumeSnapshotLocations:
+    - ovhcloud
 #  schedule:
 #    enabled: true
 #    annotations: { }
