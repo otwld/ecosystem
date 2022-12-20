@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { DynamicScriptLoaderService } from '@otwld/features';
 import { TawkToConfiguration } from './tawk-to-configuration';
+import { DynamicScriptLoaderService } from '../dynamic-script-loader/dynamic-script-loader.service';
 
 export interface Tawk_API {
   onLoaded: boolean;
