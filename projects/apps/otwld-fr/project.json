@@ -46,7 +46,49 @@
           ],
           "outputHashing": "all"
         },
+        "staging": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.staging.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
         "development": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.development.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "local": {
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
@@ -63,8 +105,14 @@
         "production": {
           "browserTarget": "apps-otwld-fr:build:production"
         },
+        "staging": {
+          "browserTarget": "apps-otwld-fr:build:staging"
+        },
         "development": {
           "browserTarget": "apps-otwld-fr:build:development"
+        },
+        "local": {
+          "browserTarget": "apps-otwld-fr:build:local"
         }
       },
       "defaultConfiguration": "development",
@@ -192,7 +240,25 @@
             }
           ]
         },
+        "staging": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.staging.ts"
+            }
+          ]
+        },
         "development": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "projects/apps/otwld-fr/src/environments/environment.ts",
+              "with": "projects/apps/otwld-fr/src/environments/environment.development.ts"
+            }
+          ]
+        },
+        "local": {
           "optimization": false,
           "sourceMap": true,
           "extractLicenses": false
@@ -203,9 +269,17 @@
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
       "configurations": {
+        "local": {
+          "browserTarget": "apps-otwld-fr:build:local",
+          "serverTarget": "apps-otwld-fr:server:local"
+        },
         "development": {
           "browserTarget": "apps-otwld-fr:build:development",
           "serverTarget": "apps-otwld-fr:server:development"
+        },
+        "staging": {
+          "browserTarget": "apps-otwld-fr:build:staging",
+          "serverTarget": "apps-otwld-fr:server:staging"
         },
         "production": {
           "browserTarget": "apps-otwld-fr:build:production",
@@ -220,9 +294,17 @@
         "routes": ["/"]
       },
       "configurations": {
+        "local": {
+          "browserTarget": "apps-otwld-fr:build:local",
+          "serverTarget": "apps-otwld-fr:server:local"
+        },
         "development": {
           "browserTarget": "apps-otwld-fr:build:development",
           "serverTarget": "apps-otwld-fr:server:development"
+        },
+        "staging": {
+          "browserTarget": "apps-otwld-fr:build:staging",
+          "serverTarget": "apps-otwld-fr:server:staging"
         },
         "production": {
           "browserTarget": "apps-otwld-fr:build:production",
