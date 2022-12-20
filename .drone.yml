@@ -19,7 +19,7 @@ data:
   e2e:
     enabled: false
   docker:
-    enabled: true
+    enabled: false
   npm:
     publish:
       enabled: false
