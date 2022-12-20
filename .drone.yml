@@ -1,5 +1,5 @@
 kind: template
-load: nx-devops-latest.yaml
+load: nx-devops-latest-dev.yaml
 
 data:
   workspace:
@@ -7,29 +7,30 @@ data:
   image:
     tag: latest
   setup:
-    enabled: true
+    enabled: false
   build:
-    enabled: true
+    enabled: false
   lint:
-    enabled: true
+    enabled: false
   test:
-    enabled: true
+    enabled: false
   version:
-    enabled: true
+    enabled: false
   e2e:
-    enabled: true
+    enabled: false
   docker:
     enabled: true
   npm:
     publish:
       enabled: false
   helm:
+    deploy:
+      enabled: true
     lint:
-      enabled: true
+      enabled: false
     publish:
-      enabled: true
+      enabled: false
   kubeval:
     enabled: false
   drone:
     enabled: false
-
