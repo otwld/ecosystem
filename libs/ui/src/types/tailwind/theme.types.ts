@@ -43,7 +43,8 @@ import {
 } from './utils/general.types';
 import { MaskClass } from './components/mask.types';
 import { CarouselClass } from './components/carousel.types';
-import { AnimationClass, TabClass } from '@otwld/ui';
+import { TabClass } from './components/tab.types';
+import { AnimationClass } from './animation.types';
 
 export type ThemeClass =
   | TextColorClass
