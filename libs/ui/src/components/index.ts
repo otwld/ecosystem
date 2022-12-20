@@ -19,3 +19,4 @@ export * from './carousel/carousel.component';
 export * from './carousel/carousel-item/carousel-item.component';
 export * from './tabs/tabs.component';
 export * from './twitter/twitter.module';
+export * from './twitter/tweet/tweet.component';
