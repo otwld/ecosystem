@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LayoutService } from './layout.service';
 import { OpacityClass } from '../../types/tailwind/utils/general.types';
-import { isBrowser } from '../../utils/platform.utils';
+import { isBrowser } from '@otwld/features';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -52,7 +52,9 @@ export class LayoutComponent extends BaseComponent {
       .subscribe((scrollOffset) => {
         if (this.containerRef) {
           if (this.isBrowser) {
-            this.containerRef.nativeElement.scrollTo({ top: scrollOffset || 0 });
+            this.containerRef.nativeElement.scrollTo({
+              top: scrollOffset || 0,
+            });
           }
         }
       });

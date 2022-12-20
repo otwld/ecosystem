@@ -80,39 +80,96 @@
       </ui-hero-content>
     </ui-hero>
     <section class="about py-28">
-      <div class="container mx-auto flex flex-col">
-        <div class="mx-auto mb-20 text-center">
-          <h2
-            class="visible mb-4 font-extrabold font-extrabold tracking-tight text-primary"
+      <div class="container mx-auto flex flex-col items-center">
+        <!--        <div class="mx-auto mb-20 text-center">-->
+        <!--          <h2-->
+        <!--            class="visible mb-4 font-extrabold font-extrabold tracking-tight text-primary"-->
+        <!--          >-->
+        <!--            {{ t('team.main-skills.title') }}-->
+        <!--          </h2>-->
+        <!--          <p class="text-3xl font-extrabold md:text-4xl">{{ t('team.main-skills.subtitle') }}</p>-->
+        <!--        </div>-->
+        <ui-tabs [tabOutletRef]="tabOutletRef" tabStyle="tabs-boxed">
+          <ui-tab active="tab-active" title="{{ t('team.main-skills.title') }}">
+            <div
+              class="grid grid-cols-1 justify-between gap-y-32 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
+            >
+              <div
+                *ngFor="let item of currentMember.mainSkills"
+                class="space-y-4 text-center"
+              >
+                <ui-radial-progress
+                  hostDisplay="block"
+                  value="{{ item.percentage }}"
+                ></ui-radial-progress>
+                <p class="mt-2 h-12 align-middle">{{ t(item.name) }}</p>
+                <p class="font-extrabold">
+                  {{
+                    item.startDate
+                      | dfnsFormatDistanceToNow : { includeSeconds: true }
+                  }}
+                  experience
+                </p>
+              </div>
+            </div>
+          </ui-tab>
+          <ui-tab
+            *ngIf="currentMember.medias.length > 0"
+            title="Articles, conférences & concours"
           >
-            {{ t('team.main-skills.title') }}
-          </h2>
-          <p class="text-3xl font-extrabold md:text-4xl">{{ t('team.main-skills.subtitle') }}</p>
-        </div>
-        <div
-          class="grid grid-cols-1 justify-between gap-y-32 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
-        >
-          <div
-            *ngFor="let item of currentMember.mainSkills"
-            class="space-y-4 text-center"
-          >
-            <ui-radial-progress
-              hostDisplay="block"
-              value="{{ item.percentage }}"
-            ></ui-radial-progress>
-            <p class="mt-2 h-12 align-middle">{{ t(item.name) }}</p>
-            <p class="font-extrabold">
-              {{
-                item.startDate
-                  | dfnsFormatDistanceToNow: { includeSeconds: true }
-              }}
-              experience
-            </p>
-          </div>
-        </div>
+            <div class="flex justify-center gap-8">
+              <ui-carousel #carouselRef class="items-center gap-8 py-4">
+                <ui-carousel-item
+                  *ngFor="let item of currentMember.medias"
+                  class="md:min-width-[300px] w-full md:w-1/2 lg:w-1/3"
+                >
+                  <ui-tweet
+                    *ngIf="item.type === 'tweet'"
+                    [tweetID]="item.tweetId"
+                    class="w-full"
+                  ></ui-tweet>
+                  <a
+                    *ngIf="item.type === 'article'"
+                    href="{{ item.link }}"
+                    target="_blank"
+                  >
+                    <ui-card
+                      class="cursor-pointer shadow-lg transition-transform hover:scale-105"
+                      padding="card-compact"
+                    >
+                      <ui-card-image
+                        class="flex max-h-[300px]"
+                        src="{{ item.image }}"
+                        width="w-full"
+                      ></ui-card-image>
+                      <ui-card-body
+                        class="grid place-content-center space-y-4 p-8 text-center font-bold"
+                      >
+                        <ui-avatar
+                          class="mx-auto"
+                          imgSrc="{{ item.logo }}"
+                          rounded="rounded-full"
+                          width="w-8"
+                        ></ui-avatar>
+                        <p>{{ t(item.author) }}</p>
+                        <p>
+                          {{ t(item.title) }}
+                        </p>
+                      </ui-card-body>
+                    </ui-card>
+                  </a>
+                </ui-carousel-item>
+              </ui-carousel>
+            </div>
+            <ui-carousel-indicators
+              [carousel]="carouselRef"
+              class="mt-8"
+            ></ui-carousel-indicators>
+          </ui-tab>
+        </ui-tabs>
+        <ui-tab-outlet #tabOutletRef class="mt-24 w-full"></ui-tab-outlet>
       </div>
     </section>
-
     <section class="services bg-base-200 py-28">
       <div class="container mx-auto flex flex-col">
         <div class="mx-auto mb-20 text-center">
@@ -173,9 +230,11 @@
                 size="2x"
               ></fa-icon>
             </div>
-            <div class="stat-title">{{t('team.stats.data-one.title')}}</div>
+            <div class="stat-title">{{ t('team.stats.data-one.title') }}</div>
             <div class="stat-value">{{ currentMember.totalHours }}h</div>
-            <div class="stat-desc">{{t('team.stats.data-one.subtitle', {value: 21})}}</div>
+            <div class="stat-desc">
+              {{ t('team.stats.data-one.subtitle', { value: 21 }) }}
+            </div>
           </div>
 
           <div class="stat">
@@ -187,11 +246,11 @@
               ></fa-icon>
             </div>
             <div class="stat-title">
-              {{t('team.stats.data-two.title')}}
+              {{ t('team.stats.data-two.title') }}
             </div>
             <div class="stat-value">31</div>
             <div class="stat-desc">
-              {{t('team.stats.data-two.subtitle', {value: 21})}}
+              {{ t('team.stats.data-two.subtitle', { value: 21 }) }}
             </div>
           </div>
 
@@ -204,11 +263,11 @@
               ></fa-icon>
             </div>
             <div class="stat-title">
-              {{t('team.stats.data-three.title')}}
+              {{ t('team.stats.data-three.title') }}
             </div>
             <div class="stat-value">86%</div>
             <div class="stat-desc">
-              {{t('team.stats.data-three.subtitle', {value: 31})}}
+              {{ t('team.stats.data-three.subtitle', { value: 31 }) }}
             </div>
           </div>
         </div>

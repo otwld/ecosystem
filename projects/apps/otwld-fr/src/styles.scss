@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.twitter-tweet {
+  margin-top: 0 !important;
+}
+
 .display-inherit {
   display: inherit;
 }

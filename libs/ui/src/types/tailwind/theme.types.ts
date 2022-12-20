@@ -19,8 +19,12 @@ import {
   ContainerClass,
   DisplayClass,
   DurationClass,
-  EffectClass, FlexContentClass,
-  FlexSizeClass, GapClass,
+  EffectClass,
+  FlexContentClass,
+  FlexDirectionClass,
+  FlexItemsClass,
+  FlexSizeClass,
+  GapClass,
   HeightClass,
   MaxHeightClass,
   MaxWidthClass,
@@ -35,10 +39,11 @@ import {
   StateClass,
   TextColorClass,
   TransitionClass,
-  WidthClass
+  WidthClass,
 } from './utils/general.types';
 import { MaskClass } from './components/mask.types';
 import { CarouselClass } from './components/carousel.types';
+import { AnimationClass, TabClass } from '@otwld/ui';
 
 export type ThemeClass =
   | TextColorClass
@@ -82,10 +87,15 @@ export type ThemeClass =
   | CarouselClass
   | FlexContentClass
   | GapClass
+  | TabClass
+  | FlexItemsClass
+  | FlexDirectionClass
+  | AnimationClass
   | undefined;
 
 export type ThemeClassOrArray = ThemeClass[] | ThemeClass;
 
+type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 type Variant = 'hover' | 'focus' | 'active' | 'disabled' | 'before' | 'after';
 
 export type NegativeVariant<T extends string> = T | `-${T}`;
@@ -94,6 +104,7 @@ export type TwVariants<T extends string> =
   | T
   | `!${T}`
   | `${Variant}:${T}`
+  | `${Breakpoint}:${T}`
   | `${Variant}:!${T}`;
 // | `${TPseudoClassVariants}${T}`
 // | `${TPseudoClassVariants}!${T}`

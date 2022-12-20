@@ -30,9 +30,15 @@ export type DurationClass = `duration-${DurationUnit}`;
 export type TransitionClass = 'transition-opacity' | 'transition-colors';
 export type OverflowClass = 'overflow-hidden';
 export type ContainerClass = 'container';
-export type RoundedClass = 'rounded' | 'rounded-box' | 'rounded-full' | `rounded-${Size}`;
+export type RoundedClass =
+  | 'rounded'
+  | 'rounded-box'
+  | 'rounded-full'
+  | `rounded-${Size}`;
 
-export type SpaceClass = TwVariants<NegativeVariant<`space-${'x' | 'y'}-${Unit}`>>;
+export type SpaceClass = TwVariants<
+  NegativeVariant<`space-${'x' | 'y'}-${Unit}`>
+>;
 export type BottomClass = TwVariants<`bottom-${Unit}`>;
 export type RightClass = TwVariants<`right-${Unit}`>;
 export type PositionClass = TwVariants<
@@ -49,8 +55,35 @@ export type EffectClass = 'glass' | 'loading' | 'no-animation';
 export type DisplayClass = 'flex' | 'inline-flex' | 'block' | 'inline-block';
 export type PaddinClass = `p${BorderDirection}-${Unit}`;
 export type DaisyComponentSize = 'xs' | 'sm' | 'md' | 'lg';
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl';
+export type Size =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl';
 export type Shape = 'circle' | 'square';
 export type FlexSizeClass = 'flex-0' | 'flex-1' | 'flex-none';
-export type FlexContentClass = 'justify-center' | 'justify-start' | 'justify-end' | 'justify-between' | 'justify-around';
-export type GapClass = NegativeVariant<`gap${'-x' | '-y' | ''}-${Unit}`>
+export type FlexContentClass = TwVariants<
+  | 'justify-center'
+  | 'justify-start'
+  | 'justify-end'
+  | 'justify-between'
+  | 'justify-around'
+>;
+export type FlexDirectionClass =
+  | 'flex-row'
+  | 'flex-row-reverse'
+  | 'flex-col'
+  | 'flex-col-reverse';
+export type FlexItemsClass =
+  | 'items-center'
+  | 'items-start'
+  | 'items-end'
+  | 'items-stretch';
+export type GapClass = NegativeVariant<`gap${'-x' | '-y' | ''}-${Unit}`>;

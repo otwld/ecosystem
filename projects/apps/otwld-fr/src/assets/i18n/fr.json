@@ -79,7 +79,10 @@
     "cta": "Voir les détails"
   },
   "services": {
-    "ctas": ["Prêt pour un renforcement d'équipe sans douleur ?", "Besoin d'un logiciel maison ?"],
+    "ctas": [
+      "Prêt pour un renforcement d'équipe sans douleur ?",
+      "Besoin d'un logiciel maison ?"
+    ],
     "view-more": "Voir les services",
     "title": "Services",
     "subtitle": "Créez votre application à partir de zéro ou étendez vos capacités.",
@@ -193,6 +196,20 @@
     "cta": "Essayer maintenant"
   },
   "dynamic": {
+    "medias": {
+      "tendance-ouest": {
+        "jeprecommande": "Manche. Jeprecommande.fr, un site internet pour les commerçants du Cotentin."
+      },
+      "ionis-group": {
+        "jeprecommande": "Accompagner les commerçants locaux."
+      },
+      "epitech": {
+        "jeprecommande": "Deux étudiants d’Epitech Rennes aident les entreprises normandes à poursuivre leur activité."
+      },
+      "rennes-info": {
+        "jeprecommande": "DEUX ÉTUDIANTS RENNAIS EN INFORMATIQUE AIDENT LE PETIT COMMERCE DE LEUR RÉGION D’ORIGINE."
+      }
+    },
     "portfolio": {
       "occ": {
         "title": "Progiciel de gestion intégré"

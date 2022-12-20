@@ -10,8 +10,7 @@ import { CommonModule } from '@angular/common';
 import { Client } from '../../types/client.type';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { interval } from 'rxjs';
-import { isBrowser } from '@otwld/ui';
-import { injectTrackEvent } from '@otwld/features';
+import { injectTrackEvent, isBrowser } from '@otwld/features';
 
 @UntilDestroy()
 @Component({

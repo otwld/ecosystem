@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroClientComponent } from '../../sections/hero/hero-client/hero-client.component';
 import { ServicesComponent } from '../../sections/services/services.component';
@@ -10,7 +10,7 @@ import { PortfolioComponent } from '../../sections/portfolio/portfolio.component
 import { SimulatorComponent } from '../../sections/simulator/simulator.component';
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 import { TranslocoModule } from '@ngneat/transloco';
-import { injectTrackEvent, toggle } from '@otwld/features';
+import { injectTrackEvent, TawkToService } from '@otwld/features';
 
 @Component({
   selector: 'otwld-page-clients',
@@ -33,11 +33,11 @@ import { injectTrackEvent, toggle } from '@otwld/features';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageClientsComponent {
-
   private trackEvent = injectTrackEvent();
+  tawkTo = inject(TawkToService);
 
   openTawkTo() {
     this.trackEvent('CTA', 'CLICK', 'hero.cta', 0);
-    toggle();
+    this.tawkTo.Tawk_API.maximize();
   }
 }

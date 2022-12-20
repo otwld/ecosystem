@@ -6,7 +6,7 @@ import {
   Input,
   ViewContainerRef,
 } from '@angular/core';
-import { isBrowser } from '../../utils/platform.utils';
+import { isBrowser } from '@otwld/features';
 
 @Directive({
   selector: '[uiIsInViewport]',
@@ -36,7 +36,7 @@ export class IsInViewportDirective implements AfterViewInit {
       });
       observer.observe(observedElement);
     } else {
-      this.applyOrRemoveClasses(true)
+      this.applyOrRemoveClasses(true);
     }
   }
 

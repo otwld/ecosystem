@@ -4,6 +4,7 @@ import {
   Directive,
   HostBinding,
   Input,
+  NgModule,
   OnChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -70,7 +71,12 @@ export class CardActionsComponent {
     <a routerLink="{{ routerLink }}" *ngIf="routerLink">
       <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
     </a>
-    <img *ngIf="src && !routerLink" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
+    <img
+      *ngIf="src && !routerLink"
+      src="{{ src }}"
+      alt="{{ alt }}"
+      class="{{ width }}"
+    />
   </figure>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -113,3 +119,19 @@ export class CardComponent
     ]
   );
 }
+
+@NgModule({
+  imports: [
+    CardComponent,
+    CardImageComponent,
+    CardBodyComponent,
+    CardActionsComponent,
+  ],
+  exports: [
+    CardComponent,
+    CardImageComponent,
+    CardBodyComponent,
+    CardActionsComponent,
+  ],
+})
+export class CardModule {}

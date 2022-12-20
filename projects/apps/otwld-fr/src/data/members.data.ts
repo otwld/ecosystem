@@ -14,7 +14,7 @@ import {
 } from './service.data';
 import { FAKE_TESTIMONIAL_001 } from './testimonials.data';
 
-export const NTREHOUT = {
+export const NTREHOUT: TeamMember = {
   firstName: 'Nathan',
   lastName: 'Tréhout',
   image: 'assets/images/team/ntrehout.jpg',
@@ -29,6 +29,50 @@ export const NTREHOUT = {
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
     TEAM_EXTENSION,
+  ],
+  medias: [
+    {
+      type: 'tweet',
+      tweetId: '968549086596141057',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.tendance-ouest.jeprecommande',
+      author: 'Tendance Ouest',
+      link: 'https://www.tendanceouest.com/actualite-373284-manche-jeprecommande-fr-un-site-internet-pour-les-commercants-du-cotentin',
+      image: 'https://www.tendanceouest.com/photos/1200/373284/',
+      logo: 'https://www.tendanceouest.com/pochettes/1955090.jpg',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.ionis-group.jeprecommande',
+      author: 'Ionis Group',
+      link: 'https://actu.ionis-group.com/epitech-jeprecommande-fr/',
+      image:
+        'https://actu.ionis-group.com/wp-content/uploads/2020/12/commande-emporter.jpg',
+      logo: 'https://actu.ionis-group.com/wp-content/uploads/2020/08/logo-ionis-mag-white-small.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Epitech',
+      link: 'https://www.epitech.eu/fr/actualites-evenements/etudiants-epitech-rennes-entreprises-normandes-poursuivre-activite/',
+      image:
+        'https://www.epitech.eu/fr/wp-content/uploads/2020/11/Photo-Nathan-TREHOUT.jpg',
+      logo: 'https://www.epitech.eu/fr/wp-content/themes/epitech-technology-theme-child/assets/images/logo_epitech_small_sticky.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Rennes Infos',
+      link: 'https://www.rennes-infos-autrement.fr/deux-etudiants-rennais-en-informatique-aident-le-petit-commerce-de-leur-region-dorigine/',
+      image: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/2-7.jpg',
+      logo: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/cropped-2ZqZbpP0_400x400-192x192.jpg',
+    },
+    {
+      type: 'tweet',
+      tweetId: '927886653989023744',
+    },
   ],
   mainSkills: [
     {
@@ -83,25 +127,24 @@ export const APAIN: TeamMember = {
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
   totalHours: randNumber({ min: 100, max: 1000 }),
+  medias: [],
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
-    TEAM_EXTENSION
+    TEAMEXTENSION,
   ],
-  testimonials: [
-    FAKE_TESTIMONIAL_001,
-  ],
+  testimonials: [FAKE_TESTIONIAL_001],
   mainSkills: [
     {
       name: 'NestJS',
       percentage: 95,
-      startDate: new Date('2017-01-01'),
+      startDate: new Date('207-01-01'),
     },
     {
       name: 'NodeJS',
       percentage: 75,
-      startDate: new Date('2017-01-01'),
+      startDate: new Date('207-01-01'),
     },
     {
       name: 'GraphQL',
@@ -132,17 +175,13 @@ export const JDETROYES = {
   image: 'assets/images/team/jdetroyes.jpg',
   imageTransparent: 'assets/images/team/jdetroyes-transparent.png',
   role: 'roles.fullstack-developer',
+  medias: [],
   location: 'locations.bali',
   route: '/members/jdetroyes',
   workMode: 'work-modes.full-remote',
   totalHours: randNumber({ min: 100, max: 1000 }),
-  testimonials: [
-    FAKE_TESTIMONIAL_001,
-  ],
-  services: [
-    TEAM_EXTENSION,
-    WEB_DEVELOPMENT,
-  ],
+  testimonials: [FAKE_TESTIMONIAL_001],
+  services: [TEAM_EXTENSION, WEB_DEVELOPMENT],
   mainSkills: [
     {
       name: 'NodeJS',
@@ -167,8 +206,4 @@ export const JDETROYES = {
   ],
 };
 
-export const MEMBERS_DATA: TeamMember[] = [
-  NTREHOUT,
-  APAIN,
-  JDETROYES,
-];
+export const MEMBERS_DATA: TeamMember[] = [NTREHOUT, APAIN, JDETROYES];

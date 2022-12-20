@@ -7,7 +7,7 @@
     "charts-api-otwld-fr": "projects/charts/api-otwld-fr",
     "charts-otwld-fr": "projects/charts/otwld-fr",
     "e2e-otwld-fr": "projects/e2e/otwld-fr",
-    "libs-ui": "libs/ui",
-    "libs-features": "libs/features"
+    "libs-features": "libs/features",
+    "libs-ui": "libs/ui"
   }
 }

@@ -12,6 +12,7 @@ import {
   BadgeComponent,
   ButtonComponent,
   CardIconComponent,
+  CardModule,
   CarouselModule,
   HeroComponent,
   HeroContentComponent,
@@ -22,6 +23,8 @@ import {
   ModalTestComponent,
   ModalTitleDescriptionComponent,
   RadialProgressComponent,
+  TabsModule,
+  TwitterModule,
 } from '@otwld/ui';
 import { HeroClientImageComponent } from '../../sections/hero/hero-client/hero-client-image/hero-client-image.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -55,6 +58,9 @@ import { TeamMember } from '../../../types/team-member.types';
     CardIconComponent,
     AvatarModule,
     TranslocoModule,
+    TabsModule,
+    TwitterModule,
+    CardModule,
   ],
   templateUrl: './page-team-member-id.component.html',
   styleUrls: ['./page-team-member-id.component.scss'],
@@ -64,20 +70,22 @@ export class PageTeamMemberIdComponent {
   currentMember$ = this.activatedRoute.params.pipe(
     switchMap((params) =>
       this.teamMemberService.getOneByRoute(params['id']).pipe(
-        tap(member => {
+        tap((member) => {
           if (!member) {
             throw new Error('Member not found');
           }
         })
       )
     ),
-    map(member => member as TeamMember),
-    shareReplay({bufferSize: 1, refCount: true})
+    map((member) => member as TeamMember),
+    shareReplay({ bufferSize: 1, refCount: true })
   );
 
   portfolio$ = this.currentMember$.pipe(
-    switchMap((member) => this.portfolioService.findByMemberFirstName(member.firstName))
-  )
+    switchMap((member) =>
+      this.portfolioService.findByMemberFirstName(member.firstName)
+    )
+  );
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;

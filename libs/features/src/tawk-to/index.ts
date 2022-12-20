@@ -1,1 +1,2 @@
-export * from './tawk-to.utils'
+export * from './tawk-to.module';
+export * from './tawk-to.service';

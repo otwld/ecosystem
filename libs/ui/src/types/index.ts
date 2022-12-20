@@ -23,3 +23,4 @@ export * from './tailwind/components/navbar.types';
 export * from './tailwind/components/swap.types';
 export * from './tailwind/components/avatar.types';
 export * from './tailwind/components/carousel.types';
+export * from './tailwind/components/tab.types';
