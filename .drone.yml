@@ -7,7 +7,7 @@ data:
   image:
     tag: latest
   setup:
-    enabled: false
+    enabled: true
   build:
     enabled: false
   lint:
