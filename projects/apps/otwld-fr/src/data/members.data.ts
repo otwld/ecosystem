@@ -132,9 +132,9 @@ export const APAIN: TeamMember = {
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
-    TEAMEXTENSION,
+    TEAM_EXTENSION,
   ],
-  testimonials: [FAKE_TESTIONIAL_001],
+  testimonials: [FAKE_TESTIMONIAL_001],
   mainSkills: [
     {
       name: 'NestJS',
