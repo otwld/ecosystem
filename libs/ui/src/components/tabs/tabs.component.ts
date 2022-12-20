@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  forwardRef,
   Host,
   HostBinding,
   Input,
@@ -61,6 +62,50 @@ export class TabOutletComponent extends BaseComponent {
 }
 
 @Component({
+  selector: 'ui-tabs',
+  standalone: true,
+  imports: [NgTemplateOutlet],
+  template: ` <ng-content select="ui-tab"></ng-content> `,
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class TabsComponent extends BaseComponent implements AfterContentInit {
+  @Input() tabStyle: TabStyleClass | undefined;
+  @Input() tabSize: TabSizeClass | undefined;
+
+  @Input() tabOutletRef: TabOutletComponent | undefined;
+
+  @ContentChildren(forwardRef(() => TabComponent))
+  tabRefs!: QueryList<TabComponent>;
+
+  @HostBinding() override class = this.construct(
+    () => ['tabs', 'justify-center', 'md:justify-start'],
+    () => [this.tabStyle, this.tabSize]
+  );
+
+  ngAfterContentInit() {
+    this.tabRefs.forEach((tab) => {
+      if (tab.title && tab.active === 'tab-active' && tab.templateRef) {
+        this.selectTab(tab.title, tab.templateRef);
+      }
+    });
+  }
+
+  selectTab(tabTitle: string, templateRef: TemplateRef<unknown>) {
+    this.tabRefs.forEach((tab) => {
+      tab.active = tab.title === tabTitle ? 'tab-active' : undefined;
+      tab.cdr.markForCheck();
+      tab.ngOnChanges({});
+    });
+    if (this.tabOutletRef) {
+      this.tabOutletRef.templateRef = templateRef;
+      this.tabOutletRef.cdr.markForCheck();
+    }
+    this.cdr.markForCheck();
+  }
+}
+
+@Component({
   selector: 'ui-tab',
   standalone: true,
   imports: [RouterLink],
@@ -95,49 +140,6 @@ export class TabComponent extends BaseComponent {
 
   constructor(@Host() public _parent: TabsComponent) {
     super();
-  }
-}
-
-@Component({
-  selector: 'ui-tabs',
-  standalone: true,
-  imports: [NgTemplateOutlet],
-  template: ` <ng-content select="ui-tab"></ng-content> `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class TabsComponent extends BaseComponent implements AfterContentInit {
-  @Input() tabStyle: TabStyleClass | undefined;
-  @Input() tabSize: TabSizeClass | undefined;
-
-  @Input() tabOutletRef: TabOutletComponent | undefined;
-
-  @ContentChildren(TabComponent) tabRefs!: QueryList<TabComponent>;
-
-  @HostBinding() override class = this.construct(
-    () => ['tabs', 'justify-center', 'md:justify-start'],
-    () => [this.tabStyle, this.tabSize]
-  );
-
-  ngAfterContentInit() {
-    this.tabRefs.forEach((tab) => {
-      if (tab.title && tab.active === 'tab-active' && tab.templateRef) {
-        this.selectTab(tab.title, tab.templateRef);
-      }
-    });
-  }
-
-  selectTab(tabTitle: string, templateRef: TemplateRef<unknown>) {
-    this.tabRefs.forEach((tab) => {
-      tab.active = tab.title === tabTitle ? 'tab-active' : undefined;
-      tab.cdr.markForCheck();
-      tab.ngOnChanges({});
-    });
-    if (this.tabOutletRef) {
-      this.tabOutletRef.templateRef = templateRef;
-      this.tabOutletRef.cdr.markForCheck();
-    }
-    this.cdr.markForCheck();
   }
 }
 
