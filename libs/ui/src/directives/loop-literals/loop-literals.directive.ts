@@ -12,7 +12,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslocoService } from '@ngneat/transloco';
 import { interval, map, startWith, switchMap } from 'rxjs';
 import { AnimationClass } from '../../types/tailwind/animation.types';
-import { isBrowser } from '../../utils/platform.utils';
+import { isBrowser } from '@otwld/features';
 
 @UntilDestroy()
 @Directive({

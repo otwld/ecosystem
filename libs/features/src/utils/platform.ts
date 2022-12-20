@@ -6,6 +6,6 @@ export const ifBrowser = (run: () => void) => {
   if (platform.isBrowser) {
     run();
   }
-}
+};
 
 export const isBrowser = () => inject(Platform).isBrowser;

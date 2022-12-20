@@ -18,7 +18,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { TranslocoService } from '@ngneat/transloco';
-import { MatomoModule, MatomoTracker } from '@otwld/features';
+import { MatomoModule, MatomoTracker, TawkToModule } from '@otwld/features';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
 
@@ -31,6 +31,11 @@ import { combineLatest } from 'rxjs';
     FontAwesomeModule,
     FooterComponent,
     AppRoutingModule,
+    TawkToModule.forRoot({
+      baseScriptUrl: 'https://embed.tawk.to',
+      entityID: '63933215b0d6371309d37ba1',
+      widgetID: '1gjrfn9do',
+    }),
     LayoutComponent,
     DateFnsModule.forRoot(),
     MatomoModule.forRoot({

@@ -39,7 +39,7 @@ import { NavbarDefaultComponent } from '../../../components/navbar/navbar-defaul
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
 import { FormatPipeModule } from 'ngx-date-fns';
-import { toggle } from '@otwld/features';
+import { TawkToService } from '@otwld/features';
 
 @Component({
   selector: 'otwld-page-portfolio',
@@ -114,7 +114,7 @@ export class PagePortfolioComponent {
     map((item) => item?.relatedProjects || [])
   );
   faAngleDoubleRight = faAngleDoubleRight;
-  openTawkTo = toggle;
+  tawkTo = inject(TawkToService);
 
   constructor(
     private readonly portfolioService: PortfolioService,
@@ -123,5 +123,4 @@ export class PagePortfolioComponent {
     private readonly domSanitizer: DomSanitizer,
     private readonly breadcrumbsService: BreadcrumbsService
   ) {}
-
 }

@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@otwld/ui": ["libs/ui/src/index.ts"],
-      "@otwld/features": ["libs/features/src/index.ts"]
+      "@otwld/features": ["libs/features/src/index.ts"],
+      "@otwld/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

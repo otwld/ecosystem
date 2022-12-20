@@ -75,21 +75,22 @@
         >
           <ui-card-image src="./assets/images/hero.jpg"></ui-card-image>
           <ui-card-body class="justify-center space-y-8 text-center">
-            <h2 class="text-5xl font-extrabold">{{t('ctas.lets-work-together.title')}}</h2>
+            <h2 class="text-5xl font-extrabold">
+              {{ t('ctas.lets-work-together.title') }}
+            </h2>
             <p class="flex-grow-0">
-              {{t('ctas.lets-work-together.content')}}
+              {{ t('ctas.lets-work-together.content') }}
             </p>
             <ui-button
-              (click)="openTawkTo()"
+              (click)="tawkTo.Tawk_API.toggle()"
               [additionalClasses]="['border-white', 'text-white']"
               btnStyle="btn-outline"
               color="btn-neutral"
               size="btn-lg"
               [icon]="faAngleDoubleRight"
               iconPosition="end"
-            >{{t('ctas.lets-work-together.cta')}}
-            </ui-button
-            >
+              >{{ t('ctas.lets-work-together.cta') }}
+            </ui-button>
           </ui-card-body>
         </ui-card>
       </div>
@@ -104,14 +105,14 @@
       >
         <ui-button btnStyle="btn-ghost" [icon]="faArrowLeft">{{
           t('portfolio.previous')
-          }}</ui-button>
+        }}</ui-button>
       </a>
       <a *ngIf="item.nextProject" routerLink="{{ item.nextProject.route }}">
         <ui-button
           btnStyle="btn-ghost"
           iconPosition="end"
           [icon]="faArrowRight"
-        >{{ t('portfolio.next') }}</ui-button
+          >{{ t('portfolio.next') }}</ui-button
         >
       </a>
     </div>
