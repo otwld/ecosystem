@@ -286,7 +286,7 @@
           "serverTarget": "apps-otwld-fr:server:production"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "local"
     },
     "prerender": {
       "executor": "@nguniversal/builders:prerender",
