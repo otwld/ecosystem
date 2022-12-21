@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SettingsRepository } from './state/settings.repository';
-import { setProp } from '@ngneat/elf';
 import { ThemeService } from './services/theme/theme.service';
 import { DrawerService } from './services/drawer.service';
 
@@ -19,10 +17,7 @@ export class AppComponent {
   drawerHasBeenClosed = () => this.drawerService.close();
 
   constructor(
-    private readonly settingsRepository: SettingsRepository,
     private readonly themeService: ThemeService,
     private readonly drawerService: DrawerService
-  ) {
-    this.settingsRepository.store$.update(setProp('darkMode', true));
-  }
+  ) {}
 }
