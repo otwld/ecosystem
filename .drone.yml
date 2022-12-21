@@ -4,6 +4,8 @@ load: nx-devops-latest.yaml
 data:
   workspace:
     appsPath: projects
+  cache:
+    enabled: true
   image:
     tag: latest
   setup:
