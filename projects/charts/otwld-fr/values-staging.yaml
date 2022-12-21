@@ -6,7 +6,7 @@ image:
 
 ingressroute:
   routes:
-    - host: outworld.staging
+    - host: staging.outworld.lan
       priority: 10
       services:
         - passHostHeader: true

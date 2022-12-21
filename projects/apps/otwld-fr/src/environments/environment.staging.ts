@@ -1,5 +1,5 @@
 export const environment = {
-  baseUrl: 'http://outworld.staging',
+  baseUrl: 'http://staging.outworld.lan',
   production: true,
   modules: [],
   templates: {
