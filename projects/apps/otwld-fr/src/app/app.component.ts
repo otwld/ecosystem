@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from './services/theme/theme.service';
 import { DrawerService } from './services/drawer.service';
 
@@ -10,14 +10,9 @@ import { DrawerService } from './services/drawer.service';
 })
 export class AppComponent {
   title = 'otwld-fr';
-  currentTheme$ = this.themeService.currentTheme$;
-
-  drawerTemplate$ = this.drawerService.getTemplate$();
-  drawerOpen$ = this.drawerService.onOpen$();
-  drawerHasBeenClosed = () => this.drawerService.close();
-
-  constructor(
-    private readonly themeService: ThemeService,
-    private readonly drawerService: DrawerService
-  ) {}
+  currentTheme$ = inject(ThemeService).currentTheme$;
+  private readonly drawerService = inject(DrawerService);
+  protected drawerTemplate$ = this.drawerService.getTemplate$();
+  protected drawerOpen$ = this.drawerService.onOpen$();
+  protected drawerHasBeenClosed = () => this.drawerService.close();
 }
