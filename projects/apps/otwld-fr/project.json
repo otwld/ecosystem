@@ -115,7 +115,7 @@
           "browserTarget": "apps-otwld-fr:build:local"
         }
       },
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "local",
       "options": {
         "proxyConfig": "projects/apps/otwld-fr/proxy.conf.json",
         "host": "0.0.0.0"
