@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.20-alpha.0](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.0.19...apps-otwld-fr-0.0.20-alpha.0) (2022-12-22)
+
+
+### Features
+
+* **otwld-fr:** utilisation de inject() à la place du constructeur ([00467e6](https://github.com/otwld/ecosystem/commit/00467e6a622c3d6ce6f73910fa0d38c4ae70773f))
+
+
+
 ## [0.0.19](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.0.19-alpha.3...apps-otwld-fr-0.0.19) (2022-12-21)
 
 
