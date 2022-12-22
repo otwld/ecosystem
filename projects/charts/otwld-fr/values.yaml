@@ -115,7 +115,7 @@ persistence:
     mountPath: /cache
 
   media:
-    enabled: true
+    enabled: false
     mountPath: /media
     type: pvc
     accessMode: ReadWriteOnce
