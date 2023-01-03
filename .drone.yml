@@ -5,7 +5,7 @@ data:
   workspace:
     appsPath: projects
   cache:
-    enabled: true
+    enabled: false
   image:
     tag: latest
   setup:
