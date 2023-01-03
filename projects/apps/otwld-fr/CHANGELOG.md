@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.0.20...apps-otwld-fr-0.1.0) (2023-01-03)
+
+
+### Features
+
+* **apps-otwld-fr/page-portfolio.component:** supprime le position sticky sur la colonne de droite ([e9d26fd](https://github.com/otwld/ecosystem/commit/e9d26fd36b81c044a7ed133cde54a8b087b9d9f0))
+
+
+
 ## [0.0.20](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.0.20-alpha.0...apps-otwld-fr-0.0.20) (2022-12-22)
 
 
