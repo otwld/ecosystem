@@ -210,8 +210,11 @@
       "rename_me": {
         "title": "Rename me"
       },
-      "atheme": {
-        "title": "ateme"
+      "mesdocteurs": {
+        "title": "Medical teleconsultation platform"
+      },
+      "ateme": {
+        "title": "Video stream management solution"
       }
     },
     "services": {}

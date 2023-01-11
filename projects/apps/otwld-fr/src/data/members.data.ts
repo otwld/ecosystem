@@ -1,17 +1,7 @@
-import { TeamMember } from '../app/types/team-member.types';
-import { randNumber } from '@ngneat/falso';
-import {
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  DESKTOP_DEVELOPMENT,
-  MOBILE_DEVELOPMENT,
-  TEAM_EXTENSION,
-  WEB_DEVELOPMENT,
-} from './service.data';
+import {TeamMember} from '../app/types/team-member.types';
+import {randNumber} from '@ngneat/falso';
+import {faGithub, faInstagram, faLinkedin, faTwitter,} from '@fortawesome/free-brands-svg-icons';
+import {DESKTOP_DEVELOPMENT, MOBILE_DEVELOPMENT, TEAM_EXTENSION, WEB_DEVELOPMENT,} from './service.data';
 import {APAIN_TESTIMONIALS, FAKE_TESTIMONIAL_001} from './testimonials.data';
 
 export const NTREHOUT: TeamMember = {
@@ -23,7 +13,7 @@ export const NTREHOUT: TeamMember = {
   role: 'roles.fullstack-developer',
   route: '/members/ntrehout',
   workMode: 'work-modes.full-remote',
-  totalHours: randNumber({ min: 100, max: 1000 }),
+  totalHours: randNumber({min: 100, max: 1000}),
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
@@ -127,8 +117,41 @@ export const APAIN: TeamMember = {
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
   // TODO
-  totalHours: randNumber({ min: 100, max: 1000 }),
-  medias: [],
+  totalHours: randNumber({min: 100, max: 1000}),
+  medias: [{
+    type: 'article',
+    title: 'dynamic.medias.tendance-ouest.jeprecommande',
+    author: 'Tendance Ouest',
+    link: 'https://www.tendanceouest.com/actualite-373284-manche-jeprecommande-fr-un-site-internet-pour-les-commercants-du-cotentin',
+    image: 'https://www.tendanceouest.com/photos/1200/373284/',
+    logo: 'https://www.tendanceouest.com/pochettes/1955090.jpg',
+  },
+    {
+      type: 'article',
+      title: 'dynamic.medias.ionis-group.jeprecommande',
+      author: 'Ionis Group',
+      link: 'https://actu.ionis-group.com/epitech-jeprecommande-fr/',
+      image:
+        'https://actu.ionis-group.com/wp-content/uploads/2020/12/commande-emporter.jpg',
+      logo: 'https://actu.ionis-group.com/wp-content/uploads/2020/08/logo-ionis-mag-white-small.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Epitech',
+      link: 'https://www.epitech.eu/fr/actualites-evenements/etudiants-epitech-rennes-entreprises-normandes-poursuivre-activite/',
+      image:
+        'https://www.epitech.eu/fr/wp-content/uploads/2020/11/Photo-Nathan-TREHOUT.jpg',
+      logo: 'https://www.epitech.eu/fr/wp-content/themes/epitech-technology-theme-child/assets/images/logo_epitech_small_sticky.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Rennes Infos',
+      link: 'https://www.rennes-infos-autrement.fr/deux-etudiants-rennais-en-informatique-aident-le-petit-commerce-de-leur-region-dorigine/',
+      image: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/2-7.jpg',
+      logo: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/cropped-2ZqZbpP0_400x400-192x192.jpg',
+    },],
   // TODO
   services: [
     WEB_DEVELOPMENT,
@@ -183,7 +206,7 @@ export const JDETROYES = {
   location: 'locations.bali',
   route: '/members/jdetroyes',
   workMode: 'work-modes.full-remote',
-  totalHours: randNumber({ min: 100, max: 1000 }),
+  totalHours: randNumber({min: 100, max: 1000}),
   testimonials: [FAKE_TESTIMONIAL_001],
   services: [TEAM_EXTENSION, WEB_DEVELOPMENT],
   mainSkills: [

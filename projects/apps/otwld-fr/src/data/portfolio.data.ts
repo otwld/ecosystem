@@ -7,7 +7,7 @@ import { APAIN, NTREHOUT } from './members.data';
 export const MESDOCTEURS: PortfolioItem = {
   client: 'MesDocteurs',
   hoursSpent: 0,
-  image: '',
+  image: 'assets/images/portfolio/mesdocteurs.png',
   members: [
     APAIN,
   ],
@@ -24,15 +24,14 @@ export const MESDOCTEURS: PortfolioItem = {
   ],
   startDate: new Date('2021-11-01').getTime(),
   endDate: new Date('2023-02-3').getTime(),
-  // TODO(apain): create english version
-  templates: { en: environment.templates.portfolio.mesdocteurs.frURL, fr: environment.templates.portfolio.mesdocteurs.frURL },
+  templates: { en: environment.templates.portfolio.mesdocteurs.enURL, fr: environment.templates.portfolio.mesdocteurs.frURL },
   title: 'dynamic.portfolio.mesdocteurs.title',
 }
 
 export const ATEME: PortfolioItem = {
   client: 'ateme',
   hoursSpent: 0,
-  image: '',
+  image: 'assets/images/portfolio/ateme.png',
   members: [
     APAIN,
   ],
@@ -49,8 +48,7 @@ export const ATEME: PortfolioItem = {
   ],
   startDate: new Date('2021-08-01').getTime(),
   endDate: new Date('2023-11-01').getTime(),
-  // TODO(apain): create english version
-  templates: { en: environment.templates.portfolio.ateme.frURL, fr: environment.templates.portfolio.ateme.frURL },
+  templates: { en: environment.templates.portfolio.ateme.enURL, fr: environment.templates.portfolio.ateme.frURL },
   title: 'dynamic.portfolio.ateme.title',
 };
 
@@ -112,11 +110,10 @@ export const JEPRECOMMANDE: PortfolioItem = {
   title: 'dynamic.portfolio.jeprecommande.title',
 };
 
-// TODO
 export const PORTFOLIO_DATA: Portfolio = [
   { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [MESDOCTEURS] },
   { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [JEPRECOMMANDE] },
   { ...JEPRECOMMANDE, nextProject: MESDOCTEURS, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
-  { ...MESDOCTEURS, nextProject: ATEME, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] },
-  {...ATEME, nextProject: OCC, previousProject: MESDOCTEURS, relatedProjects: [OCC] }
+  { ...MESDOCTEURS, nextProject: ATEME, previousProject: JEPRECOMMANDE, relatedProjects: [ATEME, JEPRECOMMANDE] },
+  {...ATEME, nextProject: OCC, previousProject: MESDOCTEURS, relatedProjects: [MESDOCTEURS, JEPRECOMMANDE] }
 ];
