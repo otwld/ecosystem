@@ -36,12 +36,13 @@ export const environment = {
       },
     },
     portfolio: {
-      // TODO
-      rename_me: {
-        enURL:
-          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/rename_me.html',
-        frURL:
-          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/rename_me.html',
+      mesdocteurs: {
+        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/mesdocteurs.html',
+        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/mesdocteurs.html',
+      },
+      ateme: {
+        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/ateme.html',
+        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/ateme.html',
       },
       occ: {
         enURL:

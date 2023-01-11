@@ -54,6 +54,14 @@ export const environment = {
         frURL:
           'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/onstage.html',
       },
+      mesdocteurs: {
+        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/mesdocteurs.html',
+        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/mesdocteurs.html',
+      },
+      ateme: {
+        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/ateme.html',
+        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/ateme.html',
+      },
     },
   },
 };
