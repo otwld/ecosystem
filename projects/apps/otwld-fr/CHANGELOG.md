@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.1.0...apps-otwld-fr-0.2.0) (2023-01-11)
+
+
+### Bug Fixes
+
+* **apps-otwld-fr/envs:** add link for templates of portfolio ([79a96a0](https://github.com/otwld/ecosystem/commit/79a96a02b94a7d5fb8467062633d0d050441fb03))
+
+
+### Features
+
+* **apps-otwld-fr/portfolio:** Add atheme for apain ([db4d597](https://github.com/otwld/ecosystem/commit/db4d597b8e729ba847d60021a3122554dff4d4cd))
+* **apps-otwld-fr/portfolio:** Add mesdocteurs for apain ([fbe7410](https://github.com/otwld/ecosystem/commit/fbe74109082821a2f7836ea45ae87045d55bda04))
+* **apps-otwld-fr/portfolio:** complete en version for both missions ([08b89bb](https://github.com/otwld/ecosystem/commit/08b89bb8d7b62e3b5c028f4b7c89fd1c5f307967))
+* **apps-otwld-fr/testimonials:** Add testimonials for apain ([276a217](https://github.com/otwld/ecosystem/commit/276a217ac40d9991a9dd5a0780bcb5238dedde18))
+
+
+
 # [0.1.0](https://github.com/otwld/ecosystem/compare/apps-otwld-fr-0.0.20...apps-otwld-fr-0.1.0) (2023-01-03)
 
 
