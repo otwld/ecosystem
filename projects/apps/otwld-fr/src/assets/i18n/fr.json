@@ -211,6 +211,12 @@
       }
     },
     "portfolio": {
+      "mesdocteurs": {
+        "title": "Plateforme de téléconsultation médicale"
+      },
+      "ateme": {
+        "title": "Solution de gestion de flux vidéo"
+      },
       "occ": {
         "title": "Progiciel de gestion intégré"
       },

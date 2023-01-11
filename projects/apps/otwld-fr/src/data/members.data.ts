@@ -12,7 +12,7 @@ import {
   TEAM_EXTENSION,
   WEB_DEVELOPMENT,
 } from './service.data';
-import { FAKE_TESTIMONIAL_001 } from './testimonials.data';
+import { APAIN_TESTIMONIALS, FAKE_TESTIMONIAL_001 } from './testimonials.data';
 
 export const NTREHOUT: TeamMember = {
   firstName: 'Nathan',
@@ -126,25 +126,64 @@ export const APAIN: TeamMember = {
   location: 'locations.dublin',
   route: '/members/apain',
   workMode: 'work-modes.full-remote',
+  // TODO
   totalHours: randNumber({ min: 100, max: 1000 }),
-  medias: [],
+  medias: [
+    {
+      type: 'article',
+      title: 'dynamic.medias.tendance-ouest.jeprecommande',
+      author: 'Tendance Ouest',
+      link: 'https://www.tendanceouest.com/actualite-373284-manche-jeprecommande-fr-un-site-internet-pour-les-commercants-du-cotentin',
+      image: 'https://www.tendanceouest.com/photos/1200/373284/',
+      logo: 'https://www.tendanceouest.com/pochettes/1955090.jpg',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.ionis-group.jeprecommande',
+      author: 'Ionis Group',
+      link: 'https://actu.ionis-group.com/epitech-jeprecommande-fr/',
+      image:
+        'https://actu.ionis-group.com/wp-content/uploads/2020/12/commande-emporter.jpg',
+      logo: 'https://actu.ionis-group.com/wp-content/uploads/2020/08/logo-ionis-mag-white-small.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Epitech',
+      link: 'https://www.epitech.eu/fr/actualites-evenements/etudiants-epitech-rennes-entreprises-normandes-poursuivre-activite/',
+      image:
+        'https://www.epitech.eu/fr/wp-content/uploads/2020/11/Photo-Nathan-TREHOUT.jpg',
+      logo: 'https://www.epitech.eu/fr/wp-content/themes/epitech-technology-theme-child/assets/images/logo_epitech_small_sticky.png',
+    },
+    {
+      type: 'article',
+      title: 'dynamic.medias.epitech.jeprecommande',
+      author: 'Rennes Infos',
+      link: 'https://www.rennes-infos-autrement.fr/deux-etudiants-rennais-en-informatique-aident-le-petit-commerce-de-leur-region-dorigine/',
+      image: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/2-7.jpg',
+      logo: 'https://www.rennes-infos-autrement.fr/wp-content/uploads/cropped-2ZqZbpP0_400x400-192x192.jpg',
+    },
+  ],
+  // TODO
   services: [
     WEB_DEVELOPMENT,
     MOBILE_DEVELOPMENT,
     DESKTOP_DEVELOPMENT,
     TEAM_EXTENSION,
   ],
-  testimonials: [FAKE_TESTIMONIAL_001],
+  // TODO
+  testimonials: APAIN_TESTIMONIALS,
+  // TODO
   mainSkills: [
     {
       name: 'NestJS',
       percentage: 95,
-      startDate: new Date('207-01-01'),
+      startDate: new Date('2017-01-01'),
     },
     {
       name: 'NodeJS',
-      percentage: 75,
-      startDate: new Date('207-01-01'),
+      percentage: 90,
+      startDate: new Date('2017-01-01'),
     },
     {
       name: 'GraphQL',
@@ -152,9 +191,9 @@ export const APAIN: TeamMember = {
       startDate: new Date('2020-01-01'),
     },
     {
-      name: 'skills.complex-feature',
+      name: 'Angular',
       percentage: 80,
-      startDate: new Date('2019-01-01'),
+      startDate: new Date('2017-01-01'),
     },
   ],
   socials: [
