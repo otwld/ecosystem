@@ -209,6 +209,9 @@
       },
       "rename_me": {
         "title": "Rename me"
+      },
+      "atheme": {
+        "title": "ateme"
       }
     },
     "services": {}

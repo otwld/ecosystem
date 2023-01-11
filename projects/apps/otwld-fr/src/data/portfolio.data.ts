@@ -29,6 +29,31 @@ export const MESDOCTEURS: PortfolioItem = {
   title: 'dynamic.portfolio.mesdocteurs.title',
 }
 
+export const ATEME: PortfolioItem = {
+  client: 'ateme',
+  hoursSpent: 0,
+  image: '',
+  members: [
+    APAIN,
+  ],
+  relatedProjects: [],
+  route: '/portfolio/ateme',
+  services: [
+    TEAM_EXTENSION
+  ],
+  skills: [
+    'Angular',
+    'NestJS',
+    'GraphQL',
+    'RxJS'
+  ],
+  startDate: new Date('2021-08-01').getTime(),
+  endDate: new Date('2023-11-01').getTime(),
+  // TODO(apain): create english version
+  templates: { en: environment.templates.portfolio.ateme.frURL, fr: environment.templates.portfolio.ateme.frURL },
+  title: 'dynamic.portfolio.ateme.title',
+};
+
 export const OCC: PortfolioItem = {
   templates: {
     en: environment.templates.portfolio.occ.enURL,
@@ -92,5 +117,6 @@ export const PORTFOLIO_DATA: Portfolio = [
   { ...OCC, nextProject: ONSTAGE, previousProject: JEPRECOMMANDE, relatedProjects: [MESDOCTEURS] },
   { ...ONSTAGE, nextProject: JEPRECOMMANDE, previousProject: OCC, relatedProjects: [JEPRECOMMANDE] },
   { ...JEPRECOMMANDE, nextProject: MESDOCTEURS, previousProject: ONSTAGE, relatedProjects: [ONSTAGE] },
-  { ...MESDOCTEURS, nextProject: OCC, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] }
+  { ...MESDOCTEURS, nextProject: ATEME, previousProject: JEPRECOMMANDE, relatedProjects: [OCC] },
+  {...ATEME, nextProject: OCC, previousProject: MESDOCTEURS, relatedProjects: [OCC] }
 ];

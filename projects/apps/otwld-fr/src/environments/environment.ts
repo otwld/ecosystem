@@ -34,6 +34,10 @@ export const environment = {
         enURL: './assets/static/portfolio/en/mesdocteurs.html',
         frURL: './assets/static/portfolio/fr/mesdocteurs.html',
       },
+      ateme: {
+        enURL: './assets/static/portfolio/en/ateme.html',
+        frURL: './assets/static/portfolio/fr/ateme.html',
+      },
       occ: {
         enURL: './assets/static/portfolio/en/occ.html',
         frURL: './assets/static/portfolio/fr/occ.html',
