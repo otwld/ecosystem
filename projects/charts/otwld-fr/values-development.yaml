@@ -6,7 +6,7 @@ image:
 
 ingressroute:
   routes:
-    - host: outworld.lan
+    - host: development.outworld.fr
       priority: 10
       services:
         - passHostHeader: true

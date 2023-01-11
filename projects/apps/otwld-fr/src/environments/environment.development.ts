@@ -1,5 +1,5 @@
 export const environment = {
-  baseUrl: 'http://outworld.lan',
+  baseUrl: 'https://development.outworld.fr',
   production: true,
   modules: [],
   templates: {
@@ -55,12 +55,16 @@ export const environment = {
           'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/onstage.html',
       },
       mesdocteurs: {
-        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/mesdocteurs.html',
-        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/mesdocteurs.html',
+        enURL:
+          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/mesdocteurs.html',
+        frURL:
+          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/mesdocteurs.html',
       },
       ateme: {
-        enURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/ateme.html',
-        frURL: 'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/ateme.html',
+        enURL:
+          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/en/ateme.html',
+        frURL:
+          'https://raw.githubusercontent.com/otwld/ecosystem/master/projects/apps/otwld-fr/src/assets/static/portfolio/fr/ateme.html',
       },
     },
   },
