@@ -1,7 +1,16 @@
-import { Inject, Injector, ModuleWithProviders, NgModule, PLATFORM_ID } from '@angular/core';
+import {
+  Inject,
+  Injector,
+  ModuleWithProviders,
+  NgModule,
+  PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
+import {
+  MATOMO_CONFIGURATION,
+  MatomoConfiguration,
+} from './matomo-configuration';
 import { MatomoInjector } from './matomo-injector.service';
 import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';

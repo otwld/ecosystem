@@ -13,11 +13,11 @@ export const environment = {
       },
       'mobile-development': {
         enURL: './assets/static/services/en/mobile-development.html',
-        frURL: './assets/static/services/fr/mobile-development.html'
+        frURL: './assets/static/services/fr/mobile-development.html',
       },
       'product-development': {
         enURL: './assets/static/services/en/product-development.html',
-        frURL: './assets/static/services/fr/product-development.html'
+        frURL: './assets/static/services/fr/product-development.html',
       },
       'team-extension': {
         enURL: './assets/static/services/en/team-extension.html',
@@ -26,7 +26,7 @@ export const environment = {
       'web-development': {
         enURL: './assets/static/services/en/web-development.html',
         frURL: './assets/static/services/fr/web-development.html',
-      }
+      },
     },
     portfolio: {
       // TODO
@@ -49,9 +49,9 @@ export const environment = {
       onstage: {
         enURL: './assets/static/portfolio/en/onstage.html',
         frURL: './assets/static/portfolio/en/onstage.html',
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 /*

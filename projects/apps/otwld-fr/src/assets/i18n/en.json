@@ -37,7 +37,7 @@
     "remote": "\uD83D\uDC68\u200D\uD83D\uDCBB Remote",
     "onsite": "Onsite"
   },
-  "footer":  {
+  "footer": {
     "call-us": {
       "title": "Call us",
       "phone": "+33 6 07 74 95 94"
@@ -79,7 +79,10 @@
     "cta": "View details"
   },
   "services": {
-    "ctas": ["Ready for a painless team augmentation ?", "Need a custom software ?"],
+    "ctas": [
+      "Ready for a painless team augmentation ?",
+      "Need a custom software ?"
+    ],
     "view-more": "View all services",
     "title": "Services",
     "subtitle": "Build your app from scratch or extend your capabilities.",
