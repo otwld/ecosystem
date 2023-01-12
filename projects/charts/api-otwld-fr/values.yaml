@@ -90,6 +90,7 @@ env:
   TZ: UTC
   # ====================== NODE ======================
   NODE_ENV: local
+  PORT: 80
 
   # ====================== GRAPHQL ======================
   GRAPHQL_PLAYGROUND: true
