@@ -1,0 +1,14 @@
+overwrite: true
+schema: 'projects/apps/api-otwld-fr/src/schema.gql'
+generates:
+  libs/shared-models/src/lib/gateway/generated-api-gateway.ts:
+    documents: 'libs/shared-models/src/lib/modules/**/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
+    config:
+      addExplicitOverride: true
+      declarationKind: 'interface'
+      namingConvention:
+        transformUnderscore: true

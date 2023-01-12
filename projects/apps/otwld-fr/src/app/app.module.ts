@@ -21,12 +21,15 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MatomoModule, MatomoTracker, TawkToModule } from '@otwld/features';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
+import {SharedModelsModule} from '@ecosystem/shared-models';
+import {environment} from '../environments/environment';
 
 @UntilDestroy()
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'otwld-fr' }),
+    SharedModelsModule.forRoot(environment),
     NavbarDefaultComponent,
     FontAwesomeModule,
     FooterComponent,

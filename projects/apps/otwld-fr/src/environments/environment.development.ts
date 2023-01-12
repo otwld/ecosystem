@@ -1,5 +1,7 @@
 export const environment = {
   baseUrl: 'https://development.outworld.fr',
+  apiUrl: 'http://localhost:3000/graphql',
+  appName: 'otwld-fr',
   production: true,
   modules: [],
   templates: {

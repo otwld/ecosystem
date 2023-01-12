@@ -7,8 +7,8 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type ListMemberPage {
-  edges: [PaginatedMemberPageEdge]!
+type ListServicePage {
+  edges: [PaginatedServicePageEdge]!
   pageInfo: PageInfo
   totalCount: Int!
 }
@@ -18,11 +18,6 @@ type Member {
   createdAt: DateTime!
   firstName: String!
   updatedAt: String!
-}
-
-input MemberOrderBy {
-  direction: eDirection
-  field: eListMembersInputSortFields
 }
 
 type PageInfo {
@@ -37,6 +32,11 @@ type PaginatedMemberPageEdge {
   node: Member
 }
 
+type PaginatedServicePageEdge {
+  cursor: String
+  node: Service
+}
+
 input PaginationOption {
   after: Int
   before: Int
@@ -45,7 +45,21 @@ input PaginationOption {
 
 type Query {
   getMemberById(id: String!): Member!
-  getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
+  getMembers(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
+}
+
+type Service {
+  _id: String!
+  content: String!
+  createdAt: DateTime!
+  icon: String
+  title: String!
+  updatedAt: String!
+}
+
+input ServiceOrderBy {
+  direction: eDirection
+  field: eListServicesInputSortFields
 }
 
 enum eDirection {
@@ -53,6 +67,6 @@ enum eDirection {
   DESC
 }
 
-enum eListMembersInputSortFields {
+enum eListServicesInputSortFields {
   firstName
 }
