@@ -96,6 +96,8 @@ export const GetMembersPaginatedDocument = gql`
     edges {
       node {
         _id
+        createdAt
+        updatedAt
         firstName
       }
     }
@@ -114,7 +116,7 @@ export const GetMembersPaginatedDocument = gql`
   })
   export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
     override document = GetMembersPaginatedDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

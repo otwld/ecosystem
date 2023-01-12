@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~15.0.2",
     "@angular/platform-server": "~15.0.2",
     "@angular/router": "~15.0.2",
+    "@aws-sdk/client-s3": "^3.245.0",
     "@fortawesome/angular-fontawesome": "^0.12.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
@@ -57,6 +58,7 @@
     "ngx-date-fns": "^10.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.7",
+    "sharp": "^0.31.3",
     "tailwindcss-animation-delay": "^1.0.7",
     "tslib": "^2.4.1",
     "zone.js": "~0.12.0"

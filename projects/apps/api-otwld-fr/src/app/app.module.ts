@@ -6,18 +6,23 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
 import {MongooseModule} from '@nestjs/mongoose';
 import main from '../config/main.config';
 import mongodb from '../config/mongodb.config';
+import s3 from '../config/s3.config';
 import {MemberModule} from './modules/members/member.module';
 import {MemberService} from './modules/members/services/member.service';
 import {AppLogger} from './shared/modules/logging/logging.service';
 import {LoggingModule} from './shared/modules/logging/logging.module';
 import {PaginationModule} from './shared/modules/pagination/pagination.module';
+import {ResourcesModule} from './modules/resources/resources.module';
+import {ServiceModule} from './modules/services/service.module';
+import {TranslocoModule} from '@ngneat/transloco';
+import {LanguageModule} from './shared/modules/language/language.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
-      load: [main, mongodb],
+      load: [main, mongodb, s3],
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -77,7 +82,9 @@ import {PaginationModule} from './shared/modules/pagination/pagination.module';
 
     /* ======== MODULES ======== */
     MemberModule,
-    PaginationModule
+    PaginationModule,
+    ServiceModule,
+    LanguageModule
   ],
   controllers: [],
   providers: [],
