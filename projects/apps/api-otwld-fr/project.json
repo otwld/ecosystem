@@ -95,7 +95,6 @@
         ]
       }
     },
-
     "docker-publish": {
       "executor": "@nx-tools/nx-docker:build",
       "configurations": {

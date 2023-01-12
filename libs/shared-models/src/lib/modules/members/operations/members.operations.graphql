@@ -1,0 +1,18 @@
+query getMembersPaginated($pagination: PaginationOption!) {
+  getMembers(pagination: $pagination) {
+    edges {
+      node {
+        _id
+        createdAt
+        updatedAt
+        firstName
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPrevPage
+      startCursor
+      endCursor
+    }
+  }
+}

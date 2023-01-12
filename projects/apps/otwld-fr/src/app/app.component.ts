@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ThemeService } from './services/theme/theme.service';
-import { DrawerService } from './services/drawer.service';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ThemeService} from './services/theme/theme.service';
+import {DrawerService} from './services/drawer.service';
 
 @Component({
   selector: 'otwld-root',
