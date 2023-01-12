@@ -16,9 +16,18 @@ image:
 imagePullSecrets:
   - name: dockerconfig-secret
 mongodb:
+  metrics:
+    enabled: true
+  auth:
+    enabled: true
+    existingSecret: api-otwld-fr-mongodb
+    usernames:
+      - local
+    databases:
+      - apiOtwldFr
   persistence:
     enabled: true
-    size: 10Gi
+    size: 1Gi
     storageClass: "longhorn"
 
 
@@ -80,15 +89,10 @@ env:
   # -- Set the container timezone
   TZ: UTC
   # ====================== NODE ======================
-  NODE_ENV: production
-  GOOGLE_DRIVE_API_KEY:
+  NODE_ENV: local
 
-  # Gigabyte
-  STORAGE_SIZE: 20
-  STORAGE_PATH: /media
-
-  OUTWORLD_OAUTH2_API_KEY:
-  OUTWORLD_OAUTH2_API_SECRET:
+  # ====================== GRAPHQL ======================
+  GRAPHQL_PLAYGROUND: true
 
   MONGODB_USERNAME: ecosystem
   MONGODB_PASSWORD:
@@ -96,18 +100,12 @@ env:
       secretKeyRef:
         name: ecosystem-secret
         key: mongodb-passwords
-  MONGODB_HOST: production-mongodb.ecosystem.svc.cluster.local
+  MONGODB_HOST: api-otwld-fr-ecosystem-api-otwld-fr
   MONGODB_PORT: 27017
-  MONGODB_DATABASE: ecosystem
-  MONGODB_AUTH_SOURCE:
-  MONGODB_AUTH_MECHANISM:
-  MONGODB_AUTH_MECHANISM_PROPERTIES:
-
+  MONGODB_DATABASE: apiOtwldFr
+  LOG_API_DEBUG: true
+  LOG_GRAPHQL_DEBUG: true
   LOG_LEVEL: info
-
-# -- Specify any additional containers here as dictionary items. Each additional container should have its own key.
-# Helm templates can be used.
-additionalContainers: {}
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -153,7 +151,7 @@ persistence:
     size: 1Gi
 
 # -- Configure the Security Context for the Pod
-podSecurityContext: {}
+podSecurityContext: { }
 #   runAsUser: 568
 #   runAsGroup: 568
 #   fsGroup: 568
