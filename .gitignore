@@ -2,6 +2,7 @@
 
 # Helm
 **/charts/*.tgz
+**/tmpcharts
 **/Chart.lock
 
 # compiled output

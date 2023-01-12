@@ -5,6 +5,7 @@
 ## Charts
 projects/charts/**/values*.yaml
 projects/charts/**/charts
+projects/charts/**/tmpcharts
 
 # Libraries
 
