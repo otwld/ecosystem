@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ListMemberPage {
+  edges: [PaginatedMemberPageEdge]!
+  pageInfo: PageInfo
+  totalCount: Int!
+}
+
+type Member {
+  _id: String!
+  createdAt: DateTime!
+  firstName: String!
+  updatedAt: String!
+}
+
+input MemberOrderBy {
+  direction: eDirection
+  field: eListMembersInputSortFields
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  startCursor: String
+}
+
+type PaginatedMemberPageEdge {
+  cursor: String
+  node: Member
+}
+
+input PaginationOption {
+  after: Int
+  before: Int
+  cursor: String
+}
+
+type Query {
+  getMemberById(id: String!): Member!
+  getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
+}
+
+enum eDirection {
+  ASC
+  DESC
+}
+
+enum eListMembersInputSortFields {
+  firstName
+}
