@@ -1,1 +1,38 @@
+image:
+  # -- image tag
+  tag: 'latest-rc'
+  # -- image pull policy
+  pullPolicy: Always
+
+ingressroute:
+  routes:
+    - host: staging-api.outworld.fr
+      priority: 10
+      services:
+        - passHostHeader: true
+          name: api-otwld-fr-ecosystem-api-otwld-fr
+          port: 80
+
+backup:
+  enabled: false
+mongodb:
+  auth:
+    usernames:
+      - staging
 env:
+  NODE_ENV: production
+  GRAPHQL_PLAYGROUND: false
+  MONGODB_PORT: 27017
+  MONGODB_USERNAME: production
+  MONGODB_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: ecosystem-secret
+        key: mongodb-passwords
+  LOG_API_DEBUG: false
+  LOG_GRAPHQL_DEBUG: false
+
+persistence:
+  media:
+    enabled: false
+    size: 512Mi
