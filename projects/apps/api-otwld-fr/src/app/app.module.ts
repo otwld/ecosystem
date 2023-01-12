@@ -12,17 +12,16 @@ import {MemberService} from './modules/members/services/member.service';
 import {AppLogger} from './shared/modules/logging/logging.service';
 import {LoggingModule} from './shared/modules/logging/logging.module';
 import {PaginationModule} from './shared/modules/pagination/pagination.module';
-import {ResourcesModule} from './modules/resources/resources.module';
 import {ServiceModule} from './modules/services/service.module';
-import {TranslocoModule} from '@ngneat/transloco';
 import {LanguageModule} from './shared/modules/language/language.module';
+import log from '../config/log.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
-      load: [main, mongodb, s3],
+      load: [main, mongodb, s3, log],
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -37,6 +36,7 @@ import {LanguageModule} from './shared/modules/language/language.module';
       imports: [
         ConfigModule,
         MemberModule,
+        ServiceModule
       ],
       useFactory: (
         conf: ConfigService,

@@ -12,9 +12,6 @@ import {Translation} from '../../../shared/modules/language/models/translation.m
   ...commonSchemaOption,
 })
 export class Service extends BasicModel {
-  @Prop({type: String})
-  @Field(() => String, {nullable: false})
-  title: string;
 
   @Prop({type: String})
   @Field(() => String, {nullable: true})
@@ -22,6 +19,9 @@ export class Service extends BasicModel {
 
   @Prop({type: Translation})
   content: Translation;
+
+  @Prop({type: Translation})
+  title: Translation;
 }
 
 /* endregion */
