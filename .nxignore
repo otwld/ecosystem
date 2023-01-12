@@ -4,6 +4,7 @@
 
 ## Charts
 projects/charts/**/values*.yaml
+projects/charts/**/charts
 
 # Libraries
 
