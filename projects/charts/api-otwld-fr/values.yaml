@@ -100,7 +100,7 @@ env:
       secretKeyRef:
         name: ecosystem-secret
         key: mongodb-passwords
-  MONGODB_HOST: api-otwld-fr-ecosystem-api-otwld-fr
+  MONGODB_HOST: api-otwld-fr-mongodb
   MONGODB_PORT: 27017
   MONGODB_DATABASE: apiOtwldFr
   LOG_API_DEBUG: true
