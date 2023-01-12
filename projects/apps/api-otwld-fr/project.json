@@ -13,7 +13,8 @@
         "outputPath": "dist/projects/apps/api-otwld-fr",
         "main": "projects/apps/api-otwld-fr/src/main.ts",
         "tsConfig": "projects/apps/api-otwld-fr/tsconfig.app.json",
-        "assets": ["projects/apps/api-otwld-fr/src/assets"]
+        "assets": ["projects/apps/api-otwld-fr/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
@@ -55,6 +56,46 @@
         "passWithNoTests": true
       }
     },
+    "helm-deploy": {
+      "executor": "@otwld/nx-devops:run-commands",
+      "configurations": {
+        "production": {
+          "commands": [
+            {
+              "command": "helm upgrade api-otwld-fr . --install --dependency-update -f values.yaml -f values-production.yaml -n ecosystem",
+              "forwardAllArgs": false
+            }
+          ]
+        },
+        "staging": {
+          "commands": [
+            {
+              "command": "helm upgrade api-otwld-fr . --install --dependency-update -f values.yaml -f values-staging.yaml -n staging",
+              "forwardAllArgs": false
+            }
+          ]
+        },
+        "apain": {
+          "commands": [
+            {
+              "command": "helm upgrade api-otwld-fr . --install --dependency-update -f values.yaml -f values-local.yaml -n apain",
+              "forwardAllArgs": false
+            }
+          ]
+        }
+      },
+      "options": {
+        "parallel": false,
+        "cwd": "projects/charts/api-otwld-fr",
+        "commands": [
+          {
+            "command": "helm upgrade api-otwld-fr . --install --dependency-update -f values.yaml -f values-development.yaml -n development",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+
     "docker-publish": {
       "executor": "@nx-tools/nx-docker:build",
       "configurations": {

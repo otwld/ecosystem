@@ -15,6 +15,12 @@ image:
 
 imagePullSecrets:
   - name: dockerconfig-secret
+mongodb:
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClass: "longhorn"
+
 
 ingressroute:
   enabled: true

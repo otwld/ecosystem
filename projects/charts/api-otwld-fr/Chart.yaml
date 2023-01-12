@@ -7,3 +7,6 @@ dependencies:
   - name: common
     repository: https://nexus.outworld.fr/repository/helm-hosted/
     version: 1.x.x
+  - name: mongodb
+    repository: https://charts.bitnami.com/bitnami
+    version: 13.x.x
