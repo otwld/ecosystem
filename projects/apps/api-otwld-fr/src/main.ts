@@ -5,6 +5,7 @@
 import { NestFactory } from '@nestjs/core';
 // TODO: remove this line when NX bug is fixed.
 import "@nestjs/platform-express";
+import "apollo-server-express"
 import { AppModule } from './app/app.module';
 import {AppLogger} from './app/shared/modules/logging/logging.service';
 import {ConfigService} from '@nestjs/config';
