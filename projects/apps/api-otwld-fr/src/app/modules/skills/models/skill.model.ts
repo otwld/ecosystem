@@ -1,5 +1,5 @@
 /* region ==================== Schema ==================== */
-import {Field, ObjectType} from '@nestjs/graphql';
+import {ObjectType} from '@nestjs/graphql';
 import {Document} from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-option';

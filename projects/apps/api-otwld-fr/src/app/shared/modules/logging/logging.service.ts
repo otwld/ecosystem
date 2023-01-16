@@ -21,7 +21,7 @@ export class AppLogger extends ConsoleLogger implements LoggerService {
     }
   }
 
-  log(message: any, context?: string) {
+  log(message: unknown, context?: string) {
     if (context !== 'InstanceLoader') {
       super.log(message, context || this.context);
     }
@@ -31,7 +31,7 @@ export class AppLogger extends ConsoleLogger implements LoggerService {
     super.context = context;
   }
 
-  warn(message: any, context?: string) {
+  warn(message: unknown, context?: string) {
     super.warn(message, context || this.context);
   }
 
