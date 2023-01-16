@@ -17,6 +17,7 @@
             "style": "camelCase"
           }
         ],
+        "@typescript-eslint/ban-types": "off",
         "@angular-eslint/component-selector": [
           "error",
           {
