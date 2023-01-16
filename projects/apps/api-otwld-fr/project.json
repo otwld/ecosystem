@@ -75,7 +75,7 @@
           "valuesPath": ["values.yaml", "values-production.yaml"]
         },
         "staging": {
-          "namespace": "development",
+          "namespace": "staging",
           "valuesPath": ["values.yaml", "values-staging.yaml"]
         }
       },
