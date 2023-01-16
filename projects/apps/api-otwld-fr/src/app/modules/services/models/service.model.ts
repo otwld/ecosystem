@@ -14,7 +14,7 @@ import {Translation} from '../../../shared/modules/language/models/translation.m
 export class Service extends BasicModel {
 
   @Prop({type: String})
-  @Field(() => String, {nullable: true})
+  @Field(() => String, {nullable: false})
   icon: Resource;
 
   @Prop({type: Translation})
@@ -22,6 +22,10 @@ export class Service extends BasicModel {
 
   @Prop({type: Translation})
   title: Translation;
+
+  @Prop({type: String})
+  @Field(() => String, {nullable: false})
+  route: string;
 }
 
 /* endregion */

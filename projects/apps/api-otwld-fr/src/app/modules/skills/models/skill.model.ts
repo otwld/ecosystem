@@ -4,31 +4,20 @@ import {Document} from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-option';
 import {BasicModel} from '../../../shared/objects/model/basic.model';
-import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
-
+import {Translation} from '../../../shared/modules/language/models/translation.model';
 
 @ObjectType()
 @Schema({
   ...commonSchemaOption,
 })
-export class Member extends BasicModel {
-  @Prop({type: String})
-  @Field(() => String, {nullable: false})
-  firstName: string;
-
-  @Prop({type: String})
-  @Field(() => String, {nullable: false})
-  lastName: string;
-
-  @Prop({type: [MemberSkillSchema]})
-  @Field(() => [MemberSkill], {nullable: false})
-  skills: MemberSkill[];
+export class Skill extends BasicModel {
+  @Prop({type: Translation})
+  name: Translation;
 }
 
 /* endregion */
 
 /* region ==================== Derivatives ==================== */
-export type MemberDocument = Member & Document;
-export const MemberSchema = SchemaFactory.createForClass(Member);
-
+export type SkillDocument = Skill & Document;
+export const SkillSchema = SchemaFactory.createForClass(Skill);
 /* endregion */

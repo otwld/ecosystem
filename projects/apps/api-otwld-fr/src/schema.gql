@@ -23,12 +23,20 @@ type Member {
   _id: String!
   createdAt: DateTime!
   firstName: String!
+  lastName: String!
+  skills: [MemberSkill!]!
   updatedAt: String!
 }
 
 input MemberOrderBy {
   direction: eDirection
   field: eListMembersInputSortFields
+}
+
+type MemberSkill {
+  level: Float!
+  skill: Skill!
+  startDate: DateTime!
 }
 
 type PageInfo {
@@ -64,7 +72,8 @@ type Service {
   _id: String!
   content: String!
   createdAt: DateTime!
-  icon: String
+  icon: String!
+  route: String!
   title: String!
   updatedAt: String!
 }
@@ -72,6 +81,13 @@ type Service {
 input ServiceOrderBy {
   direction: eDirection
   field: eListServicesInputSortFields
+}
+
+type Skill {
+  _id: String!
+  createdAt: DateTime!
+  name: String!
+  updatedAt: String!
 }
 
 enum eDirection {

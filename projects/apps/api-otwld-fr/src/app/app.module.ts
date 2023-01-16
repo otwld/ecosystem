@@ -15,6 +15,9 @@ import {PaginationModule} from './shared/modules/pagination/pagination.module';
 import {ServiceModule} from './modules/services/service.module';
 import {LanguageModule} from './shared/modules/language/language.module';
 import log from '../config/log.config';
+import {SkillService} from './modules/skills/services/skill.service';
+import {createSkillsLoader} from './shared/loaders/skills.loader';
+import {SkillModule} from './modules/skills/skill.module';
 
 @Module({
   imports: [
@@ -36,12 +39,14 @@ import log from '../config/log.config';
       imports: [
         ConfigModule,
         MemberModule,
-        ServiceModule
+        ServiceModule,
+        SkillModule
       ],
+      // WARN: Each argument comes in order with provider's order
       useFactory: (
         conf: ConfigService,
-        memberService: MemberService,
-        logger: AppLogger,
+        skillService: SkillService,
+        logger: AppLogger
       ) => ({
         debug: conf.get('log.graphqlDebug'),
         playground: conf.get('graphqlPlayground'),
@@ -59,8 +64,9 @@ import log from '../config/log.config';
           },
         },*/
         context: () => {
-          //logger.setContext('GraphQL-Context');
+          logger.setContext('GraphQL-Context');
           return {
+            skillLoader: createSkillsLoader(logger, skillService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -73,6 +79,8 @@ import log from '../config/log.config';
       }),
       inject: [
         ConfigService,
+        SkillService,
+        AppLogger,
         MemberService
       ],
     }),
@@ -84,6 +92,7 @@ import log from '../config/log.config';
     MemberModule,
     PaginationModule,
     ServiceModule,
+    SkillModule,
     LanguageModule
   ],
   controllers: [],
