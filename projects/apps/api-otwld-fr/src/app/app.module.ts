@@ -18,6 +18,9 @@ import log from '../config/log.config';
 import {SkillService} from './modules/skills/services/skill.service';
 import {createSkillsLoader} from './shared/loaders/skills.loader';
 import {SkillModule} from './modules/skills/skill.module';
+import {WorkModeModule} from './modules/workModes/workMode.module';
+import {createWorkModesLoader} from './shared/loaders/workModes.loader';
+import {WorkModeService} from './modules/workModes/services/workMode.service';
 
 @Module({
   imports: [
@@ -40,13 +43,15 @@ import {SkillModule} from './modules/skills/skill.module';
         ConfigModule,
         MemberModule,
         ServiceModule,
-        SkillModule
+        SkillModule,
+        WorkModeModule
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
         conf: ConfigService,
         skillService: SkillService,
-        logger: AppLogger
+        workModeService: WorkModeService,
+        logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
         playground: conf.get('graphqlPlayground'),
@@ -67,6 +72,7 @@ import {SkillModule} from './modules/skills/skill.module';
           logger.setContext('GraphQL-Context');
           return {
             skillLoader: createSkillsLoader(logger, skillService),
+            workModeLoader: createWorkModesLoader(logger, workModeService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -80,6 +86,7 @@ import {SkillModule} from './modules/skills/skill.module';
       inject: [
         ConfigService,
         SkillService,
+        WorkModeService,
         AppLogger,
         MemberService
       ],
@@ -93,6 +100,7 @@ import {SkillModule} from './modules/skills/skill.module';
     PaginationModule,
     ServiceModule,
     SkillModule,
+    WorkModeModule,
     LanguageModule
   ],
   controllers: [],

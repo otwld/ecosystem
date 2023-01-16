@@ -5,6 +5,7 @@ import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-option';
 import {BasicModel} from '../../../shared/objects/model/basic.model';
 import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
+import {MemberWorkMode, MemberWorkModeSchema} from './memberWorkMode.model';
 
 
 @ObjectType()
@@ -23,6 +24,10 @@ export class Member extends BasicModel {
   @Prop({type: [MemberSkillSchema]})
   @Field(() => [MemberSkill], {nullable: false})
   skills: MemberSkill[];
+
+  @Prop({type: [MemberWorkModeSchema]})
+  @Field(() => [MemberWorkMode], {nullable: false})
+  workModes: MemberWorkMode[];
 }
 
 /* endregion */

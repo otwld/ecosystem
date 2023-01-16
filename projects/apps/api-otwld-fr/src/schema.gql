@@ -26,6 +26,7 @@ type Member {
   lastName: String!
   skills: [MemberSkill!]!
   updatedAt: String!
+  workModes: [MemberWorkMode!]!
 }
 
 input MemberOrderBy {
@@ -37,6 +38,11 @@ type MemberSkill {
   level: Float!
   skill: Skill!
   startDate: DateTime!
+}
+
+type MemberWorkMode {
+  description: String!
+  workMode: WorkMode!
 }
 
 type PageInfo {
@@ -86,6 +92,14 @@ input ServiceOrderBy {
 type Skill {
   _id: String!
   createdAt: DateTime!
+  name: String!
+  updatedAt: String!
+}
+
+type WorkMode {
+  _id: String!
+  createdAt: DateTime!
+  description: String!
   name: String!
   updatedAt: String!
 }

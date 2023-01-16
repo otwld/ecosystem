@@ -5,6 +5,8 @@ import {MemberService} from './services/member.service';
 import {MemberResolver} from './resolvers/member.resolver';
 import {MemberSkillResolver} from './resolvers/memberSkill.resolver';
 import {MemberSkill, MemberSkillSchema} from './models/memberSkill.model';
+import {MemberWorkMode, MemberWorkModeSchema} from './models/memberWorkMode.model';
+import {MemberWorkModeResolver} from './resolvers/memberWorkMode.resolver';
 
 @Module({
   imports: [MongooseModule.forFeature([
@@ -12,8 +14,11 @@ import {MemberSkill, MemberSkillSchema} from './models/memberSkill.model';
     {
       name: MemberSkill.name,
       schema: MemberSkillSchema
+    }, {
+      name: MemberWorkMode.name,
+      schema: MemberWorkModeSchema
     }])],
-  providers: [MemberService, MemberResolver, MemberSkillResolver],
+  providers: [MemberService, MemberResolver, MemberSkillResolver, MemberWorkModeResolver],
   exports: [MemberService],
 })
 export class MemberModule {
