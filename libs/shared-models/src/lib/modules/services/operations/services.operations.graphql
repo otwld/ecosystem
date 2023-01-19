@@ -3,7 +3,7 @@ query getServicesPaginatedForHome($pagination: PaginationOption!) {
     edges {
       node {
         title
-        icon,
+        icon
         route
       }
     }

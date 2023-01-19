@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ThemeService} from './services/theme/theme.service';
 import {DrawerService} from './services/drawer.service';
-import {GetMembersPaginatedGQL} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-root',
