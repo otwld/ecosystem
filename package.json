@@ -51,6 +51,7 @@
     "apollo-angular": "4.2.0",
     "apollo-server-express": "3.11.1",
     "class-validator": "0.13.2",
+    "dataloader": "^2.1.0",
     "date-fns": "2.29.3",
     "es6-crawler-detect": "3.3.0",
     "graphql": "16.6.0",

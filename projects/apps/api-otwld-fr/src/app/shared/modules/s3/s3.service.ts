@@ -1,4 +1,4 @@
-import { PutObjectCommandInput, PutObjectOutput, S3 } from '@aws-sdk/client-s3';
+import { PutObjectCommandInput, S3 } from '@aws-sdk/client-s3';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ReadStream } from 'fs';
@@ -28,13 +28,13 @@ export class S3Service {
     this.logger.setContext(this.constructor.name);
   }
 
-  private async putBlob(blobName: string, blob: Buffer, mymeType: string): Promise<any> {
+  private async putBlob(blobName: string, blob: Buffer, mymeType: string): Promise<boolean> {
     this.logger.verbose('putBlob');
     const params: PutObjectCommandInput = {
       Bucket: this.configService.get('s3.bucket'),
       Key: 'raw/' + blobName,
       Body: blob,
-      ContentType: 'image/webp',
+      ContentType: mymeType,
       ContentDisposition: 'inline',
       ACL: 'public-read',
     };
@@ -57,6 +57,7 @@ export class S3Service {
       CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
       ACL: 'public-read',
     });
+    return true;
   }
 
   putStream(
@@ -65,9 +66,9 @@ export class S3Service {
     stream: ReadStream,
     mimeType: string,
     options?: UploadOptions,
-  ): Promise<PutObjectOutput> {
+  ): Promise<boolean> {
     this.logger.verbose('putStream');
-    return new Promise<PutObjectOutput>((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       if (options.mimeTypes && !this.isMimeTypeValid(mimeType, options)) {
         throw new BadRequestException('Mime type not supported');
       }

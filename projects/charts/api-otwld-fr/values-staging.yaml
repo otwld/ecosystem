@@ -29,6 +29,17 @@ env:
       secretKeyRef:
         name: ecosystem-secret
         key: mongodb-passwords
+  S3_PULIC_KEY:
+    valueFrom:
+      secretKeyRef:
+        name: ecosystem-secret
+        key: s3-public-key
+  S3_PRIVATE_KEY:
+    valueFrom:
+      secretKeyRef:
+        name: ecosystem-secret
+        key: s3-private-key
+
   LOG_API_DEBUG: false
   LOG_GRAPHQL_DEBUG: false
 

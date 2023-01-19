@@ -2,7 +2,6 @@ import {Injectable} from '@nestjs/common';
 import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
 import {Member, MemberDocument} from '../models/member.model';
-import {PaginationOption} from '../../../shared/modules/pagination/models/input/pagination.input';
 import {PaginationService} from '../../../shared/modules/pagination/pagination.service';
 import {ListMemberInput} from '../models/dtos/list-member-input.dto';
 

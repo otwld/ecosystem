@@ -12,17 +12,22 @@ import {MemberService} from './modules/members/services/member.service';
 import {AppLogger} from './shared/modules/logging/logging.service';
 import {LoggingModule} from './shared/modules/logging/logging.module';
 import {PaginationModule} from './shared/modules/pagination/pagination.module';
-import {ResourcesModule} from './modules/resources/resources.module';
 import {ServiceModule} from './modules/services/service.module';
-import {TranslocoModule} from '@ngneat/transloco';
 import {LanguageModule} from './shared/modules/language/language.module';
+import log from '../config/log.config';
+import {SkillService} from './modules/skills/services/skill.service';
+import {createSkillsLoader} from './shared/loaders/skills.loader';
+import {SkillModule} from './modules/skills/skill.module';
+import {WorkModeModule} from './modules/workModes/workMode.module';
+import {createWorkModesLoader} from './shared/loaders/workModes.loader';
+import {WorkModeService} from './modules/workModes/services/workMode.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
-      load: [main, mongodb, s3],
+      load: [main, mongodb, s3, log],
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -37,10 +42,15 @@ import {LanguageModule} from './shared/modules/language/language.module';
       imports: [
         ConfigModule,
         MemberModule,
+        ServiceModule,
+        SkillModule,
+        WorkModeModule
       ],
+      // WARN: Each argument comes in order with provider's order
       useFactory: (
         conf: ConfigService,
-        memberService: MemberService,
+        skillService: SkillService,
+        workModeService: WorkModeService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -59,8 +69,10 @@ import {LanguageModule} from './shared/modules/language/language.module';
           },
         },*/
         context: () => {
-          //logger.setContext('GraphQL-Context');
+          logger.setContext('GraphQL-Context');
           return {
+            skillLoader: createSkillsLoader(logger, skillService),
+            workModeLoader: createWorkModesLoader(logger, workModeService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -73,6 +85,9 @@ import {LanguageModule} from './shared/modules/language/language.module';
       }),
       inject: [
         ConfigService,
+        SkillService,
+        WorkModeService,
+        AppLogger,
         MemberService
       ],
     }),
@@ -84,6 +99,8 @@ import {LanguageModule} from './shared/modules/language/language.module';
     MemberModule,
     PaginationModule,
     ServiceModule,
+    SkillModule,
+    WorkModeModule,
     LanguageModule
   ],
   controllers: [],

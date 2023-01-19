@@ -1,0 +1,17 @@
+query getServicesPaginatedForHome($pagination: PaginationOption!) {
+  getServicesPaginated(pagination: $pagination) {
+    edges {
+      node {
+        title
+        icon
+        route
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPrevPage
+      startCursor
+      endCursor
+    }
+  }
+}
