@@ -19,6 +19,7 @@
         "assets": [
           "projects/apps/api-otwld-fr/src/assets"
         ],
+        "webpackConfig": "projects/apps/api-otwld-fr/webpack.config.js",
         "generatePackageJson": true
       },
       "configurations": {
