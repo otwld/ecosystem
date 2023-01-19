@@ -107,6 +107,10 @@ env:
   LOG_API_DEBUG: true
   LOG_GRAPHQL_DEBUG: true
   LOG_LEVEL: info
+  S3_PROTOCOL: "https://"
+  S3_HOST: "s3.sbg.io.cloud.ovh.net"
+  S3_BUCKET: "development"
+  S3_REGION: "sbg"
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
