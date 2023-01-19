@@ -25,6 +25,7 @@ type Member {
   firstName: String!
   lastName: String!
   skills: [MemberSkill!]!
+  socials: [MemberSocial!]!
   updatedAt: String!
   workModes: [MemberWorkMode!]!
 }
@@ -38,6 +39,12 @@ type MemberSkill {
   level: Float!
   skill: Skill!
   startDate: DateTime!
+}
+
+type MemberSocial {
+  icon: String!
+  link: String!
+  serviceName: String!
 }
 
 type MemberWorkMode {

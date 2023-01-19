@@ -6,6 +6,7 @@ import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-o
 import {BasicModel} from '../../../shared/objects/model/basic.model';
 import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
 import {MemberWorkMode, MemberWorkModeSchema} from './memberWorkMode.model';
+import {MemberSocial, MemberSocialSchema} from './memberSocials.model';
 
 
 @ObjectType()
@@ -28,6 +29,10 @@ export class Member extends BasicModel {
   @Prop({type: [MemberWorkModeSchema]})
   @Field(() => [MemberWorkMode], {nullable: false})
   workModes: MemberWorkMode[];
+
+  @Prop({type: [MemberSocialSchema]})
+  @Field(() => [MemberSocial], {nullable: false})
+  socials: MemberSocial[];
 }
 
 /* endregion */
