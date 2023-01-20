@@ -55,6 +55,7 @@
     "date-fns": "2.29.3",
     "es6-crawler-detect": "3.3.0",
     "graphql": "16.6.0",
+    "mongoose": "^6.8.4",
     "ng-mocks": "14.5.2",
     "ngx-date-fns": "10.0.1",
     "reflect-metadata": "0.1.13",
