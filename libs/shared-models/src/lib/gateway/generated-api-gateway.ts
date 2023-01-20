@@ -3,15 +3,9 @@ import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
   ID: string;
@@ -42,12 +36,28 @@ export interface Member {
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  skills: Array<MemberSkill>;
   updatedAt: Scalars['String'];
+  workModes: Array<MemberWorkMode>;
 }
 
 export interface MemberOrderBy {
   direction?: InputMaybe<EDirection>;
   field?: InputMaybe<EListMembersInputSortFields>;
+}
+
+export interface MemberSkill {
+  __typename?: 'MemberSkill';
+  level: Scalars['Float'];
+  skill: Skill;
+  startDate: Scalars['DateTime'];
+}
+
+export interface MemberWorkMode {
+  __typename?: 'MemberWorkMode';
+  description: Scalars['String'];
+  workMode: WorkMode;
 }
 
 export interface PageInfo {
@@ -83,14 +93,17 @@ export interface Query {
   getServicesPaginated: ListServicePage;
 }
 
+
 export interface QueryGetMemberByIdArgs {
   id: Scalars['String'];
 }
+
 
 export interface QueryGetMembersArgs {
   order?: InputMaybe<MemberOrderBy>;
   pagination: PaginationOption;
 }
+
 
 export interface QueryGetServicesPaginatedArgs {
   order?: InputMaybe<ServiceOrderBy>;
@@ -113,138 +126,108 @@ export interface ServiceOrderBy {
   field?: InputMaybe<EListServicesInputSortFields>;
 }
 
+export interface Skill {
+  __typename?: 'Skill';
+  _id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  name: Scalars['String'];
+  updatedAt: Scalars['String'];
+}
+
+export interface WorkMode {
+  __typename?: 'WorkMode';
+  _id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['String'];
+}
+
 export enum EDirection {
   Asc = 'ASC',
-  Desc = 'DESC',
+  Desc = 'DESC'
 }
 
 export enum EListMembersInputSortFields {
-  FirstName = 'firstName',
+  FirstName = 'firstName'
 }
 
 export enum EListServicesInputSortFields {
-  FirstName = 'firstName',
+  FirstName = 'firstName'
 }
 
 export type GetMembersPaginatedQueryVariables = Exact<{
   pagination: PaginationOption;
 }>;
 
-export type GetMembersPaginatedQuery = {
-  __typename?: 'Query';
-  getMembers: {
-    __typename?: 'ListMemberPage';
-    edges: Array<{
-      __typename?: 'PaginatedMemberPageEdge';
-      node?: {
-        __typename?: 'Member';
-        _id: string;
-        createdAt: any;
-        updatedAt: string;
-        firstName: string;
-      } | null;
-    } | null>;
-    pageInfo?: {
-      __typename?: 'PageInfo';
-      hasNextPage?: boolean | null;
-      hasPrevPage?: boolean | null;
-      startCursor?: string | null;
-      endCursor?: string | null;
-    } | null;
-  };
-};
+
+export type GetMembersPaginatedQuery = { __typename?: 'Query', getMembers: { __typename?: 'ListMemberPage', edges: Array<{ __typename?: 'PaginatedMemberPageEdge', node?: { __typename?: 'Member', _id: string, createdAt: any, updatedAt: string, firstName: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
 }>;
 
-export type GetServicesPaginatedForHomeQuery = {
-  __typename?: 'Query';
-  getServicesPaginated: {
-    __typename?: 'ListServicePage';
-    edges: Array<{
-      __typename?: 'PaginatedServicePageEdge';
-      node?: {
-        __typename?: 'Service';
-        title: string;
-        icon: string;
-        route: string;
-      } | null;
-    } | null>;
-    pageInfo?: {
-      __typename?: 'PageInfo';
-      hasNextPage?: boolean | null;
-      hasPrevPage?: boolean | null;
-      startCursor?: string | null;
-      endCursor?: string | null;
-    } | null;
-  };
-};
+
+export type GetServicesPaginatedForHomeQuery = { __typename?: 'Query', getServicesPaginated: { __typename?: 'ListServicePage', edges: Array<{ __typename?: 'PaginatedServicePageEdge', node?: { __typename?: 'Service', title: string, icon: string, route: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
 
 export const GetMembersPaginatedDocument = gql`
-  query getMembersPaginated($pagination: PaginationOption!) {
-    getMembers(pagination: $pagination) {
-      edges {
-        node {
-          _id
-          createdAt
-          updatedAt
-          firstName
-        }
-      }
-      pageInfo {
-        hasNextPage
-        hasPrevPage
-        startCursor
-        endCursor
+    query getMembersPaginated($pagination: PaginationOption!) {
+  getMembers(pagination: $pagination) {
+    edges {
+      node {
+        _id
+        createdAt
+        updatedAt
+        firstName
       }
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetMembersPaginatedGQL extends Apollo.Query<
-  GetMembersPaginatedQuery,
-  GetMembersPaginatedQueryVariables
-> {
-  override document = GetMembersPaginatedDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    pageInfo {
+      hasNextPage
+      hasPrevPage
+      startCursor
+      endCursor
+    }
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
+    override document = GetMembersPaginatedDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetServicesPaginatedForHomeDocument = gql`
-  query getServicesPaginatedForHome($pagination: PaginationOption!) {
-    getServicesPaginated(pagination: $pagination) {
-      edges {
-        node {
-          title
-          icon
-          route
-        }
-      }
-      pageInfo {
-        hasNextPage
-        hasPrevPage
-        startCursor
-        endCursor
+    query getServicesPaginatedForHome($pagination: PaginationOption!) {
+  getServicesPaginated(pagination: $pagination) {
+    edges {
+      node {
+        title
+        icon
+        route
       }
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetServicesPaginatedForHomeGQL extends Apollo.Query<
-  GetServicesPaginatedForHomeQuery,
-  GetServicesPaginatedForHomeQueryVariables
-> {
-  override document = GetServicesPaginatedForHomeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    pageInfo {
+      hasNextPage
+      hasPrevPage
+      startCursor
+      endCursor
+    }
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetServicesPaginatedForHomeGQL extends Apollo.Query<GetServicesPaginatedForHomeQuery, GetServicesPaginatedForHomeQueryVariables> {
+    override document = GetServicesPaginatedForHomeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
