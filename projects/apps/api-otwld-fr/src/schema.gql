@@ -24,6 +24,7 @@ type Member {
   createdAt: DateTime!
   firstName: String!
   lastName: String!
+  projects: [Project!]!
   skills: [MemberSkill!]!
   socials: [MemberSocial!]!
   updatedAt: String!
@@ -73,6 +74,19 @@ input PaginationOption {
   after: Int
   before: Int
   cursor: String
+}
+
+type Project {
+  _id: String!
+  createdAt: DateTime!
+  endDate: DateTime!
+  image: Resource!
+  members: [Member!]!
+  services: Service!
+  skills: [Skill!]!
+  startDate: DateTime!
+  testimonials: [Testimonial!]!
+  updatedAt: String!
 }
 
 type Query {

@@ -23,6 +23,8 @@ import {createWorkModesLoader} from './shared/loaders/workModes.loader';
 import {WorkModeService} from './modules/workModes/services/workMode.service';
 import {ProjectModule} from './modules/projects/project.module';
 import {TestimonialModule} from './modules/testimonials/testimonial.module';
+import {createProjectLoader} from './shared/loaders/projects.loader';
+import {ProjectService} from './modules/projects/services/project.service';
 
 @Module({
   imports: [
@@ -46,13 +48,15 @@ import {TestimonialModule} from './modules/testimonials/testimonial.module';
         MemberModule,
         ServiceModule,
         SkillModule,
-        WorkModeModule
+        WorkModeModule,
+        ProjectModule
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
         conf: ConfigService,
         skillService: SkillService,
         workModeService: WorkModeService,
+        projectService: ProjectService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -75,6 +79,7 @@ import {TestimonialModule} from './modules/testimonials/testimonial.module';
           return {
             skillLoader: createSkillsLoader(logger, skillService),
             workModeLoader: createWorkModesLoader(logger, workModeService),
+            projectLoader: createProjectLoader(logger, projectService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -89,6 +94,7 @@ import {TestimonialModule} from './modules/testimonials/testimonial.module';
         ConfigService,
         SkillService,
         WorkModeService,
+        ProjectService,
         AppLogger,
         MemberService
       ],

@@ -45,7 +45,6 @@ export class Project extends BasicModel {
   @Field(() => Date, {nullable: false})
   endDate: Date;
   @Prop({type: TranslationSchema})
-  @Field(() => Translation, {nullable: false})
   title: Translation;
 
   @Prop({type: ResourceSchema})
