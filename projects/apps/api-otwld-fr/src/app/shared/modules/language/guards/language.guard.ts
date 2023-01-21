@@ -14,7 +14,8 @@ export class LanguageGuard {
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const gqlContext = GqlExecutionContext.create(context).getContext();
-    const language = gqlContext.isWebSocket ? gqlContext.language : gqlContext.req.headers.language;
+    console.log(gqlContext.req.headers);
+    const language = gqlContext.isWebSocket ? gqlContext['language'] : gqlContext.req.headers['language'];
     this.logger.verbose('setting language to ' + language);
     if (!language) {
       throw new GraphQLError('Language is required');

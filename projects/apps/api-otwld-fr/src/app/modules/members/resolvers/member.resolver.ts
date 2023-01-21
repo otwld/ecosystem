@@ -22,6 +22,12 @@ export class MemberResolver {
     return this.memberService.getById(id);
   }
 
+  @Query(() => Member)
+  @UseGuards(LanguageGuard)
+  getMemberBySlug(@Args('slug') slug: string): Promise<Member> {
+    return this.memberService.getOneByFilter({slug});
+  }
+
   @Query(() => ListMemberPage)
   async getMembers(@Args() dto: ListMemberInput) {
     return this.memberService.getMembersPaginated(dto);

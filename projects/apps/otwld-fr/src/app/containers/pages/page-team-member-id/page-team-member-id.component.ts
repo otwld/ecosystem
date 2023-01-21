@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroBreadcrumbsComponent } from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
 import { TeamMemberService } from '../../../services/team-member/teams.service';
@@ -34,6 +34,8 @@ import { faBoxes, faClock, faTasks } from '@fortawesome/free-solid-svg-icons';
 import { TranslocoModule } from '@ngneat/transloco';
 import { PortfolioService } from '../../../services/portfolio/portfolio.service';
 import { TeamMember } from '../../../types/team-member.types';
+import {GetMemberBySlugGQL} from '@ecosystem/shared-models';
+import {SocialIconToFa} from '../../../../../../../../libs/shared-models/src/lib/utils/icon.utils';
 
 @Component({
   selector: 'otwld-page-team-member-id',
@@ -80,6 +82,10 @@ export class PageTeamMemberIdComponent {
     map((member) => member as TeamMember),
     shareReplay({ bufferSize: 1, refCount: true })
   );
+  newMember$ = inject(ActivatedRoute).params.pipe(
+    switchMap((params) =>
+      this.getMemberBySlug.fetch({slug: params['id']})
+  ), map((member) => member.data.getMemberBySlug));
 
   portfolio$ = this.currentMember$.pipe(
     switchMap((member) =>
@@ -89,6 +95,8 @@ export class PageTeamMemberIdComponent {
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;
+
+  getMemberBySlug = inject(GetMemberBySlugGQL);
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -118,4 +126,6 @@ export class PageTeamMemberIdComponent {
       } as ModalConfig<ModalTestComponent>,
     });
   }
+
+  stringToIcon = SocialIconToFa;
 }

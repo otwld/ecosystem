@@ -26,6 +26,7 @@ type Member {
   lastName: String!
   projects: [Project!]!
   skills: [MemberSkill!]!
+  slug: String!
   socials: [MemberSocial!]!
   updatedAt: String!
   workModes: [MemberWorkMode!]!
@@ -40,6 +41,7 @@ type MemberSkill {
   level: Float!
   skill: Skill!
   startDate: DateTime!
+  yearOfExperience: String!
 }
 
 type MemberSocial {
@@ -91,6 +93,7 @@ type Project {
 
 type Query {
   getMemberById(id: String!): Member!
+  getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
 }

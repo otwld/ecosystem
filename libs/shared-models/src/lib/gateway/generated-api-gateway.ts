@@ -37,7 +37,10 @@ export interface Member {
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  projects: Array<Project>;
   skills: Array<MemberSkill>;
+  slug: Scalars['String'];
+  socials: Array<MemberSocial>;
   updatedAt: Scalars['String'];
   workModes: Array<MemberWorkMode>;
 }
@@ -52,6 +55,14 @@ export interface MemberSkill {
   level: Scalars['Float'];
   skill: Skill;
   startDate: Scalars['DateTime'];
+  yearOfExperience: Scalars['Float'];
+}
+
+export interface MemberSocial {
+  __typename?: 'MemberSocial';
+  icon: Scalars['String'];
+  link: Scalars['String'];
+  serviceName: Scalars['String'];
 }
 
 export interface MemberWorkMode {
@@ -86,9 +97,24 @@ export interface PaginationOption {
   cursor?: InputMaybe<Scalars['String']>;
 }
 
+export interface Project {
+  __typename?: 'Project';
+  _id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  endDate: Scalars['DateTime'];
+  image: Resource;
+  members: Array<Member>;
+  services: Service;
+  skills: Array<Skill>;
+  startDate: Scalars['DateTime'];
+  testimonials: Array<Testimonial>;
+  updatedAt: Scalars['String'];
+}
+
 export interface Query {
   __typename?: 'Query';
   getMemberById: Member;
+  getMemberBySlug: Member;
   getMembers: ListMemberPage;
   getServicesPaginated: ListServicePage;
 }
@@ -96,6 +122,11 @@ export interface Query {
 
 export interface QueryGetMemberByIdArgs {
   id: Scalars['String'];
+}
+
+
+export interface QueryGetMemberBySlugArgs {
+  slug: Scalars['String'];
 }
 
 
@@ -108,6 +139,11 @@ export interface QueryGetMembersArgs {
 export interface QueryGetServicesPaginatedArgs {
   order?: InputMaybe<ServiceOrderBy>;
   pagination: PaginationOption;
+}
+
+export interface Resource {
+  __typename?: 'Resource';
+  name: Scalars['String'];
 }
 
 export interface Service {
@@ -132,6 +168,21 @@ export interface Skill {
   createdAt: Scalars['DateTime'];
   name: Scalars['String'];
   updatedAt: Scalars['String'];
+}
+
+export interface Testimonial {
+  __typename?: 'Testimonial';
+  _id: Scalars['String'];
+  author: TestimonialAuthor;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['String'];
+}
+
+export interface TestimonialAuthor {
+  __typename?: 'TestimonialAuthor';
+  firstName: Scalars['String'];
+  image: Resource;
+  lastName: Scalars['String'];
 }
 
 export interface WorkMode {
@@ -162,6 +213,13 @@ export type GetMembersPaginatedQueryVariables = Exact<{
 
 
 export type GetMembersPaginatedQuery = { __typename?: 'Query', getMembers: { __typename?: 'ListMemberPage', edges: Array<{ __typename?: 'PaginatedMemberPageEdge', node?: { __typename?: 'Member', _id: string, createdAt: any, updatedAt: string, firstName: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
+
+export type GetMemberBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: number, skill: { __typename?: 'Skill', name: string } }>, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
@@ -196,6 +254,43 @@ export const GetMembersPaginatedDocument = gql`
   })
   export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
     override document = GetMembersPaginatedDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetMemberBySlugDocument = gql`
+    query getMemberBySlug($slug: String!) {
+  getMemberBySlug(slug: $slug) {
+    _id
+    firstName
+    lastName
+    socials {
+      icon
+      link
+      serviceName
+    }
+    skills {
+      level
+      yearOfExperience
+      skill {
+        name
+      }
+    }
+    workModes {
+      workMode {
+        name
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMemberBySlugGQL extends Apollo.Query<GetMemberBySlugQuery, GetMemberBySlugQueryVariables> {
+    override document = GetMemberBySlugDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

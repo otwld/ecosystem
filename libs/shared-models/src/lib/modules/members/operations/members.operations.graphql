@@ -16,3 +16,28 @@ query getMembersPaginated($pagination: PaginationOption!) {
     }
   }
 }
+
+query getMemberBySlug($slug: String!) {
+  getMemberBySlug(slug: $slug) {
+    _id
+    firstName,
+    lastName,
+    socials {
+      icon,
+      link,
+      serviceName
+    },
+    skills {
+      level,
+      yearOfExperience
+      skill {
+        name
+      }
+    },
+    workModes {
+      workMode {
+        name
+      }
+    }
+  }
+}

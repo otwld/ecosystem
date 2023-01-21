@@ -6,10 +6,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { HttpLink } from 'apollo-angular/http';
 import { ModelsEnvironment } from './models/models.environment';
 import { InMemoryCache } from '@apollo/client/core';
+import {HttpLanguageInterceptor} from './interceptors/http-language.interceptor';
 
 @NgModule({
   imports: [
@@ -42,6 +43,11 @@ export class SharedModelsModule {
           },
           deps: [HttpLink],
         },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: HttpLanguageInterceptor,
+          multi: true
+        }
       ],
     };
   }

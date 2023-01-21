@@ -21,6 +21,10 @@ export class Member extends BasicModel {
 
   @Prop({type: String})
   @Field(() => String, {nullable: false})
+  slug: string;
+
+  @Prop({type: String})
+  @Field(() => String, {nullable: false})
   lastName: string;
 
   @Prop({type: [MemberSkillSchema]})
