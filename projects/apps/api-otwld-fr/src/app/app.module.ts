@@ -21,6 +21,8 @@ import {SkillModule} from './modules/skills/skill.module';
 import {WorkModeModule} from './modules/workModes/workMode.module';
 import {createWorkModesLoader} from './shared/loaders/workModes.loader';
 import {WorkModeService} from './modules/workModes/services/workMode.service';
+import {ProjectModule} from './modules/projects/project.module';
+import {TestimonialModule} from './modules/testimonials/testimonial.module';
 
 @Module({
   imports: [
@@ -101,7 +103,9 @@ import {WorkModeService} from './modules/workModes/services/workMode.service';
     ServiceModule,
     SkillModule,
     WorkModeModule,
-    LanguageModule
+    LanguageModule,
+    ProjectModule,
+    TestimonialModule
   ],
   controllers: [],
   providers: [],

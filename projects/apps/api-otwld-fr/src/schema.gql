@@ -81,6 +81,10 @@ type Query {
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
 }
 
+type Resource {
+  name: String!
+}
+
 type Service {
   _id: String!
   content: String!
@@ -101,6 +105,19 @@ type Skill {
   createdAt: DateTime!
   name: String!
   updatedAt: String!
+}
+
+type Testimonial {
+  _id: String!
+  author: TestimonialAuthor!
+  createdAt: DateTime!
+  updatedAt: String!
+}
+
+type TestimonialAuthor {
+  firstName: String!
+  image: Resource!
+  lastName: String!
 }
 
 type WorkMode {
