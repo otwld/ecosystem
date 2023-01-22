@@ -12,6 +12,10 @@ input EventsOrderBy {
   field: eListProjectsInputSortFields
 }
 
+input GetResourceUrlInputDto {
+  size: ResourceSizes!
+}
+
 type ListMemberPage {
   edges: [PaginatedMemberPageEdge]!
   pageInfo: PageInfo
@@ -122,6 +126,14 @@ type Query {
 
 type Resource {
   name: String!
+  originalName: String!
+  url(options: GetResourceUrlInputDto!): String!
+}
+
+enum ResourceSizes {
+  MEDIUM
+  ORIGINAL
+  SMALL
 }
 
 type Service {

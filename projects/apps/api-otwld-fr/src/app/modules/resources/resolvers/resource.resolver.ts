@@ -12,6 +12,11 @@ export class ResourceResolver {
   @ResolveField('url', () => String)
   resolvePictureUrl(@Parent() picture: Resource, @Args('options') args: GetResourceUrlInputDto) {
     this.logger.verbose('resolvePictureUrl');
-    return picture ? this.s3Service.resolveFileUrl(picture, args.size) : '';
+    if (picture && picture.storageEngine === 's3') {
+      return this.s3Service.resolveFileUrl(picture, args.size)
+    } else if (picture && picture.storageEngine === 'external') {
+      return picture.path;
+    }
+    return '';
   }
 }

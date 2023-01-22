@@ -1,12 +1,18 @@
-import { PutObjectCommandInput, S3 } from '@aws-sdk/client-s3';
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { ReadStream } from 'fs';
-import { GraphQLError } from 'graphql';
+import {PutObjectCommandInput, S3} from '@aws-sdk/client-s3';
+import {BadRequestException, Injectable} from '@nestjs/common';
+import {ConfigService} from '@nestjs/config';
+import {ReadStream} from 'fs';
+import {GraphQLError} from 'graphql';
 import * as Sharp from 'sharp';
-import { Resource } from '../../../modules/resources/models/resource.model';
-import { ResourceSizes } from '../../../modules/resources/models/size.model';
-import { AppLogger } from '../logging/logging.service';
+import {Resource} from '../../../modules/resources/models/resource.model';
+import {ResourceSizes} from '../../../modules/resources/models/size.model';
+import {AppLogger} from '../logging/logging.service';
+import {S3RequestPresigner} from '@aws-sdk/s3-request-presigner';
+import { Hash } from "@aws-sdk/hash-node";
+import {HttpRequest} from '@aws-sdk/protocol-http';
+import {parseUrl} from '@aws-sdk/url-parser';
+import {formatUrl} from '@aws-sdk/util-format-url';
+
 
 interface UploadOptions {
   mimeTypes?: string[];
@@ -25,39 +31,8 @@ export class S3Service {
       },
       region: this.configService.get('s3.region'),
     });
-    this.logger.setContext(this.constructor.name);
-  }
 
-  private async putBlob(blobName: string, blob: Buffer, mymeType: string): Promise<boolean> {
-    this.logger.verbose('putBlob');
-    const params: PutObjectCommandInput = {
-      Bucket: this.configService.get('s3.bucket'),
-      Key: 'raw/' + blobName,
-      Body: blob,
-      ContentType: mymeType,
-      ContentDisposition: 'inline',
-      ACL: 'public-read',
-    };
-    await this.client.putObject(params);
-    await this.client.copyObject({
-      Bucket: this.configService.get('s3.bucket'),
-      Key: 'pictures/' + blobName,
-      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
-      ACL: 'public-read',
-    });
-    await this.client.copyObject({
-      Bucket: this.configService.get('s3.bucket'),
-      Key: 'pictures/' + this.getNameFromSize(blobName, ResourceSizes.ORIGINAL),
-      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
-      ACL: 'public-read',
-    });
-    await this.client.copyObject({
-      Bucket: this.configService.get('s3.bucket'),
-      Key: 'pictures/' + this.getNameFromSize(blobName, ResourceSizes.MEDIUM),
-      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
-      ACL: 'public-read',
-    });
-    return true;
+    this.logger.setContext(this.constructor.name);
   }
 
   putStream(
@@ -116,13 +91,54 @@ export class S3Service {
     });
   }
 
-  resolveFileUrl(file: Pick<Resource, 'bucket' | 'name' | 'path'>, size: ResourceSizes): string {
+  async resolveFileUrl(file: Pick<Resource, 'bucket' | 'name' | 'path'>, size: ResourceSizes): Promise<string> {
     this.logger.verbose('resolveFileUrl');
-    return file
-      ? `${this.configService.get('s3.protocol')}${this.configService.get('s3.bucket')}.${this.configService.get(
-          's3.host',
-        )}/${file.path}/${this.getNameFromSize(file.name, size)}`
-      : '';
+    const s3ObjectUrl = parseUrl(`${this.configService.get('s3.protocol')}${this.configService.get('s3.bucket')}.${this.configService.get(
+      's3.host',
+    )}/${file.path}/${this.getNameFromSize(file.name, size)}`);
+    const presigner = new S3RequestPresigner({
+      credentials: {
+        accessKeyId: this.configService.get('s3.publicKey'),
+        secretAccessKey: this.configService.get('s3.privateKey'),
+      },
+      region: this.configService.get('s3.region'),
+      sha256: Hash.bind(null, 'sha256'), // In Node.js
+    });
+// Create a GET request from S3 url.
+    const url = await presigner.presign(new HttpRequest(s3ObjectUrl));
+    return formatUrl(url);
+  }
+
+  private async putBlob(blobName: string, blob: Buffer, mymeType: string): Promise<boolean> {
+    this.logger.verbose('putBlob');
+    const params: PutObjectCommandInput = {
+      Bucket: this.configService.get('s3.bucket'),
+      Key: 'raw/' + blobName,
+      Body: blob,
+      ContentType: mymeType,
+      ContentDisposition: 'inline',
+      ACL: 'public-read',
+    };
+    await this.client.putObject(params);
+    await this.client.copyObject({
+      Bucket: this.configService.get('s3.bucket'),
+      Key: 'pictures/' + blobName,
+      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
+      ACL: 'public-read',
+    });
+    await this.client.copyObject({
+      Bucket: this.configService.get('s3.bucket'),
+      Key: 'pictures/' + this.getNameFromSize(blobName, ResourceSizes.ORIGINAL),
+      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
+      ACL: 'public-read',
+    });
+    await this.client.copyObject({
+      Bucket: this.configService.get('s3.bucket'),
+      Key: 'pictures/' + this.getNameFromSize(blobName, ResourceSizes.MEDIUM),
+      CopySource: `${this.configService.get('s3.bucket')}/raw/${blobName}`,
+      ACL: 'public-read',
+    });
+    return true;
   }
 
   private getNameFromSize(fileName: string, size: ResourceSizes) {

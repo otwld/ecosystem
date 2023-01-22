@@ -43,6 +43,9 @@ query getMemberBySlug($slug: String!) {
           services {
             title,
             slug
+          },
+          image {
+            url(options: {size: ORIGINAL})
           }
         }
       }
@@ -51,6 +54,6 @@ query getMemberBySlug($slug: String!) {
       workMode {
         name
       }
-    }
+    },
   }
 }

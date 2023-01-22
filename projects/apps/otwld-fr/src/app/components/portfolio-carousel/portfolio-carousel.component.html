@@ -41,7 +41,7 @@
   <ng-container *ngIf="withApi">
     <a
       (click)="trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)"
-      [routerLink]="['services',  item.slug]"
+      [routerLink]="['/', 'portfolio',  item.slug]"
       class="carousel-item w-[80vw] sm:w-[47%] lg:w-[32%]"
       *ngFor="let item of newItems; let index = index"
     >
@@ -54,9 +54,9 @@
         image="image-full"
         uiIsInViewport
       >
-        <!-- src="{{ item.image }}"-->
         <ui-card-image
           class="transition-transform ease-in-out group-hover:scale-105"
+          src="{{ item.image.url }}"
         ></ui-card-image>
         <ui-card-body class="justify-end">
           <h5 class="text-lg font-extrabold" uiCardTitle>
@@ -68,7 +68,7 @@
             (click)="
             trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)
           "
-            [routerLink]="['services',  item.slug]"
+            [routerLink]="['/', 'portfolio',  item.slug]"
           >
             <span class="font-semibold">{{ t('portfolio.item-cta') }}</span>
             <fa-icon [icon]="faArrowRight"></fa-icon>

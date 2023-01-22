@@ -38,7 +38,7 @@ export class PortfolioCarouselComponent {
   @Input() items: PortfolioItem[] = [];
 
   @Input() withApi = false;
-  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug'>[] = [];
+  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] = [];
   faArrowRight = faArrowRight;
   trackEvent = injectTrackEvent();
 }

@@ -3,7 +3,7 @@ import {TranslocoService} from '@ngneat/transloco';
 import {map, Observable, startWith, switchMap} from 'rxjs';
 import {GetMemberBySlugGQL, GetMemberBySlugQuery, Project} from '../../../gateway/generated-api-gateway';
 
-type MemberWithoutNodes = Omit<GetMemberBySlugQuery['getMemberBySlug'], 'projects'> & { projects: Pick<Project, 'services' | 'title' | 'slug'>[] };
+type MemberWithoutNodes = Omit<GetMemberBySlugQuery['getMemberBySlug'], 'projects'> & { projects: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] };
 
 @Injectable({providedIn: 'root'})
 export class MembersService {

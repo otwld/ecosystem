@@ -27,6 +27,7 @@ import {createProjectLoader} from './shared/loaders/projects.loader';
 import {ProjectService} from './modules/projects/services/project.service';
 import {createServicesLoader} from './shared/loaders/services.loader';
 import {ServiceService} from './modules/services/services/service.service';
+import {ResourcesModule} from './modules/resources/resources.module';
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import {ServiceService} from './modules/services/services/service.service';
         ServiceModule,
         SkillModule,
         WorkModeModule,
-        ProjectModule
+        ProjectModule,
+        ResourcesModule
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
@@ -116,7 +118,8 @@ import {ServiceService} from './modules/services/services/service.service';
     WorkModeModule,
     LanguageModule,
     ProjectModule,
-    TestimonialModule
+    TestimonialModule,
+    ResourcesModule
   ],
   controllers: [],
   providers: [],

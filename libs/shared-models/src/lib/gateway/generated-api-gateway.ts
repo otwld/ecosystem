@@ -22,6 +22,10 @@ export interface EventsOrderBy {
   field?: InputMaybe<EListProjectsInputSortFields>;
 }
 
+export interface GetResourceUrlInputDto {
+  size: ResourceSizes;
+}
+
 export interface ListMemberPage {
   __typename?: 'ListMemberPage';
   edges: Array<Maybe<PaginatedMemberPageEdge>>;
@@ -175,6 +179,19 @@ export interface QueryGetServicesPaginatedArgs {
 export interface Resource {
   __typename?: 'Resource';
   name: Scalars['String'];
+  originalName: Scalars['String'];
+  url: Scalars['String'];
+}
+
+
+export interface ResourceUrlArgs {
+  options: GetResourceUrlInputDto;
+}
+
+export enum ResourceSizes {
+  Medium = 'MEDIUM',
+  Original = 'ORIGINAL',
+  Small = 'SMALL'
 }
 
 export interface Service {
@@ -254,7 +271,7 @@ export type GetMemberBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }> } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }> } };
+export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
@@ -321,6 +338,9 @@ export const GetMemberBySlugDocument = gql`
           services {
             title
             slug
+          }
+          image {
+            url(options: {size: ORIGINAL})
           }
         }
       }
