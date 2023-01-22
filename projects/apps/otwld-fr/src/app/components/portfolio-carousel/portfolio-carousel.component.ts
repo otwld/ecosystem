@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
+import {Project} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-portfolio-carousel',
@@ -36,6 +37,8 @@ import { injectTrackEvent } from '@otwld/features';
 export class PortfolioCarouselComponent {
   @Input() items: PortfolioItem[] = [];
 
+  @Input() withApi = false;
+  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] = [];
   faArrowRight = faArrowRight;
   trackEvent = injectTrackEvent();
 }

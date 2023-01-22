@@ -7,8 +7,27 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input EventsOrderBy {
+  direction: eDirection
+  field: eListProjectsInputSortFields
+}
+
+input GetResourceUrlInputDto {
+  size: ResourceSizes!
+}
+
 type ListMemberPage {
   edges: [PaginatedMemberPageEdge]!
+  pageInfo: PageInfo
+  totalCount: Int!
+}
+
+input ListProjectsFilter {
+  memberId: String
+}
+
+type ListProjectsPage {
+  edges: [PaginatedProjectPageEdge]!
   pageInfo: PageInfo
   totalCount: Int!
 }
@@ -24,7 +43,11 @@ type Member {
   createdAt: DateTime!
   firstName: String!
   lastName: String!
+  projects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
   skills: [MemberSkill!]!
+  slug: String!
+  socials: [MemberSocial!]!
+  testimonials: [MemberTestimonial!]!
   updatedAt: String!
   workModes: [MemberWorkMode!]!
 }
@@ -38,6 +61,17 @@ type MemberSkill {
   level: Float!
   skill: Skill!
   startDate: DateTime!
+  yearOfExperience: String!
+}
+
+type MemberSocial {
+  icon: String!
+  link: String!
+  serviceName: String!
+}
+
+type MemberTestimonial {
+  testimonial: Testimonial!
 }
 
 type MemberWorkMode {
@@ -57,6 +91,11 @@ type PaginatedMemberPageEdge {
   node: Member
 }
 
+type PaginatedProjectPageEdge {
+  cursor: String
+  node: Project
+}
+
 type PaginatedServicePageEdge {
   cursor: String
   node: Service
@@ -68,10 +107,38 @@ input PaginationOption {
   cursor: String
 }
 
+type Project {
+  _id: String!
+  createdAt: DateTime!
+  endDate: DateTime!
+  image: Resource!
+  members: [Member!]!
+  services: [Service!]!
+  skills: [Skill!]!
+  slug: String!
+  startDate: DateTime!
+  testimonials: [Testimonial!]!
+  title: String!
+  updatedAt: String!
+}
+
 type Query {
   getMemberById(id: String!): Member!
+  getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
+}
+
+type Resource {
+  name: String!
+  originalName: String!
+  url(options: GetResourceUrlInputDto!): String!
+}
+
+enum ResourceSizes {
+  MEDIUM
+  ORIGINAL
+  SMALL
 }
 
 type Service {
@@ -79,7 +146,7 @@ type Service {
   content: String!
   createdAt: DateTime!
   icon: String!
-  route: String!
+  slug: String!
   title: String!
   updatedAt: String!
 }
@@ -94,6 +161,23 @@ type Skill {
   createdAt: DateTime!
   name: String!
   updatedAt: String!
+}
+
+type Testimonial {
+  _id: String!
+  author: TestimonialAuthor!
+  content: String!
+  createdAt: DateTime!
+  members: [Member!]!
+  project: Project!
+  updatedAt: String!
+}
+
+type TestimonialAuthor {
+  firstName: String!
+  image: Resource!
+  job: String!
+  lastName: String!
 }
 
 type WorkMode {
@@ -111,6 +195,10 @@ enum eDirection {
 
 enum eListMembersInputSortFields {
   firstName
+}
+
+enum eListProjectsInputSortFields {
+  createdAt
 }
 
 enum eListServicesInputSortFields {

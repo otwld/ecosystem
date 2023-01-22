@@ -3,7 +3,10 @@ import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Skill} from '../../skills/models/skill.model';
 
 @ObjectType()
-@Schema()
+@Schema({
+  autoIndex: false,
+  autoCreate: false,
+})
 export class MemberSkill {
   @Prop({type: String, ref: Skill.name})
   @Field(() => Skill, {nullable: false})

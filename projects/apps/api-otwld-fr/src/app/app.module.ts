@@ -21,6 +21,15 @@ import {SkillModule} from './modules/skills/skill.module';
 import {WorkModeModule} from './modules/workModes/workMode.module';
 import {createWorkModesLoader} from './shared/loaders/workModes.loader';
 import {WorkModeService} from './modules/workModes/services/workMode.service';
+import {ProjectModule} from './modules/projects/project.module';
+import {TestimonialModule} from './modules/testimonials/testimonial.module';
+import {createProjectLoader} from './shared/loaders/projects.loader';
+import {ProjectService} from './modules/projects/services/project.service';
+import {createServicesLoader} from './shared/loaders/services.loader';
+import {ServiceService} from './modules/services/services/service.service';
+import {ResourcesModule} from './modules/resources/resources.module';
+import {createTestimonialsLoader} from './shared/loaders/testimonials.loader';
+import {TestimonialService} from './modules/testimonials/services/testimonial.service';
 
 @Module({
   imports: [
@@ -44,13 +53,19 @@ import {WorkModeService} from './modules/workModes/services/workMode.service';
         MemberModule,
         ServiceModule,
         SkillModule,
-        WorkModeModule
+        WorkModeModule,
+        ProjectModule,
+        ResourcesModule,
+        TestimonialModule
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
         conf: ConfigService,
         skillService: SkillService,
         workModeService: WorkModeService,
+        projectService: ProjectService,
+        servicesService: ServiceService,
+        testimonialService: TestimonialService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -73,6 +88,9 @@ import {WorkModeService} from './modules/workModes/services/workMode.service';
           return {
             skillLoader: createSkillsLoader(logger, skillService),
             workModeLoader: createWorkModesLoader(logger, workModeService),
+            projectLoader: createProjectLoader(logger, projectService),
+            serviceLoader: createServicesLoader(logger, servicesService),
+            testimonialLoader: createTestimonialsLoader(logger, testimonialService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -87,6 +105,9 @@ import {WorkModeService} from './modules/workModes/services/workMode.service';
         ConfigService,
         SkillService,
         WorkModeService,
+        ProjectService,
+        ServiceService,
+        TestimonialService,
         AppLogger,
         MemberService
       ],
@@ -101,7 +122,10 @@ import {WorkModeService} from './modules/workModes/services/workMode.service';
     ServiceModule,
     SkillModule,
     WorkModeModule,
-    LanguageModule
+    LanguageModule,
+    ProjectModule,
+    TestimonialModule,
+    ResourcesModule
   ],
   controllers: [],
   providers: [],

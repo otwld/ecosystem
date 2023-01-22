@@ -16,3 +16,55 @@ query getMembersPaginated($pagination: PaginationOption!) {
     }
   }
 }
+
+query getMemberBySlug($slug: String!) {
+  getMemberBySlug(slug: $slug) {
+    _id
+    firstName,
+    lastName,
+    socials {
+      icon,
+      link,
+      serviceName
+    },
+    skills {
+      level,
+      yearOfExperience
+      skill {
+        name
+      }
+    },
+    projects(pagination: {after: 3}) {
+      edges {
+        node {
+          _id
+          title,
+          slug,
+          services {
+            title,
+            slug
+          },
+          image {
+            url(options: {size: ORIGINAL})
+          }
+        }
+      }
+    }
+    workModes {
+      workMode {
+        name
+      }
+    },
+    testimonials {
+      testimonial {
+        author {
+          firstName,
+          lastName,
+          job,
+          image {url(options: {size: ORIGINAL})}
+        }
+        content
+      }
+    }
+  }
+}

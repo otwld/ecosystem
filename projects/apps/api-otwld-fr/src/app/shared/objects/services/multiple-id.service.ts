@@ -1,5 +1,5 @@
 import { AppLogger } from '../../modules/logging/logging.service';
-import { Model } from 'mongoose';
+import {FilterQuery, Model} from 'mongoose';
 import { Document } from 'mongoose';
 
 export class GetMultipleIds<T> {
@@ -12,5 +12,9 @@ export class GetMultipleIds<T> {
       .find({ _id: { $in: ids } })
       .lean()
       .exec();
+  }
+
+  getOneByFilter(filter: FilterQuery<T & Document>) {
+    return this.model.findOne(filter).lean().exec();
   }
 }
