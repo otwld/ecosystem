@@ -89,7 +89,6 @@ export class PageTeamMemberIdComponent {
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;
-  getMemberBySlug = inject(GetMemberBySlugGQL);
   membersService = inject(MembersService)
   newMember$ = inject(ActivatedRoute).params.pipe(
     switchMap((params) =>
