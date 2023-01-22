@@ -212,10 +212,10 @@
               {{ t('team.portfolio.subtitle') }}
             </p>
           </div>
-          <div class="">
+          <div class="" *ngIf="newMember.projects">
             <otwld-portfolio-carousel
-              *ngIf="portfolio$ | async as portfolio"
-              [items]="portfolio"
+              [withApi]="true"
+              [newItems]="newMember.projects"
             ></otwld-portfolio-carousel>
           </div>
         </div>

@@ -50,6 +50,10 @@ export class Project extends BasicModel {
   @Prop({type: ResourceSchema})
   @Field(() => Resource, {nullable: false})
   image: Resource;
+
+  @Prop({type: String})
+  @Field(() => String, {nullable: false})
+  slug: string;
 }
 
 /* endregion */

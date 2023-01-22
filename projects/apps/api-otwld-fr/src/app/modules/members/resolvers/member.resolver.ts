@@ -9,10 +9,13 @@ import {LanguageGuard} from '../../../shared/modules/language/guards/language.gu
 import {Project} from '../../projects/models/project.model';
 import * as DataLoader from 'dataloader';
 import {Skill} from '../../skills/models/skill.model';
+import {ListProjectsPage} from '../../projects/models/dto/list-projects-output.dto';
+import {ListProjectsInput} from '../../projects/models/dto/list-projects-input.dto';
+import {ProjectService} from '../../projects/services/project.service';
 
 @Resolver(() => Member)
 export class MemberResolver {
-  constructor(private readonly memberService: MemberService, private logger: AppLogger) {
+  constructor(private readonly memberService: MemberService, private logger: AppLogger, private projectService: ProjectService) {
     this.logger.setContext(MemberResolver.name);
   }
 
@@ -33,8 +36,8 @@ export class MemberResolver {
     return this.memberService.getMembersPaginated(dto);
   }
 
-  @ResolveField('projects', () => [Project])
-  resolverProjects(@Parent() member: Member, @Context('projectLoader') loader: DataLoader<string, Project> ) {
-    return loader.loadMany(member.projects || []);
+  @ResolveField('projects', () => ListProjectsPage)
+  async resolverProjects(@Parent() member: Member, @Args() args: ListProjectsInput ) {
+    return await this.projectService.listProjects({...args, criteria: {memberId: member._id}});
   }
 }

@@ -25,6 +25,8 @@ import {ProjectModule} from './modules/projects/project.module';
 import {TestimonialModule} from './modules/testimonials/testimonial.module';
 import {createProjectLoader} from './shared/loaders/projects.loader';
 import {ProjectService} from './modules/projects/services/project.service';
+import {createServicesLoader} from './shared/loaders/services.loader';
+import {ServiceService} from './modules/services/services/service.service';
 
 @Module({
   imports: [
@@ -57,6 +59,7 @@ import {ProjectService} from './modules/projects/services/project.service';
         skillService: SkillService,
         workModeService: WorkModeService,
         projectService: ProjectService,
+        servicesService: ServiceService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -80,6 +83,7 @@ import {ProjectService} from './modules/projects/services/project.service';
             skillLoader: createSkillsLoader(logger, skillService),
             workModeLoader: createWorkModesLoader(logger, workModeService),
             projectLoader: createProjectLoader(logger, projectService),
+            serviceLoader: createServicesLoader(logger, servicesService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -95,6 +99,7 @@ import {ProjectService} from './modules/projects/services/project.service';
         SkillService,
         WorkModeService,
         ProjectService,
+        ServiceService,
         AppLogger,
         MemberService
       ],

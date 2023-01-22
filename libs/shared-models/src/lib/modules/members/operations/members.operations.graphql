@@ -34,6 +34,19 @@ query getMemberBySlug($slug: String!) {
         name
       }
     },
+    projects(pagination: {after: 3}) {
+      edges {
+        node {
+          _id
+          title,
+          slug,
+          services {
+            title,
+            slug
+          }
+        }
+      }
+    }
     workModes {
       workMode {
         name

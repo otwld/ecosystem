@@ -25,7 +25,8 @@ export class Service extends BasicModel {
 
   @Prop({type: String})
   @Field(() => String, {nullable: false})
-  route: string;
+  slug: string;
+
 }
 
 /* endregion */

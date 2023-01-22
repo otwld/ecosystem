@@ -17,9 +17,25 @@ export interface Scalars {
   DateTime: any;
 }
 
+export interface EventsOrderBy {
+  direction?: InputMaybe<EDirection>;
+  field?: InputMaybe<EListProjectsInputSortFields>;
+}
+
 export interface ListMemberPage {
   __typename?: 'ListMemberPage';
   edges: Array<Maybe<PaginatedMemberPageEdge>>;
+  pageInfo?: Maybe<PageInfo>;
+  totalCount: Scalars['Int'];
+}
+
+export interface ListProjectsFilter {
+  memberId?: InputMaybe<Scalars['String']>;
+}
+
+export interface ListProjectsPage {
+  __typename?: 'ListProjectsPage';
+  edges: Array<Maybe<PaginatedProjectPageEdge>>;
   pageInfo?: Maybe<PageInfo>;
   totalCount: Scalars['Int'];
 }
@@ -37,12 +53,19 @@ export interface Member {
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  projects: Array<Project>;
+  projects: ListProjectsPage;
   skills: Array<MemberSkill>;
   slug: Scalars['String'];
   socials: Array<MemberSocial>;
   updatedAt: Scalars['String'];
   workModes: Array<MemberWorkMode>;
+}
+
+
+export interface MemberProjectsArgs {
+  criteria?: InputMaybe<ListProjectsFilter>;
+  order?: InputMaybe<EventsOrderBy>;
+  pagination: PaginationOption;
 }
 
 export interface MemberOrderBy {
@@ -55,7 +78,7 @@ export interface MemberSkill {
   level: Scalars['Float'];
   skill: Skill;
   startDate: Scalars['DateTime'];
-  yearOfExperience: Scalars['Float'];
+  yearOfExperience: Scalars['String'];
 }
 
 export interface MemberSocial {
@@ -85,6 +108,12 @@ export interface PaginatedMemberPageEdge {
   node?: Maybe<Member>;
 }
 
+export interface PaginatedProjectPageEdge {
+  __typename?: 'PaginatedProjectPageEdge';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<Project>;
+}
+
 export interface PaginatedServicePageEdge {
   __typename?: 'PaginatedServicePageEdge';
   cursor?: Maybe<Scalars['String']>;
@@ -104,10 +133,12 @@ export interface Project {
   endDate: Scalars['DateTime'];
   image: Resource;
   members: Array<Member>;
-  services: Service;
+  services: Array<Service>;
   skills: Array<Skill>;
+  slug: Scalars['String'];
   startDate: Scalars['DateTime'];
   testimonials: Array<Testimonial>;
+  title: Scalars['String'];
   updatedAt: Scalars['String'];
 }
 
@@ -152,7 +183,7 @@ export interface Service {
   content: Scalars['String'];
   createdAt: Scalars['DateTime'];
   icon: Scalars['String'];
-  route: Scalars['String'];
+  slug: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['String'];
 }
@@ -203,6 +234,10 @@ export enum EListMembersInputSortFields {
   FirstName = 'firstName'
 }
 
+export enum EListProjectsInputSortFields {
+  CreatedAt = 'createdAt'
+}
+
 export enum EListServicesInputSortFields {
   FirstName = 'firstName'
 }
@@ -219,14 +254,14 @@ export type GetMemberBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: number, skill: { __typename?: 'Skill', name: string } }>, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }> } };
+export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }> } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
 }>;
 
 
-export type GetServicesPaginatedForHomeQuery = { __typename?: 'Query', getServicesPaginated: { __typename?: 'ListServicePage', edges: Array<{ __typename?: 'PaginatedServicePageEdge', node?: { __typename?: 'Service', title: string, icon: string, route: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
+export type GetServicesPaginatedForHomeQuery = { __typename?: 'Query', getServicesPaginated: { __typename?: 'ListServicePage', edges: Array<{ __typename?: 'PaginatedServicePageEdge', node?: { __typename?: 'Service', title: string, icon: string, slug: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
 
 export const GetMembersPaginatedDocument = gql`
     query getMembersPaginated($pagination: PaginationOption!) {
@@ -277,6 +312,19 @@ export const GetMemberBySlugDocument = gql`
         name
       }
     }
+    projects(pagination: {after: 3}) {
+      edges {
+        node {
+          _id
+          title
+          slug
+          services {
+            title
+            slug
+          }
+        }
+      }
+    }
     workModes {
       workMode {
         name
@@ -303,7 +351,7 @@ export const GetServicesPaginatedForHomeDocument = gql`
       node {
         title
         icon
-        route
+        slug
       }
     }
     pageInfo {

@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeroBreadcrumbsComponent } from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
-import { TeamMemberService } from '../../../services/team-member/teams.service';
-import { ActivatedRoute } from '@angular/router';
-import { map, shareReplay, switchMap, tap } from 'rxjs';
-import { ServicesMenuRouteComponent } from '../page-services/services-menu-route/services-menu-route.component';
-import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
-import { HeroClientComponent } from '../../sections/hero/hero-client/hero-client.component';
+import {CommonModule} from '@angular/common';
+import {HeroBreadcrumbsComponent} from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
+import {TeamMemberService} from '../../../services/team-member/teams.service';
+import {ActivatedRoute} from '@angular/router';
+import {map, shareReplay, switchMap, tap} from 'rxjs';
+import {ServicesMenuRouteComponent} from '../page-services/services-menu-route/services-menu-route.component';
+import {PortfolioCarouselComponent} from '../../../components/portfolio-carousel/portfolio-carousel.component';
+import {HeroClientComponent} from '../../sections/hero/hero-client/hero-client.component';
 import {
   AvatarModule,
   BadgeComponent,
@@ -26,16 +26,15 @@ import {
   TabsModule,
   TwitterModule,
 } from '@otwld/ui';
-import { HeroClientImageComponent } from '../../sections/hero/hero-client/hero-client-image/hero-client-image.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DateFnsModule } from 'ngx-date-fns';
-import { Dialog } from '@angular/cdk/dialog';
-import { faBoxes, faClock, faTasks } from '@fortawesome/free-solid-svg-icons';
-import { TranslocoModule } from '@ngneat/transloco';
-import { PortfolioService } from '../../../services/portfolio/portfolio.service';
-import { TeamMember } from '../../../types/team-member.types';
-import {GetMemberBySlugGQL} from '@ecosystem/shared-models';
-import {SocialIconToFa} from '../../../../../../../../libs/shared-models/src/lib/utils/icon.utils';
+import {HeroClientImageComponent} from '../../sections/hero/hero-client/hero-client-image/hero-client-image.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {DateFnsModule} from 'ngx-date-fns';
+import {Dialog} from '@angular/cdk/dialog';
+import {faBoxes, faClock, faTasks} from '@fortawesome/free-solid-svg-icons';
+import {TranslocoModule} from '@ngneat/transloco';
+import {PortfolioService} from '../../../services/portfolio/portfolio.service';
+import {TeamMember} from '../../../types/team-member.types';
+import {GetMemberBySlugGQL, MembersService, SocialIconToFa} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-page-team-member-id',
@@ -80,13 +79,8 @@ export class PageTeamMemberIdComponent {
       )
     ),
     map((member) => member as TeamMember),
-    shareReplay({ bufferSize: 1, refCount: true })
+    shareReplay({bufferSize: 1, refCount: true})
   );
-  newMember$ = inject(ActivatedRoute).params.pipe(
-    switchMap((params) =>
-      this.getMemberBySlug.fetch({slug: params['id']})
-  ), map((member) => member.data.getMemberBySlug));
-
   portfolio$ = this.currentMember$.pipe(
     switchMap((member) =>
       this.portfolioService.findByMemberFirstName(member.firstName)
@@ -95,15 +89,21 @@ export class PageTeamMemberIdComponent {
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;
-
   getMemberBySlug = inject(GetMemberBySlugGQL);
+  membersService = inject(MembersService)
+  newMember$ = inject(ActivatedRoute).params.pipe(
+    switchMap((params) =>
+      this.membersService.getMemberBySlug(params['id'])
+    ));
+  stringToIcon = SocialIconToFa;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly teamMemberService: TeamMemberService,
     private readonly portfolioService: PortfolioService,
     private readonly dialogService: Dialog
-  ) {}
+  ) {
+  }
 
   openDialog() {
     this.dialogService.open(ModalRootComponent, {
@@ -126,6 +126,4 @@ export class PageTeamMemberIdComponent {
       } as ModalConfig<ModalTestComponent>,
     });
   }
-
-  stringToIcon = SocialIconToFa;
 }
