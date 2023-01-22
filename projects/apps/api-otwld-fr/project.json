@@ -36,6 +36,22 @@
         }
       }
     },
+    "build-scripts": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/projects/apps/api-otwld-fr/scripts",
+        "main": "projects/apps/api-otwld-fr/scripts/main.ts",
+        "tsConfig": "projects/apps/api-otwld-fr/tsconfig.app.json",
+        "assets": [],
+        "webpackConfig": "projects/apps/api-otwld-fr/webpack.config.js",
+        "generatePackageJson": true
+      }
+    },
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
@@ -45,6 +61,12 @@
         "production": {
           "buildTarget": "apps-api-otwld-fr:build:production"
         }
+      }
+    },
+    "serve:scripts": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "apps-api-otwld-fr:build-scripts"
       }
     },
     "lint": {

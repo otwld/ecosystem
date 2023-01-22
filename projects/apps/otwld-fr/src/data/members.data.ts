@@ -13,7 +13,7 @@ import {
   WEB_DEVELOPMENT,
 } from './service.data';
 import { APAIN_TESTIMONIALS, FAKE_TESTIMONIAL_001 } from './testimonials.data';
-console.log(faLinkedin)
+
 export const NTREHOUT: TeamMember = {
   firstName: 'Nathan',
   lastName: 'Tréhout',

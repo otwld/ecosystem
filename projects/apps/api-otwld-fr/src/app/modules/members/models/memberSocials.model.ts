@@ -2,7 +2,10 @@ import {Field, ObjectType} from '@nestjs/graphql';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 
 @ObjectType()
-@Schema()
+@Schema({
+  autoCreate: false,
+  autoIndex: false
+})
 export class MemberSocial {
   @Prop({type: String})
   @Field(() => String, {nullable: false})

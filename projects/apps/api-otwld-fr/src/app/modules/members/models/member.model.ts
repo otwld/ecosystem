@@ -45,6 +45,9 @@ export class Member extends BasicModel {
   @Prop({type: [MemberTestimonialSchema]})
   @Field(() => [MemberTestimonial])
   testimonials: MemberTestimonial[];
+
+  @Prop({type: [String], ref: 'Service'})
+  services: string[];
 }
 
 /* endregion */

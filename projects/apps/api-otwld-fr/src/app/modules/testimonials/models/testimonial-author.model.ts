@@ -2,10 +2,12 @@ import {Field, ObjectType} from '@nestjs/graphql';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-option';
 import {Resource, ResourceSchema} from '../../resources/models/resource.model';
+import {Translation, TranslationSchema} from '../../../shared/modules/language/models/translation.model';
 
 @ObjectType()
 @Schema({
-  ...commonSchemaOption
+  autoCreate: false,
+  autoIndex: false,
 })
 export class TestimonialAuthor {
   @Prop({type: String})
@@ -18,10 +20,10 @@ export class TestimonialAuthor {
 
   @Prop({type: ResourceSchema})
   @Field(() => Resource, {nullable: false})
-  image: Resource;
+  image?: Resource;
 
-  @Prop({type: String})
-  job: string;
+  @Prop({type: TranslationSchema})
+  job: Translation;
 }
 
 export const TestimonialAuthorSchema = SchemaFactory.createForClass(TestimonialAuthor);

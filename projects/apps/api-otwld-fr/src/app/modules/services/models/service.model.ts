@@ -15,7 +15,7 @@ export class Service extends BasicModel {
 
   @Prop({type: String})
   @Field(() => String, {nullable: false})
-  icon: Resource;
+  icon: string;
 
   @Prop({type: Translation})
   content: Translation;

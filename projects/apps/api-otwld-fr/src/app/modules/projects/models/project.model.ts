@@ -43,7 +43,7 @@ export class Project extends BasicModel {
 
   @Prop({type: Date})
   @Field(() => Date, {nullable: false})
-  endDate: Date;
+  endDate?: Date;
   @Prop({type: TranslationSchema})
   title: Translation;
 

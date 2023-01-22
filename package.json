@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "6.2.1",
     "@fortawesome/free-brands-svg-icons": "6.2.1",
     "@fortawesome/free-solid-svg-icons": "6.2.1",
+    "dotenv": "~16.0.3",
     "@nestjs/apollo": "10.1.7",
     "@nestjs/common": "9.2.1",
     "@nestjs/config": "2.2.0",
