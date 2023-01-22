@@ -21,27 +21,8 @@ async function getMongooseInstance() {
   return mongoose;
 }
 
-function createMember() {
-
-}
-
 async function main() {
  const client = await getMongooseInstance();
-  client.connection.collection('members').find().toArray((err, result) => {
-  });
-  // @ts-ignore
-  await client.connection.collection('testimonials').insertMany(testimonials, {});
-  // @ts-ignore
-  await client.connection.collection('skills').insertMany(skills);
-  // @ts-ignore
-  await client.connection.collection('services').insertMany(services);
-  // @ts-ignore
-
-  await client.connection.collection('workmodes').insertMany(workModes);
-  // @ts-ignore
-  await client.connection.collection('projects').insertMany(projects);
-  // @ts-ignore
-  await client.connection.collection('members').insertOne(memberData);
 }
 main();
 
