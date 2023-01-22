@@ -28,6 +28,8 @@ import {ProjectService} from './modules/projects/services/project.service';
 import {createServicesLoader} from './shared/loaders/services.loader';
 import {ServiceService} from './modules/services/services/service.service';
 import {ResourcesModule} from './modules/resources/resources.module';
+import {createTestimonialsLoader} from './shared/loaders/testimonials.loader';
+import {TestimonialService} from './modules/testimonials/services/testimonial.service';
 
 @Module({
   imports: [
@@ -53,7 +55,8 @@ import {ResourcesModule} from './modules/resources/resources.module';
         SkillModule,
         WorkModeModule,
         ProjectModule,
-        ResourcesModule
+        ResourcesModule,
+        TestimonialModule
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
@@ -62,6 +65,7 @@ import {ResourcesModule} from './modules/resources/resources.module';
         workModeService: WorkModeService,
         projectService: ProjectService,
         servicesService: ServiceService,
+        testimonialService: TestimonialService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -86,6 +90,7 @@ import {ResourcesModule} from './modules/resources/resources.module';
             workModeLoader: createWorkModesLoader(logger, workModeService),
             projectLoader: createProjectLoader(logger, projectService),
             serviceLoader: createServicesLoader(logger, servicesService),
+            testimonialLoader: createTestimonialsLoader(logger, testimonialService),
             /*categoryLoader: createCategoryLoader(logger, categoryService),
             eventLoader: createEventLoader(logger, eventService),
             organizationLoader: createOrganizationLoader(logger, organizationService),
@@ -102,6 +107,7 @@ import {ResourcesModule} from './modules/resources/resources.module';
         WorkModeService,
         ProjectService,
         ServiceService,
+        TestimonialService,
         AppLogger,
         MemberService
       ],

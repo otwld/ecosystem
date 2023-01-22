@@ -12,6 +12,7 @@ import {Skill} from '../../skills/models/skill.model';
 import {ListProjectsPage} from '../../projects/models/dto/list-projects-output.dto';
 import {ListProjectsInput} from '../../projects/models/dto/list-projects-input.dto';
 import {ProjectService} from '../../projects/services/project.service';
+import {MemberTestimonial} from '../models/memberTestimonial.model';
 
 @Resolver(() => Member)
 export class MemberResolver {

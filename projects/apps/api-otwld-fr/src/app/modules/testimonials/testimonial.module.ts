@@ -4,13 +4,14 @@ import {TestimonialAuthor, TestimonialAuthorSchema} from './models/testimonial-a
 import {Testimonial, TestimonialSchema} from './models/testimonial.model';
 import {TestimonialService} from './services/testimonial.service';
 import {TestimonialResolver} from './resolvers/testimonial.resolver';
+import {TestimonialAuthorResolver} from './resolvers/testimonial-author.resolver';
 
 @Module({
   imports: [MongooseModule.forFeature([
     {name: Testimonial.name, schema: TestimonialSchema},
     {name: TestimonialAuthor.name, schema: TestimonialAuthorSchema},
   ])],
-  providers: [TestimonialService, TestimonialResolver],
+  providers: [TestimonialService, TestimonialResolver, TestimonialAuthorResolver],
   exports: [TestimonialService]
 })
 export class TestimonialModule {

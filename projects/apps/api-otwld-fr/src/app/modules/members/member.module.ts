@@ -9,6 +9,8 @@ import {MemberWorkMode, MemberWorkModeSchema} from './models/memberWorkMode.mode
 import {MemberWorkModeResolver} from './resolvers/memberWorkMode.resolver';
 import {MemberSocial, MemberSocialSchema} from './models/memberSocials.model';
 import {ProjectModule} from '../projects/project.module';
+import {MemberTestimonial, MemberTestimonialSchema} from './models/memberTestimonial.model';
+import {MemberTestimonialResolver} from './resolvers/memberTestimonial.resolver';
 
 @Module({
   imports: [MongooseModule.forFeature([
@@ -18,13 +20,16 @@ import {ProjectModule} from '../projects/project.module';
       schema: MemberSkillSchema
     }, {
       name: MemberWorkMode.name,
-      schema: MemberWorkModeSchema
+      schema: MemberWorkModeSchema,
     }, {
       name: MemberSocial.name,
       schema: MemberSocialSchema
+    }, {
+      name: MemberTestimonial.name,
+      schema: MemberTestimonialSchema
     }]),
     ProjectModule],
-  providers: [MemberService, MemberResolver, MemberSkillResolver, MemberWorkModeResolver],
+  providers: [MemberService, MemberResolver, MemberSkillResolver, MemberWorkModeResolver, MemberTestimonialResolver],
   exports: [MemberService],
 })
 export class MemberModule {

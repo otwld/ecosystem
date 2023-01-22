@@ -55,5 +55,16 @@ query getMemberBySlug($slug: String!) {
         name
       }
     },
+    testimonials {
+      testimonial {
+        author {
+          firstName,
+          lastName,
+          job,
+          image {url(options: {size: ORIGINAL})}
+        }
+        content
+      }
+    }
   }
 }

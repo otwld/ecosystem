@@ -293,20 +293,20 @@
             class="mx-auto mb-8 max-w-full gap-16 lg:w-3/4"
           >
             <ui-carousel-item
-              *ngFor="let item of currentMember.testimonials"
+              *ngFor="let item of newMember.testimonials"
               class="flex-col items-center justify-center"
               width="w-full"
             >
-              <p class="mb-8 text-center">{{ item.message }}</p>
+              <p class="mb-8 text-center">{{ item.testimonial.content }}</p>
               <ui-avatar
-                imgSrc="{{ item.author.avatar }}"
+                imgSrc="{{ item.testimonial.author.image.url }}"
                 rounded="rounded-full"
                 width="w-24"
               ></ui-avatar>
               <h3 class="my-4 font-extrabold">
-                {{ item.author.lastName }} {{ item.author.firstName }}
+                {{ item.testimonial.author.lastName }} {{ item.testimonial.author.firstName }}
               </h3>
-              <p class="font-bold">{{ t(item.author.jobTitle) }}</p>
+              <p class="font-bold">{{ item.testimonial.author.job}}</p>
             </ui-carousel-item>
           </ui-carousel>
           <ui-carousel-indicators

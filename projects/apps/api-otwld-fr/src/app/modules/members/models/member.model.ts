@@ -8,6 +8,7 @@ import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
 import {MemberWorkMode, MemberWorkModeSchema} from './memberWorkMode.model';
 import {MemberSocial, MemberSocialSchema} from './memberSocials.model';
 import {Project} from '../../projects/models/project.model';
+import {MemberTestimonial, MemberTestimonialSchema} from './memberTestimonial.model';
 
 
 @ObjectType()
@@ -40,6 +41,10 @@ export class Member extends BasicModel {
   socials: MemberSocial[];
   @Prop({type: [String], ref: 'Project'})
   projects: string[]
+
+  @Prop({type: [MemberTestimonialSchema]})
+  @Field(() => [MemberTestimonial])
+  testimonials: MemberTestimonial[];
 }
 
 /* endregion */

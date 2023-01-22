@@ -19,6 +19,9 @@ export class TestimonialAuthor {
   @Prop({type: ResourceSchema})
   @Field(() => Resource, {nullable: false})
   image: Resource;
+
+  @Prop({type: String})
+  job: string;
 }
 
 export const TestimonialAuthorSchema = SchemaFactory.createForClass(TestimonialAuthor);
