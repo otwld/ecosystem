@@ -22,10 +22,23 @@ query getMemberBySlug($slug: String!) {
     _id
     firstName,
     lastName,
+    jobTitle,
+    location {
+      fullLocation
+    },
+    picture {
+      url(options: {size: ORIGINAL})
+    },
     socials {
       icon,
       link,
       serviceName
+    },
+    services {
+      title,
+      slug,
+      description,
+      icon
     },
     skills {
       level,
@@ -65,6 +78,7 @@ query getMemberBySlug($slug: String!) {
         }
         content
       }
-    }
+    },
+
   }
 }

@@ -6,17 +6,18 @@ import {ListMemberInput} from '../models/dtos/list-member-input.dto';
 import {AppLogger} from '../../../shared/modules/logging/logging.service';
 import {UseGuards} from '@nestjs/common';
 import {LanguageGuard} from '../../../shared/modules/language/guards/language.guard';
-import {Project} from '../../projects/models/project.model';
 import * as DataLoader from 'dataloader';
-import {Skill} from '../../skills/models/skill.model';
 import {ListProjectsPage} from '../../projects/models/dto/list-projects-output.dto';
 import {ListProjectsInput} from '../../projects/models/dto/list-projects-input.dto';
 import {ProjectService} from '../../projects/services/project.service';
-import {MemberTestimonial} from '../models/memberTestimonial.model';
+import {Service} from '../../services/models/service.model';
+import {CurrentLanguage} from '../../../shared/modules/language/decorators/current-language.decorator';
+import {HeaderLanguage} from '../../../shared/modules/language/enums/language.enum';
 
 @Resolver(() => Member)
 export class MemberResolver {
-  constructor(private readonly memberService: MemberService, private logger: AppLogger, private projectService: ProjectService) {
+  constructor(private readonly memberService: MemberService, private logger: AppLogger,
+              private projectService: ProjectService) {
     this.logger.setContext(MemberResolver.name);
   }
 
@@ -38,7 +39,20 @@ export class MemberResolver {
   }
 
   @ResolveField('projects', () => ListProjectsPage)
-  async resolverProjects(@Parent() member: Member, @Args() args: ListProjectsInput ) {
+  async resolverProjects(@Parent() member: Member, @Args() args: ListProjectsInput) {
     return await this.projectService.listProjects({...args, criteria: {memberId: member._id}});
   }
+
+  @ResolveField('services', () => [Service])
+  async resolverServices(@Parent() member: Member,
+                         @Context('serviceLoader') dataLoaders: DataLoader<string, Service[]>) {
+    return dataLoaders.loadMany(member.services || []);
+  }
+
+  @ResolveField('jobTitle', () => String)
+  async resolverTitle(@Parent() member: Member,
+                      @CurrentLanguage() language: HeaderLanguage) {
+    return member.jobTitle[language];
+  }
+
 }

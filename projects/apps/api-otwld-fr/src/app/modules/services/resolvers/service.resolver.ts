@@ -28,4 +28,9 @@ export class ServiceResolver {
   resolveTitle(@Parent() service: Service, @CurrentLanguage() language: HeaderLanguage) {
     return service.title[language];
   }
+
+  @ResolveField('description', () => String)
+  resolveDescription(@Parent() service: Service, @CurrentLanguage() language: HeaderLanguage) {
+    return service.description[language];
+  }
 }

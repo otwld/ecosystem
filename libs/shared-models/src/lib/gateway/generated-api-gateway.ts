@@ -51,13 +51,25 @@ export interface ListServicePage {
   totalCount: Scalars['Int'];
 }
 
+export interface Location {
+  __typename?: 'Location';
+  city: Scalars['String'];
+  country: Scalars['String'];
+  fullLocation: Scalars['String'];
+  street?: Maybe<Scalars['String']>;
+}
+
 export interface Member {
   __typename?: 'Member';
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
+  jobTitle: Scalars['String'];
   lastName: Scalars['String'];
+  location?: Maybe<Location>;
+  picture?: Maybe<Resource>;
   projects: ListProjectsPage;
+  services: Array<Service>;
   skills: Array<MemberSkill>;
   slug: Scalars['String'];
   socials: Array<MemberSocial>;
@@ -205,6 +217,7 @@ export interface Service {
   _id: Scalars['String'];
   content: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
   icon: Scalars['String'];
   slug: Scalars['String'];
   title: Scalars['String'];
@@ -281,7 +294,7 @@ export type GetMemberBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }>, testimonials: Array<{ __typename?: 'MemberTestimonial', testimonial: { __typename?: 'Testimonial', content: string, author: { __typename?: 'TestimonialAuthor', firstName: string, lastName: string, job: string, image: { __typename?: 'Resource', url: string } } } }> } };
+export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, jobTitle: string, location?: { __typename?: 'Location', fullLocation: string } | null, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, services: Array<{ __typename?: 'Service', title: string, slug: string, description: string, icon: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }>, testimonials: Array<{ __typename?: 'MemberTestimonial', testimonial: { __typename?: 'Testimonial', content: string, author: { __typename?: 'TestimonialAuthor', firstName: string, lastName: string, job: string, image: { __typename?: 'Resource', url: string } } } }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
@@ -327,10 +340,23 @@ export const GetMemberBySlugDocument = gql`
     _id
     firstName
     lastName
+    jobTitle
+    location {
+      fullLocation
+    }
+    picture {
+      url(options: {size: ORIGINAL})
+    }
     socials {
       icon
       link
       serviceName
+    }
+    services {
+      title
+      slug
+      description
+      icon
     }
     skills {
       level

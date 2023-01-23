@@ -30,6 +30,7 @@ import {ServiceService} from './modules/services/services/service.service';
 import {ResourcesModule} from './modules/resources/resources.module';
 import {createTestimonialsLoader} from './shared/loaders/testimonials.loader';
 import {TestimonialService} from './modules/testimonials/services/testimonial.service';
+import {LocationModule} from './shared/modules/location/location.module';
 
 @Module({
   imports: [
@@ -125,7 +126,8 @@ import {TestimonialService} from './modules/testimonials/services/testimonial.se
     LanguageModule,
     ProjectModule,
     TestimonialModule,
-    ResourcesModule
+    ResourcesModule,
+    LocationModule
   ],
   controllers: [],
   providers: [],

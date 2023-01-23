@@ -15,19 +15,7 @@ import {MemberTestimonialResolver} from './resolvers/memberTestimonial.resolver'
 @Module({
   imports: [MongooseModule.forFeature([
     {name: Member.name, schema: MemberSchema},
-    {
-      name: MemberSkill.name,
-      schema: MemberSkillSchema
-    }, {
-      name: MemberWorkMode.name,
-      schema: MemberWorkModeSchema,
-    }, {
-      name: MemberSocial.name,
-      schema: MemberSocialSchema
-    }, {
-      name: MemberTestimonial.name,
-      schema: MemberTestimonialSchema
-    }]),
+    ]),
     ProjectModule],
   providers: [MemberService, MemberResolver, MemberSkillResolver, MemberWorkModeResolver, MemberTestimonialResolver],
   exports: [MemberService],
