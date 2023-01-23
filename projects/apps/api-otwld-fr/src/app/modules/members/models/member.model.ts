@@ -8,7 +8,6 @@ import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
 import {MemberWorkMode, MemberWorkModeSchema} from './memberWorkMode.model';
 import {MemberSocial, MemberSocialSchema} from './memberSocials.model';
 import {Project} from '../../projects/models/project.model';
-import {MemberTestimonial, MemberTestimonialSchema} from './memberTestimonial.model';
 import {Resource, ResourceSchema} from '../../resources/models/resource.model';
 import {Translation, TranslationSchema} from '../../../shared/modules/language/models/translation.model';
 import {LocationSchema, Location} from '../../../shared/modules/location/models/location.model';
@@ -45,9 +44,8 @@ export class Member extends BasicModel {
   @Prop({type: [String], ref: 'Project'})
   projects: string[]
 
-  @Prop({type: [MemberTestimonialSchema]})
-  @Field(() => [MemberTestimonial])
-  testimonials: MemberTestimonial[];
+  @Prop({type: [String]})
+  testimonials: string[];
 
   @Prop({type: [String], ref: 'Service'})
   services: string[];

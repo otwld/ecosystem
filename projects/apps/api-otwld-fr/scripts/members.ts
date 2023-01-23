@@ -372,13 +372,7 @@ export const memberData: Member = {
     serviceName: 'GitHub',
     link: 'https://github.com/otwld'
   }],
-  testimonials: [{
-    project: projects[0]._id,
-    testimonial: testimonials[0]._id
-  }, {
-    project: projects[0]._id,
-    testimonial: testimonials[1]._id
-  }],
+  testimonials: [ testimonials[0]._id, testimonials[1]._id],
   updatedAt: new Date(),
   workModes: [{
     workMode: workModes[0]._id,

@@ -58,7 +58,7 @@ type Member {
   skills: [MemberSkill!]!
   slug: String!
   socials: [MemberSocial!]!
-  testimonials: [MemberTestimonial!]!
+  testimonials: [Testimonial!]!
   updatedAt: String!
   workModes: [MemberWorkMode!]!
 }
@@ -79,10 +79,6 @@ type MemberSocial {
   icon: String!
   link: String!
   serviceName: String!
-}
-
-type MemberTestimonial {
-  testimonial: Testimonial!
 }
 
 type MemberWorkMode {

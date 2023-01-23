@@ -40,6 +40,10 @@ export class LangSwitcherComponent extends BaseComponent {
   currentLang = this.translocoService.getActiveLang();
   trackEvent = injectTrackEvent();
 
+  constructor() {
+    super();
+  }
+
   switchLang() {
     if (this.currentLang === 'fr') {
       this.translocoService.setActiveLang('en');

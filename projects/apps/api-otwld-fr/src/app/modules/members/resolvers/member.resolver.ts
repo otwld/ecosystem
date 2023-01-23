@@ -13,6 +13,7 @@ import {ProjectService} from '../../projects/services/project.service';
 import {Service} from '../../services/models/service.model';
 import {CurrentLanguage} from '../../../shared/modules/language/decorators/current-language.decorator';
 import {HeaderLanguage} from '../../../shared/modules/language/enums/language.enum';
+import {Testimonial} from '../../testimonials/models/testimonial.model';
 
 @Resolver(() => Member)
 export class MemberResolver {
@@ -53,6 +54,12 @@ export class MemberResolver {
   async resolverTitle(@Parent() member: Member,
                       @CurrentLanguage() language: HeaderLanguage) {
     return member.jobTitle[language];
+  }
+
+  @ResolveField('testimonials', () => [Testimonial])
+  async resolveTestimonial(@Parent() member: Member,
+                           @Context('testimonialLoader') testimonialsLoader: DataLoader<string, Testimonial>) {
+    return testimonialsLoader.loadMany(member.testimonials || []);
   }
 
 }

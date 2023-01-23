@@ -14,7 +14,7 @@ export class MembersService {
 
   getMemberBySlug$(slug: string): Observable<MemberWithoutNodes> {
     return this.translocoService.langChanges$.pipe(startWith(this.translocoService.getActiveLang()),
-      switchMap(() => this.getMemberBySlugGQL.fetch({slug})),
+      switchMap(() => this.getMemberBySlugGQL.fetch({slug}, {fetchPolicy: 'network-only'})),
       map((member) => member.data.getMemberBySlug),
       map((member) => this.projectNodeToProjects(member)));
   }

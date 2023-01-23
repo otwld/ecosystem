@@ -109,9 +109,9 @@
                     {{
                     memberSkill.yearOfExperience
                     }}
-                    <!--
-                                        d'experience
-                    -->
+<!--
+                    d'experience
+-->
                   </p>
                 </div>
               </div>
@@ -297,16 +297,16 @@
               class="flex-col items-center justify-center"
               width="w-full"
             >
-              <p class="mb-8 text-center">{{ item.testimonial.content }}</p>
+              <p class="mb-8 text-center">{{ item.content }}</p>
               <ui-avatar
-                imgSrc="{{ item.testimonial.author.image.url }}"
+                imgSrc="{{ item.author.image.url }}"
                 rounded="rounded-full"
                 width="w-24"
               ></ui-avatar>
               <h3 class="my-4 font-extrabold">
-                {{ item.testimonial.author.lastName }} {{ item.testimonial.author.firstName }}
+                {{ item.author.lastName }} {{ item.author.firstName }}
               </h3>
-              <p class="font-bold">{{ item.testimonial.author.job}}</p>
+              <p class="font-bold">{{ item.author.job}}</p>
             </ui-carousel-item>
           </ui-carousel>
           <ui-carousel-indicators
