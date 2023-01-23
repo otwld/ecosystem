@@ -8,7 +8,7 @@ export class HttpLanguageInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        Language: localStorage?.getItem('language') || 'en',
+        Language: localStorage?.getItem('lang') || 'en',
       },
     });
     return next.handle(request);

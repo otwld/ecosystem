@@ -64,24 +64,28 @@ export const services: Service[] = [{
   title: translatedField('Développement Web', 'Web development'),
   slug: 'web-development',
   content: translatedField('', ''),
+  description: translatedField('', ''),
   icon: 'globe'
 }, {
   ...defaultData(),
   title: translatedField('Développement Mobile', 'Mobile development'),
   slug: 'mobile-development',
   content: translatedField('', ''),
+  description: translatedField('', ''),
   icon: 'mobile-screen'
 }, {
   ...defaultData(),
   title: translatedField('Développement Bureau', 'Desktop development'),
   slug: 'desktop-development',
   content: translatedField('', ''),
+  description: translatedField('', ''),
   icon: 'desktop'
 }, {
   ...defaultData(),
   title: translatedField('Renforcement d\'équipe', 'Team extension'),
   slug: 'team-extension',
   content: translatedField('', ''),
+  description: translatedField('', ''),
   icon: 'users'
 }];
 
@@ -333,7 +337,12 @@ export const projects: Project[] = [
 
 export const memberData: Member = {
   slug: 'apain',
+  location: {
+    city: translatedField('', ''),
+    country: translatedField('', ''),
+  },
   projects: [projects[0]._id, projects[1]._id],
+  jobTitle: translatedField('', ''),
   skills: [{
     skill: skills[0]._id,
     startDate: new Date('2016-11-01'),
@@ -363,13 +372,7 @@ export const memberData: Member = {
     serviceName: 'GitHub',
     link: 'https://github.com/otwld'
   }],
-  testimonials: [{
-    project: projects[0]._id,
-    testimonial: testimonials[0]._id
-  }, {
-    project: projects[0]._id,
-    testimonial: testimonials[1]._id
-  }],
+  testimonials: [ testimonials[0]._id, testimonials[1]._id],
   updatedAt: new Date(),
   workModes: [{
     workMode: workModes[0]._id,

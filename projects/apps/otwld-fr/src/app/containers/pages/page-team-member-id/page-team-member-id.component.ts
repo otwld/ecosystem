@@ -34,7 +34,7 @@ import {faBoxes, faClock, faTasks} from '@fortawesome/free-solid-svg-icons';
 import {TranslocoModule} from '@ngneat/transloco';
 import {PortfolioService} from '../../../services/portfolio/portfolio.service';
 import {TeamMember} from '../../../types/team-member.types';
-import {GetMemberBySlugGQL, MembersService, SocialIconToFa} from '@ecosystem/shared-models';
+import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-page-team-member-id',

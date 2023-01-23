@@ -21,6 +21,9 @@ export class Service extends BasicModel {
   content: Translation;
 
   @Prop({type: Translation})
+  description: Translation;
+
+  @Prop({type: Translation})
   title: Translation;
 
   @Prop({type: String})

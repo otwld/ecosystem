@@ -38,16 +38,27 @@ type ListServicePage {
   totalCount: Int!
 }
 
+type Location {
+  city: String!
+  country: String!
+  fullLocation: String!
+  street: String
+}
+
 type Member {
   _id: String!
   createdAt: DateTime!
   firstName: String!
+  jobTitle: String!
   lastName: String!
+  location: Location
+  picture: Resource
   projects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
+  services: [Service!]!
   skills: [MemberSkill!]!
   slug: String!
   socials: [MemberSocial!]!
-  testimonials: [MemberTestimonial!]!
+  testimonials: [Testimonial!]!
   updatedAt: String!
   workModes: [MemberWorkMode!]!
 }
@@ -68,10 +79,6 @@ type MemberSocial {
   icon: String!
   link: String!
   serviceName: String!
-}
-
-type MemberTestimonial {
-  testimonial: Testimonial!
 }
 
 type MemberWorkMode {
@@ -145,6 +152,7 @@ type Service {
   _id: String!
   content: String!
   createdAt: DateTime!
+  description: String!
   icon: String!
   slug: String!
   title: String!
