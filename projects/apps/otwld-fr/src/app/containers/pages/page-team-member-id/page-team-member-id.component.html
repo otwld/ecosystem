@@ -1,5 +1,4 @@
-<ng-container *ngIf="newMember$ | async as newMember">
-  <ng-container *ngIf="currentMember$ | async as currentMember">
+<ng-container *ngIf="member$ | async as member">
     <ng-container *transloco="let t">
       <ui-hero
         hostDisplay="block"
@@ -13,21 +12,21 @@
         >
           <img
             class="mx-auto w-1/2 animate-slide-in-fade-right object-contain animation-delay-0.2 sm:hidden"
-            src="{{ newMember.picture?.url }}"
+            src="{{ member.picture?.url }}"
           />
           <div
             class="flex w-full flex-col justify-center pb-16 text-center sm:mr-8 sm:text-start md:w-auto xl:max-w-full"
           >
           <span
             class="animate-slide-in-fade-top text-[18px] font-extrabold uppercase animation-delay-0.2"
-          >{{ newMember.jobTitle }}
+          >{{ member.jobTitle }}
           </span>
             <h1
               class="2 mt-6 animate-slide-in-fade-top whitespace-pre-line text-3xl font-extrabold leading-[1.2] animation-delay-0.4 lg:text-7xl"
             >
               {{
               t('team.hero.title', {
-                person: newMember.firstName + ' ' + newMember.lastName
+                person: member.firstName + ' ' + member.lastName
               })
               }}
             </h1>
@@ -39,13 +38,13 @@
                 badgeSize="badge-lg"
                 color="badge-primary"
               >
-                📌 {{ newMember.location?.fullLocation }}</ui-badge
+                📌 {{ member.location?.fullLocation }}</ui-badge
               >
               <ui-badge
                 (click)="openTest()"
                 badgeSize="badge-lg"
                 color="badge-success"
-                *ngFor="let memberWorkMode of newMember.workModes"
+                *ngFor="let memberWorkMode of member.workModes"
               >
                 {{ memberWorkMode.workMode.name }}</ui-badge
               >
@@ -61,7 +60,7 @@
                 {{ t('team.hero.cta') }}
               </ui-button>
               <ul
-                *ngIf="newMember.socials as socials"
+                *ngIf="member.socials as socials"
                 class="mx-auto animate-slide-in-fade-right animation-delay-0.2 md:ml-8 md:mr-0"
                 display="menu-horizontal"
                 rounded="rounded"
@@ -77,7 +76,7 @@
           </div>
           <img
             class="absolute bottom-0 right-4 hidden max-h-full w-3/5 animate-slide-in-fade-right self-end object-contain animation-delay-0.2 xs:w-1/2 sm:right-8 sm:block sm:w-2/5 md:static lg:w-1/3"
-            src="{{ newMember.picture?.url }}"
+            src="{{ member.picture?.url }}"
           />
         </ui-hero-content>
       </ui-hero>
@@ -97,7 +96,7 @@
                 class="grid grid-cols-1 justify-between gap-y-32 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
               >
                 <div
-                  *ngFor="let memberSkill of newMember.skills"
+                  *ngFor="let memberSkill of member.skills"
                   class="space-y-4 text-center"
                 >
                   <ui-radial-progress
@@ -117,18 +116,18 @@
               </div>
             </ui-tab>
             <ui-tab
-              *ngIf="currentMember.medias.length > 0"
+              *ngIf="member.medias.length > 0"
               title="Articles, conférences & concours"
             >
               <div class="flex justify-center gap-8">
                 <ui-carousel #carouselRef class="items-center gap-8 py-4">
                   <ui-carousel-item
-                    *ngFor="let item of currentMember.medias"
+                    *ngFor="let item of member.medias"
                     class="md:min-width-[300px] w-full md:w-1/2 lg:w-1/3"
                   >
                     <ui-tweet
                       *ngIf="item.type === 'tweet'"
-                      [tweetID]="item.tweetId"
+                      [tweetID]="item.link"
                       class="w-full"
                     ></ui-tweet>
                     <a
@@ -142,7 +141,7 @@
                       >
                         <ui-card-image
                           class="flex max-h-[300px]"
-                          src="{{ item.image }}"
+                          src="{{ item.image?.url }}"
                           width="w-full"
                         ></ui-card-image>
                         <ui-card-body
@@ -150,13 +149,13 @@
                         >
                           <ui-avatar
                             class="mx-auto"
-                            imgSrc="{{ item.logo }}"
+                            imgSrc="{{ item.logo?.url }}"
                             rounded="rounded-full"
                             width="w-8"
                           ></ui-avatar>
-                          <p>{{ t(item.author) }}</p>
+                          <p>{{ item.author}}</p>
                           <p>
-                            {{ t(item.title) }}
+                            {{ item.title}}
                           </p>
                         </ui-card-body>
                       </ui-card>
@@ -189,7 +188,7 @@
             class="grid auto-rows-auto grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
           >
             <ui-card-icon
-              *ngFor="let item of newMember.services"
+              *ngFor="let item of member.services"
               [icon]="stringToIcon(item.icon)"
               [description]="item.description"
               iconColor="text-primary"
@@ -212,10 +211,10 @@
               {{ t('team.portfolio.subtitle') }}
             </p>
           </div>
-          <div class="" *ngIf="newMember.projects">
+          <div class="" *ngIf="member.projects">
             <otwld-portfolio-carousel
               [withApi]="true"
-              [newItems]="newMember.projects"
+              [newItems]="member.projects"
             ></otwld-portfolio-carousel>
           </div>
         </div>
@@ -234,7 +233,7 @@
                 ></fa-icon>
               </div>
               <div class="stat-title">{{ t('team.stats.data-one.title') }}</div>
-              <div class="stat-value">{{ currentMember.totalHours }}h</div>
+              <div class="stat-value">X h</div>
               <div class="stat-desc">
                 {{ t('team.stats.data-one.subtitle', {value: 21}) }}
               </div>
@@ -293,7 +292,7 @@
             class="mx-auto mb-8 max-w-full gap-16 lg:w-3/4"
           >
             <ui-carousel-item
-              *ngFor="let item of newMember.testimonials"
+              *ngFor="let item of member.testimonials"
               class="flex-col items-center justify-center"
               width="w-full"
             >
@@ -317,5 +316,4 @@
       <section *ngIf="false" class="timeline pt-28 pb-20"></section>
       <section *ngIf="false" class="pricing pt-28 pb-20"></section>
     </ng-container>
-  </ng-container>
 </ng-container>

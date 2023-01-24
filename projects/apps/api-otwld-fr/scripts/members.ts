@@ -337,6 +337,7 @@ export const projects: Project[] = [
 
 export const memberData: Member = {
   slug: 'apain',
+  medias: [],
   location: {
     city: translatedField('', ''),
     country: translatedField('', ''),

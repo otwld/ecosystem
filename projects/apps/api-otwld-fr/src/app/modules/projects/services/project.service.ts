@@ -18,7 +18,7 @@ export class ProjectService extends GetMultipleIds<Project> {
   async listProjects(args: ListProjectsInput) {
     this.logger.verbose('listProjects');
     const query: FilterQuery<Project> = {};
-    console.log(args);
+
     if (args.criteria.memberId) {
       query.members = {$in: [args.criteria.memberId]};
     }

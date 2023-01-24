@@ -27,7 +27,7 @@ export class Resource {
   @IsString()
   storageEngine: StorageEngine;
 
-  @Prop({ nullable: false })
+  @Prop({ nullable: true })
   @IsNumber()
   size: number;
 

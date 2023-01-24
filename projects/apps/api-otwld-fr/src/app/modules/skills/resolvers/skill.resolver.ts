@@ -5,6 +5,7 @@ import {HeaderLanguage} from '../../../shared/modules/language/enums/language.en
 
 @Resolver(() => Skill)
 export class SkillResolver {
+
   @ResolveField('name', () => String)
   resolveTitle(@Parent() skill: Skill, @CurrentLanguage() language: HeaderLanguage) {
     return skill.name[language];

@@ -6,13 +6,14 @@ import {MemberResolver} from './resolvers/member.resolver';
 import {MemberSkillResolver} from './resolvers/memberSkill.resolver';
 import {MemberWorkModeResolver} from './resolvers/memberWorkMode.resolver';
 import {ProjectModule} from '../projects/project.module';
+import {MediaModule} from '../medias/media.module';
 
 
 @Module({
   imports: [MongooseModule.forFeature([
     {name: Member.name, schema: MemberSchema},
     ]),
-    ProjectModule],
+    ProjectModule, MediaModule],
   providers: [MemberService, MemberResolver, MemberSkillResolver, MemberWorkModeResolver],
   exports: [MemberService],
 })

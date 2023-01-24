@@ -26,6 +26,17 @@ export interface GetResourceUrlInputDto {
   size: ResourceSizes;
 }
 
+export interface ListMediasFilter {
+  memberId?: InputMaybe<Scalars['String']>;
+}
+
+export interface ListMediasPage {
+  __typename?: 'ListMediasPage';
+  edges: Array<Maybe<PaginatedMediaPageEdge>>;
+  pageInfo?: Maybe<PageInfo>;
+  totalCount: Scalars['Int'];
+}
+
 export interface ListMemberPage {
   __typename?: 'ListMemberPage';
   edges: Array<Maybe<PaginatedMemberPageEdge>>;
@@ -59,6 +70,24 @@ export interface Location {
   street?: Maybe<Scalars['String']>;
 }
 
+export interface Media {
+  __typename?: 'Media';
+  _id: Scalars['String'];
+  author: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  image?: Maybe<Resource>;
+  link: Scalars['String'];
+  logo?: Maybe<Resource>;
+  title: Scalars['String'];
+  type: Scalars['String'];
+  updatedAt: Scalars['String'];
+}
+
+export interface MediasOrderBy {
+  direction?: InputMaybe<EDirection>;
+  field?: InputMaybe<EListMediasInputSortFields>;
+}
+
 export interface Member {
   __typename?: 'Member';
   _id: Scalars['String'];
@@ -67,6 +96,7 @@ export interface Member {
   jobTitle: Scalars['String'];
   lastName: Scalars['String'];
   location?: Maybe<Location>;
+  medias: ListMediasPage;
   picture?: Maybe<Resource>;
   projects: ListProjectsPage;
   services: Array<Service>;
@@ -76,6 +106,13 @@ export interface Member {
   testimonials: Array<Testimonial>;
   updatedAt: Scalars['String'];
   workModes: Array<MemberWorkMode>;
+}
+
+
+export interface MemberMediasArgs {
+  criteria?: InputMaybe<ListMediasFilter>;
+  order?: InputMaybe<MediasOrderBy>;
+  pagination: PaginationOption;
 }
 
 
@@ -117,6 +154,12 @@ export interface PageInfo {
   hasNextPage?: Maybe<Scalars['Boolean']>;
   hasPrevPage?: Maybe<Scalars['Boolean']>;
   startCursor?: Maybe<Scalars['String']>;
+}
+
+export interface PaginatedMediaPageEdge {
+  __typename?: 'PaginatedMediaPageEdge';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<Media>;
 }
 
 export interface PaginatedMemberPageEdge {
@@ -265,6 +308,10 @@ export enum EDirection {
   Desc = 'DESC'
 }
 
+export enum EListMediasInputSortFields {
+  CreatedAt = 'createdAt'
+}
+
 export enum EListMembersInputSortFields {
   FirstName = 'firstName'
 }
@@ -289,7 +336,7 @@ export type GetMemberBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, jobTitle: string, location?: { __typename?: 'Location', fullLocation: string } | null, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, services: Array<{ __typename?: 'Service', title: string, slug: string, description: string, icon: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }>, testimonials: Array<{ __typename?: 'Testimonial', content: string, author: { __typename?: 'TestimonialAuthor', firstName: string, lastName: string, job: string, image: { __typename?: 'Resource', url: string } } }> } };
+export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, jobTitle: string, location?: { __typename?: 'Location', fullLocation: string } | null, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, services: Array<{ __typename?: 'Service', title: string, slug: string, description: string, icon: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }>, medias: { __typename?: 'ListMediasPage', edges: Array<{ __typename?: 'PaginatedMediaPageEdge', node?: { __typename?: 'Media', _id: string, title: string, link: string, type: string, image?: { __typename?: 'Resource', url: string } | null, logo?: { __typename?: 'Resource', url: string } | null } | null } | null> }, testimonials: Array<{ __typename?: 'Testimonial', content: string, author: { __typename?: 'TestimonialAuthor', firstName: string, lastName: string, job: string, image: { __typename?: 'Resource', url: string } } }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
@@ -379,6 +426,22 @@ export const GetMemberBySlugDocument = gql`
     workModes {
       workMode {
         name
+      }
+    }
+    medias(pagination: {after: 5}) {
+      edges {
+        node {
+          _id
+          title
+          link
+          type
+          image {
+            url(options: {size: ORIGINAL})
+          }
+          logo {
+            url(options: {size: ORIGINAL})
+          }
+        }
       }
     }
     testimonials {

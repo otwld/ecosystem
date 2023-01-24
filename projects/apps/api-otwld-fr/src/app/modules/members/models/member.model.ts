@@ -60,6 +60,9 @@ export class Member extends BasicModel {
   @Prop({type: LocationSchema})
   @Field(() => Location, {nullable: true})
   location: Location;
+
+  @Prop({type: [String]})
+  medias: string[];
 }
 
 /* endregion */

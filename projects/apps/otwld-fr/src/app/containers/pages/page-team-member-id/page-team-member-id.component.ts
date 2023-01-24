@@ -68,29 +68,11 @@ import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTeamMemberIdComponent {
-  currentMember$ = this.activatedRoute.params.pipe(
-    switchMap((params) =>
-      this.teamMemberService.getOneByRoute(params['id']).pipe(
-        tap((member) => {
-          if (!member) {
-            throw new Error('Member not found');
-          }
-        })
-      )
-    ),
-    map((member) => member as TeamMember),
-    shareReplay({bufferSize: 1, refCount: true})
-  );
-  portfolio$ = this.currentMember$.pipe(
-    switchMap((member) =>
-      this.portfolioService.findByMemberFirstName(member.firstName)
-    )
-  );
   faClock = faClock;
   faProject = faBoxes;
   faTasks = faTasks;
   membersService = inject(MembersService)
-  newMember$ = inject(ActivatedRoute).params.pipe(
+  member$ = inject(ActivatedRoute).params.pipe(
     switchMap((params) =>
       this.membersService.getMemberBySlug$(params['id'])
     ));

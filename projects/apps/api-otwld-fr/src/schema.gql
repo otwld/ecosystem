@@ -16,6 +16,16 @@ input GetResourceUrlInputDto {
   size: ResourceSizes!
 }
 
+input ListMediasFilter {
+  memberId: String
+}
+
+type ListMediasPage {
+  edges: [PaginatedMediaPageEdge]!
+  pageInfo: PageInfo
+  totalCount: Int!
+}
+
 type ListMemberPage {
   edges: [PaginatedMemberPageEdge]!
   pageInfo: PageInfo
@@ -45,6 +55,23 @@ type Location {
   street: String
 }
 
+type Media {
+  _id: String!
+  author: String!
+  createdAt: DateTime!
+  image: Resource
+  link: String!
+  logo: Resource
+  title: String!
+  type: String!
+  updatedAt: String!
+}
+
+input MediasOrderBy {
+  direction: eDirection
+  field: eListMediasInputSortFields
+}
+
 type Member {
   _id: String!
   createdAt: DateTime!
@@ -52,6 +79,7 @@ type Member {
   jobTitle: String!
   lastName: String!
   location: Location
+  medias(criteria: ListMediasFilter, order: MediasOrderBy, pagination: PaginationOption!): ListMediasPage!
   picture: Resource
   projects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
   services: [Service!]!
@@ -91,6 +119,11 @@ type PageInfo {
   hasNextPage: Boolean
   hasPrevPage: Boolean
   startCursor: String
+}
+
+type PaginatedMediaPageEdge {
+  cursor: String
+  node: Media
 }
 
 type PaginatedMemberPageEdge {
@@ -199,6 +232,10 @@ type WorkMode {
 enum eDirection {
   ASC
   DESC
+}
+
+enum eListMediasInputSortFields {
+  createdAt
 }
 
 enum eListMembersInputSortFields {

@@ -31,6 +31,7 @@ import {ResourcesModule} from './modules/resources/resources.module';
 import {createTestimonialsLoader} from './shared/loaders/testimonials.loader';
 import {TestimonialService} from './modules/testimonials/services/testimonial.service';
 import {LocationModule} from './shared/modules/location/location.module';
+import {MediaModule} from './modules/medias/media.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import {LocationModule} from './shared/modules/location/location.module';
         ServiceModule,
         SkillModule,
         WorkModeModule,
+        MediaModule,
         ProjectModule,
         ResourcesModule,
         TestimonialModule
@@ -127,7 +129,8 @@ import {LocationModule} from './shared/modules/location/location.module';
     ProjectModule,
     TestimonialModule,
     ResourcesModule,
-    LocationModule
+    LocationModule,
+    MediaModule
   ],
   controllers: [],
   providers: [],

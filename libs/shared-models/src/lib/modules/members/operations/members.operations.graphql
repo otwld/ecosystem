@@ -68,6 +68,22 @@ query getMemberBySlug($slug: String!) {
         name
       }
     },
+    medias(pagination: {after: 5}) {
+      edges {
+        node {
+          _id
+          title,
+          link,
+          type,
+          image {
+            url(options: {size: ORIGINAL})
+          },
+          logo {
+            url(options: {size: ORIGINAL})
+          },
+        }
+      }
+    },
     testimonials {
       author {
         firstName,

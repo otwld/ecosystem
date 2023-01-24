@@ -14,11 +14,14 @@ import {Service} from '../../services/models/service.model';
 import {CurrentLanguage} from '../../../shared/modules/language/decorators/current-language.decorator';
 import {HeaderLanguage} from '../../../shared/modules/language/enums/language.enum';
 import {Testimonial} from '../../testimonials/models/testimonial.model';
+import {ListMediasPage} from '../../medias/models/dto/list-medias-output.dto';
+import {MediaService} from '../../medias/services/media.service';
+import {ListMediasInput} from '../../medias/models/dto/list-medias-input.dto';
 
 @Resolver(() => Member)
 export class MemberResolver {
   constructor(private readonly memberService: MemberService, private logger: AppLogger,
-              private projectService: ProjectService) {
+              private projectService: ProjectService, private mediasService: MediaService) {
     this.logger.setContext(MemberResolver.name);
   }
 
@@ -60,6 +63,11 @@ export class MemberResolver {
   async resolveTestimonial(@Parent() member: Member,
                            @Context('testimonialLoader') testimonialsLoader: DataLoader<string, Testimonial>) {
     return testimonialsLoader.loadMany(member.testimonials || []);
+  }
+
+  @ResolveField('medias', () => ListMediasPage)
+  async resolveMedias(@Parent() member: Member, @Args() args: ListMediasInput) {
+    return this.mediasService.listMedias({...args, criteria: {memberId: member._id}});
   }
 
 }

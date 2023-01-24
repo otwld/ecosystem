@@ -17,6 +17,7 @@ export class ResourceResolver {
     } else if (picture && picture.storageEngine === 'external') {
       return picture.path;
     }
+    console.log('return string')
     return '';
   }
 }
