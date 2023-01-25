@@ -67,21 +67,28 @@ export class CardActionsComponent {
   selector: 'ui-card-image',
   standalone: true,
   imports: [CommonModule, RouterLinkWithHref],
-  template: ` <figure>
-    <a routerLink="{{ routerLink }}" *ngIf="routerLink">
-      <img *ngIf="src" src="{{ src }}" alt="{{ alt }}" class="{{ width }}" />
-    </a>
-    <img
-      *ngIf="src && !routerLink"
-      src="{{ src }}"
-      alt="{{ alt }}"
-      class="{{ width }}"
-    />
-  </figure>`,
+  template: `
+    <figure *ngIf="!mode; else imgTemplate">
+      <a *ngIf="routerLink; else imgTemplate" routerLink="{{ routerLink }}" >
+        <ng-container *ngTemplateOutlet="imgTemplate"></ng-container>
+      </a>
+    </figure>
+
+    <ng-template #imgTemplate>
+      <img
+        src="{{ src }}"
+        alt="{{ alt }}"
+        class="{{ width }} {{
+          mode === 'cover' ? 'object-cover w-full h-full' : ''
+        }}"
+      />
+    </ng-template>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardImageComponent {
   @Input() src: string | undefined;
+  @Input() mode: 'cover' | undefined;
   @Input() alt = '';
   @Input() width: WidthClass | undefined = undefined;
   @Input() routerLink: string | undefined = undefined;
