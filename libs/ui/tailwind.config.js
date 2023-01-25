@@ -19,6 +19,17 @@ module.exports = {
     'animation-delay-1',
     'animation-delay-1.1',
     'animation-delay-1.2',
+    '!animation-delay-0.2',
+    '!animation-delay-0.3',
+    '!animation-delay-0.4',
+    '!animation-delay-0.5',
+    '!animation-delay-0.6',
+    '!animation-delay-0.7',
+    '!animation-delay-0.8',
+    '!animation-delay-0.9',
+    '!animation-delay-1',
+    '!animation-delay-1.1',
+    '!animation-delay-1.2',
   ],
   theme: {
     container: {
