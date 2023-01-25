@@ -11,7 +11,8 @@ import {
 } from '@angular/core';
 import { ThemeClassOrArray } from '../types/tailwind/theme.types';
 import { constructComponentClasses } from '../utils/tailwind.utils';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { DeviceService } from '@otwld/features';
 
 @UntilDestroy()
 @Component({
@@ -36,6 +37,21 @@ export class BaseComponent<T extends string = ''>
 
   elementRef: ElementRef<HTMLElement> = inject(ElementRef);
   cdr = inject(ChangeDetectorRef);
+
+  private readonly device = inject(DeviceService);
+  isMobile = this.device.isMobile;
+  isTablet = this.device.isTablet;
+  isDesktop = this.device.isDesktop;
+
+  constructor() {
+    // TODO: Create a stack of observables, that on any emission will markForCheck.
+    this.device
+      .resized$()
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.cdr.markForCheck();
+      });
+  }
 
   private _hostDisplay:
     | 'block'
