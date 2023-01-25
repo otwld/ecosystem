@@ -1,3 +1,4 @@
+export * from './device/device.service';
 export * from './matomo';
 export * from './tawk-to';
 export * from './transloco';
