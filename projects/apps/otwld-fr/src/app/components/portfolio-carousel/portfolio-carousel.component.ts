@@ -2,9 +2,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   CardBodyComponent,
-  CardComponent, CardImageComponent,
+  CardComponent,
+  CardImageComponent,
   CardTitleDirective,
-  IsInViewportDirective
+  CarouselModule,
+  IsInViewportDirective,
 } from '@otwld/ui';
 import { JoinObjectPipe } from '../../pipes/join/join-object.pipe';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
-import {Project} from '@ecosystem/shared-models';
+import { Project } from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-portfolio-carousel',
@@ -29,6 +31,7 @@ import {Project} from '@ecosystem/shared-models';
     JoinObjectPipe,
     FontAwesomeModule,
     TranslocoModule,
+    CarouselModule,
   ],
   templateUrl: './portfolio-carousel.component.html',
   styleUrls: ['./portfolio-carousel.component.scss'],
@@ -38,7 +41,8 @@ export class PortfolioCarouselComponent {
   @Input() items: PortfolioItem[] = [];
 
   @Input() withApi = false;
-  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] = [];
+  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] =
+    [];
   faArrowRight = faArrowRight;
   trackEvent = injectTrackEvent();
 }
