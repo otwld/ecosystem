@@ -1,21 +1,27 @@
-<div class="carousel-center carousel rounded-box space-x-4">
+<ui-carousel #carouselRef class="space-x-8">
+  <ui-carousel-item
+    *ngFor="let item of items; let index = index"
+    class="my-auto w-full md:w-2/5 xl:w-[31.5%]"
+    height="h-full"
+  >
     <a
-      (click)="trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)"
+      (click)="
+          trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)
+        "
       [routerLink]="['/', 'portfolio',  item.slug]"
-      class="carousel-item w-[80vw] sm:w-[47%] lg:w-[32%]"
-      *ngFor="let item of items; let index = index"
     >
       <ui-card
         *transloco="let t"
-        [whenVisible]="['md:animate-slide-in-fade-top']"
-        class="w-full group before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary before:!bg-opacity-0 animation-delay-0.{{
-        2 + index
-      }}"
+        [classWhenInViewport]="index < 3 ? ['md:animate-slide-in-fade-top'] : []"
+        class="w-full group before:transition-colors before:bg-primary before:duration-500 before:bg-gradient-to-t before:from-primary before:!bg-opacity-0 !animation-delay-0.{{
+            2 + index
+          }}"
         image="image-full"
         uiIsInViewport
       >
         <ui-card-image
-          class="transition-transform ease-in-out group-hover:scale-105"
+          class="aspect-[12/8] transition-transform ease-in-out group-hover:scale-105"
+          mode="cover"
           src="{{ item.image.url }}"
         ></ui-card-image>
         <ui-card-body class="justify-end">
@@ -24,10 +30,10 @@
           </h5>
           <hr class="border-secondary-50 w-full" />
           <div
-            class="flex items-center space-x-4"
             (click)="
-            trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)
-          "
+                trackEvent('CTA', 'Click', 'portfolio.item-cta: ' + item.title)
+              "
+            class="flex items-center space-x-4"
             [routerLink]="['/', 'portfolio',  item.slug]"
           >
             <span class="font-semibold">{{ t('portfolio.item-cta') }}</span>
@@ -36,4 +42,9 @@
         </ui-card-body>
       </ui-card>
     </a>
-</div>
+  </ui-carousel-item>
+</ui-carousel>
+<ui-carousel-indicators
+  [carousel]="carouselRef"
+  class="py-8"
+></ui-carousel-indicators>
