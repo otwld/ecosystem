@@ -7,7 +7,7 @@
         *ngFor="let item of services$ | async; let index = index"
         [routerLink]="[item.route]"
         (click)="trackEvent('CTA', 'Click', item.title)"
-        class="aspect-square w-full transition-transform hover:scale-105 xs:w-[45%] sm:w-[35%] lg:w-[15%]"
+        class="aspect-square transition-transform hover:scale-105 w-[44%] sm:w-[35%] lg:w-[15%]"
       >
         <ui-card-icon
           title="{{ t(item.title) }}"
@@ -24,7 +24,7 @@
       <h2
         uiLoopLiterals
         i18ArrayKey="services.ctas"
-        class="mb-8 text-3xl font-extrabold leading-[1.33] md:text-3xl lg:mb-0 lg:text-4xl"
+        class="mb-8 min-h-[5rem] text-3xl font-extrabold leading-[1.33] md:text-3xl lg:mb-0 lg:text-4xl"
       ></h2>
       <div>
         <a
