@@ -6,7 +6,7 @@
   >
     <div
       *transloco="let t"
-      [whenVisible]="['animate-slide-in-fade-left']"
+      [classWhenInViewport]="['animate-slide-in-fade-left']"
       class="pb-8 animation-delay-0.4"
       uiIsInViewport
     >
@@ -47,7 +47,7 @@
       </a>
     </div>
     <div
-      [whenVisible]="['animate-slide-in-fade-right']"
+      [classWhenInViewport]="['animate-slide-in-fade-right']"
       class="relative mt-8 grid grid-cols-2 gap-4 animation-delay-0.4"
       uiIsInViewport
     >
