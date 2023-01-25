@@ -4,12 +4,12 @@
   [padding]="padding"
   textColor="text-base-content"
 >
-  <ui-card-body class="flex h-full items-center justify-center space-y-4">
+  <ui-card-body class="flex h-full items-center justify-center space-y-2 sm:space-y-4">
     <fa-icon
       *ngIf="icon"
       [icon]="icon"
       class="{{ iconColor }}"
-      size="4x"
+      [size]="isMobile ? '2x' : '4x'"
     ></fa-icon>
     <h6 *ngIf="title" class="font-bold text-center {{ titleColor }}">
       {{title}}
