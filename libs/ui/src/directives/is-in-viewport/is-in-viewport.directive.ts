@@ -15,7 +15,9 @@ import { isBrowser } from '@otwld/features';
 export class IsInViewportDirective implements AfterViewInit {
   private isBrowser = isBrowser();
   @Input()
-  whenVisible: string[] = [];
+  classWhenInViewport: string[] = [];
+  @Input()
+  classWhenOutViewport: string[] | undefined;
 
   @Input() shouldRemoveClassesWhenNotIntersecting = false;
 
@@ -42,9 +44,11 @@ export class IsInViewportDirective implements AfterViewInit {
 
   applyOrRemoveClasses(isIntersecting: boolean) {
     if (isIntersecting) {
-      this.class = this.whenVisible;
+      this.class = this.classWhenInViewport;
     } else if (this.shouldRemoveClassesWhenNotIntersecting) {
       this.class = [];
+    } else if (this.classWhenOutViewport) {
+      this.class = this.classWhenOutViewport;
     }
     this.cdRef.markForCheck();
   }
