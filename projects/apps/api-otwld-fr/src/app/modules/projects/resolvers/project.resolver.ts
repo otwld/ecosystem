@@ -11,16 +11,31 @@ import {Member} from '../../members/models/member.model';
 import {format} from 'date-fns';
 import {enUS, fr} from 'date-fns/locale';
 import {Client} from '../../clients/models/client.model';
+import {ListProjectsPage} from '../models/dto/list-projects-output.dto';
+import {ListProjectsInput} from '../models/dto/list-projects-input.dto';
+import {PaginationProjectsPage} from '../models/dto/pagination-projects-output.dto';
 
 @Resolver(() => Project)
 export class ProjectResolver {
   constructor(private readonly projectService: ProjectService) {
   }
 
+  @Query(() => ListProjectsPage)
+  @UseGuards(LanguageGuard)
+  getProjects(@Args() args: ListProjectsInput) {
+    return this.projectService.listProjects(args);
+  }
+
   @Query(() => Project)
   @UseGuards(LanguageGuard)
   getProjectBySlug(@Args('slug') slug: string) {
     return this.projectService.getOneBySlug(slug);
+  }
+
+  @Query(() => [Project])
+  @UseGuards(LanguageGuard)
+  getRelatedProjects(@Args('slug') slug: string) {
+    return this.projectService.getRelatedProjects(slug);
   }
 
   @ResolveField('title', () => String)
@@ -57,5 +72,15 @@ export class ProjectResolver {
   @ResolveField('clients', () => [Client])
   resolveClients(@Parent() project: Project, @Context('clientLoader') loader: DataLoader<string, Client>) {
     return loader.loadMany(project.clients || []);
+  }
+
+  @ResolveField('previousProject', () => Project, {nullable: true})
+  resolvePreviousProject(@Parent() project: Project) {
+    return this.projectService.findProjectsByPosition(project, "BEFORE");
+  }
+
+  @ResolveField('nextProject', () => Project, {nullable: true})
+  resolveNextProject(@Parent() project: Project) {
+    return this.projectService.findProjectsByPosition(project, "AFTER");
   }
 }

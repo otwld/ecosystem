@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   CardBodyComponent,
@@ -14,6 +14,9 @@ import { RouterLinkWithHref } from '@angular/router';
 import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
 import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import {
+  ProjectsService
+} from '../../../../../../../../libs/shared-models/src/lib/modules/projects/services/projects.service';
 
 @Component({
   selector: 'otwld-portfolio',
@@ -37,7 +40,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class PortfolioComponent {
   faArrowRight = faArrowRight;
-  portfolio$ = this.portfolioService.getAll();
+  portfolio$ = inject(ProjectsService).getPaginatedProjects$();
 
   constructor(private readonly portfolioService: PortfolioService) {}
 }

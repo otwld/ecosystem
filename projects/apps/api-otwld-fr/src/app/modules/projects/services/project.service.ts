@@ -19,7 +19,7 @@ export class ProjectService extends GetMultipleIds<Project> {
     this.logger.verbose('listProjects');
     const query: FilterQuery<Project> = {};
 
-    if (args.criteria.memberId) {
+    if (args?.criteria?.memberId) {
       query.members = {$in: [args.criteria.memberId]};
     }
 
@@ -29,5 +29,26 @@ export class ProjectService extends GetMultipleIds<Project> {
 
   getOneBySlug(slug: string) {
     return this.model.findOne({slug}).lean().exec();
+  }
+
+  async getRelatedProjects(slug: string) {
+    const currentProject = await this.model.findOne({slug}).populate('').lean().exec();
+    return this.model.find({
+      slug: {$ne: slug},
+      services: {$in: currentProject.services},
+    });
+  }
+
+  async findProjectsByPosition(project: Project, position: 'AFTER' | 'BEFORE') {
+    console.log(project);
+    const docs =  position === 'AFTER' ?
+      await (this.model.findOne({
+        startDate: {$gt: project.startDate},
+      }).sort({startDate: 1}).limit(1).lean().exec())
+      :
+      await (this.model.find({
+        startDate: {$lt: project.startDate},
+      }).sort({startDate: -1}).limit(1).lean().exec());
+    return docs?.[0] || null;
   }
 }

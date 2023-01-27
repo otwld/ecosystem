@@ -88,12 +88,16 @@ export class PagePortfolioComponent {
     shareReplay({ bufferSize: 1, refCount: true }),
     tap((portfolioItem) => {
       if (portfolioItem) {
-       /* this.breadcrumbsService.addBreadcrumb({
+       this.breadcrumbsService.addBreadcrumb({
           labelTranslationKey: portfolioItem.title,
-          url: portfolioItem.route,
-        });*/
+          url: portfolioItem.slug,
+        });
       }
     })
+  );
+  relatedProjects$ = this.activatedRoute.params.pipe(
+    switchMap((params) => this.projectsService.getRelatedProjectsBySlug$(params['id'])),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   loadContent$ = combineLatest([
@@ -124,10 +128,6 @@ export class PagePortfolioComponent {
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
 
-  relatedProjects$ = this.currentPortfolioItem$.pipe(
-    filter((service) => !!service),
-    map((item) => item?.relatedProjects || [])
-  );
   faAngleDoubleRight = faAngleDoubleRight;
   tawkTo = inject(TawkToService);
 

@@ -5,6 +5,13 @@ query getProjectBySlug($slug: String!) {
     services {
       title
     },
+    slug,
+    nextProject {
+      slug,
+    },
+    previousProject {
+      slug
+    }
     image {
       url(options: {size: ORIGINAL})
     },
@@ -23,4 +30,33 @@ query getProjectBySlug($slug: String!) {
       }
     }
   }
+}
+
+query getProjectsPaginated($pagination: PaginationOption!)  {
+  getProjects(pagination: $pagination) {
+    edges {
+      node {
+        ...carouselProject
+      }
+    }
+  }
+}
+
+query getRelatedProjects($slug: String!) {
+  getRelatedProjects(slug: $slug) {
+    ...carouselProject
+  }
+}
+
+fragment carouselProject on Project {
+  title,
+  slug,
+  services {
+    title
+  },
+  image {
+    url(options: {size: ORIGINAL}),
+    name,
+    originalName
+  },
 }
