@@ -71,26 +71,14 @@ import {
 })
 export class PagePortfolioComponent {
   private onLangChange$ = inject(TranslocoService).langChanges$;
-  currentPortfolioItem$ = this.activatedRoute.params.pipe(
-    map((params) => this.portfolioService.getOneByRoute(params['id'])),
-    shareReplay({ bufferSize: 1, refCount: true }),
-    tap((portfolioItem) => {
-      if (portfolioItem) {
-        this.breadcrumbsService.addBreadcrumb({
-          labelTranslationKey: portfolioItem.title,
-          url: portfolioItem.route,
-        });
-      }
-    })
-  );
-  newPortfolioItem$ =  this.activatedRoute.params.pipe(
+  currentPortfolioItem$ =  this.activatedRoute.params.pipe(
     switchMap((params) => this.projectsService.getProjectBySlug$(params['id'])),
     shareReplay({ bufferSize: 1, refCount: true }),
     tap((portfolioItem) => {
       if (portfolioItem) {
        this.breadcrumbsService.addBreadcrumb({
           labelTranslationKey: portfolioItem.title,
-          url: portfolioItem.slug,
+          url: `portfolio/${portfolioItem.slug}`,
         });
       }
     })
@@ -100,31 +88,6 @@ export class PagePortfolioComponent {
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  loadContent$ = combineLatest([
-    this.onLangChange$,
-    this.currentPortfolioItem$,
-  ]).pipe(
-    filter(([, service]) => !!service),
-    switchMap(([lang, service]) =>
-      this.httpClient
-        .get(
-          lang === 'en'
-            ? (service as PortfolioItem).templates.en
-            : (service as PortfolioItem).templates.fr,
-          {
-            responseType: 'text',
-          }
-        )
-        .pipe(
-          catchError(() =>
-            of(
-              '<span class="text-error">PortfolioItem or TemplatePortfolioItem not found</span>'
-            )
-          )
-        )
-    ),
-    map((content) => this.domSanitizer.bypassSecurityTrustHtml(content))
-  );
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
 
@@ -132,10 +95,7 @@ export class PagePortfolioComponent {
   tawkTo = inject(TawkToService);
 
   constructor(
-    private readonly portfolioService: PortfolioService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly httpClient: HttpClient,
-    private readonly domSanitizer: DomSanitizer,
     private readonly breadcrumbsService: BreadcrumbsService,
     private readonly projectsService: ProjectsService,
   ) {}
