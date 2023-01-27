@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PagePortfolioComponent } from './page-portfolio.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import {PagePortfolioComponent} from './page-portfolio.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ProjectsService} from '@ecosystem/shared-models';
 
 describe('PagePortfolioComponent', () => {
   let component: PagePortfolioComponent;
@@ -10,6 +11,10 @@ describe('PagePortfolioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PagePortfolioComponent, RouterTestingModule],
+      providers: [{
+        provide: ProjectsService,
+        useValue: {},
+      }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PagePortfolioComponent);
