@@ -24,7 +24,10 @@ export class ProjectService extends GetMultipleIds<Project> {
     }
 
     const result = await this.paginationService.paginate(this.model.find(query), args, {lean: true});
-    console.log(result);
     return result
+  }
+
+  getOneBySlug(slug: string) {
+    return this.model.findOne({slug}).lean().exec();
   }
 }

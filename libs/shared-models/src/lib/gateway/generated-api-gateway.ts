@@ -17,6 +17,14 @@ export interface Scalars {
   DateTime: any;
 }
 
+export interface Client {
+  __typename?: 'Client';
+  _id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  name: Scalars['String'];
+  updatedAt: Scalars['String'];
+}
+
 export interface EventsOrderBy {
   direction?: InputMaybe<EDirection>;
   field?: InputMaybe<EListProjectsInputSortFields>;
@@ -189,14 +197,18 @@ export interface PaginationOption {
 export interface Project {
   __typename?: 'Project';
   _id: Scalars['String'];
+  clients: Array<Client>;
   createdAt: Scalars['DateTime'];
-  endDate: Scalars['DateTime'];
+  endDate?: Maybe<Scalars['DateTime']>;
+  endDateLabel?: Maybe<Scalars['String']>;
   image: Resource;
   members: Array<Member>;
   services: Array<Service>;
   skills: Array<Skill>;
   slug: Scalars['String'];
   startDate: Scalars['DateTime'];
+  startDateLabel: Scalars['String'];
+  template: Scalars['String'];
   testimonials: Array<Testimonial>;
   title: Scalars['String'];
   updatedAt: Scalars['String'];
@@ -207,6 +219,7 @@ export interface Query {
   getMemberById: Member;
   getMemberBySlug: Member;
   getMembers: ListMemberPage;
+  getProjectBySlug: Project;
   getServicesPaginated: ListServicePage;
 }
 
@@ -224,6 +237,11 @@ export interface QueryGetMemberBySlugArgs {
 export interface QueryGetMembersArgs {
   order?: InputMaybe<MemberOrderBy>;
   pagination: PaginationOption;
+}
+
+
+export interface QueryGetProjectBySlugArgs {
+  slug: Scalars['String'];
 }
 
 
@@ -337,6 +355,13 @@ export type GetMemberBySlugQueryVariables = Exact<{
 
 
 export type GetMemberBySlugQuery = { __typename?: 'Query', getMemberBySlug: { __typename?: 'Member', _id: string, firstName: string, lastName: string, jobTitle: string, location?: { __typename?: 'Location', fullLocation: string } | null, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string, serviceName: string }>, services: Array<{ __typename?: 'Service', title: string, slug: string, description: string, icon: string }>, skills: Array<{ __typename?: 'MemberSkill', level: number, yearOfExperience: string, skill: { __typename?: 'Skill', name: string } }>, projects: { __typename?: 'ListProjectsPage', edges: Array<{ __typename?: 'PaginatedProjectPageEdge', node?: { __typename?: 'Project', _id: string, title: string, slug: string, services: Array<{ __typename?: 'Service', title: string, slug: string }>, image: { __typename?: 'Resource', url: string } } | null } | null> }, workModes: Array<{ __typename?: 'MemberWorkMode', workMode: { __typename?: 'WorkMode', name: string } }>, medias: { __typename?: 'ListMediasPage', edges: Array<{ __typename?: 'PaginatedMediaPageEdge', node?: { __typename?: 'Media', _id: string, title: string, link: string, type: string, image?: { __typename?: 'Resource', url: string } | null, logo?: { __typename?: 'Resource', url: string } | null } | null } | null> }, testimonials: Array<{ __typename?: 'Testimonial', content: string, author: { __typename?: 'TestimonialAuthor', firstName: string, lastName: string, job: string, image: { __typename?: 'Resource', url: string } } }> } };
+
+export type GetProjectBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetProjectBySlugQuery = { __typename?: 'Query', getProjectBySlug: { __typename?: 'Project', _id: string, title: string, endDateLabel?: string | null, startDateLabel: string, template: string, services: Array<{ __typename?: 'Service', title: string }>, image: { __typename?: 'Resource', url: string }, clients: Array<{ __typename?: 'Client', name: string }>, members: Array<{ __typename?: 'Member', slug: string, firstName: string, lastName: string, picture?: { __typename?: 'Resource', url: string } | null }> } };
 
 export type GetServicesPaginatedForHomeQueryVariables = Exact<{
   pagination: PaginationOption;
@@ -464,6 +489,45 @@ export const GetMemberBySlugDocument = gql`
   })
   export class GetMemberBySlugGQL extends Apollo.Query<GetMemberBySlugQuery, GetMemberBySlugQueryVariables> {
     override document = GetMemberBySlugDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProjectBySlugDocument = gql`
+    query getProjectBySlug($slug: String!) {
+  getProjectBySlug(slug: $slug) {
+    _id
+    title
+    services {
+      title
+    }
+    image {
+      url(options: {size: ORIGINAL})
+    }
+    endDateLabel
+    startDateLabel
+    template
+    clients {
+      name
+    }
+    members {
+      slug
+      firstName
+      lastName
+      picture {
+        url(options: {size: ORIGINAL})
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProjectBySlugGQL extends Apollo.Query<GetProjectBySlugQuery, GetProjectBySlugQueryVariables> {
+    override document = GetProjectBySlugDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

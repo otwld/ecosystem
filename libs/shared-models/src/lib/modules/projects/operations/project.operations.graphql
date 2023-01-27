@@ -1,0 +1,26 @@
+query getProjectBySlug($slug: String!) {
+  getProjectBySlug(slug: $slug) {
+    _id,
+    title,
+    services {
+      title
+    },
+    image {
+      url(options: {size: ORIGINAL})
+    },
+    endDateLabel,
+    startDateLabel,
+    template,
+    clients {
+      name
+    }
+    members {
+      slug,
+      firstName,
+      lastName,
+      picture {
+        url(options: {size: ORIGINAL})
+      }
+    }
+  }
+}

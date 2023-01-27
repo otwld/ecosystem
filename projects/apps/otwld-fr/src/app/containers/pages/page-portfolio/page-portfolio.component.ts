@@ -40,6 +40,9 @@ import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
 import { FormatPipeModule } from 'ngx-date-fns';
 import { TawkToService } from '@otwld/features';
+import {
+  ProjectsService
+} from '../../../../../../../../libs/shared-models/src/lib/modules/projects/services/projects.service';
 
 @Component({
   selector: 'otwld-page-portfolio',
@@ -77,6 +80,18 @@ export class PagePortfolioComponent {
           labelTranslationKey: portfolioItem.title,
           url: portfolioItem.route,
         });
+      }
+    })
+  );
+  newPortfolioItem$ =  this.activatedRoute.params.pipe(
+    switchMap((params) => this.projectsService.getProjectBySlug$(params['id'])),
+    shareReplay({ bufferSize: 1, refCount: true }),
+    tap((portfolioItem) => {
+      if (portfolioItem) {
+       /* this.breadcrumbsService.addBreadcrumb({
+          labelTranslationKey: portfolioItem.title,
+          url: portfolioItem.route,
+        });*/
       }
     })
   );
@@ -121,6 +136,7 @@ export class PagePortfolioComponent {
     private readonly activatedRoute: ActivatedRoute,
     private readonly httpClient: HttpClient,
     private readonly domSanitizer: DomSanitizer,
-    private readonly breadcrumbsService: BreadcrumbsService
+    private readonly breadcrumbsService: BreadcrumbsService,
+    private readonly projectsService: ProjectsService,
   ) {}
 }

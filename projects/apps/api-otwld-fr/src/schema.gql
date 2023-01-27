@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Client {
+  _id: String!
+  createdAt: DateTime!
+  name: String!
+  updatedAt: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -149,14 +156,18 @@ input PaginationOption {
 
 type Project {
   _id: String!
+  clients: [Client!]!
   createdAt: DateTime!
-  endDate: DateTime!
+  endDate: DateTime
+  endDateLabel: String
   image: Resource!
   members: [Member!]!
   services: [Service!]!
   skills: [Skill!]!
   slug: String!
   startDate: DateTime!
+  startDateLabel: String!
+  template: String!
   testimonials: [Testimonial!]!
   title: String!
   updatedAt: String!
@@ -166,6 +177,7 @@ type Query {
   getMemberById(id: String!): Member!
   getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
+  getProjectBySlug(slug: String!): Project!
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
 }
 

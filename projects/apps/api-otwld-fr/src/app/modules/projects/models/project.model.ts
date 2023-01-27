@@ -41,8 +41,8 @@ export class Project extends BasicModel {
   @Field(() => Date, {nullable: false})
   startDate: Date;
 
-  @Prop({type: Date})
-  @Field(() => Date, {nullable: false})
+  @Prop({type: Date, required: false})
+  @Field(() => Date, {nullable: true})
   endDate?: Date;
   @Prop({type: TranslationSchema})
   title: Translation;
@@ -54,6 +54,9 @@ export class Project extends BasicModel {
   @Prop({type: String})
   @Field(() => String, {nullable: false})
   slug: string;
+
+  @Prop({type: [String]})
+  clients: string[];
 }
 
 /* endregion */
