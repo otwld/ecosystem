@@ -2,7 +2,8 @@
 export * from './lib/gateway/generated-api-gateway';
 
 /* ======= MODULES ======= */
-export * from './lib/modules/members'
+export * from './lib/modules/members';
+export * from './lib/modules/projects';
 export * from './lib/shared-models.module';
 
 /* ======= UTILS ======= */
