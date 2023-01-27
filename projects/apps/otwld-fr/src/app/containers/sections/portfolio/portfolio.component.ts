@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {
   CardBodyComponent,
   CardComponent,
@@ -7,16 +7,14 @@ import {
   CardTitleDirective,
   IsInViewportDirective,
 } from '@otwld/ui';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { PortfolioService } from '../../../services/portfolio/portfolio.service';
-import { RouterLinkWithHref } from '@angular/router';
-import { JoinObjectPipe } from '../../../pipes/join/join-object.pipe';
-import { PortfolioCarouselComponent } from '../../../components/portfolio-carousel/portfolio-carousel.component';
-import { TranslocoModule } from '@ngneat/transloco';
-import {
-  ProjectsService
-} from '../../../../../../../../libs/shared-models/src/lib/modules/projects/services/projects.service';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {PortfolioService} from '../../../services/portfolio/portfolio.service';
+import {RouterLinkWithHref} from '@angular/router';
+import {JoinObjectPipe} from '../../../pipes/join/join-object.pipe';
+import {PortfolioCarouselComponent} from '../../../components/portfolio-carousel/portfolio-carousel.component';
+import {TranslocoModule} from '@ngneat/transloco';
+import {ProjectsService} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-portfolio',
@@ -42,5 +40,6 @@ export class PortfolioComponent {
   faArrowRight = faArrowRight;
   portfolio$ = inject(ProjectsService).getPaginatedProjects$();
 
-  constructor(private readonly portfolioService: PortfolioService) {}
+  constructor(private readonly portfolioService: PortfolioService) {
+  }
 }

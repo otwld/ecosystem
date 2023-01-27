@@ -5,8 +5,7 @@ import {
   GetProjectBySlugQuery,
   GetProjectsPaginatedGQL,
   GetRelatedProjectsGQL,
-  GetRelatedProjectsQuery,
-  PaginatedProjectPageEdge
+  GetRelatedProjectsQuery
 } from '../../../gateway/generated-api-gateway';
 import {map, Observable} from 'rxjs';
 
@@ -28,7 +27,8 @@ export class ProjectsService {
     return this.getProjectsPaginatedGQL.fetch({pagination: {after: 4}})
       .pipe(map((result) => {
         if (result.data.getProjects.edges) {
-          return result.data.getProjects.edges.map((edge) => edge?.node || null).filter((node) => node !== null) as CarouselProjectFragment[];
+          return result.data.getProjects.edges.map((edge) => edge?.node || null)
+            .filter((node) => node !== null) as CarouselProjectFragment[];
         } else {
           return [];
         }
