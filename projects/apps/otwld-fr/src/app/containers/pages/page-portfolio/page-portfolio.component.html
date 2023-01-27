@@ -1,10 +1,18 @@
 <otwld-hero-breadcrumbs></otwld-hero-breadcrumbs>
 <div class="pt-28 pb-44" *transloco="let t">
-  <div class="container mx-auto">
+  <div *ngIf="(currentPortfolioItem$ | async) as newPortfolio" class="container mx-auto">
     <div class="flex flex-col flex-col-reverse pb-24 lg:flex-row">
       <div class="flex-1 px-4">
+        <!-- Add it because we can't have a dynamic image (resource) in template -->
+        <div class="image not-prose mb-10">
+          <img
+            class="rounded-box w-full"
+            [src]="newPortfolio.image?.url"
+            alt="Service Details"
+          />
+        </div>
         <div
-          [innerHtml]="loadContent$ | async"
+          [innerHtml]="newPortfolio.template"
           class="prose max-w-full animate-slide-in-fade-top"
         ></div>
       </div>
@@ -12,7 +20,6 @@
         <ui-card
           class="mb-14"
           backgroundColor="bg-base-200"
-          *ngIf="currentPortfolioItem$ | async as item"
         >
           <ui-card-body>
             <h3 class="mb-9 text-2xl font-bold">
@@ -23,20 +30,20 @@
                 <h4 class="text-xl font-extrabold">
                   {{ t('portfolio.project-name') }}
                 </h4>
-                <p class="text-lg">{{ t(item.title) }}</p>
+                <p class="text-lg">{{ newPortfolio.title }}</p>
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">
                   {{ t('portfolio.project-client') }}
                 </h4>
-                <p class="text-lg">{{ t(item.client) }}</p>
+                <p class="text-lg">{{ newPortfolio.clients | joinObject : 'name' }}</p>
               </li>
               <li>
                 <h4 class="text-xl font-extrabold">
                   {{ t('portfolio.project-services') }}
                 </h4>
                 <p class="text-lg">
-                  {{ item.services | joinObject : 'title' }}
+                  {{ newPortfolio.services | joinObject : 'title' }}
                 </p>
               </li>
               <li>
@@ -46,12 +53,12 @@
                 <p class="pt-2 text-lg">
                   <ui-avatar-group space="-space-x-4">
                     <a
-                      routerLink="{{ item.route }}"
-                      *ngFor="let item of item.members"
+                      [routerLink]="['/', 'members', item.slug]"
+                      *ngFor="let item of newPortfolio.members"
                     >
                       <ui-avatar
                         width="w-8"
-                        imgSrc="{{ item.image }}"
+                        imgSrc="{{ item.picture?.url }}"
                       ></ui-avatar>
                     </a>
                   </ui-avatar-group>
@@ -62,8 +69,8 @@
                   {{ t('portfolio.project-date') }}
                 </h4>
                 <p class="text-lg capitalize">
-                  {{ item.startDate | dfnsFormat : 'MMM dd, yyyy' }} →
-                  {{ item.endDate | dfnsFormat : 'MMM dd, yyyy' }}
+                  {{ newPortfolio.startDateLabel }} →
+                  {{ newPortfolio?.endDateLabel }}
                 </p>
               </li>
             </ul>
@@ -89,30 +96,30 @@
               size="btn-lg"
               [icon]="faAngleDoubleRight"
               iconPosition="end"
-              >{{ t('ctas.lets-work-together.cta') }}
+            >{{ t('ctas.lets-work-together.cta') }}
             </ui-button>
           </ui-card-body>
         </ui-card>
       </div>
     </div>
     <div
-      *ngIf="currentPortfolioItem$ | async as item"
       class="flex justify-between border-y border-neutral border-opacity-25 py-4"
     >
       <a
-        *ngIf="item.previousProject"
-        routerLink="{{ item.previousProject.route }}"
+        *ngIf="newPortfolio.previousProject"
+        [routerLink]="['/', 'portfolio', newPortfolio.previousProject.slug]"
       >
         <ui-button btnStyle="btn-ghost" [icon]="faArrowLeft">{{
           t('portfolio.previous')
-        }}</ui-button>
+          }}</ui-button>
       </a>
-      <a *ngIf="item.nextProject" routerLink="{{ item.nextProject.route }}">
+      <a *ngIf="newPortfolio.nextProject" [routerLink]="['/', 'portfolio', newPortfolio.nextProject.slug]"
+      >
         <ui-button
           btnStyle="btn-ghost"
           iconPosition="end"
           [icon]="faArrowRight"
-          >{{ t('portfolio.next') }}</ui-button
+        >{{ t('portfolio.next') }}</ui-button
         >
       </a>
     </div>

@@ -1,6 +1,9 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 
-@Schema()
+@Schema({
+  autoIndex: false,
+  autoCreate: false
+})
 export class Translation {
   @Prop({nullable: false, type: String})
   fr: string;

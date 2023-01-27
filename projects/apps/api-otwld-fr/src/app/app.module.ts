@@ -32,6 +32,10 @@ import {createTestimonialsLoader} from './shared/loaders/testimonials.loader';
 import {TestimonialService} from './modules/testimonials/services/testimonial.service';
 import {LocationModule} from './shared/modules/location/location.module';
 import {MediaModule} from './modules/medias/media.module';
+import {createMemberLoader} from './shared/loaders/members.loader';
+import {createClientLoader} from './shared/loaders/clients.loader';
+import {ClientService} from './modules/clients/services/client.service';
+import {ClientModule} from './modules/clients/client.module';
 
 @Module({
   imports: [
@@ -59,7 +63,8 @@ import {MediaModule} from './modules/medias/media.module';
         MediaModule,
         ProjectModule,
         ResourcesModule,
-        TestimonialModule
+        TestimonialModule,
+        ClientModule,
       ],
       // WARN: Each argument comes in order with provider's order
       useFactory: (
@@ -69,6 +74,8 @@ import {MediaModule} from './modules/medias/media.module';
         projectService: ProjectService,
         servicesService: ServiceService,
         testimonialService: TestimonialService,
+        memberService: MemberService,
+        clientService: ClientService,
         logger: AppLogger,
       ) => ({
         debug: conf.get('log.graphqlDebug'),
@@ -94,13 +101,8 @@ import {MediaModule} from './modules/medias/media.module';
             projectLoader: createProjectLoader(logger, projectService),
             serviceLoader: createServicesLoader(logger, servicesService),
             testimonialLoader: createTestimonialsLoader(logger, testimonialService),
-            /*categoryLoader: createCategoryLoader(logger, categoryService),
-            eventLoader: createEventLoader(logger, eventService),
-            organizationLoader: createOrganizationLoader(logger, organizationService),
-            passportUserLoader: createPassportUserLoader(logger, passportUserService),
-            professionalLoader: createProfessionalLoader(logger, professionalService),
-            seniorLoader: createSeniorLoader(logger, seniorService),
-            specialityLoader: createSpecialityLoader(logger, specialityService),*/
+            memberLoader: createMemberLoader(logger, memberService),
+            clientLoader: createClientLoader(logger, clientService)
           };
         },
       }),
@@ -111,8 +113,9 @@ import {MediaModule} from './modules/medias/media.module';
         ProjectService,
         ServiceService,
         TestimonialService,
+        MemberService,
+        ClientService,
         AppLogger,
-        MemberService
       ],
     }),
 
@@ -130,7 +133,8 @@ import {MediaModule} from './modules/medias/media.module';
     TestimonialModule,
     ResourcesModule,
     LocationModule,
-    MediaModule
+    MediaModule,
+    ClientModule
   ],
   controllers: [],
   providers: [],

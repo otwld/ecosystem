@@ -1,0 +1,62 @@
+query getProjectBySlug($slug: String!) {
+  getProjectBySlug(slug: $slug) {
+    _id,
+    title,
+    services {
+      title
+    },
+    slug,
+    nextProject {
+      slug,
+    },
+    previousProject {
+      slug
+    }
+    image {
+      url(options: {size: ORIGINAL})
+    },
+    endDateLabel,
+    startDateLabel,
+    template,
+    clients {
+      name
+    }
+    members {
+      slug,
+      firstName,
+      lastName,
+      picture {
+        url(options: {size: ORIGINAL})
+      }
+    }
+  }
+}
+
+query getProjectsPaginated($pagination: PaginationOption!)  {
+  getProjects(pagination: $pagination) {
+    edges {
+      node {
+        ...carouselProject
+      }
+    }
+  }
+}
+
+query getRelatedProjects($slug: String!) {
+  getRelatedProjects(slug: $slug) {
+    ...carouselProject
+  }
+}
+
+fragment carouselProject on Project {
+  title,
+  slug,
+  services {
+    title
+  },
+  image {
+    url(options: {size: ORIGINAL}),
+    name,
+    originalName
+  },
+}

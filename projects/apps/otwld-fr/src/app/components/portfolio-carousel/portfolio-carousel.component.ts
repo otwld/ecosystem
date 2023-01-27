@@ -13,8 +13,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
-import {Project} from '@ecosystem/shared-models';
+import {Project, Service} from '@ecosystem/shared-models';
 
+type MinimalService = {services: Array<Pick<Service, 'title'>>}
 @Component({
   selector: 'otwld-portfolio-carousel',
   standalone: true,
@@ -35,10 +36,8 @@ import {Project} from '@ecosystem/shared-models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioCarouselComponent {
-  @Input() items: PortfolioItem[] = [];
 
-  @Input() withApi = false;
-  @Input() newItems: Pick<Project, 'services' | 'title' | 'slug' | 'image'>[] = [];
+  @Input() items: Array<(Pick<Project, 'title' | 'slug' | 'image'> & MinimalService)> = [];
   faArrowRight = faArrowRight;
   trackEvent = injectTrackEvent();
 }
