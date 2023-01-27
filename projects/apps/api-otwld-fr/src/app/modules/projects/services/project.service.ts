@@ -40,15 +40,17 @@ export class ProjectService extends GetMultipleIds<Project> {
   }
 
   async findProjectsByPosition(project: Project, position: 'AFTER' | 'BEFORE') {
-    console.log(project);
-    const docs =  position === 'AFTER' ?
-      await (this.model.findOne({
+    let projects: Project[];
+    if (position === 'AFTER') {
+      projects = await this.model.find({
         startDate: {$gt: project.startDate},
-      }).sort({startDate: 1}).limit(1).lean().exec())
-      :
-      await (this.model.find({
+      }).sort({startDate: 1}).limit(1).lean().exec()
+    } else {
+      projects = await (this.model.find({
         startDate: {$lt: project.startDate},
       }).sort({startDate: -1}).limit(1).lean().exec());
-    return docs?.[0] || null;
+
+    }
+    return projects?.[0] || null;
   }
 }
