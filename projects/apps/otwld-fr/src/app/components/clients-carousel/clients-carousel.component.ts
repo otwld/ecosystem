@@ -7,10 +7,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Client } from '../../types/client.type';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { interval } from 'rxjs';
 import { injectTrackEvent, isBrowser } from '@otwld/features';
+import {Client, Resource} from '@ecosystem/shared-models';
+
+export type MinimalResource = Pick<Resource, 'url'>;
+export type CarouselClient = Pick<Client, 'website' | 'name'> & {logo: MinimalResource}
 
 @UntilDestroy()
 @Component({
@@ -23,7 +26,7 @@ import { injectTrackEvent, isBrowser } from '@otwld/features';
 })
 export class ClientsCarouselComponent implements OnInit {
   private isBrowser = isBrowser();
-  @Input() items: Client[] = [];
+  @Input() items: CarouselClient[] = [];
   @ViewChild('carouselRef', { static: true }) carouselRef:
     | ElementRef<HTMLElement>
     | undefined = undefined;

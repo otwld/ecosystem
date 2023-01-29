@@ -22,16 +22,17 @@
           padding="card-compact"
         >
           <ui-card-image
-            routerLink="{{item.route}}"
+            [routerLink]='"members/" + item.slug'
             alt="Bonnie Avatar"
-            src="{{ item.image }}"
+            src="{{ item.picture?.url }}"
             width="w-full"
           ></ui-card-image>
           <ui-card-body class="items-center text-center">
             <h3 uiCardTitle>
-              <a routerLink="{{item.route}}">{{ item.firstName }} {{ item.lastName }}</a>
+              <a [routerLink]='"members/" + item.slug'
+              >{{ item.fullName }}</a>
             </h3>
-            <p>{{ t(item.role) }}</p>
+            <p>{{ item.jobTitle }}</p>
             <ui-card-actions>
               <ul
                 *ngIf="item.socials"
@@ -41,9 +42,9 @@
                   *ngFor="let social of item.socials"
                   class="transition-transform hover:scale-125"
                 >
-                  <a href="{{ social.url }}" target="_blank"
-                  (click)="trackEvent('Socials', 'Click', social.icon.iconName + item.firstName + item.lastName)">
-                    <fa-icon [icon]="social.icon" size="2x"></fa-icon>
+                  <a href="{{ social.link }}" target="_blank"
+                     (click)="trackEvent('Socials', 'Click', social.icon + item.fullName)">
+                    <fa-icon [icon]="stringToIcon(social.icon)" size="2x"></fa-icon>
                   </a>
                 </li>
               </ul>

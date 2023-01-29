@@ -14,7 +14,6 @@ export class LanguageGuard {
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const gqlContext = GqlExecutionContext.create(context).getContext();
-    console.log(gqlContext.req.headers);
     const language = gqlContext.isWebSocket ? gqlContext['language'] : gqlContext.req.headers['language'];
     this.logger.verbose('setting language to ' + language);
     if (!language) {

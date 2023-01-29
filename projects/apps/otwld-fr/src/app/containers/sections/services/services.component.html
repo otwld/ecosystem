@@ -5,13 +5,13 @@
     >
       <a
         *ngFor="let item of services$ | async; let index = index"
-        [routerLink]="[item.route]"
+        [routerLink]="['services', item.slug]"
         (click)="trackEvent('CTA', 'Click', item.title)"
         class="aspect-square w-full transition-transform hover:scale-105 xs:w-[45%] sm:w-[35%] lg:w-[15%]"
       >
         <ui-card-icon
-          title="{{ t(item.title) }}"
-          [icon]="item.icon"
+          title="{{ item.title }}"
+          [icon]="stringToIcon(item.icon)"
           class="animate-slide-in-fade-top animation-delay-{{
             7 + index <= 1 ? '0.' + (7 + index) : (7 + index) / 10
           }}"

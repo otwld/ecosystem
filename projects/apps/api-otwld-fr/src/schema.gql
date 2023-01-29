@@ -5,8 +5,10 @@
 type Client {
   _id: String!
   createdAt: DateTime!
+  logo: Resource!
   name: String!
   updatedAt: String!
+  website: String!
 }
 
 """
@@ -83,6 +85,7 @@ type Member {
   _id: String!
   createdAt: DateTime!
   firstName: String!
+  fullName: String!
   jobTitle: String!
   lastName: String!
   location: Location
@@ -176,12 +179,16 @@ type Project {
 }
 
 type Query {
+  getAllClients: [Client!]!
+  getAllMembers: [Member!]!
+  getAllServices: [Service!]!
   getMemberById(id: String!): Member!
   getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
   getProjectBySlug(slug: String!): Project!
   getProjects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
   getRelatedProjects(slug: String!): [Project!]!
+  getService(slug: String!): Service!
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
 }
 

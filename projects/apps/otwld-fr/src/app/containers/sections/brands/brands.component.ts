@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BaseComponent } from '@otwld/ui';
-import { ClientsCarouselComponent } from '../../../components/clients-carousel/clients-carousel.component';
-import { ClientsService } from '../../../services/client/clients.service';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BaseComponent} from '@otwld/ui';
+import {ClientsCarouselComponent} from '../../../components/clients-carousel/clients-carousel.component';
+import {ClientsService} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-brands',
@@ -13,11 +13,5 @@ import { ClientsService } from '../../../services/client/clients.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandsComponent extends BaseComponent {
-  clients = this.clientsService.clients;
-
-  constructor(
-    private readonly clientsService: ClientsService,
-  ) {
-    super();
-  }
+  clients$ = inject(ClientsService).getAllClients$();
 }

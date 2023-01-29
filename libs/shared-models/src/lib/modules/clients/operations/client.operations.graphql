@@ -1,0 +1,9 @@
+query getAllClients {
+  getAllClients {
+    name,
+    logo {
+      url(options: {size: ORIGINAL})
+    },
+    website
+  }
+}

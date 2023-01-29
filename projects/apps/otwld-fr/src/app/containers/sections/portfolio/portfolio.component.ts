@@ -9,7 +9,6 @@ import {
 } from '@otwld/ui';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
-import {PortfolioService} from '../../../services/portfolio/portfolio.service';
 import {RouterLinkWithHref} from '@angular/router';
 import {JoinObjectPipe} from '../../../pipes/join/join-object.pipe';
 import {PortfolioCarouselComponent} from '../../../components/portfolio-carousel/portfolio-carousel.component';
@@ -37,9 +36,5 @@ import {ProjectsService} from '@ecosystem/shared-models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioComponent {
-  faArrowRight = faArrowRight;
   portfolio$ = inject(ProjectsService).getPaginatedProjects$();
-
-  constructor(private readonly portfolioService: PortfolioService) {
-  }
 }

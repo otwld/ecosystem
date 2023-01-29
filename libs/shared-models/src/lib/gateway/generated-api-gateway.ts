@@ -21,8 +21,10 @@ export interface Client {
   __typename?: 'Client';
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  logo: Resource;
   name: Scalars['String'];
   updatedAt: Scalars['String'];
+  website: Scalars['String'];
 }
 
 export interface EventsOrderBy {
@@ -101,6 +103,7 @@ export interface Member {
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
+  fullName: Scalars['String'];
   jobTitle: Scalars['String'];
   lastName: Scalars['String'];
   location?: Maybe<Location>;
@@ -218,12 +221,16 @@ export interface Project {
 
 export interface Query {
   __typename?: 'Query';
+  getAllClients: Array<Client>;
+  getAllMembers: Array<Member>;
+  getAllServices: Array<Service>;
   getMemberById: Member;
   getMemberBySlug: Member;
   getMembers: ListMemberPage;
   getProjectBySlug: Project;
   getProjects: ListProjectsPage;
   getRelatedProjects: Array<Project>;
+  getService: Service;
   getServicesPaginated: ListServicePage;
 }
 
@@ -257,6 +264,11 @@ export interface QueryGetProjectsArgs {
 
 
 export interface QueryGetRelatedProjectsArgs {
+  slug: Scalars['String'];
+}
+
+
+export interface QueryGetServiceArgs {
   slug: Scalars['String'];
 }
 
@@ -358,12 +370,22 @@ export enum EListServicesInputSortFields {
   FirstName = 'firstName'
 }
 
+export type GetAllClientsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllClientsQuery = { __typename?: 'Query', getAllClients: Array<{ __typename?: 'Client', name: string, website: string, logo: { __typename?: 'Resource', url: string } }> };
+
 export type GetMembersPaginatedQueryVariables = Exact<{
   pagination: PaginationOption;
 }>;
 
 
 export type GetMembersPaginatedQuery = { __typename?: 'Query', getMembers: { __typename?: 'ListMemberPage', edges: Array<{ __typename?: 'PaginatedMemberPageEdge', node?: { __typename?: 'Member', _id: string, createdAt: any, updatedAt: string, firstName: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
+
+export type GetAllMembersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllMembersQuery = { __typename?: 'Query', getAllMembers: Array<{ __typename?: 'Member', fullName: string, slug: string, jobTitle: string, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string }> }> };
 
 export type GetMemberBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -402,6 +424,18 @@ export type GetServicesPaginatedForHomeQueryVariables = Exact<{
 
 export type GetServicesPaginatedForHomeQuery = { __typename?: 'Query', getServicesPaginated: { __typename?: 'ListServicePage', edges: Array<{ __typename?: 'PaginatedServicePageEdge', node?: { __typename?: 'Service', title: string, icon: string, slug: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
 
+export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllServicesQuery = { __typename?: 'Query', getAllServices: Array<{ __typename?: 'Service', title: string, icon: string, slug: string }> };
+
+export type GetServiceBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetServiceBySlugQuery = { __typename?: 'Query', getService: { __typename?: 'Service', content: string, title: string, slug: string } };
+
 export const CarouselProjectFragmentDoc = gql`
     fragment carouselProject on Project {
   title
@@ -416,6 +450,28 @@ export const CarouselProjectFragmentDoc = gql`
   }
 }
     `;
+export const GetAllClientsDocument = gql`
+    query getAllClients {
+  getAllClients {
+    name
+    logo {
+      url(options: {size: ORIGINAL})
+    }
+    website
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllClientsGQL extends Apollo.Query<GetAllClientsQuery, GetAllClientsQueryVariables> {
+    override document = GetAllClientsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetMembersPaginatedDocument = gql`
     query getMembersPaginated($pagination: PaginationOption!) {
   getMembers(pagination: $pagination) {
@@ -442,6 +498,33 @@ export const GetMembersPaginatedDocument = gql`
   })
   export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
     override document = GetMembersPaginatedDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllMembersDocument = gql`
+    query getAllMembers {
+  getAllMembers {
+    fullName
+    slug
+    picture {
+      url(options: {size: ORIGINAL})
+    }
+    jobTitle
+    socials {
+      icon
+      link
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllMembersGQL extends Apollo.Query<GetAllMembersQuery, GetAllMembersQueryVariables> {
+    override document = GetAllMembersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -651,6 +734,46 @@ export const GetServicesPaginatedForHomeDocument = gql`
   })
   export class GetServicesPaginatedForHomeGQL extends Apollo.Query<GetServicesPaginatedForHomeQuery, GetServicesPaginatedForHomeQueryVariables> {
     override document = GetServicesPaginatedForHomeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllServicesDocument = gql`
+    query getAllServices {
+  getAllServices {
+    title
+    icon
+    slug
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
+    override document = GetAllServicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetServiceBySlugDocument = gql`
+    query getServiceBySlug($slug: String!) {
+  getService(slug: $slug) {
+    content
+    title
+    slug
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetServiceBySlugGQL extends Apollo.Query<GetServiceBySlugQuery, GetServiceBySlugQueryVariables> {
+    override document = GetServiceBySlugDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
