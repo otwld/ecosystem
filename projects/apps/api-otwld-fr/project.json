@@ -72,7 +72,7 @@
       "executor": "@otwld/nx-devops:helm-deploy",
       "configurations": {
         "production": {
-          "namespace": "production",
+          "namespace": "ecosystem",
           "valuesPath": ["values.yaml", "values-production.yaml"]
         },
         "staging": {
