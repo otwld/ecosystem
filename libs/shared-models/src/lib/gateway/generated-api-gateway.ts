@@ -218,12 +218,14 @@ export interface Project {
 
 export interface Query {
   __typename?: 'Query';
+  getAllServices: Array<Service>;
   getMemberById: Member;
   getMemberBySlug: Member;
   getMembers: ListMemberPage;
   getProjectBySlug: Project;
   getProjects: ListProjectsPage;
   getRelatedProjects: Array<Project>;
+  getService: Service;
   getServicesPaginated: ListServicePage;
 }
 
@@ -257,6 +259,11 @@ export interface QueryGetProjectsArgs {
 
 
 export interface QueryGetRelatedProjectsArgs {
+  slug: Scalars['String'];
+}
+
+
+export interface QueryGetServiceArgs {
   slug: Scalars['String'];
 }
 
@@ -401,6 +408,18 @@ export type GetServicesPaginatedForHomeQueryVariables = Exact<{
 
 
 export type GetServicesPaginatedForHomeQuery = { __typename?: 'Query', getServicesPaginated: { __typename?: 'ListServicePage', edges: Array<{ __typename?: 'PaginatedServicePageEdge', node?: { __typename?: 'Service', title: string, icon: string, slug: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
+
+export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllServicesQuery = { __typename?: 'Query', getAllServices: Array<{ __typename?: 'Service', title: string, icon: string, slug: string }> };
+
+export type GetServiceBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetServiceBySlugQuery = { __typename?: 'Query', getService: { __typename?: 'Service', content: string, title: string, slug: string } };
 
 export const CarouselProjectFragmentDoc = gql`
     fragment carouselProject on Project {
@@ -651,6 +670,46 @@ export const GetServicesPaginatedForHomeDocument = gql`
   })
   export class GetServicesPaginatedForHomeGQL extends Apollo.Query<GetServicesPaginatedForHomeQuery, GetServicesPaginatedForHomeQueryVariables> {
     override document = GetServicesPaginatedForHomeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllServicesDocument = gql`
+    query getAllServices {
+  getAllServices {
+    title
+    icon
+    slug
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
+    override document = GetAllServicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetServiceBySlugDocument = gql`
+    query getServiceBySlug($slug: String!) {
+  getService(slug: $slug) {
+    content
+    title
+    slug
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetServiceBySlugGQL extends Apollo.Query<GetServiceBySlugQuery, GetServiceBySlugQueryVariables> {
+    override document = GetServiceBySlugDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

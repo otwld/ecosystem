@@ -10,12 +10,12 @@
   >
     <a
       [class.active]="item.active"
-      [routerLink]="item.route"
+      [routerLink]="item.slug"
       class="p-6 !bg-transparent font-bold {{
         item.active ? 'text-base-content' : ''
       }}"
     >
-      {{ t(item.title) }}
+      {{ item.title }}
       <fa-icon [icon]="faArrowRight" class="ml-auto text-neutral"></fa-icon>
     </a>
   </li>

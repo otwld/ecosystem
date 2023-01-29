@@ -19,6 +19,18 @@ export class ServiceResolver {
     return this.serviceService.getPaginated(dto);
   }
 
+  @Query(() => [Service])
+  @UseGuards(LanguageGuard)
+  async getAllServices() {
+    return this.serviceService.model.find().lean().exec();
+  }
+
+  @Query(() => Service)
+  @UseGuards(LanguageGuard)
+  async getService(@Args('slug') slug: string) {
+    return this.serviceService.model.findOne({slug}).lean().exec();
+  }
+
   @ResolveField('content', () => String)
   resolveContent(@Parent() service: Service, @CurrentLanguage() language: HeaderLanguage) {
     return service.content[language];

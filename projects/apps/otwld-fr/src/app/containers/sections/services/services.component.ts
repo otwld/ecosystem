@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseComponent, ButtonComponent, CardIconComponent, LoopLiteralsDirective } from '@otwld/ui';
 import { RouterLink, RouterLinkWithHref } from '@angular/router';
-import { ServiceService } from '../../../services/services/service.service';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
+import {ServicesService, SocialIconToFa} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-services',
@@ -25,11 +25,13 @@ import { injectTrackEvent } from '@otwld/features';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesComponent extends BaseComponent {
-  services$ = this.servicesServices.getAll();
+  services$ = this.servicesServices.getAllServices$();
 
   trackEvent = injectTrackEvent();
 
-  constructor(private readonly servicesServices: ServiceService) {
+  constructor(private readonly servicesServices: ServicesService) {
     super();
   }
+
+  stringToIcon = SocialIconToFa;
 }

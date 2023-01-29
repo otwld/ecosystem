@@ -176,12 +176,14 @@ type Project {
 }
 
 type Query {
+  getAllServices: [Service!]!
   getMemberById(id: String!): Member!
   getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
   getProjectBySlug(slug: String!): Project!
   getProjects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
   getRelatedProjects(slug: String!): [Project!]!
+  getService(slug: String!): Service!
   getServicesPaginated(order: ServiceOrderBy, pagination: PaginationOption!): ListServicePage!
 }
 

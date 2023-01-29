@@ -1,4 +1,4 @@
 <div
-  [innerHtml]="loadContent$ | async"
+  [innerHtml]="(getService$ | async)?.content"
   class="prose max-w-full animate-slide-in-fade-top"
 ></div>

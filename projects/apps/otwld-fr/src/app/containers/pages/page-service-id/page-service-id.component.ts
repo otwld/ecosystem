@@ -1,15 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ServiceService,
-} from '../../../services/services/service.service';
-import { ActivatedRoute } from '@angular/router';
-import { catchError, combineLatest, filter, map, of, switchMap, tap } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Service } from '../../../types/service.types';
-import { TranslocoService } from '@ngneat/transloco';
-import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.service';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {switchMap, tap} from 'rxjs';
+import {HttpClientModule} from '@angular/common/http';
+import {BreadcrumbsService} from '../../../services/breadcrumbs/breadcrumbs.service';
+import {ServicesService} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-page-service-id',
@@ -20,45 +15,25 @@ import { BreadcrumbsService } from '../../../services/breadcrumbs/breadcrumbs.se
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageServiceIdComponent {
-  onLangChange$ = inject(TranslocoService).langChanges$;
-  currentService$ = this.activatedRoute.params.pipe(
+
+  getService$ = this.activatedRoute.params.pipe(
     switchMap((params) =>
-      this.servicesService.findOneByRoute(params['id'])
+      this.servicesService.getServiceBySlug$(params['id'])
     ),
     tap(service => {
       if (service) {
         this.breadcrumbsService.addBreadcrumb({
           labelTranslationKey: service.title,
-          url: service.route,
+          url: service.slug,
         })
       }
     })
   );
 
-  loadContent$ = combineLatest([this.onLangChange$, this.currentService$]).pipe(
-    filter(([,service]) => !!service),
-    switchMap(([lang, service]) =>
-      this.httpClient
-        .get(lang === 'en' ? (service as Service).templates.en : (service as Service).templates.fr, {
-          responseType: 'text',
-        })
-        .pipe(
-          catchError(() =>
-            of(
-              '<span class="text-error">Service or TemplateService not found</span>'
-            )
-          )
-        )
-    ),
-    map((content) => this.domSanitizer.bypassSecurityTrustHtml(content))
-  );
-
   constructor(
-    private readonly servicesService: ServiceService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly httpClient: HttpClient,
-    private readonly domSanitizer: DomSanitizer,
     private readonly breadcrumbsService: BreadcrumbsService,
+    private readonly servicesService: ServicesService,
   ) {
   }
 }

@@ -15,3 +15,18 @@ query getServicesPaginatedForHome($pagination: PaginationOption!) {
     }
   }
 }
+query getAllServices {
+  getAllServices {
+    title
+    icon
+    slug
+  }
+}
+
+query getServiceBySlug($slug: String!) {
+  getService(slug: $slug) {
+    content,
+    title,
+    slug
+  }
+}
