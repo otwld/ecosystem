@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeroBreadcrumbsComponent} from '../../sections/hero/hero-heading/hero-breadcrumbs.component';
-import {TeamMemberService} from '../../../services/team-member/teams.service';
 import {ActivatedRoute} from '@angular/router';
-import {map, shareReplay, switchMap, tap} from 'rxjs';
+import {switchMap} from 'rxjs';
 import {ServicesMenuRouteComponent} from '../page-services/services-menu-route/services-menu-route.component';
 import {PortfolioCarouselComponent} from '../../../components/portfolio-carousel/portfolio-carousel.component';
 import {HeroClientComponent} from '../../sections/hero/hero-client/hero-client.component';
@@ -32,8 +31,6 @@ import {DateFnsModule} from 'ngx-date-fns';
 import {Dialog} from '@angular/cdk/dialog';
 import {faBoxes, faClock, faTasks} from '@fortawesome/free-solid-svg-icons';
 import {TranslocoModule} from '@ngneat/transloco';
-import {PortfolioService} from '../../../services/portfolio/portfolio.service';
-import {TeamMember} from '../../../types/team-member.types';
 import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
 
 @Component({
@@ -79,9 +76,6 @@ export class PageTeamMemberIdComponent {
   stringToIcon = SocialIconToFa;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly teamMemberService: TeamMemberService,
-    private readonly portfolioService: PortfolioService,
     private readonly dialogService: Dialog
   ) {
   }
