@@ -10,7 +10,7 @@ import {AppLogger} from '../../../shared/modules/logging/logging.service';
 @Injectable()
 export class MemberService extends GetMultipleIds<Member> {
   constructor(
-    @InjectModel(Member.name) protected model: Model<MemberDocument>,
+    @InjectModel(Member.name) public model: Model<MemberDocument>,
     private readonly paginationService: PaginationService,
     private logger: AppLogger
   ) {

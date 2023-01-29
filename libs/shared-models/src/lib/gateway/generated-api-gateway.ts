@@ -21,8 +21,10 @@ export interface Client {
   __typename?: 'Client';
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  logo: Resource;
   name: Scalars['String'];
   updatedAt: Scalars['String'];
+  website: Scalars['String'];
 }
 
 export interface EventsOrderBy {
@@ -101,6 +103,7 @@ export interface Member {
   _id: Scalars['String'];
   createdAt: Scalars['DateTime'];
   firstName: Scalars['String'];
+  fullName: Scalars['String'];
   jobTitle: Scalars['String'];
   lastName: Scalars['String'];
   location?: Maybe<Location>;
@@ -218,6 +221,8 @@ export interface Project {
 
 export interface Query {
   __typename?: 'Query';
+  getAllClients: Array<Client>;
+  getAllMembers: Array<Member>;
   getAllServices: Array<Service>;
   getMemberById: Member;
   getMemberBySlug: Member;
@@ -365,12 +370,22 @@ export enum EListServicesInputSortFields {
   FirstName = 'firstName'
 }
 
+export type GetAllClientsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllClientsQuery = { __typename?: 'Query', getAllClients: Array<{ __typename?: 'Client', name: string, website: string, logo: { __typename?: 'Resource', url: string } }> };
+
 export type GetMembersPaginatedQueryVariables = Exact<{
   pagination: PaginationOption;
 }>;
 
 
 export type GetMembersPaginatedQuery = { __typename?: 'Query', getMembers: { __typename?: 'ListMemberPage', edges: Array<{ __typename?: 'PaginatedMemberPageEdge', node?: { __typename?: 'Member', _id: string, createdAt: any, updatedAt: string, firstName: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
+
+export type GetAllMembersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllMembersQuery = { __typename?: 'Query', getAllMembers: Array<{ __typename?: 'Member', fullName: string, slug: string, jobTitle: string, picture?: { __typename?: 'Resource', url: string } | null, socials: Array<{ __typename?: 'MemberSocial', icon: string, link: string }> }> };
 
 export type GetMemberBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -435,6 +450,28 @@ export const CarouselProjectFragmentDoc = gql`
   }
 }
     `;
+export const GetAllClientsDocument = gql`
+    query getAllClients {
+  getAllClients {
+    name
+    logo {
+      url(options: {size: ORIGINAL})
+    }
+    website
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllClientsGQL extends Apollo.Query<GetAllClientsQuery, GetAllClientsQueryVariables> {
+    override document = GetAllClientsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetMembersPaginatedDocument = gql`
     query getMembersPaginated($pagination: PaginationOption!) {
   getMembers(pagination: $pagination) {
@@ -461,6 +498,33 @@ export const GetMembersPaginatedDocument = gql`
   })
   export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
     override document = GetMembersPaginatedDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllMembersDocument = gql`
+    query getAllMembers {
+  getAllMembers {
+    fullName
+    slug
+    picture {
+      url(options: {size: ORIGINAL})
+    }
+    jobTitle
+    socials {
+      icon
+      link
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllMembersGQL extends Apollo.Query<GetAllMembersQuery, GetAllMembersQueryVariables> {
+    override document = GetAllMembersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

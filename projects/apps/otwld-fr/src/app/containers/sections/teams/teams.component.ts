@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BaseComponent,
@@ -10,11 +10,11 @@ import {
   CardTitleDirective,
   IsInViewportDirective
 } from '@otwld/ui';
-import { TeamMemberService } from '../../../services/team-member/teams.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
+import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-teams',
@@ -37,10 +37,7 @@ import { injectTrackEvent } from '@otwld/features';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamsComponent extends BaseComponent {
-  members$ = this.teamsService.getAll();
+  members$ = inject(MembersService).getAllMembers$();
   trackEvent = injectTrackEvent();
-
-  constructor(private readonly teamsService: TeamMemberService) {
-    super();
-  }
+  stringToIcon = SocialIconToFa
 }

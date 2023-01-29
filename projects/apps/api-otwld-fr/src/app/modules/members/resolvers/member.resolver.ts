@@ -37,6 +37,12 @@ export class MemberResolver {
     return this.memberService.getOneByFilter({slug});
   }
 
+  @Query(() => [Member])
+  @UseGuards(LanguageGuard)
+  getAllMembers(): Promise<Member[]> {
+    return this.memberService.model.find().lean().exec();
+  }
+
   @Query(() => ListMemberPage)
   async getMembers(@Args() dto: ListMemberInput) {
     return this.memberService.getMembersPaginated(dto);
@@ -70,4 +76,8 @@ export class MemberResolver {
     return this.mediasService.listMedias({...args, criteria: {memberId: member._id}});
   }
 
+  @ResolveField('fullName', () => String)
+  async resolveFullName(@Parent() member: Member) {
+    return `${member.firstName} ${member.lastName}`;
+  }
 }

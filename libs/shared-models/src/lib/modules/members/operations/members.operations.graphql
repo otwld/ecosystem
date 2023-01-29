@@ -17,6 +17,21 @@ query getMembersPaginated($pagination: PaginationOption!) {
   }
 }
 
+query getAllMembers {
+  getAllMembers {
+    fullName,
+    slug,
+    picture {
+      url(options: {size: ORIGINAL})
+    },
+    jobTitle,
+    socials {
+      icon,
+      link,
+    },
+  }
+}
+
 query getMemberBySlug($slug: String!) {
   getMemberBySlug(slug: $slug) {
     _id
