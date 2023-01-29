@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'tailwindcss-classnames',
-  preset: '../../jest.preset.js',
+  displayName: 'clis-tailwindcss-classnames',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,5 +12,6 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/tailwindcss-classnames',
+  coverageDirectory:
+    '../../../coverage/libs/projects/cli/tailwindcss-classnames',
 };

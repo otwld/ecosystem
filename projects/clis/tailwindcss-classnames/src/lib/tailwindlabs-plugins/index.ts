@@ -1,4 +1,10 @@
-const pluginTypography = ['prose', 'prose-sm', 'prose-lg', 'prose-xl', 'prose-2xl'];
+const pluginTypography = [
+  'prose',
+  'prose-sm',
+  'prose-lg',
+  'prose-xl',
+  'prose-2xl',
+];
 
 const pluginCustomForms = [
   'form-input',

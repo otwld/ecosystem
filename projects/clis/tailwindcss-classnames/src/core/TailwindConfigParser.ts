@@ -20,14 +20,19 @@ export class TailwindConfigParser {
 
   constructor(tailwindConfig: TTailwindCSSConfig, plugins: TConfigPlugins) {
     this._mode = tailwindConfig?.mode;
-    this._prefix = _.isEmpty(tailwindConfig?.prefix) ? '' : (tailwindConfig.prefix as string);
+    this._prefix = _.isEmpty(tailwindConfig?.prefix)
+      ? ''
+      : (tailwindConfig.prefix as string);
     this._darkMode = _.isEmpty(tailwindConfig?.darkMode)
       ? false
       : (tailwindConfig.darkMode as TConfigDarkMode);
     this._separator = _.isEmpty(tailwindConfig.separator)
       ? ':'
       : (tailwindConfig.separator as string);
-    this._themeConfig = {...defaultTailwindConfig.theme, ...tailwindConfig.theme};
+    this._themeConfig = {
+      ...defaultTailwindConfig.theme,
+      ...tailwindConfig.theme,
+    };
     this._evaluatedTheme = null;
     this._pluginsConfig = plugins;
   }
@@ -51,7 +56,7 @@ export class TailwindConfigParser {
    * Gets the config plugins value
    */
   public getPlugins = (): TConfigPlugins | null => {
-    const {pluginTypography, pluginCustomForms} = this._pluginsConfig;
+    const { pluginTypography, pluginCustomForms } = this._pluginsConfig;
 
     return pluginTypography || pluginCustomForms ? this._pluginsConfig : null;
   };
@@ -77,7 +82,10 @@ export class TailwindConfigParser {
         // For example when 'width' is extended, which is originally based on spacing
         if (valueSourceTheme && _.isObject(evaluatorResult)) {
           const sourceValue = valueSourceTheme[key as keyof TThemeItems];
-          evaluatorResult = {...(_.isObject(sourceValue) ? sourceValue : {}), ...evaluatorResult};
+          evaluatorResult = {
+            ...(_.isObject(sourceValue) ? sourceValue : {}),
+            ...evaluatorResult,
+          };
         }
         coreTheme[key as keyof TThemeItems] = evaluatorResult;
       }
@@ -96,7 +104,8 @@ export class TailwindConfigParser {
         // Iterate over every item and evaluate closures in it
         const valueEvaluator = new ThemeClosuresEvaluator(themeExtend);
         for (const [key, value] of Object.entries(themeExtend))
-          themeExtend[key as keyof TThemeItems] = valueEvaluator.evaluate(value);
+          themeExtend[key as keyof TThemeItems] =
+            valueEvaluator.evaluate(value);
       }
 
       // Return the result of the evaluation
@@ -104,7 +113,10 @@ export class TailwindConfigParser {
     };
 
     // Merge theme with extensions
-    const themeWithMergedExtend = _.merge(evaluateTheme(), evaluateThemeExtend());
+    const themeWithMergedExtend = _.merge(
+      evaluateTheme(),
+      evaluateThemeExtend()
+    );
     // Evaluate the theme again, however taking the values from the merge result
     this._evaluatedTheme = evaluateTheme(themeWithMergedExtend);
     delete this._evaluatedTheme?.extend;
@@ -121,7 +133,8 @@ export class TailwindConfigParser {
 
     // get responsive variants
     const [mediaBreakpoints] = this.getThemeProperty('screens');
-    if (this.getDarkMode() == 'media' || this.getDarkMode() == 'class') mediaBreakpoints.push('dark');
+    if (this.getDarkMode() == 'media' || this.getDarkMode() == 'class')
+      mediaBreakpoints.push('dark');
 
     mediaBreakpoints.map((breakpoint: string) => {
       if (!variants.includes(breakpoint)) {
@@ -137,7 +150,7 @@ export class TailwindConfigParser {
    * @param themeProperty The theme property name
    */
   public getThemeProperty = (
-    themeProperty: keyof TThemeItems,
+    themeProperty: keyof TThemeItems
   ): [string[], Array<string | Record<string, string>>] => {
     return [
       Object.keys(this.getTheme()[themeProperty]),
@@ -155,8 +168,10 @@ class ThemeClosuresEvaluator {
   /**
    * Evaluate `negative()` functions/closures
    */
-  private static negative(item: Record<string, string>): Record<string, string> {
-    const itemCopy = {...item};
+  private static negative(
+    item: Record<string, string>
+  ): Record<string, string> {
+    const itemCopy = { ...item };
     for (const [key] of Object.entries(itemCopy)) {
       itemCopy['-' + key] = itemCopy[key];
       delete itemCopy[key];
@@ -167,8 +182,10 @@ class ThemeClosuresEvaluator {
   /**
    * Evaluate `breakpoints()` functions/closures
    */
-  private static breakpoints(item: Record<string, string>): Record<string, string> {
-    const itemCopy = {...item};
+  private static breakpoints(
+    item: Record<string, string>
+  ): Record<string, string> {
+    const itemCopy = { ...item };
     for (const [key] of Object.entries(itemCopy)) {
       itemCopy['screen-' + key] = itemCopy[key];
       delete itemCopy[key];
@@ -200,6 +217,9 @@ class ThemeClosuresEvaluator {
   private makeThemePathResolver =
     (theme: Partial<TThemeItems>) =>
     (path: string): Record<string, unknown> => {
-      return _.get(theme, _.trim(path, `'"`)) as Record<string, Record<string, string> | string>;
+      return _.get(theme, _.trim(path, `'"`)) as Record<
+        string,
+        Record<string, string> | string
+      >;
     };
 }

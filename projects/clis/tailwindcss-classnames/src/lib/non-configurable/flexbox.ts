@@ -1,8 +1,19 @@
-const flexDirection = ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse'];
+const flexDirection = [
+  'flex-row',
+  'flex-row-reverse',
+  'flex-col',
+  'flex-col-reverse',
+];
 
 const flexWrap = ['flex-nowrap', 'flex-wrap', 'flex-wrap-reverse'];
 
-const alignItems = ['items-stretch', 'items-start', 'items-center', 'items-end', 'items-baseline'];
+const alignItems = [
+  'items-stretch',
+  'items-start',
+  'items-center',
+  'items-end',
+  'items-baseline',
+];
 
 const alignContent = [
   'content-start',
@@ -12,7 +23,14 @@ const alignContent = [
   'content-around',
 ];
 
-const alignSelf = ['self-auto', 'self-start', 'self-center', 'self-end', 'self-stretch', 'self-baseline'];
+const alignSelf = [
+  'self-auto',
+  'self-start',
+  'self-center',
+  'self-end',
+  'self-stretch',
+  'self-baseline',
+];
 
 const placeContent = [
   'place-content-start',

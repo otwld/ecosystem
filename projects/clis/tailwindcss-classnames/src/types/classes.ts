@@ -15,7 +15,10 @@ export type Spacing = Record<TSpacingCategoryItem, string[]>;
 export type SVG = Record<TSVGCategoryItem, string[]>;
 export type Tables = Record<TTablesCategoryItem, string[]>;
 export type Transforms = Record<TTransformsCategoryItem, string[]>;
-export type TransitionsAndAnimations = Record<TTransitionsAndAnimationsCategoryItem, string[]>;
+export type TransitionsAndAnimations = Record<
+  TTransitionsAndAnimationsCategoryItem,
+  string[]
+>;
 export type Typography = Record<TTypographyCategoryItem, string[]>;
 
 export type TAllClassnames = {
@@ -173,7 +176,13 @@ type TLayoutCategoryItem =
   | 'breakInside'
   | 'breakAfter';
 
-type TSizingCategoryItem = 'width' | 'minWidth' | 'maxWidth' | 'height' | 'minHeight' | 'maxHeight';
+type TSizingCategoryItem =
+  | 'width'
+  | 'minWidth'
+  | 'maxWidth'
+  | 'height'
+  | 'minHeight'
+  | 'maxHeight';
 
 type TSpacingCategoryItem = 'padding' | 'margin' | 'space';
 
@@ -181,7 +190,12 @@ type TSVGCategoryItem = 'fill' | 'stroke' | 'strokeWidth';
 
 type TTablesCategoryItem = 'borderCollapse' | 'tableLayout';
 
-type TTransformsCategoryItem = 'scale' | 'rotate' | 'translate' | 'skew' | 'transformOrigin';
+type TTransformsCategoryItem =
+  | 'scale'
+  | 'rotate'
+  | 'translate'
+  | 'skew'
+  | 'transformOrigin';
 
 type TTransitionsAndAnimationsCategoryItem =
   | 'transitionProperty'

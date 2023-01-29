@@ -9,7 +9,7 @@
     "e2e-otwld-fr": "projects/e2e/otwld-fr",
     "libs-features": "libs/features",
     "libs-ui": "libs/ui",
-    "shared-models": "libs/shared-models",
-    "tailwindcss-classnames": "libs/tailwindcss-classnames"
+    "clis-tailwindcss-classnames": "projects/clis/tailwindcss-classnames",
+    "shared-models": "libs/shared-models"
   }
 }

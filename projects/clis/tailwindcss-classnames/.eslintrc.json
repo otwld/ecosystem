@@ -1,11 +1,11 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["libs/tailwindcss-classnames/tsconfig.*?.json"]
+        "project": ["projects/clis/tailwindcss-classnames/tsconfig.*?.json"]
       },
       "rules": {}
     },

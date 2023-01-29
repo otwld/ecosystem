@@ -72,13 +72,15 @@ export class ClassnamesGenerator {
     const configPlugins = this._configParser.getPlugins();
     if (configPlugins !== null) {
       this._generatedRegularClassnames.TailwindLabsPlugins = {};
-      const {pluginCustomForms, pluginTypography} = tailwindLabsPlugins;
+      const { pluginCustomForms, pluginTypography } = tailwindLabsPlugins;
 
       if (configPlugins.pluginCustomForms)
-        this._generatedRegularClassnames.TailwindLabsPlugins.pluginCustomForms = pluginCustomForms;
+        this._generatedRegularClassnames.TailwindLabsPlugins.pluginCustomForms =
+          pluginCustomForms;
 
       if (configPlugins.pluginTypography)
-        this._generatedRegularClassnames.TailwindLabsPlugins.pluginTypography = pluginTypography;
+        this._generatedRegularClassnames.TailwindLabsPlugins.pluginTypography =
+          pluginTypography;
     }
 
     this._generatedPseudoClassnames = this.pseudoClasses();
@@ -94,19 +96,33 @@ export class ClassnamesGenerator {
   private layout = (): Layout => {
     return {
       ...nonConfigurableClassNames.layout,
-      objectPosition: Object.keys(this._theme.objectPosition).map(x => 'object-' + x),
-      inset: Object.keys(this._theme.inset).flatMap(insetValue => {
-        return ['inset', 'inset-x', 'inset-y', 'top', 'right', 'bottom', 'left'].map(side =>
+      objectPosition: Object.keys(this._theme.objectPosition).map(
+        (x) => 'object-' + x
+      ),
+      inset: Object.keys(this._theme.inset).flatMap((insetValue) => {
+        return [
+          'inset',
+          'inset-x',
+          'inset-y',
+          'top',
+          'right',
+          'bottom',
+          'left',
+        ].map((side) =>
           insetValue.startsWith('-')
             ? `-${side}-${insetValue.substring(1)}`
-            : `${side}-${insetValue}`,
+            : `${side}-${insetValue}`
         );
       }),
-      zIndex: Object.keys(this._theme.zIndex).flatMap(zIndexValue =>
-        zIndexValue.startsWith('-') ? `-z-${zIndexValue.substring(1)}` : `z-${zIndexValue}`,
+      zIndex: Object.keys(this._theme.zIndex).flatMap((zIndexValue) =>
+        zIndexValue.startsWith('-')
+          ? `-z-${zIndexValue.substring(1)}`
+          : `z-${zIndexValue}`
       ),
-      aspectRatio: Object.keys(this._theme.aspectRatio).map(x => 'aspect-' + x),
-      columns: Object.keys(this._theme.columns).map(x => 'columns-' + x),
+      aspectRatio: Object.keys(this._theme.aspectRatio).map(
+        (x) => 'aspect-' + x
+      ),
+      columns: Object.keys(this._theme.columns).map((x) => 'columns-' + x),
     };
   };
 
@@ -120,13 +136,22 @@ export class ClassnamesGenerator {
   private backgrounds = (): Backgrounds => {
     return {
       ...nonConfigurableClassNames.backgrounds,
-      backgroundOpacity: this.getGeneratedClassesWithOpacities().backgroundOpacities,
+      backgroundOpacity:
+        this.getGeneratedClassesWithOpacities().backgroundOpacities,
       backgroundColor: this.generateClassesWithColors('backgroundColor'),
-      backgroundPosition: Object.keys(this._theme.backgroundPosition).map(x => 'bg-' + x),
-      backgroundSize: Object.keys(this._theme.backgroundSize).map(x => 'bg-' + x),
-      backgroundImage: Object.keys(this._theme.backgroundImage).map(x => 'bg-' + x),
-      gradientColorStops: this.generateClassesWithColors('gradientColorStops').flatMap(val =>
-        ['from', 'via', 'to'].map(x => x + val.replace('gradient', '')),
+      backgroundPosition: Object.keys(this._theme.backgroundPosition).map(
+        (x) => 'bg-' + x
+      ),
+      backgroundSize: Object.keys(this._theme.backgroundSize).map(
+        (x) => 'bg-' + x
+      ),
+      backgroundImage: Object.keys(this._theme.backgroundImage).map(
+        (x) => 'bg-' + x
+      ),
+      gradientColorStops: this.generateClassesWithColors(
+        'gradientColorStops'
+      ).flatMap((val) =>
+        ['from', 'via', 'to'].map((x) => x + val.replace('gradient', ''))
       ),
     };
   };
@@ -140,13 +165,17 @@ export class ClassnamesGenerator {
       /* Dynamic border utils */
       borderColor: this.generateClassesWithColors('borderColor'),
       borderOpacity: this.getGeneratedClassesWithOpacities().borderOpacities,
-      borderRadius: Object.keys(this._theme.borderRadius).flatMap(radius => {
+      borderRadius: Object.keys(this._theme.borderRadius).flatMap((radius) => {
         const sides = ['t', 'r', 'b', 'l', 'tr', 'tl', 'br', 'bl'];
-        return sides.map(side => `rounded-${side}-${radius}`).concat(`rounded-${radius}`);
+        return sides
+          .map((side) => `rounded-${side}-${radius}`)
+          .concat(`rounded-${radius}`);
       }),
-      borderWidth: Object.keys(this._theme.borderWidth).flatMap(width => {
+      borderWidth: Object.keys(this._theme.borderWidth).flatMap((width) => {
         const sides = ['t', 'r', 'b', 'l', 'x', 'y'];
-        return sides.map(side => `border-${side}-${width}`).concat(`border-${width}`);
+        return sides
+          .map((side) => `border-${side}-${width}`)
+          .concat(`border-${width}`);
       }),
       /* Dynamic divide utilities */
       divideColor: this.generateClassesWithColors('divideColor'),
@@ -154,21 +183,31 @@ export class ClassnamesGenerator {
       // divide width inherits its values from theme.borderWidth by default
       // but theme.divideWidth overrides it.
       divideWidth: Object.keys(
-        _.isEmpty(this._theme.divideWidth) ? this._theme.borderWidth : this._theme.divideWidth,
+        _.isEmpty(this._theme.divideWidth)
+          ? this._theme.borderWidth
+          : this._theme.divideWidth
       )
         .concat('reverse')
-        .flatMap(width => ['x', 'y'].map(axis => `divide-${axis}-${width}`)),
+        .flatMap((width) =>
+          ['x', 'y'].map((axis) => `divide-${axis}-${width}`)
+        ),
 
       /* Dynamic ring utilities */
       ringColor: this.generateClassesWithColors('ringColor'),
       ringWidth: Object.keys(this._theme.ringWidth)
-        .map(x => 'ring-' + x)
+        .map((x) => 'ring-' + x)
         .concat('ring-inset'),
       ringOpacity: this.getGeneratedClassesWithOpacities().ringOpacities,
       ringOffsetColor: this.generateClassesWithColors('ringOffsetColor'),
-      ringOffsetWidth: Object.keys(this._theme.ringOffsetWidth).map(x => 'ring-offset-' + x),
-      outlineOffset: Object.keys(this._theme.outlineOffset).map(x => 'outline-' + x),
-      outlineWidth: Object.keys(this._theme.outlineWidth).map(x => 'outline-' + x),
+      ringOffsetWidth: Object.keys(this._theme.ringOffsetWidth).map(
+        (x) => 'ring-offset-' + x
+      ),
+      outlineOffset: Object.keys(this._theme.outlineOffset).map(
+        (x) => 'outline-' + x
+      ),
+      outlineWidth: Object.keys(this._theme.outlineWidth).map(
+        (x) => 'outline-' + x
+      ),
       outlineColor: this.generateClassesWithColors('outlineColor'),
     };
   };
@@ -180,7 +219,9 @@ export class ClassnamesGenerator {
   private effects = (): Effects => {
     return {
       ...nonConfigurableClassNames.effects,
-      boxShadow: Object.keys(this._theme.boxShadow).map(key => `shadow-${key}`),
+      boxShadow: Object.keys(this._theme.boxShadow).map(
+        (key) => `shadow-${key}`
+      ),
       boxShadowColor: this.generateClassesWithColors('boxShadowColor'),
       opacity: this.getGeneratedClassesWithOpacities().opacities,
     };
@@ -190,45 +231,57 @@ export class ClassnamesGenerator {
     return {
       ...nonConfigurableClassNames.transitionsAndAnimations,
       transitionProperty: Object.keys(this._theme.transitionProperty).map(
-        property => 'transition-' + property,
+        (property) => 'transition-' + property
       ),
       transitionDuration: Object.keys(this._theme.transitionDuration).map(
-        value => 'duration-' + value,
+        (value) => 'duration-' + value
       ),
-      transitionTimingFunction: Object.keys(this._theme.transitionTimingFunction)
-        .filter(k => k !== 'DEFAULT') // The `DEFAULT` key does not correspond to a classname
-        .map(value => 'ease-' + value),
-      transitionDelay: Object.keys(this._theme.transitionDelay).map(value => 'delay-' + value),
-      animation: Object.keys(this._theme.animation).map(val => 'animate-' + val),
+      transitionTimingFunction: Object.keys(
+        this._theme.transitionTimingFunction
+      )
+        .filter((k) => k !== 'DEFAULT') // The `DEFAULT` key does not correspond to a classname
+        .map((value) => 'ease-' + value),
+      transitionDelay: Object.keys(this._theme.transitionDelay).map(
+        (value) => 'delay-' + value
+      ),
+      animation: Object.keys(this._theme.animation).map(
+        (val) => 'animate-' + val
+      ),
     };
   };
 
   private transforms = (): Transforms => {
     return {
       ...nonConfigurableClassNames.transforms,
-      scale: ['', 'x-', 'y-'].flatMap(x =>
-        Object.keys(this._theme.scale).map(value => 'scale-' + x + value),
+      scale: ['', 'x-', 'y-'].flatMap((x) =>
+        Object.keys(this._theme.scale).map((value) => 'scale-' + x + value)
       ),
-      rotate: Object.keys(this._theme.rotate).map(value =>
-        value.startsWith('-') ? '-rotate-' + value.slice(1) : `rotate-${value}`,
+      rotate: Object.keys(this._theme.rotate).map((value) =>
+        value.startsWith('-') ? '-rotate-' + value.slice(1) : `rotate-${value}`
       ),
       // translate gets values from theme.spacing in addition to 50% and 100% variations
       // by default and theme.translate overrides this behaviour.
-      translate: ['x', 'y'].flatMap(side => {
+      translate: ['x', 'y'].flatMap((side) => {
         return Object.keys(
-          _.isEmpty(this._theme.translate) ? this._theme.spacing : this._theme.translate,
-        ).map(value =>
+          _.isEmpty(this._theme.translate)
+            ? this._theme.spacing
+            : this._theme.translate
+        ).map((value) =>
           value.startsWith('-')
             ? `-translate-${side}-${value.slice(1)}`
-            : `translate-${side}-${value}`,
+            : `translate-${side}-${value}`
         );
       }),
-      skew: ['x', 'y'].flatMap(side =>
-        Object.keys(this._theme.skew).map(value =>
-          value.startsWith('-') ? `-skew-${side}-${value.substring(1)}` : `skew-${side}-${value}`,
-        ),
+      skew: ['x', 'y'].flatMap((side) =>
+        Object.keys(this._theme.skew).map((value) =>
+          value.startsWith('-')
+            ? `-skew-${side}-${value.substring(1)}`
+            : `skew-${side}-${value}`
+        )
       ),
-      transformOrigin: Object.keys(this._theme.transformOrigin).map(value => 'origin-' + value),
+      transformOrigin: Object.keys(this._theme.transformOrigin).map(
+        (value) => 'origin-' + value
+      ),
     };
   };
 
@@ -237,15 +290,21 @@ export class ClassnamesGenerator {
 
     return {
       ...nonConfigurableClassNames.interactivity,
-      cursor: Object.keys(this._theme.cursor).map(x => 'cursor-' + x),
+      cursor: Object.keys(this._theme.cursor).map((x) => 'cursor-' + x),
       caretColor: this.generateClassesWithColors('caretColor'),
-      willChange: Object.keys(this._theme.willChange).map(x => 'will-change-' + x),
+      willChange: Object.keys(this._theme.willChange).map(
+        (x) => 'will-change-' + x
+      ),
       accentColor: this.generateClassesWithColors('accentColor'),
-      scrollPadding: sides.flatMap(side => {
-        return Object.keys(this._theme.scrollPadding).map(value => `scroll-p${side}-${value}`);
+      scrollPadding: sides.flatMap((side) => {
+        return Object.keys(this._theme.scrollPadding).map(
+          (value) => `scroll-p${side}-${value}`
+        );
       }),
-      scrollMargin: sides.flatMap(side => {
-        return Object.keys(this._theme.scrollMargin).map(value => `scroll-m${side}-${value}`);
+      scrollMargin: sides.flatMap((side) => {
+        return Object.keys(this._theme.scrollMargin).map(
+          (value) => `scroll-m${side}-${value}`
+        );
       }),
     };
   };
@@ -253,9 +312,11 @@ export class ClassnamesGenerator {
   private SVG = (): SVG => {
     return {
       ...nonConfigurableClassNames.svg,
-      fill: Object.keys(this._theme.fill).map(value => 'fill-' + value),
-      stroke: Object.keys(this._theme.stroke).map(value => 'stroke-' + value),
-      strokeWidth: Object.keys(this._theme.strokeWidth).map(value => 'stroke-' + value),
+      fill: Object.keys(this._theme.fill).map((value) => 'fill-' + value),
+      stroke: Object.keys(this._theme.stroke).map((value) => 'stroke-' + value),
+      strokeWidth: Object.keys(this._theme.strokeWidth).map(
+        (value) => 'stroke-' + value
+      ),
     };
   };
 
@@ -268,46 +329,62 @@ export class ClassnamesGenerator {
   private filters = (): Filters => {
     return {
       ...nonConfigurableClassNames.filters,
-      blur: Object.keys(this._theme.blur).map(x => 'blur-' + x),
-      brightness: Object.keys(this._theme.brightness).map(x => 'brightness-' + x),
-      contrast: Object.keys(this._theme.contrast).map(x => 'contrast-' + x),
-      dropShadow: Object.keys(this._theme.dropShadow).map(x => 'drop-shadow-' + x),
-      grayscale: Object.keys(this._theme.grayscale).map(x => 'grayscale-' + x),
-      hueRotate: Object.keys(this._theme.hueRotate).map(x =>
-        x.startsWith('-') ? '-hue-rotate-' + x.slice(1) : 'hue-rotate-' + x,
+      blur: Object.keys(this._theme.blur).map((x) => 'blur-' + x),
+      brightness: Object.keys(this._theme.brightness).map(
+        (x) => 'brightness-' + x
       ),
-      invert: Object.keys(this._theme.invert).map(x => 'invert-' + x),
-      saturate: Object.keys(this._theme.saturate).map(x => 'saturate-' + x),
-      sepia: Object.keys(this._theme.sepia).map(x => 'sepia-' + x),
-      backdropBlur: Object.keys(this._theme.backdropBlur).map(x => 'backdrop-blur-' + x),
+      contrast: Object.keys(this._theme.contrast).map((x) => 'contrast-' + x),
+      dropShadow: Object.keys(this._theme.dropShadow).map(
+        (x) => 'drop-shadow-' + x
+      ),
+      grayscale: Object.keys(this._theme.grayscale).map(
+        (x) => 'grayscale-' + x
+      ),
+      hueRotate: Object.keys(this._theme.hueRotate).map((x) =>
+        x.startsWith('-') ? '-hue-rotate-' + x.slice(1) : 'hue-rotate-' + x
+      ),
+      invert: Object.keys(this._theme.invert).map((x) => 'invert-' + x),
+      saturate: Object.keys(this._theme.saturate).map((x) => 'saturate-' + x),
+      sepia: Object.keys(this._theme.sepia).map((x) => 'sepia-' + x),
+      backdropBlur: Object.keys(this._theme.backdropBlur).map(
+        (x) => 'backdrop-blur-' + x
+      ),
       backdropBrightness: Object.keys(this._theme.backdropBrightness).map(
-        x => 'backdrop-brightness-' + x,
+        (x) => 'backdrop-brightness-' + x
       ),
       backdropContrast: Object.keys(this._theme.backdropContrast).map(
-        x => 'backdrop-contrast-' + x,
+        (x) => 'backdrop-contrast-' + x
       ),
       backdropGrayscale: Object.keys(this._theme.backdropGrayscale).map(
-        x => 'backdrop-grayscale-' + x,
+        (x) => 'backdrop-grayscale-' + x
       ),
-      backdropHueRotate: Object.keys(this._theme.backdropHueRotate).map(x =>
-        x.startsWith('-') ? '-backdrop-hue-rotate-' + x.slice(1) : 'backdrop-hue-rotate-' + x,
+      backdropHueRotate: Object.keys(this._theme.backdropHueRotate).map((x) =>
+        x.startsWith('-')
+          ? '-backdrop-hue-rotate-' + x.slice(1)
+          : 'backdrop-hue-rotate-' + x
       ),
-      backdropInvert: Object.keys(this._theme.backdropInvert).map(x => 'backdrop-invert-' + x),
-      backdropOpacity: Object.keys(this._theme.backdropOpacity).map(x => 'backdrop-opacity-' + x),
+      backdropInvert: Object.keys(this._theme.backdropInvert).map(
+        (x) => 'backdrop-invert-' + x
+      ),
+      backdropOpacity: Object.keys(this._theme.backdropOpacity).map(
+        (x) => 'backdrop-opacity-' + x
+      ),
       backdropSaturate: Object.keys(this._theme.backdropSaturate).map(
-        x => 'backdrop-saturate-' + x,
+        (x) => 'backdrop-saturate-' + x
       ),
-      backdropSepia: Object.keys(this._theme.backdropSepia).map(x => 'backdrop-sepia-' + x),
+      backdropSepia: Object.keys(this._theme.backdropSepia).map(
+        (x) => 'backdrop-sepia-' + x
+      ),
     };
   };
 
   private flexBox = (): FlexBox => {
     return {
       ...nonConfigurableClassNames.flexBox,
-      flexBasis: Object.keys(this._theme.flexBasis).map(x => `basis-${x}`),
-      flexGrow: Object.keys(this._theme.flexGrow).map(x => `grow-${x}`),
-      flexShrink: Object.keys(this._theme.flexShrink).map(x => `shrink-${x}`),
-      order: Object.keys(this._theme.order).map(x => `order-${x}`),
+      flexBasis: Object.keys(this._theme.flexBasis).map((x) => `basis-${x}`),
+      flexGrow: Object.keys(this._theme.flexGrow).map((x) => `grow-${x}`),
+      flexShrink: Object.keys(this._theme.flexShrink).map((x) => `shrink-${x}`),
+      order: Object.keys(this._theme.order).map((x) => `order-${x}`),
     };
   };
 
@@ -315,22 +392,38 @@ export class ClassnamesGenerator {
     return {
       ...nonConfigurableClassNames.grid,
       gridTemplateColumns: Object.keys(this._theme.gridTemplateColumns).map(
-        key => `grid-cols-${key}`,
+        (key) => `grid-cols-${key}`
       ),
-      gridAutoColumns: Object.keys(this._theme.gridAutoColumns).map(key => `auto-cols-${key}`),
-      gridColumn: Object.keys(this._theme.gridColumn).map(key => `col-${key}`),
-      gridColumnStart: Object.keys(this._theme.gridColumnStart).map(key => `col-start-${key}`),
-      gridColumnEnd: Object.keys(this._theme.gridColumnEnd).map(key => `col-end-${key}`),
-      gridTemplateRows: Object.keys(this._theme.gridTemplateRows).map(key => `grid-rows-${key}`),
-      gridAutoRows: Object.keys(this._theme.gridAutoRows).map(key => `auto-rows-${key}`),
-      gridRow: Object.keys(this._theme.gridRow).map(key => `row-${key}`),
-      gridRowStart: Object.keys(this._theme.gridRowStart).map(key => `row-start-${key}`),
-      gridRowEnd: Object.keys(this._theme.gridRowEnd).map(key => `row-end-${key}`),
-      gap: ['gap-', 'gap-y-', 'gap-x-'].flatMap(x => {
+      gridAutoColumns: Object.keys(this._theme.gridAutoColumns).map(
+        (key) => `auto-cols-${key}`
+      ),
+      gridColumn: Object.keys(this._theme.gridColumn).map(
+        (key) => `col-${key}`
+      ),
+      gridColumnStart: Object.keys(this._theme.gridColumnStart).map(
+        (key) => `col-start-${key}`
+      ),
+      gridColumnEnd: Object.keys(this._theme.gridColumnEnd).map(
+        (key) => `col-end-${key}`
+      ),
+      gridTemplateRows: Object.keys(this._theme.gridTemplateRows).map(
+        (key) => `grid-rows-${key}`
+      ),
+      gridAutoRows: Object.keys(this._theme.gridAutoRows).map(
+        (key) => `auto-rows-${key}`
+      ),
+      gridRow: Object.keys(this._theme.gridRow).map((key) => `row-${key}`),
+      gridRowStart: Object.keys(this._theme.gridRowStart).map(
+        (key) => `row-start-${key}`
+      ),
+      gridRowEnd: Object.keys(this._theme.gridRowEnd).map(
+        (key) => `row-end-${key}`
+      ),
+      gap: ['gap-', 'gap-y-', 'gap-x-'].flatMap((x) => {
         // grid gap inherits its values from theme.spacing by default, but theme.gap overrides it.
-        return Object.keys(_.isEmpty(this._theme.gap) ? this._theme.spacing : this._theme.gap).map(
-          gapValue => x + gapValue,
-        );
+        return Object.keys(
+          _.isEmpty(this._theme.gap) ? this._theme.spacing : this._theme.gap
+        ).map((gapValue) => x + gapValue);
       }),
     };
   };
@@ -338,24 +431,34 @@ export class ClassnamesGenerator {
   private spacing = (): Spacing => {
     const sides = ['', 'y', 'x', 't', 'r', 'b', 'l'];
     return {
-      padding: sides.flatMap(side => {
+      padding: sides.flatMap((side) => {
         return Object.keys(
-          _.isEmpty(this._theme.padding) ? this._theme.spacing : this._theme.padding,
-        ).map(value =>
-          value.startsWith('-') ? `-p${side}-${value.slice(1)}` : `p${side}-${value}`,
+          _.isEmpty(this._theme.padding)
+            ? this._theme.spacing
+            : this._theme.padding
+        ).map((value) =>
+          value.startsWith('-')
+            ? `-p${side}-${value.slice(1)}`
+            : `p${side}-${value}`
         );
       }),
-      margin: sides.flatMap(side => {
+      margin: sides.flatMap((side) => {
         return Object.keys(
-          _.isEmpty(this._theme.margin) ? this._theme.spacing : this._theme.margin,
-        ).map(value =>
-          value.startsWith('-') ? `-m${side}-${value.slice(1)}` : `m${side}-${value}`,
+          _.isEmpty(this._theme.margin)
+            ? this._theme.spacing
+            : this._theme.margin
+        ).map((value) =>
+          value.startsWith('-')
+            ? `-m${side}-${value.slice(1)}`
+            : `m${side}-${value}`
         );
       }),
-      space: ['x', 'y'].flatMap(axis => {
-        return Object.keys(_.isEmpty(this._theme.space) ? this._theme.spacing : this._theme.space)
+      space: ['x', 'y'].flatMap((axis) => {
+        return Object.keys(
+          _.isEmpty(this._theme.space) ? this._theme.spacing : this._theme.space
+        )
           .concat('reverse')
-          .map(key => {
+          .map((key) => {
             if (key.startsWith('-')) {
               key = key.slice(1);
               return '-space-' + axis + `-${key}`;
@@ -382,40 +485,53 @@ export class ClassnamesGenerator {
       width: (_.isEmpty(this._theme.width)
         ? Object.keys(this._theme.spacing).concat(extraWidthSizing)
         : Object.keys(this._theme.width)).map(x => 'w-' + x),
-      minWidth: Object.keys(this._theme.minWidth).map(x => 'min-w-' + x),
-      maxWidth: Object.keys(this._theme.maxWidth).map(x => 'max-w-' + x),
+      minWidth: Object.keys(this._theme.minWidth).map((x) => 'min-w-' + x),
+      maxWidth: Object.keys(this._theme.maxWidth).map((x) => 'max-w-' + x),
       // height values come from theme.spacing + `extraHeightSizing` by default
       // and overridden by theme.height.
       // prettier-ignore
       height: (_.isEmpty(this._theme.height)
         ? Object.keys(this._theme.spacing).concat(extraHeightSizing)
         : Object.keys(this._theme.height)).map(x => 'h-' + x),
-      minHeight: Object.keys(this._theme.minHeight).map(x => 'min-h-' + x),
-      maxHeight: Object.keys(this._theme.maxHeight).map(x => 'max-h-' + x),
+      minHeight: Object.keys(this._theme.minHeight).map((x) => 'min-h-' + x),
+      maxHeight: Object.keys(this._theme.maxHeight).map((x) => 'max-h-' + x),
     };
   };
 
   private typography = (): Typography => {
     return {
       ...nonConfigurableClassNames.typography,
-      fontFamily: Object.keys(this._theme.fontFamily).map(value => 'font-' + value),
-      fontSize: Object.keys(this._theme.fontSize).map(size => 'text-' + size),
-      fontWeight: Object.keys(this._theme.fontWeight).map(weight => 'font-' + weight),
-      letterSpacing: Object.keys(this._theme.letterSpacing).map(value => 'tracking-' + value),
-      lineHeight: Object.keys(this._theme.lineHeight).map(value => 'leading-' + value),
-      listStyleType: Object.keys(this._theme.listStyleType).map(value => 'list-' + value),
+      fontFamily: Object.keys(this._theme.fontFamily).map(
+        (value) => 'font-' + value
+      ),
+      fontSize: Object.keys(this._theme.fontSize).map((size) => 'text-' + size),
+      fontWeight: Object.keys(this._theme.fontWeight).map(
+        (weight) => 'font-' + weight
+      ),
+      letterSpacing: Object.keys(this._theme.letterSpacing).map(
+        (value) => 'tracking-' + value
+      ),
+      lineHeight: Object.keys(this._theme.lineHeight).map(
+        (value) => 'leading-' + value
+      ),
+      listStyleType: Object.keys(this._theme.listStyleType).map(
+        (value) => 'list-' + value
+      ),
       placeholderColor: this.generateClassesWithColors('placeholderColor'),
-      placeholderOpacity: this.getGeneratedClassesWithOpacities().placeholderOpacities,
+      placeholderOpacity:
+        this.getGeneratedClassesWithOpacities().placeholderOpacities,
       textColor: this.generateClassesWithColors('textColor'),
       textOpacity: this.getGeneratedClassesWithOpacities().textOpacities,
-      content: Object.keys(this._theme.content).map(x => 'content-' + x),
-      textIndent: Object.keys(this._theme.textIndent).map(x => 'indent-' + x),
-      textDecorationColor: this.generateClassesWithColors('textDecorationColor'),
-      textDecorationThickness: Object.keys(this._theme.textDecorationThickness).map(
-        x => 'decoration-' + x,
+      content: Object.keys(this._theme.content).map((x) => 'content-' + x),
+      textIndent: Object.keys(this._theme.textIndent).map((x) => 'indent-' + x),
+      textDecorationColor: this.generateClassesWithColors(
+        'textDecorationColor'
       ),
+      textDecorationThickness: Object.keys(
+        this._theme.textDecorationThickness
+      ).map((x) => 'decoration-' + x),
       textUnderlineOffset: Object.keys(this._theme.textUnderlineOffset).map(
-        x => 'underline-offset-' + x,
+        (x) => 'underline-offset-' + x
       ),
     };
   };
@@ -432,10 +548,13 @@ export class ClassnamesGenerator {
     const variants = this._configParser.getVariants();
 
     for (const regularClassGroupKey of regularClassGroupKeys) {
-      Object.keys(this._generatedRegularClassnames).map(key => {
+      Object.keys(this._generatedRegularClassnames).map((key) => {
         // If the current key is found to be a member of the generated regular classes group...
         if (
-          _.has(this._generatedRegularClassnames[key as keyof TAllClassnames], regularClassGroupKey)
+          _.has(
+            this._generatedRegularClassnames[key as keyof TAllClassnames],
+            regularClassGroupKey
+          )
         ) {
           // Get the value of the found generated class group
           let generatedClassGroup = _.get(
@@ -444,18 +563,25 @@ export class ClassnamesGenerator {
           ) as unknown as string[];
 
           // Duplicate classnames with an important (!) prefix
-          const generatedClassGroupWithImportantPrefix = generatedClassGroup.map(cls => '!' + cls);
+          const generatedClassGroupWithImportantPrefix =
+            generatedClassGroup.map((cls) => '!' + cls);
           // Append the classnames with important prefix to the regular classnames
-          generatedClassGroup = generatedClassGroup.concat(generatedClassGroupWithImportantPrefix);
+          generatedClassGroup = generatedClassGroup.concat(
+            generatedClassGroupWithImportantPrefix
+          );
           // Append the classnames with important prefix to the pseudo classes array
-          generatedClassGroupWithImportantPrefix.map(cls => pseudoClasses.push(cls));
+          generatedClassGroupWithImportantPrefix.map((cls) =>
+            pseudoClasses.push(cls)
+          );
 
           // For every member of the found regular classes group...
-          generatedClassGroup.map(classname => {
+          generatedClassGroup.map((classname) => {
             // Generate the classname of each variant...
-            variants.map(variant => {
+            variants.map((variant) => {
               // Append the variant to the classname and push to the pseudoClasses array.
-              pseudoClasses.push(variant + this._separator + this._prefix + classname);
+              pseudoClasses.push(
+                variant + this._separator + this._prefix + classname
+              );
             });
           });
         }
@@ -466,9 +592,12 @@ export class ClassnamesGenerator {
     return pseudoClasses;
   };
 
-  private generateClassesWithColors = (property: ClassesWithColors): string[] => {
+  private generateClassesWithColors = (
+    property: ClassesWithColors
+  ): string[] => {
     // Get the key-value pairs of the passed property
-    const [propertyKeys, propertyValues] = this._configParser.getThemeProperty(property);
+    const [propertyKeys, propertyValues] =
+      this._configParser.getThemeProperty(property);
 
     // Convert the config property names into utility class names
     const utilName = property
@@ -491,10 +620,13 @@ export class ClassnamesGenerator {
         // If the value is a nested object of color shades...
         if (typeof colorValue === 'object' && colorValue !== null) {
           // Loop over the deep objects and return the result for each key of the object.
-          return Object.keys(colorValue).flatMap(shade => {
+          return Object.keys(colorValue).flatMap((shade) => {
             if (utilName === 'border') {
               return ['', 't', 'r', 'b', 'l', 'x', 'y'].map(
-                side => `${utilName}-${side.length > 0 ? side + '-' : ''}${colorName}-${shade}`,
+                (side) =>
+                  `${utilName}-${
+                    side.length > 0 ? side + '-' : ''
+                  }${colorName}-${shade}`
               );
             } else {
               return `${utilName}-${colorName}-${shade}`;
@@ -506,7 +638,8 @@ export class ClassnamesGenerator {
           // Return the result of merging the utility name with color value
           if (utilName === 'border') {
             return ['', 't', 'r', 'b', 'l'].map(
-              side => `${utilName}-${side.length > 0 ? side + '-' : ''}${colorName}`,
+              (side) =>
+                `${utilName}-${side.length > 0 ? side + '-' : ''}${colorName}`
             );
           } else {
             return `${utilName}-${colorName}`;
@@ -529,30 +662,41 @@ export class ClassnamesGenerator {
     // prettier-ignore
     type TOpacityProp = | 'divideOpacity' | 'textOpacity' | 'backgroundOpacity'
       | 'borderOpacity' | 'placeholderOpacity' | 'ringOpacity'
-    const getOpacity = (themePropertyName: TOpacityProp, outputNamePrefix: string): string[] => {
-      const generatedOpacities = generateOpacities(allOpacities, this._theme, themePropertyName);
+    const getOpacity = (
+      themePropertyName: TOpacityProp,
+      outputNamePrefix: string
+    ): string[] => {
+      const generatedOpacities = generateOpacities(
+        allOpacities,
+        this._theme,
+        themePropertyName
+      );
 
       return Object.keys(generatedOpacities).map(
-        opacity => `${outputNamePrefix}-opacity-${opacity}`,
+        (opacity) => `${outputNamePrefix}-opacity-${opacity}`
       );
     };
 
     function generateOpacities(
       defaultOpacities: Record<string, string>,
       theme: TConfigTheme,
-      property: keyof Omit<TConfigTheme, 'extend'>,
+      property: keyof Omit<TConfigTheme, 'extend'>
     ): Record<string, string> {
-      const themeOpacities = _.isEmpty(theme[property]) ? defaultOpacities : theme[property];
+      const themeOpacities = _.isEmpty(theme[property])
+        ? defaultOpacities
+        : theme[property];
       const extendedThemeOpacities = theme.extend?.[property];
       const result = extendedThemeOpacities
-        ? {...themeOpacities, ...extendedThemeOpacities}
+        ? { ...themeOpacities, ...extendedThemeOpacities }
         : themeOpacities;
 
       return result as Record<string, string>;
     }
 
     return {
-      opacities: Object.keys(allOpacities).map(opacity => `opacity-${opacity}`),
+      opacities: Object.keys(allOpacities).map(
+        (opacity) => `opacity-${opacity}`
+      ),
       textOpacities: getOpacity('textOpacity', 'text'),
       backgroundOpacities: getOpacity('backgroundOpacity', 'bg'),
       borderOpacities: getOpacity('borderOpacity', 'border'),

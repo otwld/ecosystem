@@ -52,30 +52,36 @@ export class GeneratedFileWriter {
       .then(() => {
         this.printCliMessage(
           'success',
-          `Types has successfully been generated in ${this._outputFilename} file.`,
+          `Types has successfully been generated in ${this._outputFilename} file.`
         );
       })
-      .catch(error => {
+      .catch((error) => {
         this.printCliMessage('error', error);
       });
   };
 
-  private evaluateTailwindConfigFile = async (): Promise<TTailwindCSSConfig> => {
-    // Read the config file from the provided config path
-    try {
-      this._configFileData = await fs.readFile(`./${this._configFilename}`, {encoding: 'utf-8'});
-    } catch (err) {
-      this.printCliMessage('error', `Error Reading: "./${this._configFilename}"`);
-    }
+  private evaluateTailwindConfigFile =
+    async (): Promise<TTailwindCSSConfig> => {
+      // Read the config file from the provided config path
+      try {
+        this._configFileData = await fs.readFile(`./${this._configFilename}`, {
+          encoding: 'utf-8',
+        });
+      } catch (err) {
+        this.printCliMessage(
+          'error',
+          `Error Reading: "./${this._configFilename}"`
+        );
+      }
 
-    // Execute the config file content as JavaScript code
-    return <TTailwindCSSConfig>vm.runInNewContext(this._configFileData, {
-      __dirname: path.dirname(path.resolve(`./${this._configFilename}`)),
-      require,
-      module: {},
-      process,
-    });
-  };
+      // Execute the config file content as JavaScript code
+      return <TTailwindCSSConfig>vm.runInNewContext(this._configFileData, {
+        __dirname: path.dirname(path.resolve(`./${this._configFilename}`)),
+        require,
+        module: {},
+        process,
+      });
+    };
 
   private generateFileContent = async (): Promise<string> => {
     // Evaluate the config as a JS object
@@ -83,17 +89,23 @@ export class GeneratedFileWriter {
 
     // Parse the config with the config parser class
     const configParser = new TailwindConfigParser(evaluatedConfig, {
-      pluginTypography: this._configFileData.includes('@tailwindcss/typography'),
-      pluginCustomForms: this._configFileData.includes('@tailwindcss/custom-forms'),
+      pluginTypography: this._configFileData.includes(
+        '@tailwindcss/typography'
+      ),
+      pluginCustomForms: this._configFileData.includes(
+        '@tailwindcss/custom-forms'
+      ),
     });
 
     // Generate all classnames from the config
-    const generatedClassnames = new ClassnamesGenerator(configParser).generate();
+    const generatedClassnames = new ClassnamesGenerator(
+      configParser
+    ).generate();
 
     // Create the file content from the generated classnames
     const fileContentTemplate = new FileContentGenerator(
       generatedClassnames,
-      configParser,
+      configParser
     ).generateFileContent();
 
     // Resolve the custom classes import path relative to the output file
@@ -103,9 +115,9 @@ export class GeneratedFileWriter {
         .join(
           path.relative(
             path.join(process.cwd(), path.dirname(this._outputFilename)),
-            path.join(process.cwd(), path.dirname(this._customClassesFilename)),
+            path.join(process.cwd(), path.dirname(this._customClassesFilename))
           ),
-          path.basename(this._customClassesFilename),
+          path.basename(this._customClassesFilename)
         )
         // Convert any Windows path separators to posix
         .replace(/\\/g, '/')
@@ -124,15 +136,15 @@ export class GeneratedFileWriter {
           /T_CUSTOM_CLASSES_IMPORT_STATEMENT/g,
           customClassesImportPath
             ? `import type TCustomClassesFromExternalFile from '${customClassesImportPath}';`
-            : '',
+            : ''
         )
         .replace(
           / ?IMPORTED_T_CUSTOM_CLASSES_KEY/g,
-          customClassesImportPath ? ' | TCustomClassesFromExternalFile' : '',
+          customClassesImportPath ? ' | TCustomClassesFromExternalFile' : ''
         )
         .replace(
           / ?IMPORTED_T_CUSTOM_CLASSES_ARG/g,
-          customClassesImportPath ? '| TCustomClassesFromExternalFile\n' : '',
+          customClassesImportPath ? '| TCustomClassesFromExternalFile\n' : ''
         )
     );
   };
@@ -140,11 +152,17 @@ export class GeneratedFileWriter {
   private validateCliOptions = (): Promise<void> => {
     // Check for missing cli options
     if (!this._configFilename) {
-      this.printCliMessage('error', 'tailwindcss config file name or path is not provided');
+      this.printCliMessage(
+        'error',
+        'tailwindcss config file name or path is not provided'
+      );
       throw new Error();
     }
     if (!this._outputFilename) {
-      this.printCliMessage('error', 'Please provide a valid filename to add generated types to it');
+      this.printCliMessage(
+        'error',
+        'Please provide a valid filename to add generated types to it'
+      );
       throw new Error();
     }
 
@@ -152,16 +170,19 @@ export class GeneratedFileWriter {
     if (this._customClassesFilename) {
       return fs
         .readFile(`./${this._customClassesFilename}`)
-        .then(data => {
+        .then((data) => {
           if (!data.toString().includes('export default')) {
             this.printCliMessage(
               'error',
-              'The type having the custom classes must be a default export',
+              'The type having the custom classes must be a default export'
             );
           }
         })
-        .catch(error => {
-          this.printCliMessage('error', `Unable to read the file with custom types. ${error}`);
+        .catch((error) => {
+          this.printCliMessage(
+            'error',
+            `Unable to read the file with custom types. ${error}`
+          );
           throw new Error();
         });
     }
@@ -169,7 +190,10 @@ export class GeneratedFileWriter {
     return Promise.resolve();
   };
 
-  private printCliMessage = (type: 'error' | 'success', message: string): void => {
+  private printCliMessage = (
+    type: 'error' | 'success',
+    message: string
+  ): void => {
     const formattedMessage = '\n\n' + message + '\n' + '\n\n';
 
     switch (type) {

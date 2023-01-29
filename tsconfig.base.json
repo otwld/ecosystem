@@ -18,7 +18,7 @@
       "@ecosystem/shared-models": ["libs/shared-models/src/index.ts"],
       "@otwld/features": ["libs/features/src/index.ts"],
       "@otwld/tailwindcss-classnames": [
-        "libs/tailwindcss-classnames/src/index.ts"
+        "projects/clis/tailwindcss-classnames/src/index.ts"
       ],
       "@otwld/ui": ["libs/ui/src/index.ts"]
     }

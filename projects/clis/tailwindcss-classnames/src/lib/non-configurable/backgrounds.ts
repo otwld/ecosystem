@@ -1,8 +1,17 @@
 const backgroundAttachment = ['bg-fixed', 'bg-local', 'bg-scroll'];
 
-const backgroundClip = ['bg-clip-border', 'bg-clip-padding', 'bg-clip-content', 'bg-clip-text'];
+const backgroundClip = [
+  'bg-clip-border',
+  'bg-clip-padding',
+  'bg-clip-content',
+  'bg-clip-text',
+];
 
-const backgroundOrigin = ['bg-origin-border', 'bg-origin-padding', 'bg-origin-content'];
+const backgroundOrigin = [
+  'bg-origin-border',
+  'bg-origin-padding',
+  'bg-origin-content',
+];
 
 const backgroundRepeat = [
   'bg-repeat',
