@@ -71,7 +71,7 @@ export class PageTeamMemberIdComponent {
   membersService = inject(MembersService)
   member$ = inject(ActivatedRoute).params.pipe(
     switchMap((params) =>
-      this.membersService.getMemberBySlug$(params['id'])
+      this.membersService.getMemberOrRandomBySlug$(params['id'])
     ));
   stringToIcon = SocialIconToFa;
 

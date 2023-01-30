@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CustomRoute } from './utils/router.utils'; // CLI imports router
+import { CustomRoute } from './utils/router.utils';
 
 const routes: CustomRoute[] = [
   {
@@ -67,7 +67,13 @@ const routes: CustomRoute[] = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/members/ntrehout',
+        loadComponent: () =>
+          import(
+            './containers/pages/page-team-member-id/page-team-member-id.component'
+            ).then((m) => m.PageTeamMemberIdComponent),
+        data: {
+          titleTranslationKey: 'Team member',
+        },
       },
       {
         path: ':id',

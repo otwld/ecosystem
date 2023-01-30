@@ -227,6 +227,7 @@ export interface Query {
   getMemberById: Member;
   getMemberBySlug: Member;
   getMembers: ListMemberPage;
+  getOneRandomMemberSlug: Scalars['String'];
   getProjectBySlug: Project;
   getProjects: ListProjectsPage;
   getRelatedProjects: Array<Project>;
@@ -382,6 +383,11 @@ export type GetMembersPaginatedQueryVariables = Exact<{
 
 export type GetMembersPaginatedQuery = { __typename?: 'Query', getMembers: { __typename?: 'ListMemberPage', edges: Array<{ __typename?: 'PaginatedMemberPageEdge', node?: { __typename?: 'Member', _id: string, createdAt: any, updatedAt: string, firstName: string } | null } | null>, pageInfo?: { __typename?: 'PageInfo', hasNextPage?: boolean | null, hasPrevPage?: boolean | null, startCursor?: string | null, endCursor?: string | null } | null } };
 
+export type GetRandomMemberSlugQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRandomMemberSlugQuery = { __typename?: 'Query', getOneRandomMemberSlug: string };
+
 export type GetAllMembersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -498,6 +504,22 @@ export const GetMembersPaginatedDocument = gql`
   })
   export class GetMembersPaginatedGQL extends Apollo.Query<GetMembersPaginatedQuery, GetMembersPaginatedQueryVariables> {
     override document = GetMembersPaginatedDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetRandomMemberSlugDocument = gql`
+    query getRandomMemberSlug {
+  getOneRandomMemberSlug
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetRandomMemberSlugGQL extends Apollo.Query<GetRandomMemberSlugQuery, GetRandomMemberSlugQueryVariables> {
+    override document = GetRandomMemberSlugDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -37,6 +37,11 @@ export class MemberResolver {
     return this.memberService.getOneByFilter({slug});
   }
 
+  @Query(() => String)
+  getOneRandomMemberSlug() {
+    return this.memberService.getOneRandomSlug();
+  }
+
   @Query(() => [Member])
   @UseGuards(LanguageGuard)
   getAllMembers(): Promise<Member[]> {
