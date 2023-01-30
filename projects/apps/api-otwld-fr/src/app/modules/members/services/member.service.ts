@@ -24,4 +24,12 @@ export class MemberService extends GetMultipleIds<Member> {
   getMembersPaginated(dto: ListMemberInput) {
     return this.paginationService.paginate(this.model.find(), dto, {lean: true});
   }
+
+  async getOneRandomSlug() {
+    const doc = await this.model.aggregate([{
+      $sample: {size: 1}
+    }]).exec();
+    return doc[0].slug;
+  }
+
 }

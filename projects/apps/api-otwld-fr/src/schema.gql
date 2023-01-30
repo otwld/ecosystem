@@ -185,6 +185,7 @@ type Query {
   getMemberById(id: String!): Member!
   getMemberBySlug(slug: String!): Member!
   getMembers(order: MemberOrderBy, pagination: PaginationOption!): ListMemberPage!
+  getOneRandomMemberSlug: String!
   getProjectBySlug(slug: String!): Project!
   getProjects(criteria: ListProjectsFilter, order: EventsOrderBy, pagination: PaginationOption!): ListProjectsPage!
   getRelatedProjects(slug: String!): [Project!]!

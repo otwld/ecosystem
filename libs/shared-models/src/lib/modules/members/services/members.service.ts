@@ -1,11 +1,11 @@
 import {inject, Injectable} from '@angular/core';
-import {TranslocoService} from '@ngneat/transloco';
-import {map, Observable, switchMap} from 'rxjs';
+import {defer, iif, map, Observable, of, switchMap} from 'rxjs';
 import {
   GetAllMembersGQL,
   GetAllMembersQuery,
   GetMemberBySlugGQL,
   GetMemberBySlugQuery,
+  GetRandomMemberSlugGQL,
   Media,
   Project
 } from '../../../gateway/generated-api-gateway';
@@ -21,6 +21,7 @@ export class MembersService extends RequestWithTranslationUtils {
   /* ======= GQL ======= */
   getMemberBySlugGQL = inject(GetMemberBySlugGQL);
   getAllMembersGQL = inject(GetAllMembersGQL);
+  getRandomMemberSlugGQL = inject(GetRandomMemberSlugGQL);
 
   getMemberBySlug$(slug: string): Observable<MemberWithoutNodes> {
     return this.langChangeUpdate$()
@@ -29,10 +30,21 @@ export class MembersService extends RequestWithTranslationUtils {
         map((member) => this.projectNodeToProjects(member)));
   }
 
+  getMemberOrRandomBySlug$(paramsSlug?: string): Observable<MemberWithoutNodes> {
+    return iif(() => !!paramsSlug, defer(() => of(paramsSlug as string)), defer(() => this.getRandomSlug$())).pipe(
+      switchMap((slug: string) => this.getMemberBySlug$(slug))
+    );
+  }
+
   getAllMembers$(): Observable<GetAllMembersQuery['getAllMembers']> {
     return this.langChangeUpdate$().pipe(switchMap(() => {
       return this.getAllMembersGQL.fetch({}, {fetchPolicy: 'network-only'});
     }), map((result) => result.data.getAllMembers))
+  }
+
+  getRandomSlug$(): Observable<string> {
+    return this.getRandomMemberSlugGQL.fetch({}, {fetchPolicy: 'network-only'})
+      .pipe(map((result) => result.data.getOneRandomMemberSlug));
   }
 
   private projectNodeToProjects(member: GetMemberBySlugQuery['getMemberBySlug']): MemberWithoutNodes {

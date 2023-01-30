@@ -17,6 +17,10 @@ query getMembersPaginated($pagination: PaginationOption!) {
   }
 }
 
+query getRandomMemberSlug {
+  getOneRandomMemberSlug
+}
+
 query getAllMembers {
   getAllMembers {
     fullName,
