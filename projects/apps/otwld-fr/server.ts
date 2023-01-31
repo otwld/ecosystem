@@ -1,14 +1,13 @@
-import 'zone.js/dist/zone-node';
+import "zone.js/dist/zone-node";
 
-import { APP_BASE_HREF } from '@angular/common';
-import { ngExpressEngine } from '@nguniversal/express-engine';
-import * as express from 'express';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { APP_BASE_HREF } from "@angular/common";
+import { ngExpressEngine } from "@nguniversal/express-engine";
+import * as express from "express";
+import { existsSync } from "fs";
+import { join } from "path";
+import { AppServerModule } from "./src/main.server";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { Crawler } = require('es6-crawler-detect')
-
-import { AppServerModule } from './src/main.server';
 
 function findDistPath() {
   return [
@@ -51,7 +50,7 @@ export function app(): express.Express {
   server.get('*', (req, res) => {
     const CrawlerDetector = new Crawler(req)
     const isCrawler = CrawlerDetector.isCrawler()
-    const hasBypassQuery = req.query['forceSSR'] === 'true';
+    const hasBypassQuery = req.query['forceSSR'] === 'true' || process.env['FORCE_SSR'] === 'true'
 
     if (isCrawler || hasBypassQuery) {
       return res.render(indexHtml, {
