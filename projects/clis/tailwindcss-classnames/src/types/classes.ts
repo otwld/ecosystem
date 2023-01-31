@@ -1,4 +1,5 @@
 import { tailwindLabsPlugins } from '../lib/tailwindlabs-plugins';
+import { Alert, DaisyUI } from '../lib/plugins/daisyUI/classes';
 
 export type Accessibility = Record<TAccessibilityCategoryItem, string[]>;
 export type Backgrounds = Record<TBackgroundsCategoryItem, string[]>;
@@ -41,6 +42,11 @@ export type TAllClassnames = {
   Typography: Typography;
 
   TailwindLabsPlugins?: Partial<typeof tailwindLabsPlugins>;
+
+  // TODO: Find a better way.
+  DaisyUIPlugin?: Partial<DaisyUI>;
+  // TODD: Find a better way, for the moment Depth 2 is not supported.
+  Alert?: Alert;
 };
 
 type TAccessibilityCategoryItem = 'screenReaders';

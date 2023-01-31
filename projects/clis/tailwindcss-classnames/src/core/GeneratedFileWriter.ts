@@ -1,7 +1,6 @@
 import { promises as fs } from 'fs';
 import * as vm from 'vm';
 import * as path from 'path';
-import * as colors from '@colors/colors';
 import { ClassnamesGenerator } from './ClassnamesGenerator';
 import { TailwindConfigParser } from './TailwindConfigParser';
 import { FileContentGenerator } from './FileContentGenerator';
@@ -95,6 +94,7 @@ export class GeneratedFileWriter {
       pluginCustomForms: this._configFileData.includes(
         '@tailwindcss/custom-forms'
       ),
+      pluginDaisyUI: this._configFileData.includes('daisyui'),
     });
 
     // Generate all classnames from the config
@@ -198,10 +198,10 @@ export class GeneratedFileWriter {
 
     switch (type) {
       case 'success':
-        console.log(colors.black.bgGreen(formattedMessage));
+        console.log((formattedMessage));
         break;
       case 'error':
-        console.error(colors.white.bgRed(formattedMessage));
+        console.error((formattedMessage));
         break;
       default:
         console.log(formattedMessage);

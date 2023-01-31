@@ -1,6 +1,6 @@
-import * as _ from "lodash";
-import { TailwindConfigParser } from "./TailwindConfigParser";
-import { nonConfigurableClassNames } from "../lib/non-configurable";
+import * as _ from 'lodash';
+import { TailwindConfigParser } from './TailwindConfigParser';
+import { nonConfigurableClassNames } from '../lib/non-configurable';
 // prettier-ignore
 import {
   Accessibility,
@@ -22,9 +22,10 @@ import {
   TransitionsAndAnimations,
   Typography
 } from "../types/classes";
-import { TConfigDarkMode, TConfigTheme } from "../types/config";
-import { tailwindLabsPlugins } from "../lib/tailwindlabs-plugins";
-import { regularClassGroupKeys } from "./constants/regularClassGroupKeys";
+import { TConfigDarkMode, TConfigTheme } from '../types/config';
+import { tailwindLabsPlugins } from '../lib/tailwindlabs-plugins';
+import { regularClassGroupKeys } from './constants/regularClassGroupKeys';
+import { plugins } from '../lib/plugins';
 
 /**
  * Responsible for generating the types from a parsed config by ConfigScanner.
@@ -73,6 +74,7 @@ export class ClassnamesGenerator {
     if (configPlugins !== null) {
       this._generatedRegularClassnames.TailwindLabsPlugins = {};
       const { pluginCustomForms, pluginTypography } = tailwindLabsPlugins;
+      const { PluginDaisyUI } = plugins;
 
       if (configPlugins.pluginCustomForms)
         this._generatedRegularClassnames.TailwindLabsPlugins.pluginCustomForms =
@@ -81,6 +83,11 @@ export class ClassnamesGenerator {
       if (configPlugins.pluginTypography)
         this._generatedRegularClassnames.TailwindLabsPlugins.pluginTypography =
           pluginTypography;
+
+      if (configPlugins.pluginDaisyUI && this._configParser.getDaisyParser()) {
+        const daisyUI = new PluginDaisyUI(this._configParser.getDaisyParser(), this._configParser.getTheme());
+        this._generatedRegularClassnames = {...this._generatedRegularClassnames, ...daisyUI.generate()};
+      }
     }
 
     this._generatedPseudoClassnames = this.pseudoClasses();
@@ -472,9 +479,9 @@ export class ClassnamesGenerator {
 
   private sizing = (): Sizing => {
     // prettier-ignore
-    const extraWidthSizing = ['full', 'screen', 'auto', '1/2', '1/3', '2/3', '1/4', '2/4', '3/4',
-      '1/5', '2/5', '3/5', '4/5', '1/6', '2/6', '3/6', '4/6', '5/6', '1/12', '2/12', '3/12', '4/12',
-      '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12'];
+    const extraWidthSizing = ["full", "screen", "auto", "1/2", "1/3", "2/3", "1/4", "2/4", "3/4",
+      "1/5", "2/5", "3/5", "4/5", "1/6", "2/6", "3/6", "4/6", "5/6", "1/12", "2/12", "3/12", "4/12",
+      "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12"];
     const extraHeightSizing = ['full', 'screen'];
 
     return {
@@ -484,7 +491,7 @@ export class ClassnamesGenerator {
       // prettier-ignore
       width: (_.isEmpty(this._theme.width)
         ? Object.keys(this._theme.spacing).concat(extraWidthSizing)
-        : Object.keys(this._theme.width)).map(x => 'w-' + x),
+        : Object.keys(this._theme.width)).map(x => "w-" + x),
       minWidth: Object.keys(this._theme.minWidth).map((x) => 'min-w-' + x),
       maxWidth: Object.keys(this._theme.maxWidth).map((x) => 'max-w-' + x),
       // height values come from theme.spacing + `extraHeightSizing` by default
@@ -492,7 +499,7 @@ export class ClassnamesGenerator {
       // prettier-ignore
       height: (_.isEmpty(this._theme.height)
         ? Object.keys(this._theme.spacing).concat(extraHeightSizing)
-        : Object.keys(this._theme.height)).map(x => 'h-' + x),
+        : Object.keys(this._theme.height)).map(x => "h-" + x),
       minHeight: Object.keys(this._theme.minHeight).map((x) => 'min-h-' + x),
       maxHeight: Object.keys(this._theme.maxHeight).map((x) => 'max-h-' + x),
     };
@@ -660,8 +667,8 @@ export class ClassnamesGenerator {
     const allOpacities = this._configParser.getTheme().opacity;
 
     // prettier-ignore
-    type TOpacityProp = | 'divideOpacity' | 'textOpacity' | 'backgroundOpacity'
-      | 'borderOpacity' | 'placeholderOpacity' | 'ringOpacity'
+    type TOpacityProp = | "divideOpacity" | "textOpacity" | "backgroundOpacity"
+      | "borderOpacity" | "placeholderOpacity" | "ringOpacity"
     const getOpacity = (
       themePropertyName: TOpacityProp,
       outputNamePrefix: string

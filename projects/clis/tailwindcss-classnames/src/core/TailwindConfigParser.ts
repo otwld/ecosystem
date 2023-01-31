@@ -3,6 +3,7 @@ import { defaultTailwindConfig } from "../lib/defaultTailwindConfig";
 import { TConfigDarkMode, TConfigPlugins, TConfigTheme, TTailwindCSSConfig, TThemeItems } from "../types/config";
 import { baseVariants } from "./constants/baseVariants";
 import { tailwindColors } from "./constants/tailwindColors";
+import { DaisyUIConfigParser } from "../lib/plugins/daisyUI/daisyui-config-parser";
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-return */
 
@@ -17,6 +18,7 @@ export class TailwindConfigParser {
   private readonly _themeConfig: TConfigTheme;
   private _evaluatedTheme: TConfigTheme | null;
   private readonly _pluginsConfig: TConfigPlugins;
+  private readonly _daisyParser: DaisyUIConfigParser | undefined;
 
   constructor(tailwindConfig: TTailwindCSSConfig, plugins: TConfigPlugins) {
     this._mode = tailwindConfig?.mode;
@@ -35,7 +37,19 @@ export class TailwindConfigParser {
     };
     this._evaluatedTheme = null;
     this._pluginsConfig = plugins;
+    // Some plugin need to override/extends the default theme config.
+    if (this._pluginsConfig.pluginDaisyUI && tailwindConfig.daisyui) {
+      this._daisyParser = new DaisyUIConfigParser(tailwindConfig.daisyui);
+      this._themeConfig = this._daisyParser.addToTheme(this._themeConfig);
+    }
   }
+
+  public getDaisyParser = (): DaisyUIConfigParser => {
+    if (!this._daisyParser) {
+      throw new Error('DaisyUI parser is not defined');
+    }
+    return this._daisyParser;
+  };
 
   /**
    *  Gets the config prefix value
@@ -56,9 +70,12 @@ export class TailwindConfigParser {
    * Gets the config plugins value
    */
   public getPlugins = (): TConfigPlugins | null => {
-    const { pluginTypography, pluginCustomForms } = this._pluginsConfig;
+    const { pluginTypography, pluginCustomForms, pluginDaisyUI } =
+      this._pluginsConfig;
 
-    return pluginTypography || pluginCustomForms ? this._pluginsConfig : null;
+    return pluginTypography || pluginCustomForms || pluginDaisyUI
+      ? this._pluginsConfig
+      : null;
   };
 
   /**
@@ -120,7 +137,6 @@ export class TailwindConfigParser {
     // Evaluate the theme again, however taking the values from the merge result
     this._evaluatedTheme = evaluateTheme(themeWithMergedExtend);
     delete this._evaluatedTheme?.extend;
-
     // Return the evaluated theme
     return this._evaluatedTheme;
   };
