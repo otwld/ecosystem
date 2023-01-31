@@ -5,8 +5,8 @@
   "sourceRoot": "projects/apps/otwld-fr/src",
   "prefix": "otwld",
   "targets": {
-    "build": {
-      "dependsOn": ["^generate", "server"],
+    "build-spa": {
+      "dependsOn": ["^generate"],
       "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -99,20 +99,20 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-spa": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "apps-otwld-fr:build:production"
+          "browserTarget": "apps-otwld-fr:build-spa:production"
         },
         "staging": {
-          "browserTarget": "apps-otwld-fr:build:staging"
+          "browserTarget": "apps-otwld-fr:build-spa:staging"
         },
         "development": {
-          "browserTarget": "apps-otwld-fr:build:development"
+          "browserTarget": "apps-otwld-fr:build-spa:development"
         },
         "local": {
-          "browserTarget": "apps-otwld-fr:build:local"
+          "browserTarget": "apps-otwld-fr:build-spa:local"
         }
       },
       "defaultConfiguration": "local",
@@ -212,7 +212,8 @@
         "postTargets": ["apps-otwld-fr:write-version"]
       }
     },
-    "server": {
+    "build": {
+      "dependsOn": ["^build-spa"],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/projects/apps/otwld-fr/server",
@@ -255,24 +256,24 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve-ssr": {
+    "serve": {
       "executor": "@nguniversal/builders:ssr-dev-server",
       "configurations": {
         "local": {
-          "browserTarget": "apps-otwld-fr:build:local",
-          "serverTarget": "apps-otwld-fr:server:local"
+          "browserTarget": "apps-otwld-fr:build-spa:local",
+          "serverTarget": "apps-otwld-fr:build:local"
         },
         "development": {
-          "browserTarget": "apps-otwld-fr:build:development",
-          "serverTarget": "apps-otwld-fr:server:development"
+          "browserTarget": "apps-otwld-fr:build-spa:development",
+          "serverTarget": "apps-otwld-fr:build:development"
         },
         "staging": {
-          "browserTarget": "apps-otwld-fr:build:staging",
-          "serverTarget": "apps-otwld-fr:server:staging"
+          "browserTarget": "apps-otwld-fr:build-spa:staging",
+          "serverTarget": "apps-otwld-fr:build:staging"
         },
         "production": {
-          "browserTarget": "apps-otwld-fr:build:production",
-          "serverTarget": "apps-otwld-fr:server:production"
+          "browserTarget": "apps-otwld-fr:build-spa:production",
+          "serverTarget": "apps-otwld-fr:build:production"
         }
       },
       "defaultConfiguration": "local"
@@ -284,20 +285,20 @@
       },
       "configurations": {
         "local": {
-          "browserTarget": "apps-otwld-fr:build:local",
-          "serverTarget": "apps-otwld-fr:server:local"
+          "browserTarget": "apps-otwld-fr:build-spa:local",
+          "serverTarget": "apps-otwld-fr:build:local"
         },
         "development": {
-          "browserTarget": "apps-otwld-fr:build:development",
-          "serverTarget": "apps-otwld-fr:server:development"
+          "browserTarget": "apps-otwld-fr:build-spa:development",
+          "serverTarget": "apps-otwld-fr:build:development"
         },
         "staging": {
-          "browserTarget": "apps-otwld-fr:build:staging",
-          "serverTarget": "apps-otwld-fr:server:staging"
+          "browserTarget": "apps-otwld-fr:build-spa:staging",
+          "serverTarget": "apps-otwld-fr:build:staging"
         },
         "production": {
-          "browserTarget": "apps-otwld-fr:build:production",
-          "serverTarget": "apps-otwld-fr:server:production"
+          "browserTarget": "apps-otwld-fr:build-spa:production",
+          "serverTarget": "apps-otwld-fr:build:production"
         }
       },
       "defaultConfiguration": "production"
