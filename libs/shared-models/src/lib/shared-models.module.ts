@@ -1,4 +1,5 @@
 import {
+  InjectionToken,
   ModuleWithProviders,
   NgModule,
   Optional,
@@ -6,11 +7,19 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
-import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule, HttpHeaders} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientJsonpModule,
+  HttpClientModule,
+} from '@angular/common/http';
 import { HttpLink } from 'apollo-angular/http';
 import { ModelsEnvironment } from './models/models.environment';
 import { InMemoryCache } from '@apollo/client/core';
-import {HttpLanguageInterceptor} from './interceptors/http-language.interceptor';
+import { HttpLanguageInterceptor } from './interceptors/http-language.interceptor';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+
+const APOLLO_CACHE = new InjectionToken<InMemoryCache>('apollo-cache');
+const STATE_KEY = makeStateKey<any>('apollo.state');
 
 @NgModule({
   imports: [
@@ -18,6 +27,12 @@ import {HttpLanguageInterceptor} from './interceptors/http-language.interceptor'
     ApolloModule,
     HttpClientModule,
     HttpClientJsonpModule,
+  ],
+  providers: [
+    {
+      provide: APOLLO_CACHE,
+      useValue: new InMemoryCache(),
+    },
   ],
 })
 export class SharedModelsModule {
@@ -33,21 +48,37 @@ export class SharedModelsModule {
       providers: [
         {
           provide: APOLLO_OPTIONS,
-          useFactory: (httpLink: HttpLink) => {
+          useFactory(
+            httpLink: HttpLink,
+            cache: InMemoryCache,
+            transferState: TransferState
+          ) {
+            const isBrowser = transferState.hasKey<any>(STATE_KEY);
+
+            if (isBrowser) {
+              const state = transferState.get<any>(STATE_KEY, null);
+              cache.restore(state);
+            } else {
+              transferState.onSerialize(STATE_KEY, () => {
+                return cache.extract();
+              });
+              // Reset cache after extraction to avoid sharing between requests
+              cache.reset();
+            }
             return {
-              cache: new InMemoryCache(),
+              cache,
               link: httpLink.create({
                 uri: environment.apiUrl,
               }),
             };
           },
-          deps: [HttpLink],
+          deps: [HttpLink, APOLLO_CACHE, TransferState],
         },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: HttpLanguageInterceptor,
-          multi: true
-        }
+          multi: true,
+        },
       ],
     };
   }
