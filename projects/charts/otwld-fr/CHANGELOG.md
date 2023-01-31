@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/otwld/ecosystem/compare/charts-otwld-fr-0.0.11...charts-otwld-fr-0.1.0) (2023-01-31)
+
+
+### Features
+
+* **charts/otwld-fr:** désactive les PVCs ([709bb38](https://github.com/otwld/ecosystem/commit/709bb38628ca6b46dabacd7b62a937c5ac21197c))
+
+
+
 ## [0.0.11](https://github.com/otwld/ecosystem/compare/charts-otwld-fr-0.0.11-alpha.0...charts-otwld-fr-0.0.11) (2022-12-22)
 
 
