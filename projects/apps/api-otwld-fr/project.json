@@ -37,6 +37,7 @@
       }
     },
     "serve": {
+      "dependsOn": ["^generate"],
       "executor": "@nrwl/js:node",
       "options": {
         "buildTarget": "apps-api-otwld-fr:build"
