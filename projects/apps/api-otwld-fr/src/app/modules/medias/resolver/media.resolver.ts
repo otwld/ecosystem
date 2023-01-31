@@ -7,7 +7,6 @@ import {HeaderLanguage} from '../../../shared/modules/language/enums/language.en
 export class MediaResolver {
   @ResolveField('title', () => String)
   resolveTitle(@Parent() media: Media, @CurrentLanguage() language: HeaderLanguage) {
-    console.log('resolveTitle', media, language);
     return media.title[language];
   }
 }

@@ -9,7 +9,6 @@ import {HeaderLanguage} from '../../../shared/modules/language/enums/language.en
 export class MemberWorkModeResolver {
   @ResolveField('workMode', () => WorkMode)
   resolveSkill(@Parent() workMode: MemberWorkMode, @Context('workModeLoader') loader: DataLoader<string, WorkMode>) {
-    console.log(workMode.workMode)
     return loader.load(workMode.workMode);
   }
 
