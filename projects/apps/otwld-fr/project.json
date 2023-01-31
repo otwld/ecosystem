@@ -213,8 +213,9 @@
       }
     },
     "build": {
-      "dependsOn": ["^build-spa"],
+      "dependsOn": ["build-spa"],
       "executor": "@angular-devkit/build-angular:server",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/projects/apps/otwld-fr/server",
         "main": "projects/apps/otwld-fr/server.ts",
