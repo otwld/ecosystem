@@ -1,14 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { fromEvent, startWith, Subject, tap, throttleTime } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { WINDOW } from '@ng-web-apis/common';
+import { isBrowser } from '../utils/platform';
 
 @UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceService {
+  private isBrowser = isBrowser();
   private readonly _resizeSubject$ = new Subject<void>();
-  private readonly _recalculateOnResize$ = fromEvent(window, 'resize').pipe(
+  private readonly _recalculateOnResize$ = fromEvent(
+    this._window,
+    'resize'
+  ).pipe(
     startWith(null),
     throttleTime(100),
     tap((_) => this._resizeSubject$.next()),
@@ -16,13 +22,16 @@ export class DeviceService {
     untilDestroyed(this)
   );
 
-  constructor() {
+  constructor(@Inject(WINDOW) private readonly _window: Window) {
     // TODO: Use DI Token to start or not the listeners.
     // eslint-disable-next-line no-constant-condition
-    if (true) {
-      this._recalculateOnResize$.subscribe();
-    } else {
-      this._calculateDevice();
+    if (this.isBrowser) {
+      // eslint-disable-next-line no-constant-condition
+      if (true) {
+        this._recalculateOnResize$.subscribe();
+      } else {
+        this._calculateDevice();
+      }
     }
   }
 
