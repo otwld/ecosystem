@@ -291,11 +291,11 @@
       "configurations": {
         "local": {
           "browserTarget": "apps-otwld-fr:build-spa:local",
-          "serverTarget": "apps-otwld-fr:build:local"
+          "serverTarget": "apps-otwld-fr:build-server:local"
         },
         "development": {
           "browserTarget": "apps-otwld-fr:build-spa:development",
-          "serverTarget": "apps-otwld-fr:build:development"
+          "serverTarget": "apps-otwld-fr:build-server:development"
         },
         "staging": {
           "browserTarget": "apps-otwld-fr:build-spa:staging",
@@ -320,15 +320,15 @@
         },
         "development": {
           "browserTarget": "apps-otwld-fr:build-spa:development",
-          "serverTarget": "apps-otwld-fr:build:development"
+          "serverTarget": "apps-otwld-fr:build-server:development"
         },
         "staging": {
           "browserTarget": "apps-otwld-fr:build-spa:staging",
-          "serverTarget": "apps-otwld-fr:build:staging"
+          "serverTarget": "apps-otwld-fr:build-server:staging"
         },
         "production": {
           "browserTarget": "apps-otwld-fr:build-spa:production",
-          "serverTarget": "apps-otwld-fr:build:production"
+          "serverTarget": "apps-otwld-fr:build-server:production"
         }
       },
       "defaultConfiguration": "production"
