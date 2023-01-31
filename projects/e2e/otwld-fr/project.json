@@ -8,12 +8,12 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "projects/e2e/otwld-fr/cypress.config.ts",
-        "devServerTarget": "apps-otwld-fr:serve:development",
+        "devServerTarget": "apps-otwld-fr:serve-spa:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "apps-otwld-fr:serve:production"
+          "devServerTarget": "apps-otwld-fr:serve-spa:production"
         }
       }
     },
