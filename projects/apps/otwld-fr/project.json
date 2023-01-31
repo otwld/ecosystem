@@ -213,7 +213,36 @@
       }
     },
     "build": {
-      "dependsOn": ["build-spa"],
+      "executor": "@otwld/nx-devops:run-commands",
+      "configurations": {
+        "production": {
+          "commands": [
+            {
+              "command": "nx run apps-otwld-fr:build-server:production && nx run apps-otwld-fr:build-spa:production",
+              "forwardAllArgs": true
+            }
+          ]
+        },
+        "staging": {
+          "commands": [
+            {
+              "command": "nx run apps-otwld-fr:build-server:staging && nx run apps-otwld-fr:build-spa:staging",
+              "forwardAllArgs": true
+            }
+          ]
+        }
+      },
+      "options": {
+        "parallel": false,
+        "commands": [
+          {
+            "command": "nx run apps-otwld-fr:build-server:development && nx run apps-otwld-fr:build-spa:development",
+            "forwardAllArgs": true
+          }
+        ]
+      }
+    },
+    "build-server": {
       "executor": "@angular-devkit/build-angular:server",
       "outputs": ["{options.outputPath}"],
       "options": {
