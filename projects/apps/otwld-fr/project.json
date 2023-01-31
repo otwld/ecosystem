@@ -8,7 +8,7 @@
     "build-spa": {
       "dependsOn": ["^generate"],
       "executor": "@nrwl/angular:webpack-browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": ["{options.outputPath}", "projects/apps/otwld-fr/tailwind.config.js"],
       "options": {
         "statsJson": true,
         "outputPath": "dist/projects/apps/otwld-fr/browser",
