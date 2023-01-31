@@ -5,7 +5,20 @@
   "sourceRoot": "libs/ui/src",
   "prefix": "ui",
   "targets": {
+    "generate-tailwind-types": {
+      "dependsOn": ["^build"],
+      "executor": "@otwld/nx-devops:run-commands",
+      "options": {
+        "cwd": "libs/ui",
+        "commands": [
+          "echo Generating Tailwind Types with default preset.",
+          "node ../../dist/projects/clis/tailwindcss-classnames/src/index.js -i tailwind.config.js -o src/types/tailwind.types.ts"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
+      "dependsOn": ["generate-tailwind-types"],
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -37,5 +50,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["clis-tailwindcss-classnames"]
 }
