@@ -1,13 +1,13 @@
 import { getGreeting } from '../support/app.po';
 
 describe('otwld-fr', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => cy.visit('/?forceSSR=true'));
 
-  xit('should display welcome message', () => {
+  it('should display welcome message', () => {
     // Custom command example, see `../support/commands.ts` file
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Outworld');
+    getGreeting().contains('Senior Typescript Engineers');
   });
 });
