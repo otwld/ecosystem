@@ -5,8 +5,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import classnames from '../../types/tailwind.types';
 import { AbstractComponent } from './abstract.component';
-import { classnames } from '@otwld/ui';
 
 @UntilDestroy()
 @Component({
