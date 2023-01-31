@@ -15,7 +15,6 @@ const sharedTailwindConfig = require('../../../libs/ui/tailwind.config');
 module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    join(__dirname, '../../../libs/ui/src/**/!(*.stories|*.spec).{ts,html}'), // IE: We are waiting for NX to fix this issue.
     ...createGlobPatternsForDependencies(__dirname),
   ],
   presets: [sharedTailwindConfig],
