@@ -1,6 +1,5 @@
 import {Field, ObjectType} from '@nestjs/graphql';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {commonSchemaOption} from '../../../shared/objects/schema/common-schema-option';
 import {Resource, ResourceSchema} from '../../resources/models/resource.model';
 import {Translation, TranslationSchema} from '../../../shared/modules/language/models/translation.model';
 

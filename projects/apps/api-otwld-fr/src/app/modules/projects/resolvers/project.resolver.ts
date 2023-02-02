@@ -13,7 +13,6 @@ import {enUS, fr} from 'date-fns/locale';
 import {Client} from '../../clients/models/client.model';
 import {ListProjectsPage} from '../models/dto/list-projects-output.dto';
 import {ListProjectsInput} from '../models/dto/list-projects-input.dto';
-import {PaginationProjectsPage} from '../models/dto/pagination-projects-output.dto';
 
 @Resolver(() => Project)
 export class ProjectResolver {

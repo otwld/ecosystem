@@ -4,7 +4,7 @@ import { iListArgs } from './interfaces/list-args.interface';
 import { eDirection } from './enums/direction.enum';
 import { iOrderBy } from './interfaces/order-by.interface';
 
-type ListArgsConstructor<T> = new (...args: any[]) => iListArgs<T>;
+type ListArgsConstructor<T> = new (...args: unknown[]) => iListArgs<T>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ListArgsFactory<T extends ReturnTypeFunc>(listOfFields: T, name: string): ListArgsConstructor<T> {
