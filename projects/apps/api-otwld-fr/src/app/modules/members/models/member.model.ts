@@ -7,7 +7,6 @@ import {BasicModel} from '../../../shared/objects/model/basic.model';
 import {MemberSkill, MemberSkillSchema} from './memberSkill.model';
 import {MemberWorkMode, MemberWorkModeSchema} from './memberWorkMode.model';
 import {MemberSocial, MemberSocialSchema} from './memberSocials.model';
-import {Project} from '../../projects/models/project.model';
 import {Resource, ResourceSchema} from '../../resources/models/resource.model';
 import {Translation, TranslationSchema} from '../../../shared/modules/language/models/translation.model';
 import {LocationSchema, Location} from '../../../shared/modules/location/models/location.model';

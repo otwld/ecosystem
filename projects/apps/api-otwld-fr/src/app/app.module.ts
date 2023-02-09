@@ -36,7 +36,7 @@ import {createMemberLoader} from './shared/loaders/members.loader';
 import {createClientLoader} from './shared/loaders/clients.loader';
 import {ClientService} from './modules/clients/services/client.service';
 import {ClientModule} from './modules/clients/client.module';
-
+import {getMongoInstanceFromEnv} from './shared/utils/mongodb.utils';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -46,10 +46,7 @@ import {ClientModule} from './modules/clients/client.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (conf: ConfigService) => ({
-        uri: conf.get('mongodb.uri'),
-        retryAttempts: 3,
-      }),
+      useFactory: async (conf: ConfigService) => getMongoInstanceFromEnv(conf),
       inject: [ConfigService],
     }),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
@@ -80,7 +77,7 @@ import {ClientModule} from './modules/clients/client.module';
       ) => ({
         debug: conf.get('log.graphqlDebug'),
         playground: conf.get('graphqlPlayground'),
-        autoSchemaFile: join(process.cwd(), 'projects/apps/api-otwld-fr/src/schema.gql'),
+        autoSchemaFile: join(__dirname, '..', 'schema.gql'),
         sortSchema: true,
         installSubscriptionHandlers: false,
         /*subscriptions: {
