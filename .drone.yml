@@ -20,6 +20,7 @@ data:
     enabled: true
   e2e:
     enabled: true
+    beforeCommand: npm --arch=x64 --platform=linux i sharp
   docker:
     enabled: true
   npm:
