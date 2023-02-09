@@ -20,11 +20,13 @@ data:
     enabled: true
   e2e:
     enabled: true
-    beforeCommands:
-      - rm -rf ./node_modules/sharp
-      - npm --arch=x64 --platform=linux i sharp
-      - rm -rf ./node_modules/mongodb-memory-server
-      - npm i mongodb-memory-server
+    before:
+      enabled: true
+      commands:
+        - rm -rf ./node_modules/sharp
+        - npm --arch=x64 --platform=linux i sharp
+        - rm -rf ./node_modules/mongodb-memory-server
+        - npm i mongodb-memory-server
   docker:
     enabled: true
   npm:
