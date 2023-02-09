@@ -5,7 +5,7 @@ import {HeaderLanguage} from '../../src/app/shared/modules/language/enums/langua
 
 describe('clients E2E', () => {
   beforeAll(async () => {
-    await app.ensureRuntime();
+    await app.createNestApplication();
   })
   it('should return a list of clients', async () => {
     return createBaseGraphqlRequest(getClientsQuery).expect(expectNotGraphqlError).expect({
@@ -27,5 +27,6 @@ describe('clients E2E', () => {
       }
     });
   });
+  afterAll(async () => await app.close());
 
 });

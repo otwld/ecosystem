@@ -21,3 +21,22 @@ export const getProjectBySlugGql = `
      }
    }
 `;
+
+export const getFullProjectBySlugGql = `
+   query getFullProjectBySlug {
+     getProjectBySlug(slug: "project-1") {
+      _id,
+      startDateLabel,
+      endDateLabel,
+      services {
+         _id,
+         title,
+          slug
+      },
+      clients {
+        _id,
+        name
+     }
+   }
+ }
+`;

@@ -42,6 +42,7 @@ query getProjectsPaginated($pagination: PaginationOption!)  {
   }
 }
 
+
 query getRelatedProjects($slug: String!) {
   getRelatedProjects(slug: $slug) {
     ...carouselProject

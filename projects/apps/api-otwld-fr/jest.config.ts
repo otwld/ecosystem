@@ -13,6 +13,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/api-otwld-fr',
-  setupFilesAfterEnv: ['./test/global-teardown.ts'],
+  coverageDirectory: '../../coverage/apps/api-otwld-fr'
 };
