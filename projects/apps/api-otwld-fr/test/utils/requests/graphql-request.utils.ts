@@ -46,8 +46,6 @@ class GraphqlRequest<T> {
     }
     if (this.config.expectError === false) {
       graphqlRequest = graphqlRequest.expect((res) => this.expectNotGraphqlError(res));
-    } else if (this.config.expectError === true) {
-
     }
     if (this.expectedData && !this.config.expectError) {
       graphqlRequest = graphqlRequest.expect(this.expectData());
@@ -66,6 +64,7 @@ class GraphqlRequest<T> {
   }
 
   public expectError(res: Response) {
+    return res;
   }
 
   protected expectNotGraphqlError = (res: request.Response) => {
