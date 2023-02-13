@@ -64,7 +64,9 @@ class GraphqlRequest<T> {
   }
 
   public expectError(res: Response) {
-    return res;
+    if (!res) {
+      throw new Error('No response');
+    }
   }
 
   protected expectNotGraphqlError = (res: request.Response) => {
