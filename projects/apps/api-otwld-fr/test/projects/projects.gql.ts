@@ -1,4 +1,6 @@
-export const getProjectsGql = `
+import {gql} from 'apollo-server-express';
+
+export const getProjectsGql = gql`
   query listProjects {
     getProjects(pagination: {after: 1}) {
       edges {
@@ -14,7 +16,7 @@ export const getProjectsGql = `
     }
   }
 `;
-export const getProjectBySlugGql = `
+export const getProjectBySlugGql = gql`
    query getProjectBySlug {
      getProjectBySlug(slug: "project-1") {
       _id
@@ -22,7 +24,7 @@ export const getProjectBySlugGql = `
    }
 `;
 
-export const getFullProjectBySlugGql = `
+export const getFullProjectBySlugGql = gql`
    query getFullProjectBySlug {
      getProjectBySlug(slug: "project-1") {
       _id,

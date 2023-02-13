@@ -1,13 +1,13 @@
 import {Project} from '../../../src/app/modules/projects/models/project.model';
 import {Service1} from './services.fixtures';
 
-export const project1: Partial<Project> = {
+export const Project1: Partial<Project> = {
   _id: 'project-1',
   templates: {
     fr: 'template fr',
     en: 'template en'
   },
-  members: [],
+  members: ['member-1'],
   slug: 'project-1',
   testimonials: [],
   services: [Service1._id],

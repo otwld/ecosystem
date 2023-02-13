@@ -1,4 +1,6 @@
-export const getServicesPaginatedGql = `
+import {gql} from 'apollo-server-express';
+
+export const getServicesPaginatedGql = gql`
   query getServicesPaginated {
     getServicesPaginated(pagination: {after: 1}) {
       edges {
@@ -18,7 +20,7 @@ export const getServicesPaginatedGql = `
   }
 `;
 
-export const getServicesGql = `
+export const getServicesGql = gql`
 query getServices {
     getAllServices {
       _id,
@@ -26,7 +28,7 @@ query getServices {
     }
 }
 `;
-export const getServiceBySlugGql = `
+export const getServiceBySlugGql = gql`
    query getServiceBySlug {
      getService(slug: "service-1") {
       _id,

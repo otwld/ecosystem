@@ -36,7 +36,9 @@ import {createMemberLoader} from './shared/loaders/members.loader';
 import {createClientLoader} from './shared/loaders/clients.loader';
 import {ClientService} from './modules/clients/services/client.service';
 import {ClientModule} from './modules/clients/client.module';
-import {getMongoInstanceFromEnv} from './shared/utils/mongodb.utils';
+import {MongooseSetupModule} from './shared/modules/mongooseSetup/mongooseSetup.module';
+import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setup.service';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -45,9 +47,9 @@ import {getMongoInstanceFromEnv} from './shared/utils/mongodb.utils';
       load: [main, mongodb, s3, log],
     }),
     MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (conf: ConfigService) => getMongoInstanceFromEnv(conf),
-      inject: [ConfigService],
+      imports: [ConfigModule, MongooseSetupModule],
+      useFactory: async (app: MongooseSetupService) => app.selectMongoInstance(),
+      inject: [MongooseSetupService],
     }),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -118,6 +120,7 @@ import {getMongoInstanceFromEnv} from './shared/utils/mongodb.utils';
 
     /* ======== GLOBAL ======== */
     LoggingModule,
+    MongooseSetupModule,
 
     /* ======== MODULES ======== */
     MemberModule,
