@@ -66,7 +66,8 @@
       ],
       "options": {
         "jestConfig": "projects/apps/api-otwld-fr/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": false,
+        "testingType": "e2e"
       }
     },
     "helm-deploy": {
