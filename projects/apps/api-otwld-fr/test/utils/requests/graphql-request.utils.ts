@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import {Response} from 'supertest';
 import {app} from '../app.utils';
 import {HeaderLanguage} from '../../../src/app/shared/modules/language/enums/language.enum';
-import {ntb64} from '../../../src/app/shared/utils/string.utils';
+import {b64tn, ntb64} from '../../../src/app/shared/utils/string.utils';
 
 type DeepPartial<T> = T extends object ? {
   [P in keyof T]?: DeepPartial<T[P]>;
@@ -121,7 +121,7 @@ export class PaginatedGraphqlRequest<T extends Array<object>> extends GraphqlReq
     for (const [i, item] of this.expectedData.entries()) {
       matchingEdges.edges.push({
         node: item,
-        cursor: ntb64(i)
+        cursor: ntb64(i + b64tn(matchingEdges.pageInfo.startCursor))
       });
     }
     const query = {
