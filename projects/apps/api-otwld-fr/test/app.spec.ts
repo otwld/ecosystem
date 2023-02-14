@@ -1,5 +1,7 @@
 import * as request from 'supertest';
 import {app} from './utils/app.utils';
+import {ErrorGraphqlRequest} from './utils/requests/graphql-request.utils';
+import {getMemberLightGql} from './members/members.gql';
 
 describe('App', () => {
   beforeAll(async () => {
@@ -10,5 +12,11 @@ describe('App', () => {
       .post('/graphql')
       .expect(400)
   });
+  it('/POST graphql without language',
+    async () => ErrorGraphqlRequest.runTest(getMemberLightGql,
+      {expectError: true, debug: false, defaultLanguage: 'ze'},
+      [{
+        message: 'Language is invalid',
+      }]));
   afterAll(async () => await app.close());
 });

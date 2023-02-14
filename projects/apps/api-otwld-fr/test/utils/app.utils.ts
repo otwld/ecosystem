@@ -2,7 +2,6 @@ import {INestApplication} from '@nestjs/common';
 import {Test, TestingModule} from '@nestjs/testing';
 import {AppModule} from '../../src/app/app.module';
 import {FixturesService} from './fixtures.service';
-import {BehaviorSubject, filter, firstValueFrom} from 'rxjs';
 
 export class App {
   moduleRef: TestingModule;

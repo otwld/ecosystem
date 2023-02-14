@@ -268,6 +268,7 @@ enum eListMembersInputSortFields {
 
 enum eListProjectsInputSortFields {
   createdAt
+  startDate
 }
 
 enum eListServicesInputSortFields {

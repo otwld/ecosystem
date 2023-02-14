@@ -4,6 +4,7 @@ import {ListProjectsFilter} from './list-projects-filter.dto';
 
 enum eListProjectsInputSortFields {
   createdAt = 'createdAt',
+  startDate = 'startDate',
 }
 
 registerEnumType(eListProjectsInputSortFields, {

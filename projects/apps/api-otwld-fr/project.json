@@ -3,6 +3,9 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "projects/apps/api-otwld-fr/src",
   "projectType": "application",
+  "namedInputs": {
+    "e2e": ["!{projectRoot}/apps/api-otwld-fr/**/*.ts"]
+  },
   "targets": {
     "build": {
       "dependsOn": ["^generate"],
@@ -66,8 +69,10 @@
       ],
       "options": {
         "jestConfig": "projects/apps/api-otwld-fr/jest.config.ts",
-        "passWithNoTests": true
-      }
+        "passWithNoTests": false,
+        "testingType": "e2e"
+      },
+      "inputs": ["^production"]
     },
     "helm-deploy": {
       "executor": "@otwld/nx-devops:helm-deploy",
