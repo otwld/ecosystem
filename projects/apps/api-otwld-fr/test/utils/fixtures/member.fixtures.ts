@@ -7,8 +7,7 @@ import {WorkMode1} from './workMode.fixtures';
 
 export const Member1: Partial<Member> = {
   _id: 'member-1',
-  medias: [],
-  testimonials: [],
+  testimonials: ['testimonial-1'],
   location: {
     country: createTranslatedField('france', 'france'),
     city: createTranslatedField('paris', 'paris'),

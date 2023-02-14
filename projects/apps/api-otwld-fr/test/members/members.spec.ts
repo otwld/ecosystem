@@ -1,4 +1,4 @@
-import {getMemberFullGql, getMemberLightGql} from './members.gql';
+import {getMemberFullGql, getMemberLightGql, getMemberMediaGql, getMemberTestimonialsGql} from './members.gql';
 import {HeaderLanguage} from '../../src/app/shared/modules/language/enums/language.enum';
 import {Member} from '@ecosystem/shared-models';
 import {app} from '../utils/app.utils';
@@ -8,6 +8,8 @@ import {Skill1} from '../utils/fixtures/skill.fixtures';
 import {formatDistance} from 'date-fns';
 import {fr} from 'date-fns/locale';
 import {WorkMode1} from '../utils/fixtures/workMode.fixtures';
+import {Media1} from '../utils/fixtures/media.fixtures';
+import {Testimonial1} from '../utils/fixtures/testimonial.fixtures';
 
 describe('Members E2E', () => {
   beforeAll(async () => {
@@ -56,6 +58,32 @@ describe('Members E2E', () => {
           name: WorkMode1.name.fr
         },
         description: Member1.workModes[0].description.fr
+      }]
+    })
+  );
+  it('should get a member with medias', async () =>
+    DefaultGraphqlRequest.runTest<Member>(getMemberMediaGql, {debug: false}, {
+      medias: {
+        edges: [{
+          node: {
+            _id: Media1._id,
+            title: Media1.title.fr,
+            type: Media1.type,
+            author: Media1.author
+          }
+        }]
+      }
+    })
+  );
+  it('should get a member with testimonials', async () =>
+    DefaultGraphqlRequest.runTest<Member>(getMemberTestimonialsGql, {debug: false}, {
+      testimonials: [{
+        author: {
+          firstName: Testimonial1.author.firstName,
+          lastName: Testimonial1.author.lastName,
+          job: Testimonial1.author.job.fr
+        },
+        content: Testimonial1.content.fr,
       }]
     })
   );

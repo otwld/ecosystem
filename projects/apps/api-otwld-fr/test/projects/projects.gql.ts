@@ -1,20 +1,22 @@
 import {gql} from 'apollo-server-express';
 
 export const getProjectsGql = gql`
-  query listProjects {
-    getProjects(pagination: {after: 1}) {
-      edges {
-      cursor,
-      node {
-        _id
-      }
-    },
-    pageInfo {
-      startCursor,
-      endCursor
+    query listProjects {
+        getProjects(pagination: {after: 1}) {
+            edges {
+                cursor,
+                node {
+                    _id
+                }
+            },
+            pageInfo {
+                startCursor,
+                endCursor,
+                hasNextPage,
+                hasPrevPage
+            }
+        }
     }
-    }
-  }
 `;
 export const getProjectBySlugGql = gql`
    query getProjectBySlug {
@@ -42,3 +44,26 @@ export const getFullProjectBySlugGql = gql`
    }
  }
 `;
+
+export const getRelatedProjectsGql = gql`
+  query getRelatedProjects {
+    getRelatedProjects(slug: "project-1") {
+      _id
+    }
+  }
+`;
+
+export const getProjectBySlugWithNextProjectGql = gql`
+  query getProjectBySlug {
+    getProjectBySlug(slug: "project-1") {
+      _id,
+      nextProject {
+        _id
+      },
+      previousProject {
+        _id
+      }
+    }
+  }
+`;
+

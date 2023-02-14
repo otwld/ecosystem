@@ -55,3 +55,35 @@ export const getMemberFullGql = gql`
     }
   }
 `;
+
+export const getMemberMediaGql = gql`
+  query getMemberMedia {
+      getMemberById(id: "member-1") {
+          medias(pagination: {after: 1}) {
+              edges {
+                  node {
+                      _id,
+                      title,
+                      type,
+                      author
+                  }
+              }
+          }
+      }
+  }
+`;
+
+export const getMemberTestimonialsGql = gql`
+  query getMemberTestimonials {
+    getMemberById(id: "member-1") {
+      testimonials {
+        author {
+          firstName,
+          lastName,
+          job
+        },
+        content,
+      }
+    }
+  }
+`;

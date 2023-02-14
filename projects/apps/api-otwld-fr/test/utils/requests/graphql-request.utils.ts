@@ -14,13 +14,19 @@ export interface GraphqlRequestConfig {
   expectError?: boolean;
   defaultLanguage?: HeaderLanguage | string;
   debug?: boolean;
+  pageInfo?: {
+    startCursor?: string,
+    endCursor?: string,
+    hasNextPage: boolean,
+    hasPrevPage: boolean;
+  }
 }
 
 class GraphqlRequest<T> {
   protected readonly operationName: string;
   private readonly body: string;
 
-  constructor(private readonly doc: DocumentNode, private readonly config: GraphqlRequestConfig,
+  constructor(private readonly doc: DocumentNode, protected readonly config: GraphqlRequestConfig,
               protected readonly expectedData?: DeepPartial<T>) {
     if (!doc.loc?.source?.body) {
       throw new Error('Cannot build gql body from document node');
@@ -100,10 +106,17 @@ export class PaginatedGraphqlRequest<T extends Array<object>> extends GraphqlReq
   override expectData() {
     const matchingEdges = {
       edges: [],
-      pageInfo: {
-        startCursor: ntb64(0),
-        endCursor: ntb64(this.expectedData.length - 1),
+      pageInfo: <GraphqlRequestConfig['pageInfo']>{
+        startCursor: this.config.pageInfo?.startCursor ? this.config.pageInfo.startCursor : ntb64(0),
+        endCursor: this.config.pageInfo?.endCursor ? this.config.pageInfo.endCursor :
+          ntb64(this.expectedData.length - 1),
       }
+    }
+    if (this.config.pageInfo?.hasNextPage !== undefined) {
+      matchingEdges.pageInfo.hasNextPage = this.config.pageInfo.hasNextPage
+    }
+    if (this.config.pageInfo?.hasPrevPage !== undefined) {
+      matchingEdges.pageInfo.hasPrevPage = this.config.pageInfo.hasPrevPage
     }
     for (const [i, item] of this.expectedData.entries()) {
       matchingEdges.edges.push({
@@ -121,7 +134,7 @@ export class PaginatedGraphqlRequest<T extends Array<object>> extends GraphqlReq
 
 export class ErrorGraphqlRequest<T extends Array<{ message: string }>> extends GraphqlRequest<T> {
   static runTest<T extends Array<{ message: string }>>(doc: DocumentNode, config: GraphqlRequestConfig,
-                 expectedData?: DeepPartial<T>) {
+                                                       expectedData?: DeepPartial<T>) {
     return new ErrorGraphqlRequest(doc, config, expectedData).testRequest();
   }
 
