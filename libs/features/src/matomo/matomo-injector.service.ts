@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import {
+  MATOMO_CONFIGURATION,
+  MatomoConfiguration,
+} from './matomo-configuration';
 
 /**
  * Access to the global window variable.
@@ -37,6 +40,9 @@ export class MatomoInjector {
    */
   init(): void {
     try {
+      if (this.configuration?.enableHeartBeatTimer === true) {
+        window['_paq'].push(['enableHeartBeatTimer']);
+      }
       if (this.configuration?.requireConsent === true) {
         window['_paq'].push(['requireConsent']);
       } else if (this.configuration?.requireCookieConsent === true) {

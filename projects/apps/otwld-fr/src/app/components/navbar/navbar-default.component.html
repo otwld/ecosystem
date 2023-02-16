@@ -7,6 +7,8 @@
   <ui-navbar-item sizeOrSlot="flex-1">
     <a routerLink="/">
       <ui-logo
+        [class.animate-slide-in-fade-top]="isBrowser"
+        [class.opacity-0]="isServer"
         class="mr-8 py-0.5 md:py-2 xl:mr-20"
         hostDisplay="flex"
       ></ui-logo>
@@ -67,14 +69,19 @@
     uiMenu
   >
     <li uiMenuItem>
-      <a [routerLink]="'/'">
+      <a
+        [class.animate-slide-in-fade-right]="isBrowser"
+        [class.opacity-0]="isServer"
+        [routerLink]="'/'">
         {{ t('navbar.home') }}
       </a>
     </li>
     <li uiMenuItem>
       <a
         [routerLink]="'/services'"
-        class="animation-delay-1000 animate-slide-in-fade-right"
+        [class.animate-slide-in-fade-right]="isBrowser"
+        [class.opacity-0]="isServer"
+        class="animation-delay-0.2"
       >
         {{ t('navbar.services') }}
       </a>
@@ -82,7 +89,9 @@
     <li uiMenuItem>
       <a
         [routerLink]="'/portfolio'"
-        class="animate-slide-in-fade-right animation-delay-0.4"
+        [class.animate-slide-in-fade-right]="isBrowser"
+        [class.opacity-0]="isServer"
+        class="animation-delay-0.4"
       >
         {{ t('navbar.portfolio') }}
       </a>
@@ -90,7 +99,9 @@
     <li uiMenuItem>
       <a
         [routerLink]="'/members'"
-        class="animate-slide-in-fade-right animation-delay-0.8"
+        [class.animate-slide-in-fade-right]="isBrowser"
+        [class.opacity-0]="isServer"
+        class="animation-delay-0.6"
       >
         {{ t('navbar.members') }}
       </a>

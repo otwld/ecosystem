@@ -11,18 +11,24 @@
           class="relative mx-auto h-full flex-col items-start py-0 pt-16 sm:flex-row md:items-center"
         >
           <img
-            class="mx-auto w-1/2 animate-slide-in-fade-right object-contain animation-delay-0.2 sm:hidden"
+            [class.animate-slide-in-fade-right]="isBrowser"
+            [class.opacity-0]="isServer"
+            class="mx-auto w-1/2 object-contain animation-delay-0.2 sm:hidden"
             src="{{ member.picture?.url }}"
           />
           <div
             class="flex w-full flex-col justify-center pb-16 text-center sm:mr-8 sm:text-start md:w-auto xl:max-w-full"
           >
           <span
-            class="animate-slide-in-fade-top text-[18px] font-extrabold uppercase animation-delay-0.2"
+            [class.animate-slide-in-fade-top]="isBrowser"
+            [class.opacity-0]="isServer"
+            class="text-[18px] font-extrabold uppercase animation-delay-0.2"
           >{{ member.jobTitle }}
           </span>
             <h1
-              class="2 mt-6 animate-slide-in-fade-top whitespace-pre-line text-3xl font-extrabold leading-[1.2] animation-delay-0.4 lg:text-7xl"
+              [class.animate-slide-in-fade-top]="isBrowser"
+              [class.opacity-0]="isServer"
+              class="2 mt-6 whitespace-pre-line text-3xl font-extrabold leading-[1.2] animation-delay-0.4 lg:text-7xl"
             >
               {{
               t('team.hero.title', {
@@ -31,7 +37,9 @@
               }}
             </h1>
             <div
-              class="mt-6 flex animate-slide-in-fade-top flex-wrap justify-center gap-4 animation-delay-0.6 md:justify-start"
+              [class.animate-slide-in-fade-top]="isBrowser"
+              [class.opacity-0]="isServer"
+              class="mt-6 flex flex-wrap justify-center gap-4 animation-delay-0.6 md:justify-start"
             >
               <ui-badge
                 (click)="openDialog()"
@@ -50,7 +58,9 @@
               >
             </div>
             <div
-              class="mt-8 flex animate-slide-in-fade-top flex-col animation-delay-0.6 sm:items-center md:flex-row"
+              [class.animate-slide-in-fade-top]="isBrowser"
+              [class.opacity-0]="isServer"
+              class="mt-8 flex flex-col animation-delay-0.6 sm:items-center md:flex-row"
             >
               <ui-button
                 class="pb-8 md:pb-0"
@@ -61,7 +71,9 @@
               </ui-button>
               <ul
                 *ngIf="member.socials as socials"
-                class="mx-auto animate-slide-in-fade-right animation-delay-0.2 md:ml-8 md:mr-0"
+                [class.animate-slide-in-fade-right]="isBrowser"
+                [class.opacity-0]="isServer"
+                class="mx-auto animation-delay-0.2 md:ml-8 md:mr-0"
                 display="menu-horizontal"
                 rounded="rounded"
                 uiMenu
@@ -75,7 +87,9 @@
             </div>
           </div>
           <img
-            class="absolute bottom-0 right-4 hidden max-h-full w-3/5 animate-slide-in-fade-right self-end object-contain animation-delay-0.2 xs:w-1/2 sm:right-8 sm:block sm:w-2/5 md:static lg:w-1/3"
+            [class.animate-slide-in-fade-right]="isBrowser"
+            [class.opacity-0]="isServer"
+            class="absolute bottom-0 right-4 hidden max-h-full w-3/5 self-end object-contain animation-delay-0.2 xs:w-1/2 sm:right-8 sm:block sm:w-2/5 md:static lg:w-1/3"
             src="{{ member.picture?.url }}"
           />
         </ui-hero-content>

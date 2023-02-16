@@ -1,11 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { BaseComponent, ButtonComponent, CardIconComponent, LoopLiteralsDirective } from '@otwld/ui';
+import {
+  ButtonComponent,
+  CardIconComponent,
+  ContainerComponent,
+  LoopLiteralsDirective,
+  provideComponentConfiguration,
+} from '@otwld/ui';
 import { RouterLink, RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
-import {ServicesService, SocialIconToFa} from '@ecosystem/shared-models';
+import { ServicesService, SocialIconToFa } from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-services',
@@ -18,20 +24,26 @@ import {ServicesService, SocialIconToFa} from '@ecosystem/shared-models';
     RouterLinkWithHref,
     TranslocoModule,
     RouterLink,
-    LoopLiteralsDirective
+    LoopLiteralsDirective,
   ],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideComponentConfiguration({
+      name: 'container-services',
+      type: 'container',
+    }),
+  ],
 })
-export class ServicesComponent extends BaseComponent {
-  services$ = this.servicesServices.getAllServices$();
+export class ServicesComponent extends ContainerComponent {
+  private readonly _servicesService = inject(ServicesService);
+  services$ = this.createTransferStateOperation(
+    'getAllServices',
+    this._servicesService.getAllServices$()
+  );
 
   trackEvent = injectTrackEvent();
-
-  constructor(private readonly servicesServices: ServicesService) {
-    super();
-  }
 
   stringToIcon = SocialIconToFa;
 }

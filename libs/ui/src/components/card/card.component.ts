@@ -5,23 +5,32 @@ import {
   HostBinding,
   Input,
   NgModule,
-  OnChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent } from '../base.component';
 import { RouterLinkWithHref } from '@angular/router';
-import { BorderColorClass } from '../../types/tailwind/utils/border.types';
-import { BackgroundColorClass } from '../../types/tailwind/utils/background.types';
+import { WidthClass } from '../../types/tailwind/utils/general.types';
 import {
-  TextColorClass,
-  WidthClass,
-} from '../../types/tailwind/utils/general.types';
-import {
-  CardDisplay,
-  CardImage,
-  CardPadding,
-  CardStyle,
-} from '../../types/tailwind/components/card.types';
+  backgroundColor,
+  card,
+  cardComponent,
+  cardDisplay,
+  cardImage,
+  cardPadding,
+  cardStyle,
+  overflow,
+  TBackgroundColor,
+  TCardDisplay,
+  TCardImage,
+  TCardPadding,
+  TCardStyle,
+  textColor,
+  transitionDuration,
+  transitionProperty,
+  transitionsAndAnimations,
+  TTextColor,
+} from '../../types';
+import { DumbComponent } from '../../core/components/dumb.component';
+import { provideComponentConfiguration } from '../../core';
 
 @Directive({
   selector: '[uiCardImage]',
@@ -69,7 +78,7 @@ export class CardActionsComponent {
   imports: [CommonModule, RouterLinkWithHref],
   template: `
     <figure *ngIf="!mode; else imgTemplate">
-      <a *ngIf="routerLink; else imgTemplate" routerLink="{{ routerLink }}" >
+      <a *ngIf="routerLink; else imgTemplate" routerLink="{{ routerLink }}">
         <ng-container *ngTemplateOutlet="imgTemplate"></ng-container>
       </a>
     </figure>
@@ -98,33 +107,39 @@ export class CardImageComponent {
   selector: 'ui-card',
   standalone: true,
   imports: [CommonModule],
+  providers: [
+    provideComponentConfiguration({
+      name: 'dumb-card',
+      type: 'dumb',
+    })
+  ],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent
-  extends BaseComponent<
-    BackgroundColorClass | BorderColorClass | TextColorClass
-  >
-  implements OnChanges
-{
-  @Input() backgroundColor: BackgroundColorClass | undefined = 'bg-base-100';
-  @Input() textColor: TextColorClass | undefined = 'text-base-content';
-  @Input() padding: CardPadding | undefined = undefined;
-  @Input() image: CardImage | undefined = undefined;
-  @Input() display: CardDisplay | undefined = undefined;
-  @Input() cardStyle: CardStyle | undefined = undefined;
-  @HostBinding('class') override class = this.construct(
-    () => ['card', 'transition-colors', 'duration-300', 'overflow-hidden'],
-    () => [
-      this.backgroundColor,
-      this.textColor,
-      this.padding,
-      this.image,
-      this.display,
-      this.cardStyle,
-    ]
-  );
+export class CardComponent extends DumbComponent {
+  @Input() backgroundColor: TBackgroundColor | undefined = 'bg-base-100';
+  @Input() textColor: TTextColor | undefined = 'text-base-content';
+  @Input() padding: TCardPadding | undefined = undefined;
+  @Input() image: TCardImage | undefined = undefined;
+  @Input() display: TCardDisplay | undefined = undefined;
+  @Input() cardStyle: TCardStyle | undefined = undefined;
+  @HostBinding('class') override classes = this.getComponentClasses(() => [
+    card(
+      cardComponent('card'),
+      cardPadding(this.padding),
+      cardImage(this.image),
+      cardDisplay(this.display),
+      cardStyle(this.cardStyle)
+    ),
+    backgroundColor(this.backgroundColor),
+    transitionsAndAnimations(
+      transitionProperty('transition-colors'),
+      transitionDuration('duration-300')
+    ),
+    overflow('overflow-hidden'),
+    textColor(this.textColor),
+  ]);
 }
 
 @NgModule({

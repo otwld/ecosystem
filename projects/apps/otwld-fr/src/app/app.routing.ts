@@ -23,14 +23,13 @@ const routes: CustomRoute[] = [
         redirectTo: '/services/web-development',
       },
       {
-        path: ':id',
+        path: ':slug',
         loadComponent: () =>
           import(
             './containers/pages/page-service-id/page-service-id.component'
           ).then((m) => m.PageServiceIdComponent),
         data: {
           titleTranslationKey: 'service-details',
-          scrollOffset: 300,
         },
       },
     ],
@@ -47,7 +46,7 @@ const routes: CustomRoute[] = [
         redirectTo: '/portfolio/occ',
       },
       {
-        path: ':id',
+        path: ':slug',
         loadComponent: () =>
           import(
             './containers/pages/page-portfolio/page-portfolio.component'
@@ -70,7 +69,7 @@ const routes: CustomRoute[] = [
         loadComponent: () =>
           import(
             './containers/pages/page-team-member-id/page-team-member-id.component'
-            ).then((m) => m.PageTeamMemberIdComponent),
+          ).then((m) => m.PageTeamMemberIdComponent),
         data: {
           titleTranslationKey: 'Team member',
         },
@@ -93,7 +92,7 @@ const routes: CustomRoute[] = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled',
+      scrollPositionRestoration: 'top',
       initialNavigation: 'enabledBlocking'
     }),
   ],

@@ -1,20 +1,21 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  BaseComponent,
   CardActionsComponent,
   CardBodyComponent,
   CardComponent,
   CardImageComponent,
   CardImageDirective,
   CardTitleDirective,
-  IsInViewportDirective
+  ContainerComponent,
+  IsInViewportDirective,
+  provideComponentConfiguration,
 } from '@otwld/ui';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent } from '@otwld/features';
-import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
+import { MembersService, SocialIconToFa } from '@ecosystem/shared-models';
 
 @Component({
   selector: 'otwld-teams',
@@ -35,9 +36,16 @@ import {MembersService, SocialIconToFa} from '@ecosystem/shared-models';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideComponentConfiguration({
+      name: 'container-teams',
+      type: 'container',
+    })
+  ]
 })
-export class TeamsComponent extends BaseComponent {
-  members$ = inject(MembersService).getAllMembers$();
+export class TeamsComponent extends ContainerComponent {
+  private readonly _membersService = inject(MembersService);
+  members$ = this.createTransferStateOperation('getAllMembers', this._membersService.getAllMembers$());
   trackEvent = injectTrackEvent();
   stringToIcon = SocialIconToFa
 }

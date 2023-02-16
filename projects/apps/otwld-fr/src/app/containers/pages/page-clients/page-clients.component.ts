@@ -11,6 +11,7 @@ import { SimulatorComponent } from '../../sections/simulator/simulator.component
 import { NavbarDefaultComponent } from '../../../components/navbar/navbar-default.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { injectTrackEvent, TawkToService } from '@otwld/features';
+import { PageComponent, provideComponentConfiguration } from '@otwld/ui';
 
 @Component({
   selector: 'otwld-page-clients',
@@ -31,8 +32,16 @@ import { injectTrackEvent, TawkToService } from '@otwld/features';
   templateUrl: './page-clients.component.html',
   styleUrls: ['./page-clients.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideComponentConfiguration(
+      {
+        name: 'page-clients',
+        type: 'page',
+      }
+    )
+  ]
 })
-export class PageClientsComponent {
+export class PageClientsComponent extends PageComponent {
   private trackEvent = injectTrackEvent();
   tawkTo = inject(TawkToService);
 

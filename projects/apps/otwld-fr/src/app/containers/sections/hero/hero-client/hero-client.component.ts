@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent, ButtonComponent } from '@otwld/ui';
+import {
+  ButtonComponent,
+  DumbComponent,
+  provideComponentConfiguration,
+} from '@otwld/ui';
 import { HeroClientImageComponent } from './hero-client-image/hero-client-image.component';
 
 @Component({
@@ -10,8 +20,14 @@ import { HeroClientImageComponent } from './hero-client-image/hero-client-image.
   templateUrl: './hero-client.component.html',
   styleUrls: ['./hero-client.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideComponentConfiguration({
+      name: 'dumb-hero-client',
+      type: 'smart',
+    })
+  ]
 })
-export class HeroClientComponent extends BaseComponent {
+export class HeroClientComponent extends DumbComponent {
   @Input() subtitle: string | undefined;
   @Input() title: string | undefined;
   @Input() image: string | undefined;

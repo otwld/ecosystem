@@ -6,6 +6,12 @@ jest.doMock('./types/tailwind/theme.types', () => {
   return { ...original };
 });
 
+jest.doMock('./types/tailwind.types.ts', () => {
+  const original = jest.requireActual('./types/tailwind.types.ts');
+  Object.keys(original).forEach((key) => (original[key] = () => ''));
+  return { ...original };
+});
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({

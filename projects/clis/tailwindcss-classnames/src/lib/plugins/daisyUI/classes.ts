@@ -1,0 +1,57 @@
+export type Alert = Record<TAlertCategoryItem, string[]>;
+export type Card = Record<TCardCategoryItem, string[]>;
+
+export type DaisyUI = {
+  Alert: Alert;
+  // Avatar: string[];
+  // Badge: string[];
+  // Button: string[];
+  Card: Card;
+  // Carousel: string[];
+  // ChatBubble: string[];
+  // Collapse: string[];
+  // Coutdown: string[];
+  // Dropdown: string[];
+  // Kbd: string[];
+  // Modal: string[];
+  // Progress: string[];
+  // RadialProgress: string[];
+  // Stat: string[];
+  // Swap: string[];
+  // Table: string[];
+  // Tooltip: string[];
+  // Checkbox: string[];
+  // FileInput: string[];
+  // Radio: string[];
+  // Range: string[];
+  // Rating: string[];
+  // Select: string[];
+  // TextInput: string[];
+  // Textarea: string[];
+  // Toggle: string[];
+  // Artboard: string[];
+  // ButtonGroup: string[];
+  // Divider: string[];
+  // Drawer: string[];
+  // Footer: string[];
+  // Hero: string[];
+  // Indicator: string[];
+  // InputGroup: string[];
+  // Mask: string[];
+  // Stack: string[];
+  // Toast: string[];
+  // BreadCrumbs: string[];
+  // BottomNavigation: string[];
+  // Link: string[];
+  // Menu: string[];
+  // Navbar: string[];
+  // Pagination: string[];
+  // Steps: string[];
+  // Tab: string[];
+  // Code: string[];
+  // Phone: string[];
+  // Window: string[];
+}
+
+export type TAlertCategoryItem = 'alertBase' | 'alertStatus';
+export type TCardCategoryItem = 'cardStyle' | 'cardImage' | 'cardPadding' | 'cardDisplay' | 'cardComponent';

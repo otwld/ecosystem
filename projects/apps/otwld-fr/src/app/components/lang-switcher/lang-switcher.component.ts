@@ -6,9 +6,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  BaseComponent,
   ButtonComponent,
+  DumbComponent,
   LocalStorageService,
+  provideComponentConfiguration,
   SwapComponent,
   SwapOffComponent,
   SwapOnComponent,
@@ -26,11 +27,17 @@ import { injectTrackEvent } from '@otwld/features';
     SwapComponent,
     ButtonComponent,
   ],
+  providers: [
+    provideComponentConfiguration({
+      name: 'dumb-lang-switcher',
+      type: 'dumb'
+    })
+  ],
   templateUrl: './lang-switcher.component.html',
   styleUrls: ['./lang-switcher.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LangSwitcherComponent extends BaseComponent {
+export class LangSwitcherComponent extends DumbComponent {
   @ViewChild(SwapComponent, { static: true }) swapComponent:
     | SwapComponent
     | undefined;

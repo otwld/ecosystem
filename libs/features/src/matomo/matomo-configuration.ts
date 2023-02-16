@@ -35,6 +35,10 @@ export interface SanitizedMatomoConfiguration {
    */
   trackLinkValue?: boolean;
   /**
+   * If true, the heart beat timer will be enabled.
+   */
+  enableHeartBeatTimer?: boolean;
+  /**
    * Parameters related to route tracking.
    */
   routeTracking?: {

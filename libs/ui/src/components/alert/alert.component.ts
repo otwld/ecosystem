@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostBinding,
-  Input, NgModule,
-  TemplateRef
+  Input,
+  NgModule,
+  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertColorClass } from '../../types/tailwind/components/alert.types';
 import { BaseComponent } from '../base.component';
 import {
   faCheckCircle,
@@ -16,6 +16,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  alert,
+  alertBase,
+  alertStatus,
+  classnames,
+  TAlertStatus,
+} from '../../types/tailwind.types';
 
 @Component({
   selector: 'ui-alert',
@@ -24,17 +31,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent extends BaseComponent {
-  @Input() color: AlertColorClass | undefined = undefined;
-  @HostBinding('class') override class = this.construct(
-    () => ['alert'],
-    () => [this.color]
-  );
+  @Input() color: TAlertStatus | undefined = undefined;
+  @HostBinding('class') override class = classnames(
+    alert(
+      alertBase('alert'),
+      alertStatus(this.color)
+    )
+  )
   @Input() title: string | undefined = undefined;
   @Input() message: string | undefined = undefined;
   @Input() slotEndTpl: TemplateRef<unknown> | undefined = undefined;
   @Input() icon: IconDefinition | undefined = undefined;
 
-  config: Record<AlertColorClass | 'default', { icon: IconDefinition }> = {
+  config: Record<TAlertStatus | 'default', { icon: IconDefinition }> = {
     'alert-info': { icon: faInfoCircle },
     'alert-success': { icon: faCheckCircle },
     'alert-warning': { icon: faWarning },

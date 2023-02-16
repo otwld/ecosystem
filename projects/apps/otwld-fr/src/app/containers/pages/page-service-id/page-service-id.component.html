@@ -1,4 +1,6 @@
 <div
   [innerHtml]="(getService$ | async)?.content"
-  class="prose max-w-full animate-slide-in-fade-top"
+  [class.animate-slide-in-fade-top]="isBrowser"
+  [class.opacity-0]="isServer"
+  class="prose max-w-full"
 ></div>

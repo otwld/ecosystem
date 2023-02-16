@@ -4,7 +4,9 @@ const { join } = require('path');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    join(__dirname, 'src/components/!(*.stories|*.spec).{ts,html}'),
+    join(__dirname, 'src/directives/!(*.stories|*.spec).{ts,html}'),
+    join(__dirname, 'src/services/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   safelist: [
@@ -32,6 +34,12 @@ module.exports = {
     '!animation-delay-1.2',
   ],
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: '#000',
+      white: '#fff',
+    },
     container: {
       screens: {
         sm: '540px',
