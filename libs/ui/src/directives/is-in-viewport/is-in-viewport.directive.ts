@@ -29,7 +29,6 @@ export class IsInViewportDirective implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.applyOrRemoveClasses(true)
     if (this.isBrowser) {
       // TODO: Create a IntersectionObserverService.
       const observedElement = this.vcRef.element.nativeElement.parentElement;
