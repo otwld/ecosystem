@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { Breadcrumb, BreadcrumbsComponent } from '@otwld/ui';
+import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 
 @Injectable({
   providedIn: 'root',
