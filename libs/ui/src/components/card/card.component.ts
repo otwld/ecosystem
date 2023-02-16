@@ -29,7 +29,8 @@ import {
   transitionsAndAnimations,
   TTextColor,
 } from '../../types';
-import { DumbComponent } from '../../classes/components/dumb.component';
+import { DumbComponent } from '../../core/components/dumb.component';
+import { provideComponentConfiguration } from '../../core';
 
 @Directive({
   selector: '[uiCardImage]',
@@ -106,6 +107,12 @@ export class CardImageComponent {
   selector: 'ui-card',
   standalone: true,
   imports: [CommonModule],
+  providers: [
+    provideComponentConfiguration({
+      name: 'dumb-card',
+      type: 'dumb',
+    })
+  ],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

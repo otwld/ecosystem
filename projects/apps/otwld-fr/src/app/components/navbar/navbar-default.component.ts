@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -16,12 +17,15 @@ import {
   MenuItemDirective,
   NavbarComponent as _NavbarComponent,
   NavbarItemComponent,
+  provideComponentConfiguration,
+  SmartComponent,
   SwapComponent,
   SwapOffComponent,
-  SwapOnComponent, tw
+  SwapOnComponent,
+  tw,
 } from '@otwld/ui';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterLinkWithHref } from '@angular/router';
+import { RouterLink, RouterLinkWithHref } from '@angular/router';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component';
 import { DrawerService } from '../../services/drawer.service';
@@ -49,21 +53,27 @@ import { TranslocoModule } from '@ngneat/transloco';
     ThemeSwitcherComponent,
     LangSwitcherComponent,
     TranslocoModule,
+    RouterLink,
   ],
   templateUrl: './navbar-default.component.html',
   styleUrls: ['./navbar-default.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default,
+  providers: [
+    provideComponentConfiguration({
+      name: 'smart-navbar-default',
+      type: 'smart',
+    }),
+  ],
 })
-export class NavbarDefaultComponent implements OnInit {
+export class NavbarDefaultComponent extends SmartComponent implements OnInit {
+  private readonly _drawerService = inject(DrawerService);
   @ViewChild('drawerContentRef', { static: true }) drawerContentRef:
     | TemplateRef<HTMLElement>
     | undefined;
 
-  constructor(private readonly drawerService: DrawerService) {}
-
   ngOnInit(): void {
     if (this.drawerContentRef) {
-      this.drawerService.setTemplate({
+      this._drawerService.setTemplate({
         template: this.drawerContentRef,
         context: {
           width: tw('w-64'),
@@ -74,6 +84,6 @@ export class NavbarDefaultComponent implements OnInit {
   }
 
   openDrawer() {
-    this.drawerService.open();
+    this._drawerService.open();
   }
 }

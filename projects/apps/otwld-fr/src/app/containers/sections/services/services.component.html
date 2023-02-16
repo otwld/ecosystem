@@ -1,13 +1,13 @@
 <div class="relative z-20 bg-primary pb-20 text-primary-content">
   <div class="container mx-auto flex flex-col" *transloco="let t">
     <div
-      class="-mt-20 flex w-full flex-wrap items-start justify-center gap-x-8 gap-y-4"
+      class="-mt-20 flex w-full flex-wrap items-start justify-center gap-x-8 gap-y-4 h-[150px] xl:h-[180px]"
     >
       <a
         *ngFor="let item of services$ | async; let index = index"
         [routerLink]="['services', item.slug]"
         (click)="trackEvent('CTA', 'Click', item.title)"
-        class="aspect-square transition-transform hover:scale-105 w-[44%] sm:w-[35%] lg:w-[15%]"
+        class="aspect-square transition-transform hover:scale-105 w-[150px] xl:w-[180px]"
       >
         <ui-card-icon
           title="{{ item.title }}"

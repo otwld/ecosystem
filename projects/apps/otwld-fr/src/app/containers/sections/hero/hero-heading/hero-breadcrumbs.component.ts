@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import {
   Breadcrumb,
   BreadcrumbsComponent,
+  BreadcrumbsService,
   HeroComponent,
   HeroContentComponent,
 } from '@otwld/ui';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
-import { map, Observable, of, switchMap } from 'rxjs';
-import { RouteData } from '../../../../utils/router.utils';
-import { BreadcrumbsService } from '../../../../services/breadcrumbs/breadcrumbs.service';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -27,13 +26,11 @@ import { TranslocoModule } from '@ngneat/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroBreadcrumbsComponent {
-  items$: Observable<Breadcrumb[]> = this.activatedRoute.data.pipe(
-    switchMap(() =>
-      this.breadcrumbsService
-        .onBreadcrumbAdd$()
-        .pipe(map((newBreadcrumb) => [newBreadcrumb]))
-    )
-  );
+  items$: Observable<Breadcrumb[]> = this.breadcrumbsService
+    .onBreadcrumbAdd$()
+    .pipe(
+      map((newBreadcrumb) => [newBreadcrumb])
+    );
   title$ = this.activatedRoute.data.pipe(
     map((data) => data['titleTranslationKey'])
   );
@@ -41,23 +38,6 @@ export class HeroBreadcrumbsComponent {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly breadcrumbsService: BreadcrumbsService
-  ) {}
-
-  private addBreadcrumb$(
-    item: RouteData['titleTranslationKey'],
-    breadcrumbs: BreadcrumbsComponent['items'],
-    url$?: Observable<UrlSegment[]>
-  ): Observable<BreadcrumbsComponent['items']> {
-    if (item && url$) {
-      return url$.pipe(
-        map((url) => '/' + url[url.length - 1].path),
-        map((url) => [
-          { labelTranslationKey: item, url },
-          ...breadcrumbs.map((e) => ({ ...e, url: `${url}/${e.url}` })),
-        ])
-      );
-    } else {
-      return of(breadcrumbs);
-    }
+  ) {
   }
 }

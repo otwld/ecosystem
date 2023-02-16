@@ -8,7 +8,4 @@ import { AbstractComponent } from './abstract.component';
   template: '',
 })
 export class SmartComponent extends AbstractComponent {
-  protected override getComponentName(): string {
-    return '';
-  }
 }

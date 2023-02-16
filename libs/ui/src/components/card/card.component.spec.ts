@@ -1,22 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CardComponent } from './card.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { card, cardComponent } from '../../types/tailwind.types';
 
 describe('CardComponent', () => {
-  let component: CardComponent;
-  let fixture: ComponentFixture<CardComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CardComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(CardComponent).mock(card).mock(cardComponent);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(CardComponent);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

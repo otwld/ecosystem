@@ -6,3 +6,4 @@ export * from './dynamic-script-loader/dynamic-script-loader.service';
 
 export * from './utils/dom';
 export * from './utils/platform';
+export * from './ssr/index';

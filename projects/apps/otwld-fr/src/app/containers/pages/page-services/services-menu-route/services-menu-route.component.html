@@ -2,10 +2,12 @@
   *transloco="let t"
   class="space-y-4" uiMenu>
   <li
-    *ngFor="let item of services$ | async"
+    *ngFor="let item of services$ | async; let index = index"
+    [class.animate-slide-in-fade-top]="isBrowser"
+    [class.opacity-0]="isServer"
     class="rounded border-2 border-base-200 text-lg transition-colors duration-300 hover:border-primary hover:text-primary {{
       item.active ? 'border-primary text-primary' : ''
-    }}"
+    }} animation-delay-0.{{ index + index }}"
     uiMenuItem
   >
     <a

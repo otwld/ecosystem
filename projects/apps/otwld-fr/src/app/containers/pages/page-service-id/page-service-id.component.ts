@@ -1,10 +1,9 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
-import {switchMap, tap} from 'rxjs';
-import {HttpClientModule} from '@angular/common/http';
-import {BreadcrumbsService} from '../../../services/breadcrumbs/breadcrumbs.service';
-import {ServicesService} from '@ecosystem/shared-models';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { tap } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { ServicesService } from '@ecosystem/shared-models';
+import { PageComponent, provideComponentConfiguration } from '@otwld/ui';
 
 @Component({
   selector: 'otwld-page-service-id',
@@ -13,27 +12,21 @@ import {ServicesService} from '@ecosystem/shared-models';
   templateUrl: './page-service-id.component.html',
   styleUrls: ['./page-service-id.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideComponentConfiguration({
+      name: 'page-service-id',
+      type: 'page',
+    }),
+  ],
 })
-export class PageServiceIdComponent {
+export class PageServiceIdComponent extends PageComponent {
+  private readonly _servicesService = inject(ServicesService);
 
-  getService$ = this.activatedRoute.params.pipe(
-    switchMap((params) =>
-      this.servicesService.getServiceBySlug$(params['id'])
+  getService$ = this.getParams$.pipe(
+    this.runTransferStateOperation(
+      ({ slug }) => `getServiceBySlug-${slug}`,
+      ({ slug }) => this._servicesService.getServiceBySlug$(slug)
     ),
-    tap(service => {
-      if (service) {
-        this.breadcrumbsService.addBreadcrumb({
-          labelTranslationKey: service.title,
-          url: service.slug,
-        })
-      }
-    })
+    tap((service) => this.setBreadcrumb(service.title, '/services/' + service.slug)),
   );
-
-  constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly breadcrumbsService: BreadcrumbsService,
-    private readonly servicesService: ServicesService,
-  ) {
-  }
 }
