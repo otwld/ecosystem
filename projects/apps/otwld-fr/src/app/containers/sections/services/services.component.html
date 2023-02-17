@@ -1,13 +1,13 @@
 <div class="relative z-20 bg-primary pb-20 text-primary-content">
   <div class="container mx-auto flex flex-col" *transloco="let t">
     <div
-      class="-mt-20 flex w-full flex-wrap items-start justify-center gap-x-8 gap-y-4 h-[150px] xl:h-[180px]"
+      class="-mt-20 flex w-full flex-wrap items-start justify-center gap-x-8 gap-y-4"
     >
       <a
         *ngFor="let item of services$ | async; let index = index"
         [routerLink]="['services', item.slug]"
         (click)="trackEvent('CTA', 'Click', item.title)"
-        class="aspect-square transition-transform hover:scale-105 w-[150px] xl:w-[180px]"
+        class="aspect-square transition-transform hover:scale-105 w-[120px] md:w-[140px] xl:w-[180px]"
       >
         <ui-card-icon
           title="{{ item.title }}"
@@ -24,7 +24,7 @@
       <h2
         uiLoopLiterals
         i18ArrayKey="services.ctas"
-        class="mb-8 min-h-[5rem] text-3xl font-extrabold leading-[1.33] md:text-3xl lg:mb-0 lg:text-4xl"
+        class="mb-8 min-h-[8rem] md:min-h-0 text-3xl font-extrabold leading-[1.33] lg:mb-0 lg:text-4xl"
       ></h2>
       <div>
         <a
