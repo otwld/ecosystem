@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/otwld/ecosystem/compare/apps-api-otwld-fr-0.1.0...apps-api-otwld-fr-0.1.1) (2023-02-17)
+
+
+### Bug Fixes
+
+* **api-otwld-fr/test:** fix issue with expectError ([1a8d5b0](https://github.com/otwld/ecosystem/commit/1a8d5b05d954435324d59e6752bd48240c1faf57))
+
+
+
 # [0.1.0](https://github.com/otwld/ecosystem/compare/apps-api-otwld-fr-0.0.10-alpha.0...apps-api-otwld-fr-0.1.0) (2023-01-31)
 
 
