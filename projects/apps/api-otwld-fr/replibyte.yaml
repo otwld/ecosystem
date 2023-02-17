@@ -1,0 +1,24 @@
+encryption_key: xxxxx # optional - encrypt data on datastore
+source:
+  connection_uri: mongodb://root:xxxxxxxx@api-otwld-fr-mongodb.ecosystem.svc.cluster.local:27017/?authSource=admin
+  transformers:
+    - database: apiOtwldFr
+      table: users
+      columns:
+        - name: name
+          transformer_name: first-name
+        - name: age
+          transformer_name: random
+datastore:
+  local_disk:
+    dir: ./datastore
+#  aws:
+#    bucket: replibyte
+#    region: rbx
+#    endpoint:
+#      custom: https://s3.rbx.io.cloud.ovh.net/
+#    credentials:
+#      access_key_id: xxxxxxxxx
+#      secret_access_key: xxxxxxxx
+destination:
+  connection_uri: mongodb://root:xxxxxxxxx@api-otwld-fr-mongodb.ecosystem.svc.cluster.local:27017/?authSource=admin # you can use $DATABASE_URL
