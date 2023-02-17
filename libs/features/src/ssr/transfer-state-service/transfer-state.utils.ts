@@ -47,11 +47,10 @@ export const createTransferStateOperation = <T>(
   transferState: TransferState,
   operationName: string,
   operation$: Observable<T>
-) => {
+): Observable<T> => {
   const stateValue = getTransferStateValue<T>(transferState, operationName);
   return stateValue
     ? of(stateValue)
     : operation$.pipe(
-        tap((value) => transferState.set(makeStateKey<T>(operationName), value))
       );
 };
