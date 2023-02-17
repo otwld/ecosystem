@@ -39,6 +39,24 @@
         }
       }
     },
+    "replibyte": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "replibyte -c replibyte.yaml dump create"
+        ],
+        "cwd": "projects/apps/api-otwld-fr"
+      }
+    },
+    "replibyte-docker": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker run --rm --name replibyte -v \"$(pwd)/replibyte.yaml:/replibyte.yaml:ro\" -v \"$(pwd)/datastore:/datastore\" ghcr.io/qovery/replibyte --config replibyte.yaml dump create"
+        ],
+        "cwd": "projects/apps/api-otwld-fr"
+      }
+    },
     "serve": {
       "dependsOn": ["^generate"],
       "executor": "@nrwl/js:node",
