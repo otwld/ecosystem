@@ -1,8 +1,8 @@
-import {Injectable, OnApplicationShutdown} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {ConfigService} from '@nestjs/config';
 
 @Injectable()
-export class MongooseSetupService implements OnApplicationShutdown {
+export class MongooseSetupService {
   constructor(private readonly configService: ConfigService) {
   }
 
@@ -18,8 +18,4 @@ export class MongooseSetupService implements OnApplicationShutdown {
       }
     }
   }
-
-  onApplicationShutdown(): void {
-  }
-
 }
