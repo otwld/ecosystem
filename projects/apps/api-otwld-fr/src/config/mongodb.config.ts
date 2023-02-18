@@ -11,6 +11,6 @@ export default registerAs('mongodb', () => {
   };
   return {
     ...option,
-    uri: `mongodb://${option.user}:${option.pwd}@${option.host}:${option.port}/${option.name}`,
+    uri: option.uri ? option.uri : `mongodb://${option.user}:${option.pwd}@${option.host}:${option.port}/${option.name}`,
   };
 });

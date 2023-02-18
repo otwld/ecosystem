@@ -12,9 +12,7 @@ import {Media1} from '../utils/fixtures/media.fixtures';
 import {Testimonial1} from '../utils/fixtures/testimonial.fixtures';
 
 describe('Members E2E', () => {
-  beforeAll(async () => {
-    await app.createNestApplication();
-  })
+
   it('should get a light member with translation', async () =>
     DefaultGraphqlRequest.runTest<Member>(getMemberLightGql, {defaultLanguage: HeaderLanguage.EN}, {
       _id: Member1._id,
@@ -87,7 +85,4 @@ describe('Members E2E', () => {
       }]
     })
   );
-  afterAll(async () => {
-    await app.close();
-  })
 });

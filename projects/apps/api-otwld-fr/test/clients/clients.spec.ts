@@ -7,9 +7,7 @@ import {DefaultGraphqlRequest} from '../utils/requests/graphql-request.utils';
 
 
 describe('clients E2E', () => {
-  beforeAll(async () => {
-    await app.createNestApplication();
-  })
+
   it('should return a list of clients', async () =>
     DefaultGraphqlRequest.runTest<Client[]>(getClientsQuery, {}, [{
       _id: Client1._id,
@@ -23,8 +21,4 @@ describe('clients E2E', () => {
       name: Client1.name.en
     }])
   );
-
-
-  afterAll(async () => await app.close());
-
 });

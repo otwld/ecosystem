@@ -11,9 +11,6 @@ import {PaginatedGraphqlRequest} from '../utils/requests/graphql-request.utils';
 import {app} from '../utils/app.utils';
 
 describe('Pagination', () => {
-  beforeAll(async () => {
-    await app.createNestApplication();
-  });
   it('should return a paginated response with two result', async () =>
     PaginatedGraphqlRequest.runTest<Project[]>(getTwoPaginatedGql, {
       pageInfo: {
@@ -82,6 +79,4 @@ describe('Pagination', () => {
       _id: Project2._id
     }])
   );
-  afterAll(async () => await app.close());
-
 });

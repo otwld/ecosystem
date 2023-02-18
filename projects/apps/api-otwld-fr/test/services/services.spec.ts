@@ -5,9 +5,9 @@ import {Service} from '@ecosystem/shared-models';
 import {DefaultGraphqlRequest, PaginatedGraphqlRequest} from '../utils/requests/graphql-request.utils';
 
 describe('Services E2E', () => {
-  beforeAll(async () => {
+  /*beforeAll(async () => {
     await app.createNestApplication()
-  });
+  });*/
   it('should return a list of services', async () =>
     DefaultGraphqlRequest.runTest<Service[]>(getServicesGql, {}, [{
       _id: Service1._id,
@@ -27,5 +27,5 @@ describe('Services E2E', () => {
       description: Service1.description.fr,
       title: Service1.title.fr,
     }));
-  afterAll(async () => await app.close());
+  /*afterAll(async () => await app.close());*/
 });

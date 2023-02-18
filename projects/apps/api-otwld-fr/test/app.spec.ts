@@ -4,9 +4,7 @@ import {ErrorGraphqlRequest} from './utils/requests/graphql-request.utils';
 import {getMemberLightGql} from './members/members.gql';
 
 describe('App', () => {
-  beforeAll(async () => {
-    await app.createNestApplication();
-  });
+  ;
   it(`/POST graphql`, () => {
     return request(app.app.getHttpServer())
       .post('/graphql')
@@ -18,5 +16,5 @@ describe('App', () => {
       [{
         message: 'Language is invalid',
       }]));
-  afterAll(async () => await app.close());
+
 });
