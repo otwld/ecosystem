@@ -16,9 +16,6 @@ import {DefaultGraphqlRequest, PaginatedGraphqlRequest} from '../utils/requests/
 import {ntb64} from '../../src/app/shared/utils/string.utils';
 
 describe('projects E2E', () => {
-  beforeAll(async () => {
-    await app.createNestApplication();
-  });
   it('should return a list of projects', async () =>
     PaginatedGraphqlRequest.runTest<Project[]>(getProjectsGql, {
       pageInfo: {
@@ -27,7 +24,7 @@ describe('projects E2E', () => {
         hasNextPage: true,
         hasPrevPage: false
       },
-      debug: true
+      debug: false
     }, [{
       _id: Project1._id
     }])
@@ -70,6 +67,4 @@ describe('projects E2E', () => {
       previousProject: null,
     })
   );
-
-  afterAll(async () => await app.close());
 });
