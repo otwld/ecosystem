@@ -44,6 +44,13 @@ ingressroute:
         - passHostHeader: true
           name: ecosystem-api-otwld-fr
           port: 80
+    - host: db.outworld.fr
+      priority: 10
+      services:
+        - passHostHeader: true
+          name: db-otwld-fr-ecosystem-db-otwld-fr
+          port: 27017
+
 backup:
   enabled: false
 #  schedule:

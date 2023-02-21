@@ -12,7 +12,12 @@ ingressroute:
         - passHostHeader: true
           name: api-otwld-fr-ecosystem-api-otwld-fr
           port: 80
-
+    - host: development-db.outworld.fr
+      priority: 10
+      services:
+        - passHostHeader: true
+          name: db-otwld-fr-ecosystem-db-otwld-fr
+          port: 27017
 backup:
   enabled: false
 mongodb:
