@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/otwld/ecosystem/compare/apps-api-otwld-fr-0.1.1...apps-api-otwld-fr-0.2.0) (2023-02-23)
+
+
+### Features
+
+* **api-otwld-fr/security:** add ttl for requests and health check ([e1f2e4e](https://github.com/otwld/ecosystem/commit/e1f2e4e9ec9f28ef2dc215974fff5eca3e6c0977))
+
+
+
 ## [0.1.1](https://github.com/otwld/ecosystem/compare/apps-api-otwld-fr-0.1.0...apps-api-otwld-fr-0.1.1) (2023-02-17)
 
 
