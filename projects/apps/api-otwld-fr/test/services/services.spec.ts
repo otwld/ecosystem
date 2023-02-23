@@ -1,4 +1,3 @@
-import {app} from '../utils/app.utils';
 import {getServiceBySlugGql, getServicesGql, getServicesPaginatedGql} from './services.gql';
 import {Service1} from '../utils/fixtures/services.fixtures';
 import {Service} from '@ecosystem/shared-models';

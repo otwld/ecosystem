@@ -1,4 +1,3 @@
-import {app} from '../utils/app.utils';
 import {
   getFullProjectBySlugGql,
   getProjectBySlugGql,

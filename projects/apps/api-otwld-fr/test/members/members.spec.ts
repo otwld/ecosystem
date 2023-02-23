@@ -1,7 +1,6 @@
 import {getMemberFullGql, getMemberLightGql, getMemberMediaGql, getMemberTestimonialsGql} from './members.gql';
 import {HeaderLanguage} from '../../src/app/shared/modules/language/enums/language.enum';
 import {Member} from '@ecosystem/shared-models';
-import {app} from '../utils/app.utils';
 import {Member1} from '../utils/fixtures/member.fixtures';
 import {DefaultGraphqlRequest} from '../utils/requests/graphql-request.utils';
 import {Skill1} from '../utils/fixtures/skill.fixtures';

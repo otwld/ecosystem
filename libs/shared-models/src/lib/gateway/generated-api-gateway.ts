@@ -364,7 +364,8 @@ export enum EListMembersInputSortFields {
 }
 
 export enum EListProjectsInputSortFields {
-  CreatedAt = 'createdAt'
+  CreatedAt = 'createdAt',
+  StartDate = 'startDate'
 }
 
 export enum EListServicesInputSortFields {
