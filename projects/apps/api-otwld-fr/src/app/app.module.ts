@@ -50,9 +50,13 @@ import {HealthModule} from './shared/modules/health/health.module';
       expandVariables: true,
       load: [main, mongodb, s3, log],
     }),
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 30,
+    ThrottlerModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        ttl: configService.get('ttl.waitingTime'),
+        limit: configService.get('ttl.limit'),
+      }),
+      inject: [ConfigService],
+      imports: [ConfigModule],
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule, MongooseSetupModule],
