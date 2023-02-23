@@ -8,7 +8,6 @@ import {
 import {Project1, Project2, Project3} from '../utils/fixtures/project.fixtures';
 import {ntb64} from '../../src/app/shared/utils/string.utils';
 import {PaginatedGraphqlRequest} from '../utils/requests/graphql-request.utils';
-import {app} from '../utils/app.utils';
 
 describe('Pagination', () => {
   it('should return a paginated response with two result', async () =>

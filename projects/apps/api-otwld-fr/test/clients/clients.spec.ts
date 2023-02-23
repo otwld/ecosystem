@@ -1,5 +1,4 @@
 import {getClientsQuery} from './clients.gql';
-import {app} from '../utils/app.utils';
 import {HeaderLanguage} from '../../src/app/shared/modules/language/enums/language.enum';
 import {Client} from '@ecosystem/shared-models';
 import {Client1} from '../utils/fixtures/client.fixtures';
