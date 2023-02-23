@@ -38,6 +38,10 @@ import {ClientService} from './modules/clients/services/client.service';
 import {ClientModule} from './modules/clients/client.module';
 import {MongooseSetupModule} from './shared/modules/mongooseSetup/mongooseSetup.module';
 import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setup.service';
+import {ThrottlerModule} from '@nestjs/throttler';
+import {APP_GUARD} from '@nestjs/core';
+import {GqlThrottlerGuard} from './shared/modules/ttl/ThrottlerGuard';
+import {HealthModule} from './shared/modules/health/health.module';
 
 @Module({
   imports: [
@@ -45,6 +49,10 @@ import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setu
       isGlobal: true,
       expandVariables: true,
       load: [main, mongodb, s3, log],
+    }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 30,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule, MongooseSetupModule],
@@ -82,6 +90,7 @@ import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setu
         autoSchemaFile: join(__dirname, '..', 'schema.gql'),
         sortSchema: true,
         installSubscriptionHandlers: false,
+        cache: 'bounded',
         /*subscriptions: {
           'subscriptions-transport-ws': {
             onConnect: (connectionParams) => {
@@ -121,6 +130,7 @@ import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setu
     /* ======== GLOBAL ======== */
     LoggingModule,
     MongooseSetupModule,
+    HealthModule,
 
     /* ======== MODULES ======== */
     MemberModule,
@@ -137,7 +147,11 @@ import {MongooseSetupService} from './shared/modules/mongooseSetup/mongoose-setu
     ClientModule
   ],
   controllers: [],
-  providers: [],
+  providers: [{
+    provide: APP_GUARD,
+    useClass: GqlThrottlerGuard
+  }
+  ],
 })
 export class AppModule {
 }
