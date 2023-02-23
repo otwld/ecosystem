@@ -8,9 +8,6 @@ COPY ./projects/apps/api-otwld-fr/docker ./docker
 
 RUN apk add npm supervisor
 
-# TODO: remove this line when the issue is fixed with NX. (v15.7.2 doesn't fix anything).
-RUN npm install mongodb-memory-server
-
 RUN npm ci
 
 ADD ./projects/apps/api-otwld-fr/docker/supervisord.conf /etc/supervisor/supervisord.conf
