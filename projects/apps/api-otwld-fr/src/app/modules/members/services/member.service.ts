@@ -5,7 +5,7 @@ import {Member, MemberDocument} from '../models/member.model';
 import {PaginationService} from '../../../shared/modules/pagination/pagination.service';
 import {ListMemberInput} from '../models/dtos/list-member-input.dto';
 import {GetMultipleIds} from '../../../shared/objects/services/multiple-id.service';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class MemberService extends GetMultipleIds<Member> {

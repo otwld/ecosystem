@@ -3,9 +3,9 @@ import {InjectModel} from '@nestjs/mongoose';
 import {Project, ProjectDocument} from '../models/project.model';
 import {FilterQuery, Model} from 'mongoose';
 import {GetMultipleIds} from '../../../shared/objects/services/multiple-id.service';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
 import {ListProjectsInput} from '../models/dto/list-projects-input.dto';
 import {PaginationService} from '../../../shared/modules/pagination/pagination.service';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class ProjectService extends GetMultipleIds<Project> {

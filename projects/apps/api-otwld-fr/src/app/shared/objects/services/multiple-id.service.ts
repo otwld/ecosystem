@@ -1,5 +1,5 @@
-import { AppLogger } from '../../modules/logging/logging.service';
 import { Document, FilterQuery, Model } from 'mongoose';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 export class GetMultipleIds<T> {
   constructor(
