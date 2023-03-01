@@ -16,6 +16,11 @@ data:
     enabled: true
   test:
     enabled: true
+    before:
+      enabled: true
+      commands:
+        - rm -rf ./node_modules/sharp
+        - npm --arch=x64 --platform=linux i sharp
   version:
     enabled: true
   e2e:
