@@ -4,8 +4,8 @@
  */
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app/app.module";
-import { AppLogger } from "./app/shared/modules/logging/logging.service";
 import { ConfigService } from "@nestjs/config";
+import {AppLogger} from '@ecosystem/nest-shared';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

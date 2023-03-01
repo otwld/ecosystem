@@ -3,7 +3,6 @@ import {Member} from '../models/member.model';
 import {MemberService} from '../services/member.service';
 import {ListMemberPage} from '../models/dtos/list-member-page.dto';
 import {ListMemberInput} from '../models/dtos/list-member-input.dto';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
 import {UseGuards} from '@nestjs/common';
 import {LanguageGuard} from '../../../shared/modules/language/guards/language.guard';
 import * as DataLoader from 'dataloader';
@@ -17,6 +16,7 @@ import {Testimonial} from '../../testimonials/models/testimonial.model';
 import {ListMediasPage} from '../../medias/models/dto/list-medias-output.dto';
 import {MediaService} from '../../medias/services/media.service';
 import {ListMediasInput} from '../../medias/models/dto/list-medias-input.dto';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Resolver(() => Member)
 export class MemberResolver {

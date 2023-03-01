@@ -2,8 +2,8 @@ import {Injectable} from '@nestjs/common';
 import {GetMultipleIds} from '../../../shared/objects/services/multiple-id.service';
 import {Testimonial, TestimonialDocument} from '../models/testimonial.model';
 import {Model} from 'mongoose';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
 import {InjectModel} from '@nestjs/mongoose';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class TestimonialService extends GetMultipleIds<Testimonial> {

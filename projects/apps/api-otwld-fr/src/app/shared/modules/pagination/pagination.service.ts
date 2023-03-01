@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { AppLogger } from '../logging/logging.service';
 import { Document, Query } from 'mongoose';
 import { EMPTY_PAGE } from './models/empty-page.const';
 import { iPaginateOption } from './models/paginate-option.interface';
@@ -9,6 +8,7 @@ import { iOrderBy } from './models/interfaces/order-by.interface';
 import { eDirection } from './models/enums/direction.enum';
 import { b64tn, ntb64 } from '../../utils/string.utils';
 import { iListArgs } from './models/interfaces/list-args.interface';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class PaginationService {

@@ -5,7 +5,7 @@ import {Model} from 'mongoose';
 import {ListServiceInput} from '../models/dtos/list-service-input.dto';
 import {PaginationService} from '../../../shared/modules/pagination/pagination.service';
 import {GetMultipleIds} from '../../../shared/objects/services/multiple-id.service';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class ServiceService extends GetMultipleIds<Service> {

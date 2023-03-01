@@ -6,11 +6,9 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
 import {MongooseModule} from '@nestjs/mongoose';
 import main from '../config/main.config';
 import mongodb from '../config/mongodb.config';
-import s3 from '../config/s3.config';
+import resource from '../config/resource.config';
 import {MemberModule} from './modules/members/member.module';
 import {MemberService} from './modules/members/services/member.service';
-import {AppLogger} from './shared/modules/logging/logging.service';
-import {LoggingModule} from './shared/modules/logging/logging.module';
 import {PaginationModule} from './shared/modules/pagination/pagination.module';
 import {ServiceModule} from './modules/services/service.module';
 import {LanguageModule} from './shared/modules/language/language.module';
@@ -42,13 +40,14 @@ import {ThrottlerModule} from '@nestjs/throttler';
 import {APP_GUARD} from '@nestjs/core';
 import {GqlThrottlerGuard} from './shared/modules/ttl/ThrottlerGuard';
 import {HealthModule} from './shared/modules/health/health.module';
+import {AppLogger, LoggingModule, ResourceModule} from '@ecosystem/nest-shared';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
-      load: [main, mongodb, s3, log],
+      load: [main, mongodb, resource, log],
     }),
     ThrottlerModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
@@ -148,7 +147,8 @@ import {HealthModule} from './shared/modules/health/health.module';
     ResourcesModule,
     LocationModule,
     MediaModule,
-    ClientModule
+    ClientModule,
+    ResourceModule
   ],
   controllers: [],
   providers: [{

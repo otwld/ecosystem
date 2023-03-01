@@ -1,10 +1,10 @@
 import {ExecutionContext, Injectable} from '@nestjs/common';
-import {AppLogger} from '../../logging/logging.service';
 import {Reflector} from '@nestjs/core';
 import {GqlExecutionContext} from '@nestjs/graphql';
 import {Observable} from 'rxjs';
 import {GraphQLError} from 'graphql';
 import {HeaderLanguage} from '../enums/language.enum';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class LanguageGuard {

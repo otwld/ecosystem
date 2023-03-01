@@ -3,7 +3,7 @@ import {GetMultipleIds} from '../../../shared/objects/services/multiple-id.servi
 import {WorkMode, WorkModeDocument} from '../models/workMode.model';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
+import {AppLogger} from '@ecosystem/nest-shared';
 
 @Injectable()
 export class WorkModeService extends GetMultipleIds<WorkMode> {

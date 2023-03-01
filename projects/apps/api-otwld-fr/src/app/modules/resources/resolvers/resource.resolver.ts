@@ -1,19 +1,21 @@
 import {Args, Parent, ResolveField, Resolver} from '@nestjs/graphql';
 import {GetResourceUrlInputDto} from '../models/dtos/get-picture-url.dto';
 import {Resource} from '../models/resource.model';
-import {AppLogger} from '../../../shared/modules/logging/logging.service';
-import {S3Service} from '../../../shared/modules/s3/s3.service';
+import {AppLogger} from '@ecosystem/nest-shared';
+import {
+  ResourceService
+} from '@ecosystem/nest-shared';
 
 @Resolver(() => Resource)
 export class ResourceResolver {
-  constructor(private logger: AppLogger, private readonly s3Service: S3Service) {
+  constructor(private logger: AppLogger, private readonly resourceService: ResourceService) {
   }
 
   @ResolveField('url', () => String)
   resolvePictureUrl(@Parent() picture: Resource, @Args('options') args: GetResourceUrlInputDto) {
     this.logger.verbose('resolvePictureUrl');
     if (picture && picture.storageEngine === 's3') {
-      return this.s3Service.resolveFileUrl(picture, args.size)
+      return '' //this.resourceService.resolveFileUrl(picture, args.size)
     } else if (picture && picture.storageEngine === 'external') {
       return picture.path;
     }
